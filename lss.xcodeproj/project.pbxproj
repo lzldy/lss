@@ -872,8 +872,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = W3NR4RG464;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/apple/Desktop/lss_3.0/lss_3.0/Supporting Files/PrefixHeader.pch";
-				INFOPLIST_FILE = "/Users/apple/Desktop/lss_3.0/lss_3.0/Supporting Files/Info.plist";
+				GCC_PREFIX_HEADER = "/Users/apple/Desktop/lss-3.0/lss_3.0/Supporting Files/PrefixHeader.pch";
+				INFOPLIST_FILE = "/Users/apple/Desktop/lss-3.0/lss_3.0/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lss.shishuo;
@@ -890,8 +890,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = W3NR4RG464;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/apple/Desktop/lss_3.0/lss_3.0/Supporting Files/PrefixHeader.pch";
-				INFOPLIST_FILE = "/Users/apple/Desktop/lss_3.0/lss_3.0/Supporting Files/Info.plist";
+				GCC_PREFIX_HEADER = "/Users/apple/Desktop/lss-3.0/lss_3.0/Supporting Files/PrefixHeader.pch";
+				INFOPLIST_FILE = "/Users/apple/Desktop/lss-3.0/lss_3.0/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lss.shishuo;
