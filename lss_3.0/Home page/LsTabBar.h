@@ -6,6 +6,8 @@
 //  Copyright © 2017年 lss. All rights reserved.
 //
 
+//暂时没用到
+
 #import <UIKit/UIKit.h>
 
 @interface LsTabBar : UITabBar

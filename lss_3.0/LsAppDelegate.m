@@ -6,8 +6,22 @@
 //  Copyright © 2017年 lss. All rights reserved.
 //
 
+#define UM_APPKEY  @"58abfe578f4a9d126f0003bd"
+
 #import "LsAppDelegate.h"
 #import "LsTabBarViewController.h"
+#import "LsLoginViewController.h"
+#import "LsGuidePageViewController.h"
+
+static NSString* WXAppid = @"wx5231d4d655cbf5c2";
+static NSString* WXSecret = @"875777926699ad7f9a0ad7675dfe2011";
+
+static NSString* QQAppid = @"1105807406";
+static NSString* QQSecret = @"IIwxLqdIAdZGG6R3";
+
+static NSString* WBAppid = @"2862859337";
+static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
+
 @interface LsAppDelegate ()
 
 @end
@@ -16,16 +30,103 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    self.window =[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    self.window =[[UIWindow alloc] initWithFrame:LSMainScreen];
+#ifdef DEBUG_MODE
+    [self testGuideVc];
+#endif
+    [self initUM];
+    [self loadRootVc];
+    [self setIQKeyboard];
+    [self.window makeKeyAndVisible];
+  
+    return YES;
+}
+
+-(void)initUM{
+    /* 打开调试日志 */
+#ifdef DEBUG_MODE
+    [[UMSocialManager defaultManager] openLog:YES];
+#endif
+    /* 设置友盟appkey */
+    [[UMSocialManager defaultManager] setUmSocialAppkey:UM_APPKEY];
     
+    [self configUSharePlatforms];
+    
+    [self confitUShareSettings];
+}
+
+- (void)confitUShareSettings
+{
+    /*
+     * 打开图片水印
+     */
+    //[UMSocialGlobal shareInstance].isUsingWaterMark = YES;
+    
+    /*
+     * 关闭强制验证https，可允许http图片分享，但需要在info.plist设置安全域名
+     <key>NSAppTransportSecurity</key>
+     <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+     </dict>
+     */
+//    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+    
+}
+
+- (void)configUSharePlatforms
+{
+    //WX
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WXAppid appSecret:WXSecret redirectURL:nil];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatTimeLine appKey:WXAppid appSecret:WXSecret redirectURL:nil];
+    //QQ
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:QQAppid appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Qzone appKey:QQAppid appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+    //WB
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:WBAppid  appSecret:WBSecret redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
+    
+       /* 支付宝的appKey */
+//    [[UMSocialManager defaultManager] setPlaform: UMSocialPlatformType_AlipaySession appKey:@"2015111700822536" appSecret:nil redirectURL:nil];
+    
+}
+
+
+-(void)testGuideVc{
+    [LSUser_Default removeObjectForKey:@"didGuide"];
+    [LSUser_Default removeObjectForKey:@"didLogin"];
+}
+
+-(void)loadRootVc{
+    if (![LSUser_Default objectForKey:@"didGuide"]) {
+        [self loadGuideVc];
+    }else{
+        if (![LSUser_Default objectForKey:@"didLogin"]) {
+            [self loadLoginVc];
+        }else{
+            [self loadMianTab];
+        }
+    }
+}
+
+-(void)loadMianTab{
     LsTabBarViewController *tab =[[LsTabBarViewController alloc] init];
     [tab setSelectedIndex:1];
     self.window.rootViewController =tab;
-    
-    [self setIQKeyboard];
-    [self.window makeKeyAndVisible];
-    return YES;
+}
+
+-(void)loadGuideVc{
+    LsGuidePageViewController *guideVc = [[LsGuidePageViewController alloc] init];
+    guideVc.modalPresentationStyle =UIModalPresentationCustom;
+    guideVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;//渐隐渐现
+    self.window.rootViewController =guideVc;
+}
+
+-(void)loadLoginVc{
+    LsLoginViewController *loginVc = [[LsLoginViewController alloc] init];
+    loginVc.modalPresentationStyle =UIModalPresentationCustom;
+    loginVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;//渐隐渐现
+    self.window.rootViewController =loginVc;
 }
 
 -(void)setIQKeyboard{
@@ -38,6 +139,17 @@
     keyboardManager.shouldShowTextFieldPlaceholder = YES; // 是否显示占位文字
     keyboardManager.placeholderFont = [UIFont boldSystemFontOfSize:17]; // 设置占位文字的字体
     keyboardManager.keyboardDistanceFromTextField = 10.0f; // 输入框距离键盘的距离
+}
+
+// 支持所有iOS系统
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

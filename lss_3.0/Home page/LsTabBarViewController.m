@@ -14,7 +14,6 @@
 #import "LsMyViewController.h"
 #import "LsBaseNaViewController.h"
 
-
 @interface LsTabBarViewController ()
 
 @end
@@ -26,7 +25,6 @@
     self.view.backgroundColor =[UIColor whiteColor];
     [self setTabBar];
 }
-
 
 - (void)setTabBar {
     // 去掉TabBar的阴影线

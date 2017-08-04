@@ -19,7 +19,7 @@
     
     self.view.backgroundColor =[UIColor yellowColor];
     NSDictionary  * dict =@{@"name":@"客户端",@"adress":@"惊世毒妃拉克的手机卡",@"gh":@"哈看的经适房哈师大"};
-    LsLog(@"-------------%@",dict);
+    LsLog(@"------%@-------%@",BASE_URL,dict);
     
 }
 
