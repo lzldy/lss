@@ -74,7 +74,6 @@ static NSString * reuseIdentifier = @"Cell";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    LsLog(@"-------------\n%d",self.allDataArray.count);
     return self.allDataArray.count;
 }
 
@@ -84,10 +83,8 @@ static NSString * reuseIdentifier = @"Cell";
     NSArray *array =self.allDataArray[section];
     if (section==2) {
         NSArray*arr= array[section];
-        LsLog(@"-----------2222--\n%d",arr.count);
         return arr.count;
     }else{
-        LsLog(@"-----------3333--\n%d",array.count);
         return array.count;
     }
 }
@@ -140,6 +137,7 @@ static NSString * reuseIdentifier = @"Cell";
     if (kind == UICollectionElementKindSectionHeader) {
         LsCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
         headerView.label.text =headerArray[indexPath.section];
+        LsLog(@"==========%@=======%@",headerView.label.text,NSStringFromCGRect(headerView.frame));
         reusableview = headerView;
     }
     return reusableview;
