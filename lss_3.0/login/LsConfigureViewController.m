@@ -8,6 +8,7 @@
 
 #import "LsConfigureViewController.h"
 #import "LsCollectionHeaderView.h"
+#import "LsBaseCollectionViewCell.h"
 
 static NSString * reuseIdentifier = @"Cell";
 
@@ -64,7 +65,7 @@ static NSString * reuseIdentifier = @"Cell";
     
     _myCollectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(label.frame)+30, LSMainScreenW-40,LSMainScreenH-CGRectGetMaxY(label.frame)-30)
                                          collectionViewLayout:flowlaout];
-    [_myCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    [_myCollectionView registerClass:[LsBaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [_myCollectionView registerClass:[LsCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     _myCollectionView.backgroundColor=[UIColor whiteColor];
     _myCollectionView.delegate=self;
@@ -72,6 +73,8 @@ static NSString * reuseIdentifier = @"Cell";
     [superView addSubview:_myCollectionView];
 }
 
+
+#pragma - mark -  collectionView
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return self.allDataArray.count;
@@ -91,7 +94,7 @@ static NSString * reuseIdentifier = @"Cell";
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    LsBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     [cell sizeToFit];
     if (!cell) {
         //        NSLog(@"无法创建时打印。。。");
@@ -126,18 +129,17 @@ static NSString * reuseIdentifier = @"Cell";
     return YES;
 }
 
+#pragma - mark -  collectionHeaderView
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     return CGSizeMake(LSMainScreenW, 30);
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+   
     UICollectionReusableView *reusableview = nil;
-    
     if (kind == UICollectionElementKindSectionHeader) {
         LsCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
         headerView.label.text =headerArray[indexPath.section];
-        LsLog(@"==========%@=======%@",headerView.label.text,NSStringFromCGRect(headerView.frame));
         reusableview = headerView;
     }
     return reusableview;
