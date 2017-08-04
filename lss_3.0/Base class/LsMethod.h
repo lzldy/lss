@@ -73,4 +73,5 @@
 
 +(NSArray *)formatArrayFromDict:(NSDictionary*)dict WithKey:(NSString*)key;
 
++ (BOOL) isCode:(NSString *)codeNum;
 @end

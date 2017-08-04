@@ -30,10 +30,10 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window =[[UIWindow alloc] initWithFrame:LSMainScreen];
 #ifdef DEBUG_MODE
-    [self testGuideVc];
+//    [self testGuideVc];
 #endif
     [self initUM];
     [self loadRootVc];

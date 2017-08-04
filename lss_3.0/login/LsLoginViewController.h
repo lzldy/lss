@@ -10,4 +10,7 @@
 
 @interface LsLoginViewController : LsBaseViewController
 
+@property (nonatomic,assign)   BOOL     isGetCodeVc;
+@property (nonatomic,strong)   NSString *phoneNumber;
+
 @end

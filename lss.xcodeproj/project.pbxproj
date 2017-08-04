@@ -34,6 +34,10 @@
 		184335751F33620F00A53585 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184335741F33620F00A53585 /* libc++.tbd */; };
 		184335761F33621E00A53585 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 184335421F3353C000A53585 /* libz.tbd */; };
 		184335781F33623400A53585 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184335771F33623400A53585 /* ImageIO.framework */; };
+		1843357B1F3419D300A53585 /* LsConfigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843357A1F3419D300A53585 /* LsConfigureViewController.m */; };
+		1843357E1F341F5900A53585 /* LsNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843357D1F341F5900A53585 /* LsNavView.m */; };
+		184335811F346F5000A53585 /* LsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335801F346F5000A53585 /* LsWebViewController.m */; };
+		184335841F349CBF00A53585 /* LsCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335831F349CBF00A53585 /* LsCollectionHeaderView.m */; };
 		184CA18F1F27199F00ACB807 /* lss_3_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA18E1F27199F00ACB807 /* lss_3_0Tests.m */; };
 		184CA19A1F27199F00ACB807 /* lss_3_0UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1991F27199F00ACB807 /* lss_3_0UITests.m */; };
 		184CA1F21F272FA300ACB807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184CA1801F27199F00ACB807 /* Assets.xcassets */; };
@@ -129,6 +133,14 @@
 		184335721F3361DE00A53585 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		184335741F33620F00A53585 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		184335771F33623400A53585 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		184335791F3419D300A53585 /* LsConfigureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsConfigureViewController.h; sourceTree = "<group>"; };
+		1843357A1F3419D300A53585 /* LsConfigureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsConfigureViewController.m; sourceTree = "<group>"; };
+		1843357C1F341F5900A53585 /* LsNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsNavView.h; sourceTree = "<group>"; };
+		1843357D1F341F5900A53585 /* LsNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsNavView.m; sourceTree = "<group>"; };
+		1843357F1F346F5000A53585 /* LsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWebViewController.h; sourceTree = "<group>"; };
+		184335801F346F5000A53585 /* LsWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWebViewController.m; sourceTree = "<group>"; };
+		184335821F349CBF00A53585 /* LsCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsCollectionHeaderView.h; sourceTree = "<group>"; };
+		184335831F349CBF00A53585 /* LsCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCollectionHeaderView.m; sourceTree = "<group>"; };
 		184CA1711F27199F00ACB807 /* lss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		184CA1771F27199F00ACB807 /* LsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsAppDelegate.h; sourceTree = "<group>"; };
 		184CA1781F27199F00ACB807 /* LsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsAppDelegate.m; sourceTree = "<group>"; };
@@ -273,6 +285,10 @@
 				184335221F333B4500A53585 /* LsLoginViewController.m */,
 				184335241F333C2300A53585 /* LsGuidePageViewController.h */,
 				184335251F333C2300A53585 /* LsGuidePageViewController.m */,
+				184335791F3419D300A53585 /* LsConfigureViewController.h */,
+				1843357A1F3419D300A53585 /* LsConfigureViewController.m */,
+				1843357F1F346F5000A53585 /* LsWebViewController.h */,
+				184335801F346F5000A53585 /* LsWebViewController.m */,
 			);
 			name = login;
 			path = lss_3.0/login;
@@ -524,6 +540,10 @@
 				189D948D1F2EBF270033C828 /* NSDictionary+Extension.m */,
 				184CA1BD1F27248A00ACB807 /* LsBaseViewController.h */,
 				184CA1BE1F27248A00ACB807 /* LsBaseViewController.m */,
+				1843357C1F341F5900A53585 /* LsNavView.h */,
+				1843357D1F341F5900A53585 /* LsNavView.m */,
+				184335821F349CBF00A53585 /* LsCollectionHeaderView.h */,
+				184335831F349CBF00A53585 /* LsCollectionHeaderView.m */,
 				184CA1C01F2724C000ACB807 /* LsBaseNaViewController.h */,
 				184CA1C11F2724C000ACB807 /* LsBaseNaViewController.m */,
 				184CA1C31F2724DB00ACB807 /* LsBaseModel.h */,
@@ -903,8 +923,11 @@
 				189D948E1F2EBF270033C828 /* NSArray+Extension.m in Sources */,
 				18AF1AF31F2731E800D05E4D /* IQBarButtonItem.m in Sources */,
 				184CA1F61F272FC800ACB807 /* LsBaseModel.m in Sources */,
+				184335841F349CBF00A53585 /* LsCollectionHeaderView.m in Sources */,
 				18AF1AF51F2731E800D05E4D /* IQTitleBarButtonItem.m in Sources */,
 				184CA1F71F272FC800ACB807 /* LsMyViewController.m in Sources */,
+				1843357E1F341F5900A53585 /* LsNavView.m in Sources */,
+				1843357B1F3419D300A53585 /* LsConfigureViewController.m in Sources */,
 				18AF1AED1F2731E800D05E4D /* IQUIView+Hierarchy.m in Sources */,
 				184335261F333C2300A53585 /* LsGuidePageViewController.m in Sources */,
 				183E7AF91F2832E000A69596 /* LsTabBar.m in Sources */,
@@ -923,6 +946,7 @@
 				18975FDE1F29D86900447721 /* GCDSemaphore.m in Sources */,
 				184CA1FD1F272FC800ACB807 /* main.m in Sources */,
 				18975FDD1F29D86900447721 /* GCDQueue.m in Sources */,
+				184335811F346F5000A53585 /* LsWebViewController.m in Sources */,
 				18975FDF1F29D86900447721 /* GCDTimer.m in Sources */,
 				18AF1AEA1F2731E800D05E4D /* IQNSArray+Sort.m in Sources */,
 				18AF1AF61F2731E800D05E4D /* IQToolbar.m in Sources */,

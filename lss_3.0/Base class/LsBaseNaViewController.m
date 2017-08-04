@@ -7,6 +7,7 @@
 //
 
 #import "LsBaseNaViewController.h"
+#import "LsNavView.h"
 
 @interface LsBaseNaViewController ()
 
@@ -17,7 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor =[UIColor whiteColor];
-//    self.navigationBar.hidden=YES;
+    
+    self.navigationBar.hidden=YES;
+    [self.view addSubview:self.navView];
 
     // Do any additional setup after loading the view.
 }
@@ -30,6 +33,13 @@
     }
     // 调用父类pushViewController，self.viewControllers数组添加对象viewController
     [super pushViewController:viewController animated:animated];
+}
+
+-(LsNavView *)navView{
+    if (!_navView) {
+        _navView =[[LsNavView alloc] init];
+    }
+    return _navView;
 }
 
 - (void)didReceiveMemoryWarning {

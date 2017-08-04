@@ -36,7 +36,11 @@
 #define LSMainScreen             [UIScreen mainScreen].bounds
 #define LSMainScreenW            [UIScreen mainScreen].bounds.size.width
 #define LSMainScreenH            [UIScreen mainScreen].bounds.size.height
-#define LSScale                  MainScreenH/568
+#define LSScale                  LSMainScreenH/568
+
+
+//color
+#define LSNavColor               LSColor(255, 90, 122, 1)
 
 
 //IP HOST

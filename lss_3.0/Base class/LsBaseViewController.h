@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface LsBaseViewController : UIViewController
-
+{
+    UIView *superView;
+}
 @property (assign,nonatomic) BOOL closeIQKeyBoard;
+
 
 @end
