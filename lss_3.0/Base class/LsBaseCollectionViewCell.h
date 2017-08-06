@@ -10,4 +10,11 @@
 
 @interface LsBaseCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic,strong)  UILabel   *label;
+@property (nonatomic,assign)  NSInteger section;
+@property (nonatomic,assign)  NSInteger row;
+@property (nonatomic,assign)  BOOL      didClick;
+
+-(void)reloadDataWith:(id)data;
+
 @end

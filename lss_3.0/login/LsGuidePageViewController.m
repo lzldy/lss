@@ -19,10 +19,12 @@
 @implementation LsGuidePageViewController
 
 -(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
 //    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 //    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
 }

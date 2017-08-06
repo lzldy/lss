@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LsNavView.h"
 
 @interface LsBaseViewController : UIViewController
 {
@@ -14,5 +15,6 @@
 }
 @property (assign,nonatomic) BOOL closeIQKeyBoard;
 
+@property (nonatomic,strong) LsNavView *navView;
 
 @end

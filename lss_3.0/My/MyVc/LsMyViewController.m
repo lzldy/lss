@@ -17,8 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor =[UIColor brownColor];
-    LsLog(@"where-------%@",self);
+    self.navView.navTitle =@"我的";
 }
 
 

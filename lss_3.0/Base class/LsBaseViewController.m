@@ -32,7 +32,8 @@
     [super viewDidLoad];
     self.view.backgroundColor =[UIColor whiteColor];
     superView =self.view;
-    // Do any additional setup after loading the view.
+    [superView addSubview:self.navView];
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -44,6 +45,13 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+-(LsNavView *)navView{
+    if (!_navView) {
+        _navView =[[LsNavView alloc] init];
+    }
+    return _navView;
 }
 
 - (void)didReceiveMemoryWarning {

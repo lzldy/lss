@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor =[UIColor cyanColor];
+    self.navView.navTitle =@"发现";
 
 }
 

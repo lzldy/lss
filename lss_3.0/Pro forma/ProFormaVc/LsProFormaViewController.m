@@ -17,10 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor =[UIColor yellowColor];
-    NSDictionary  * dict =@{@"name":@"客户端",@"adress":@"惊世毒妃拉克的手机卡",@"gh":@"哈看的经适房哈师大"};
-    LsLog(@"------%@-------%@",BASE_URL,dict);
-    
+    self.navView.navTitle =@"笔试";
+
 }
 
 - (void)didReceiveMemoryWarning {

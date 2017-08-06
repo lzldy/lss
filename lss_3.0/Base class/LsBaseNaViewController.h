@@ -1,4 +1,4 @@
-//
+
 //  LsBaseNaViewController.h
 //  lss
 //
@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LsNavView.h"
+//#import "LsNavView.h"
 
 @interface LsBaseNaViewController : UINavigationController
 
-@property (nonatomic,strong) LsNavView *navView;
+//@property (nonatomic,strong) LsNavView *navView;
 
 @end

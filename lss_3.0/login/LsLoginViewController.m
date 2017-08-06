@@ -17,7 +17,6 @@
     int           countTimer ;
     NSTimer       *timer;
 }
-@property (nonatomic,strong) LsNavView   *navView;
 @property (nonatomic,strong) UIButton    *nextBtn;
 @property (nonatomic,strong) UIView      *phoneView;
 @property (nonatomic,strong) UILabel     *label;
@@ -59,6 +58,7 @@
     
     UITextField *codeF=[[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(codeL.frame), 0, LSMainScreenW-110*LSScale-CGRectGetMaxX(codeL.frame), 45*LSScale)];
     codeF.placeholder   =@"请输入验证码";
+    codeF.text          =@"1111";
     codeF.delegate      =self;
     codeF.returnKeyType =UIReturnKeyDone;
     codeF.keyboardType  =UIKeyboardTypeNumberPad;
@@ -111,6 +111,7 @@
     
     UITextField *phoneTf=[[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(phoneNum.frame), 0, LSMainScreenW-80, 45*LSScale)];
     phoneTf.placeholder   =@"请输入手机号";
+    phoneTf.text          =@"18888888888";
     phoneTf.delegate      =self;
     phoneTf.returnKeyType =UIReturnKeyDone;
     phoneTf.keyboardType  =UIKeyboardTypeNumberPad;
@@ -190,10 +191,17 @@
 
 -(void)getCode:(UIButton*)button{
     if (_isGetCodeVc) {
-        LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
-        conVc.modalPresentationStyle =UIModalPresentationCustom;
-        conVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:conVc animated:YES completion:nil];
+        if (![LSUser_Default objectForKey:@"didConfig"]) {
+            LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
+            conVc.modalPresentationStyle =UIModalPresentationCustom;
+            conVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:conVc animated:YES completion:nil];
+        }else{
+            [self dismissViewControllerAnimated:YES completion:^{
+            }];
+            LsAppDelegate *appdele=(LsAppDelegate*)[UIApplication sharedApplication].delegate;
+            [appdele loadMianTab];
+        }
     }else{
         LsLoginViewController *loginVc = [[LsLoginViewController alloc] init];
         loginVc.isGetCodeVc            =YES;
@@ -291,16 +299,7 @@
 -(void)loginSuccess{
     [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
     LsAppDelegate *appdele=(LsAppDelegate*)[UIApplication sharedApplication].delegate ;
-    LsTabBarViewController *tab =[[LsTabBarViewController alloc] init];
-    [tab setSelectedIndex:1];
-    appdele.window.rootViewController=tab;
-}
-
--(LsNavView *)navView{
-    if (!_navView) {
-        _navView =[[LsNavView alloc] init];
-    }
-    return _navView;
+    [appdele loadMianTab];
 }
 
 - (void)didReceiveMemoryWarning {

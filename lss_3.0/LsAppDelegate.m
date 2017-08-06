@@ -28,12 +28,12 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
 
 @implementation LsAppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     self.window =[[UIWindow alloc] initWithFrame:LSMainScreen];
+    [LsAFNetWorkTool monitorNet];
 #ifdef DEBUG_MODE
-//    [self testGuideVc];
+    [self testGuideVc];
 #endif
     [self initUM];
     [self loadRootVc];
@@ -95,6 +95,7 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
 -(void)testGuideVc{
     [LSUser_Default removeObjectForKey:@"didGuide"];
     [LSUser_Default removeObjectForKey:@"didLogin"];
+    [LSUser_Default removeObjectForKey:@"didConfig"];
 }
 
 -(void)loadRootVc{
@@ -111,7 +112,7 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
 
 -(void)loadMianTab{
     LsTabBarViewController *tab =[[LsTabBarViewController alloc] init];
-    [tab setSelectedIndex:1];
+//    [tab setSelectedIndex:1];
     self.window.rootViewController =tab;
 }
 

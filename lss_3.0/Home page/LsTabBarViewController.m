@@ -34,23 +34,23 @@
     
     /**** 添加子控制器 ****/
     LsLiveBroadcastViewController *lbVc = [[LsLiveBroadcastViewController alloc] init];
-    [self addVcToTabVcWithViewController:lbVc title:@"直播" image:@"hot_button" selectedImage:@"modify_button"];
+    [self addVcToTabVcWithViewController:lbVc title:@"面试" image:@"ms_button_before" selectedImage:@"ms_button_after"];
     
     LsProFormaViewController      *pfVc = [[LsProFormaViewController alloc] init];
-    [self addVcToTabVcWithViewController:pfVc title:@"备考" image:@"hot_button" selectedImage:@"modify_button"];
+    [self addVcToTabVcWithViewController:pfVc title:@"笔试" image:@"bs_button_before" selectedImage:@"bs_button_after"];
 
     LsPracticeViewController      *prVc = [[LsPracticeViewController alloc] init];
-    [self addVcToTabVcWithViewController:prVc title:@"练习" image:@"midden@2x" selectedImage:@"midden@2x"];
+    [self addVcToTabVcWithViewController:prVc title:@"发现" image:@"fx_button_before" selectedImage:@"fx_button_after"];
 
-    LsDynamicViewController       *dnVc = [[LsDynamicViewController alloc] init];
-    [self addVcToTabVcWithViewController:dnVc title:@"动态" image:@"hot_button" selectedImage:@"hot_button_click"];
+//    LsDynamicViewController       *dnVc = [[LsDynamicViewController alloc] init];
+//    [self addVcToTabVcWithViewController:dnVc title:@"动态" image:@"hot_button" selectedImage:@"hot_button_click"];
 
     LsMyViewController            *myVc = [[LsMyViewController alloc] init];
-    [self addVcToTabVcWithViewController:myVc title:@"我的" image:@"hot_button" selectedImage:@"hot_button_click"];
+    [self addVcToTabVcWithViewController:myVc title:@"我的" image:@"wd_button_before" selectedImage:@"wd_button_after"];
    
     [self setValue:self.lsTabBar forKeyPath:@"tabBar"];
     //选中颜色
-    self.lsTabBar.tintColor=[UIColor redColor];
+//    self.lsTabBar.tintColor=[UIColor redColor];
     //设定Tabbar的颜色
     [[LsTabBar appearance] setBarTintColor:[UIColor whiteColor]];
     [self setupItemTitleTextAttributes];
@@ -63,12 +63,12 @@
     vc.title = title;
     if (image.length) {
         
-        if ([vc isKindOfClass:[LsPracticeViewController class]]) {
-            lbNav.tabBarItem.imageInsets = UIEdgeInsetsMake(-10, 0, 10, 0);//{top, left, bottom, right}
-        }
+//        if ([vc isKindOfClass:[LsPracticeViewController class]]) {
+//            lbNav.tabBarItem.imageInsets = UIEdgeInsetsMake(-10, 0, 10, 0);//{top, left, bottom, right}
+//        }
         lbNav.tabBarItem.title = title;
         lbNav.tabBarItem.image = [UIImage imageNamed:image];
-        lbNav.tabBarItem.selectedImage = [UIImage imageNamed:selectedImage];
+        lbNav.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     [self addChildViewController:lbNav];
 }
@@ -77,14 +77,14 @@
 {
     UITabBarItem *item = [UITabBarItem appearance];
     // 普通状态下的文字属性
-    NSMutableDictionary *normalAttrs = [NSMutableDictionary dictionary];
-    normalAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:12];
-    normalAttrs[NSForegroundColorAttributeName] = [UIColor greenColor];
-    [item setTitleTextAttributes:normalAttrs forState:UIControlStateNormal];
+//    NSMutableDictionary *normalAttrs = [NSMutableDictionary dictionary];
+//    normalAttrs[NSFontAttributeName] = [UIFont systemFontOfSize:12];
+//    normalAttrs[NSForegroundColorAttributeName] = [UIColor greenColor];
+//    [item setTitleTextAttributes:normalAttrs forState:UIControlStateNormal];
     
     // 选中状态下的文字属性
     NSMutableDictionary *selectedAttrs = [NSMutableDictionary dictionary];
-    selectedAttrs[NSForegroundColorAttributeName] = [UIColor brownColor];
+    selectedAttrs[NSForegroundColorAttributeName] =LSNavColor;
     [item setTitleTextAttributes:selectedAttrs forState:UIControlStateSelected];
 }
 
