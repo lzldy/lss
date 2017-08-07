@@ -1,5 +1,5 @@
 //
-//  LsProFormaViewController.h
+//  LsLiveBroadcastViewController.h
 //  lss
 //
 //  Created by apple on 2017/7/25.
@@ -8,6 +8,6 @@
 
 #import "LsBaseViewController.h"
 
-@interface LsProFormaViewController : LsBaseViewController
+@interface LsInterviewViewController : LsBaseViewController
 
 @end

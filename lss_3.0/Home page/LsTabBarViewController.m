@@ -7,10 +7,10 @@
 //
 
 #import "LsTabBarViewController.h"
-#import "LsLiveBroadcastViewController.h"
+#import "LsInterviewViewController.h"
 #import "LsPracticeViewController.h"
-#import "LsProFormaViewController.h"
-#import "LsDynamicViewController.h"
+#import "LsWrittenExaminationViewController.h"
+#import "LsFindViewController.h"
 #import "LsMyViewController.h"
 #import "LsBaseNaViewController.h"
 
@@ -33,19 +33,16 @@
 //    [self.tabBar setBackgroundImage:[[UIImage alloc] init]];
     
     /**** 添加子控制器 ****/
-    LsLiveBroadcastViewController *lbVc = [[LsLiveBroadcastViewController alloc] init];
+    LsInterviewViewController *lbVc          = [[LsInterviewViewController alloc] init];
     [self addVcToTabVcWithViewController:lbVc title:@"面试" image:@"ms_button_before" selectedImage:@"ms_button_after"];
-    
-    LsProFormaViewController      *pfVc = [[LsProFormaViewController alloc] init];
+
+    LsWrittenExaminationViewController *pfVc = [[LsWrittenExaminationViewController alloc] init];
     [self addVcToTabVcWithViewController:pfVc title:@"笔试" image:@"bs_button_before" selectedImage:@"bs_button_after"];
 
-    LsPracticeViewController      *prVc = [[LsPracticeViewController alloc] init];
+    LsFindViewController      *prVc          = [[LsFindViewController alloc] init];
     [self addVcToTabVcWithViewController:prVc title:@"发现" image:@"fx_button_before" selectedImage:@"fx_button_after"];
 
-//    LsDynamicViewController       *dnVc = [[LsDynamicViewController alloc] init];
-//    [self addVcToTabVcWithViewController:dnVc title:@"动态" image:@"hot_button" selectedImage:@"hot_button_click"];
-
-    LsMyViewController            *myVc = [[LsMyViewController alloc] init];
+    LsMyViewController            *myVc      = [[LsMyViewController alloc] init];
     [self addVcToTabVcWithViewController:myVc title:@"我的" image:@"wd_button_before" selectedImage:@"wd_button_after"];
    
     [self setValue:self.lsTabBar forKeyPath:@"tabBar"];

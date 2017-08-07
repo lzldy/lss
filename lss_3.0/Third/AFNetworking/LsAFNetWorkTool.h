@@ -16,5 +16,5 @@
 +(void)monitorNet;
 
 +(instancetype)shareManger;
-
+-(void)get;
 @end

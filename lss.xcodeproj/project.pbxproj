@@ -46,10 +46,6 @@
 		184CA1F51F272FC800ACB807 /* LsBaseNaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1C11F2724C000ACB807 /* LsBaseNaViewController.m */; };
 		184CA1F61F272FC800ACB807 /* LsBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1C41F2724DB00ACB807 /* LsBaseModel.m */; };
 		184CA1F71F272FC800ACB807 /* LsMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1D51F2726F600ACB807 /* LsMyViewController.m */; };
-		184CA1F81F272FC800ACB807 /* LsDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1DB1F27274600ACB807 /* LsDynamicViewController.m */; };
-		184CA1F91F272FC800ACB807 /* LsPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1E11F27278B00ACB807 /* LsPracticeViewController.m */; };
-		184CA1FA1F272FC800ACB807 /* LsProFormaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1E71F2727BF00ACB807 /* LsProFormaViewController.m */; };
-		184CA1FB1F272FC800ACB807 /* LsLiveBroadcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1ED1F2727E600ACB807 /* LsLiveBroadcastViewController.m */; };
 		184CA1FC1F272FC800ACB807 /* LsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1781F27199F00ACB807 /* LsAppDelegate.m */; };
 		184CA1FD1F272FC800ACB807 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1B01F27201500ACB807 /* main.m */; };
 		1854F4A21F36BC7C00E1F603 /* LsConfigureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */; };
@@ -112,6 +108,18 @@
 		18AF1AF61F2731E800D05E4D /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1AE51F2731E800D05E4D /* IQToolbar.m */; };
 		18AF1AF71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1AE71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m */; };
 		18AF1AF81F2731E800D05E4D /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18AF1AE91F2731E800D05E4D /* IQKeyboardManager.bundle */; };
+		18E82D691F37FB9400D3154B /* LsInterviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D671F37FB9400D3154B /* LsInterviewViewController.m */; };
+		18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */; };
+		18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D751F37FDB800D3154B /* LsPracticeViewController.m */; };
+		18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D801F37FE3300D3154B /* LsDynamicViewController.m */; };
+		18E82D851F37FFA700D3154B /* LsFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D841F37FFA700D3154B /* LsFindViewController.m */; };
+		18E82DE31F381E1B00D3154B /* banner1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DDE1F381E1B00D3154B /* banner1.jpg */; };
+		18E82DE41F381E1B00D3154B /* banner2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DDF1F381E1B00D3154B /* banner2.jpg */; };
+		18E82DE51F381E1B00D3154B /* banner3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DE01F381E1B00D3154B /* banner3.jpg */; };
+		18E82DE61F381E1B00D3154B /* banner4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DE11F381E1B00D3154B /* banner4.jpg */; };
+		18E82DE71F381E1B00D3154B /* banner5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DE21F381E1B00D3154B /* banner5.jpg */; };
+		18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */; };
+		18E82DEE1F3830C500D3154B /* UCCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEC1F3830C500D3154B /* UCCarouselView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,14 +209,6 @@
 		184CA1C41F2724DB00ACB807 /* LsBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsBaseModel.m; sourceTree = "<group>"; };
 		184CA1D41F2726F600ACB807 /* LsMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsMyViewController.h; sourceTree = "<group>"; };
 		184CA1D51F2726F600ACB807 /* LsMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsMyViewController.m; sourceTree = "<group>"; };
-		184CA1DA1F27274600ACB807 /* LsDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsDynamicViewController.h; sourceTree = "<group>"; };
-		184CA1DB1F27274600ACB807 /* LsDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsDynamicViewController.m; sourceTree = "<group>"; };
-		184CA1E01F27278B00ACB807 /* LsPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeViewController.h; sourceTree = "<group>"; };
-		184CA1E11F27278B00ACB807 /* LsPracticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPracticeViewController.m; sourceTree = "<group>"; };
-		184CA1E61F2727BF00ACB807 /* LsProFormaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsProFormaViewController.h; sourceTree = "<group>"; };
-		184CA1E71F2727BF00ACB807 /* LsProFormaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsProFormaViewController.m; sourceTree = "<group>"; };
-		184CA1EC1F2727E600ACB807 /* LsLiveBroadcastViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveBroadcastViewController.h; sourceTree = "<group>"; };
-		184CA1ED1F2727E600ACB807 /* LsLiveBroadcastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveBroadcastViewController.m; sourceTree = "<group>"; };
 		1854F4A01F36BC7C00E1F603 /* LsConfigureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsConfigureModel.h; sourceTree = "<group>"; };
 		1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsConfigureModel.m; sourceTree = "<group>"; };
 		1854F4A41F36BE2600E1F603 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
@@ -334,6 +334,25 @@
 		18AF1AE61F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
 		18AF1AE71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		18AF1AE91F2731E800D05E4D /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		18E82D661F37FB9400D3154B /* LsInterviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterviewViewController.h; sourceTree = "<group>"; };
+		18E82D671F37FB9400D3154B /* LsInterviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterviewViewController.m; sourceTree = "<group>"; };
+		18E82D6D1F37FCAE00D3154B /* LsWrittenExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenExaminationViewController.h; sourceTree = "<group>"; };
+		18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenExaminationViewController.m; sourceTree = "<group>"; };
+		18E82D741F37FDB800D3154B /* LsPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeViewController.h; sourceTree = "<group>"; };
+		18E82D751F37FDB800D3154B /* LsPracticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPracticeViewController.m; sourceTree = "<group>"; };
+		18E82D7F1F37FE3300D3154B /* LsDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsDynamicViewController.h; sourceTree = "<group>"; };
+		18E82D801F37FE3300D3154B /* LsDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsDynamicViewController.m; sourceTree = "<group>"; };
+		18E82D831F37FFA700D3154B /* LsFindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsFindViewController.h; sourceTree = "<group>"; };
+		18E82D841F37FFA700D3154B /* LsFindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsFindViewController.m; sourceTree = "<group>"; };
+		18E82DDE1F381E1B00D3154B /* banner1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner1.jpg; sourceTree = "<group>"; };
+		18E82DDF1F381E1B00D3154B /* banner2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner2.jpg; sourceTree = "<group>"; };
+		18E82DE01F381E1B00D3154B /* banner3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner3.jpg; sourceTree = "<group>"; };
+		18E82DE11F381E1B00D3154B /* banner4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner4.jpg; sourceTree = "<group>"; };
+		18E82DE21F381E1B00D3154B /* banner5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner5.jpg; sourceTree = "<group>"; };
+		18E82DE91F3830C500D3154B /* UCCarouselCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCCarouselCollectionViewCell.h; sourceTree = "<group>"; };
+		18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCCarouselCollectionViewCell.m; sourceTree = "<group>"; };
+		18E82DEB1F3830C500D3154B /* UCCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCCarouselView.h; sourceTree = "<group>"; };
+		18E82DEC1F3830C500D3154B /* UCCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCCarouselView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,18 +527,18 @@
 		184CA1681F27199F00ACB807 = {
 			isa = PBXGroup;
 			children = (
+				18E82DDD1F381E1B00D3154B /* banner */,
 				184335271F33437100A53585 /* 引导1@2x.png */,
 				184335281F33437100A53585 /* 引导2@2x.png */,
 				184335291F33437100A53585 /* 引导3@2x.png */,
 				1843352A1F33437100A53585 /* 引导4@2x.png */,
+				18E82D631F37FB9400D3154B /* Interview */,
+				18E82D6A1F37FCAE00D3154B /* WrittenExamination */,
+				18E82D781F37FE1000D3154B /* Find */,
+				184CA1AD1F271D2200ACB807 /* My */,
 				184335201F333B1C00A53585 /* login */,
 				183E7AF61F282E5300A69596 /* Home page */,
 				184CA1BC1F27243000ACB807 /* Base class */,
-				184CA1AD1F271D2200ACB807 /* My */,
-				184CA1AC1F271D1C00ACB807 /* Dynamic */,
-				184CA1AB1F271D1400ACB807 /* Practice */,
-				184CA1AA1F271D0C00ACB807 /* ProForma */,
-				184CA1A91F271CFD00ACB807 /* LiveBroadcast */,
 				184CA1A81F271BB100ACB807 /* Third */,
 				184CA1731F27199F00ACB807 /* lss_3.0 */,
 				184CA1AE1F27201500ACB807 /* Supporting Files */,
@@ -572,6 +591,7 @@
 		184CA1A81F271BB100ACB807 /* Third */ = {
 			isa = PBXGroup;
 			children = (
+				18E82DE81F3830C500D3154B /* UCCarouselView */,
 				1854F53E1F37088C00E1F603 /* AFNetworking */,
 				1854F4DB1F37024A00E1F603 /* HUD */,
 				1854F4DE1F37024A00E1F603 /* MJRefresh */,
@@ -583,50 +603,6 @@
 			);
 			name = Third;
 			path = lss_3.0/Third;
-			sourceTree = "<group>";
-		};
-		184CA1A91F271CFD00ACB807 /* LiveBroadcast */ = {
-			isa = PBXGroup;
-			children = (
-				184CA1EB1F2727E600ACB807 /* LBVc */,
-				184CA1EE1F2727E600ACB807 /* LBView */,
-				184CA1EA1F2727E600ACB807 /* LBModel */,
-			);
-			name = LiveBroadcast;
-			path = "lss_3.0/Live broadcast";
-			sourceTree = "<group>";
-		};
-		184CA1AA1F271D0C00ACB807 /* ProForma */ = {
-			isa = PBXGroup;
-			children = (
-				184CA1E51F2727BF00ACB807 /* ProFormaVc */,
-				184CA1E81F2727BF00ACB807 /* ProFormaView */,
-				184CA1E41F2727BF00ACB807 /* ProFormaModel */,
-			);
-			name = ProForma;
-			path = "lss_3.0/Pro forma";
-			sourceTree = "<group>";
-		};
-		184CA1AB1F271D1400ACB807 /* Practice */ = {
-			isa = PBXGroup;
-			children = (
-				184CA1DF1F27278B00ACB807 /* PracticeVc */,
-				184CA1E21F27278B00ACB807 /* PracticeView */,
-				184CA1DE1F27278B00ACB807 /* PracticeModel */,
-			);
-			name = Practice;
-			path = lss_3.0/Practice;
-			sourceTree = "<group>";
-		};
-		184CA1AC1F271D1C00ACB807 /* Dynamic */ = {
-			isa = PBXGroup;
-			children = (
-				184CA1D91F27274600ACB807 /* DynamicVc */,
-				184CA1DC1F27274600ACB807 /* DynamicView */,
-				184CA1D81F27274600ACB807 /* DynamicModel */,
-			);
-			name = Dynamic;
-			path = lss_3.0/Dynamic;
 			sourceTree = "<group>";
 		};
 		184CA1AD1F271D2200ACB807 /* My */ = {
@@ -702,98 +678,6 @@
 			children = (
 			);
 			path = MyView;
-			sourceTree = "<group>";
-		};
-		184CA1D81F27274600ACB807 /* DynamicModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DynamicModel;
-			sourceTree = "<group>";
-		};
-		184CA1D91F27274600ACB807 /* DynamicVc */ = {
-			isa = PBXGroup;
-			children = (
-				184CA1DA1F27274600ACB807 /* LsDynamicViewController.h */,
-				184CA1DB1F27274600ACB807 /* LsDynamicViewController.m */,
-			);
-			path = DynamicVc;
-			sourceTree = "<group>";
-		};
-		184CA1DC1F27274600ACB807 /* DynamicView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DynamicView;
-			sourceTree = "<group>";
-		};
-		184CA1DE1F27278B00ACB807 /* PracticeModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PracticeModel;
-			sourceTree = "<group>";
-		};
-		184CA1DF1F27278B00ACB807 /* PracticeVc */ = {
-			isa = PBXGroup;
-			children = (
-				184CA1E01F27278B00ACB807 /* LsPracticeViewController.h */,
-				184CA1E11F27278B00ACB807 /* LsPracticeViewController.m */,
-			);
-			path = PracticeVc;
-			sourceTree = "<group>";
-		};
-		184CA1E21F27278B00ACB807 /* PracticeView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = PracticeView;
-			sourceTree = "<group>";
-		};
-		184CA1E41F2727BF00ACB807 /* ProFormaModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ProFormaModel;
-			sourceTree = "<group>";
-		};
-		184CA1E51F2727BF00ACB807 /* ProFormaVc */ = {
-			isa = PBXGroup;
-			children = (
-				184CA1E61F2727BF00ACB807 /* LsProFormaViewController.h */,
-				184CA1E71F2727BF00ACB807 /* LsProFormaViewController.m */,
-			);
-			path = ProFormaVc;
-			sourceTree = "<group>";
-		};
-		184CA1E81F2727BF00ACB807 /* ProFormaView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ProFormaView;
-			sourceTree = "<group>";
-		};
-		184CA1EA1F2727E600ACB807 /* LBModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LBModel;
-			sourceTree = "<group>";
-		};
-		184CA1EB1F2727E600ACB807 /* LBVc */ = {
-			isa = PBXGroup;
-			children = (
-				184CA1EC1F2727E600ACB807 /* LsLiveBroadcastViewController.h */,
-				184CA1ED1F2727E600ACB807 /* LsLiveBroadcastViewController.m */,
-			);
-			path = LBVc;
-			sourceTree = "<group>";
-		};
-		184CA1EE1F2727E600ACB807 /* LBView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LBView;
 			sourceTree = "<group>";
 		};
 		1854F4A31F36BE2600E1F603 /* YYModel */ = {
@@ -996,6 +880,199 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		18E82D631F37FB9400D3154B /* Interview */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D711F37FDB800D3154B /* Practice */,
+				18E82D641F37FB9400D3154B /* InterviewModel */,
+				18E82D651F37FB9400D3154B /* InterviewVc */,
+				18E82D681F37FB9400D3154B /* InterviewView */,
+			);
+			name = Interview;
+			path = lss_3.0/Interview;
+			sourceTree = "<group>";
+		};
+		18E82D641F37FB9400D3154B /* InterviewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InterviewModel;
+			sourceTree = "<group>";
+		};
+		18E82D651F37FB9400D3154B /* InterviewVc */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D661F37FB9400D3154B /* LsInterviewViewController.h */,
+				18E82D671F37FB9400D3154B /* LsInterviewViewController.m */,
+			);
+			path = InterviewVc;
+			sourceTree = "<group>";
+		};
+		18E82D681F37FB9400D3154B /* InterviewView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InterviewView;
+			sourceTree = "<group>";
+		};
+		18E82D6A1F37FCAE00D3154B /* WrittenExamination */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D6B1F37FCAE00D3154B /* WrittenExaminationModel */,
+				18E82D6C1F37FCAE00D3154B /* WrittenExaminationVc */,
+				18E82D6F1F37FCAE00D3154B /* WrittenExaminationView */,
+			);
+			name = WrittenExamination;
+			path = lss_3.0/WrittenExamination;
+			sourceTree = "<group>";
+		};
+		18E82D6B1F37FCAE00D3154B /* WrittenExaminationModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WrittenExaminationModel;
+			sourceTree = "<group>";
+		};
+		18E82D6C1F37FCAE00D3154B /* WrittenExaminationVc */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D6D1F37FCAE00D3154B /* LsWrittenExaminationViewController.h */,
+				18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */,
+			);
+			path = WrittenExaminationVc;
+			sourceTree = "<group>";
+		};
+		18E82D6F1F37FCAE00D3154B /* WrittenExaminationView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WrittenExaminationView;
+			sourceTree = "<group>";
+		};
+		18E82D711F37FDB800D3154B /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D721F37FDB800D3154B /* PracticeModel */,
+				18E82D731F37FDB800D3154B /* PracticeVc */,
+				18E82D761F37FDB800D3154B /* PracticeView */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		18E82D721F37FDB800D3154B /* PracticeModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PracticeModel;
+			sourceTree = "<group>";
+		};
+		18E82D731F37FDB800D3154B /* PracticeVc */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D741F37FDB800D3154B /* LsPracticeViewController.h */,
+				18E82D751F37FDB800D3154B /* LsPracticeViewController.m */,
+			);
+			path = PracticeVc;
+			sourceTree = "<group>";
+		};
+		18E82D761F37FDB800D3154B /* PracticeView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PracticeView;
+			sourceTree = "<group>";
+		};
+		18E82D781F37FE1000D3154B /* Find */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D7C1F37FE3300D3154B /* Dynamic */,
+				18E82D791F37FE1000D3154B /* FindModel */,
+				18E82D7A1F37FE1000D3154B /* FindVc */,
+				18E82D7B1F37FE1000D3154B /* FindView */,
+			);
+			name = Find;
+			path = lss_3.0/Find;
+			sourceTree = "<group>";
+		};
+		18E82D791F37FE1000D3154B /* FindModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FindModel;
+			sourceTree = "<group>";
+		};
+		18E82D7A1F37FE1000D3154B /* FindVc */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D831F37FFA700D3154B /* LsFindViewController.h */,
+				18E82D841F37FFA700D3154B /* LsFindViewController.m */,
+			);
+			path = FindVc;
+			sourceTree = "<group>";
+		};
+		18E82D7B1F37FE1000D3154B /* FindView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FindView;
+			sourceTree = "<group>";
+		};
+		18E82D7C1F37FE3300D3154B /* Dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D7D1F37FE3300D3154B /* DynamicModel */,
+				18E82D7E1F37FE3300D3154B /* DynamicVc */,
+				18E82D811F37FE3300D3154B /* DynamicView */,
+			);
+			path = Dynamic;
+			sourceTree = "<group>";
+		};
+		18E82D7D1F37FE3300D3154B /* DynamicModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DynamicModel;
+			sourceTree = "<group>";
+		};
+		18E82D7E1F37FE3300D3154B /* DynamicVc */ = {
+			isa = PBXGroup;
+			children = (
+				18E82D7F1F37FE3300D3154B /* LsDynamicViewController.h */,
+				18E82D801F37FE3300D3154B /* LsDynamicViewController.m */,
+			);
+			path = DynamicVc;
+			sourceTree = "<group>";
+		};
+		18E82D811F37FE3300D3154B /* DynamicView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DynamicView;
+			sourceTree = "<group>";
+		};
+		18E82DDD1F381E1B00D3154B /* banner */ = {
+			isa = PBXGroup;
+			children = (
+				18E82DDE1F381E1B00D3154B /* banner1.jpg */,
+				18E82DDF1F381E1B00D3154B /* banner2.jpg */,
+				18E82DE01F381E1B00D3154B /* banner3.jpg */,
+				18E82DE11F381E1B00D3154B /* banner4.jpg */,
+				18E82DE21F381E1B00D3154B /* banner5.jpg */,
+			);
+			path = banner;
+			sourceTree = "<group>";
+		};
+		18E82DE81F3830C500D3154B /* UCCarouselView */ = {
+			isa = PBXGroup;
+			children = (
+				18E82DE91F3830C500D3154B /* UCCarouselCollectionViewCell.h */,
+				18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */,
+				18E82DEB1F3830C500D3154B /* UCCarouselView.h */,
+				18E82DEC1F3830C500D3154B /* UCCarouselView.m */,
+			);
+			path = UCCarouselView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1105,10 +1182,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				18AF1AF81F2731E800D05E4D /* IQKeyboardManager.bundle in Resources */,
+				18E82DE41F381E1B00D3154B /* banner2.jpg in Resources */,
+				18E82DE31F381E1B00D3154B /* banner1.jpg in Resources */,
 				1843356D1F33612F00A53585 /* UMSocialSDKPromptResources.bundle in Resources */,
 				1843352B1F33437100A53585 /* 引导1@2x.png in Resources */,
+				18E82DE61F381E1B00D3154B /* banner4.jpg in Resources */,
 				1843352D1F33437100A53585 /* 引导3@2x.png in Resources */,
+				18E82DE71F381E1B00D3154B /* banner5.jpg in Resources */,
 				184CA1F21F272FA300ACB807 /* Assets.xcassets in Resources */,
+				18E82DE51F381E1B00D3154B /* banner3.jpg in Resources */,
 				1843352C1F33437100A53585 /* 引导2@2x.png in Resources */,
 				1843352E1F33437100A53585 /* 引导4@2x.png in Resources */,
 				1843356F1F33612F00A53585 /* UMSocialSDKResources.bundle in Resources */,
@@ -1138,6 +1220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18975FD11F29D0EC00447721 /* LsMethod.m in Sources */,
+				18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */,
 				184335231F333B4500A53585 /* LsLoginViewController.m in Sources */,
 				18AF1AF01F2731E800D05E4D /* IQKeyboardManager.m in Sources */,
 				1854F5351F37024A00E1F603 /* SDWebImageManager.m in Sources */,
@@ -1148,6 +1231,7 @@
 				18AF1AEE1F2731E800D05E4D /* IQUIViewController+Additions.m in Sources */,
 				18AF1AEB1F2731E800D05E4D /* IQUIScrollView+Additions.m in Sources */,
 				1854F5611F37088C00E1F603 /* AFHTTPSessionManager.m in Sources */,
+				18E82DEE1F3830C500D3154B /* UCCarouselView.m in Sources */,
 				1854F5641F37088C00E1F603 /* AFURLRequestSerialization.m in Sources */,
 				184CA1F51F272FC800ACB807 /* LsBaseNaViewController.m in Sources */,
 				1854F5251F37024A00E1F603 /* MBProgressHUD.m in Sources */,
@@ -1172,26 +1256,26 @@
 				1843357E1F341F5900A53585 /* LsNavView.m in Sources */,
 				1854F5381F37024A00E1F603 /* UIImage+GIF.m in Sources */,
 				1854F53A1F37024A00E1F603 /* UIImage+WebP.m in Sources */,
+				18E82D851F37FFA700D3154B /* LsFindViewController.m in Sources */,
 				1843357B1F3419D300A53585 /* LsConfigureViewController.m in Sources */,
+				18E82D691F37FB9400D3154B /* LsInterviewViewController.m in Sources */,
 				18AF1AED1F2731E800D05E4D /* IQUIView+Hierarchy.m in Sources */,
 				1854F52A1F37024A00E1F603 /* MJRefreshHeaderView.m in Sources */,
 				184335261F333C2300A53585 /* LsGuidePageViewController.m in Sources */,
 				1854F52C1F37024A00E1F603 /* UIScrollView+MJRefresh.m in Sources */,
 				1854F52B1F37024A00E1F603 /* UIScrollView+MJExtension.m in Sources */,
+				18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */,
 				183E7AF91F2832E000A69596 /* LsTabBar.m in Sources */,
-				184CA1F81F272FC800ACB807 /* LsDynamicViewController.m in Sources */,
-				184CA1F91F272FC800ACB807 /* LsPracticeViewController.m in Sources */,
 				1854F5311F37024A00E1F603 /* SDWebImageCompat.m in Sources */,
 				1854F53B1F37024A00E1F603 /* UIImageView+HighlightedWebCache.m in Sources */,
+				18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */,
 				1854F53D1F37024A00E1F603 /* UIView+WebCacheOperation.m in Sources */,
 				1854F5391F37024A00E1F603 /* UIImage+MultiFormat.m in Sources */,
 				1854F5371F37024A00E1F603 /* UIButton+WebCache.m in Sources */,
 				1854F5621F37088C00E1F603 /* AFNetworkReachabilityManager.m in Sources */,
 				18975FCB1F29C6BD00447721 /* LsLog.m in Sources */,
-				184CA1FA1F272FC800ACB807 /* LsProFormaViewController.m in Sources */,
 				18AF1AEF1F2731E800D05E4D /* IQUIWindow+Hierarchy.m in Sources */,
 				18AF1AF11F2731E800D05E4D /* IQKeyboardReturnKeyHandler.m in Sources */,
-				184CA1FB1F272FC800ACB807 /* LsLiveBroadcastViewController.m in Sources */,
 				183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */,
 				189D948F1F2EBF270033C828 /* NSDictionary+Extension.m in Sources */,
 				1854F52D1F37024A00E1F603 /* UIView+MJExtension.m in Sources */,
@@ -1200,6 +1284,7 @@
 				1854F5281F37024A00E1F603 /* MJRefreshConst.m in Sources */,
 				18AF1AF21F2731E800D05E4D /* IQTextView.m in Sources */,
 				18975FDE1F29D86900447721 /* GCDSemaphore.m in Sources */,
+				18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */,
 				1854F5301F37024A00E1F603 /* SDImageCache.m in Sources */,
 				184CA1FD1F272FC800ACB807 /* main.m in Sources */,
 				18975FDD1F29D86900447721 /* GCDQueue.m in Sources */,

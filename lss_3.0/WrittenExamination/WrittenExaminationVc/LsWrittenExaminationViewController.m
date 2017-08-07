@@ -6,13 +6,13 @@
 //  Copyright © 2017年 lss. All rights reserved.
 //
 
-#import "LsProFormaViewController.h"
+#import "LsWrittenExaminationViewController.h"
 
-@interface LsProFormaViewController ()
+@interface LsWrittenExaminationViewController ()
 
 @end
 
-@implementation LsProFormaViewController
+@implementation LsWrittenExaminationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -93,9 +93,13 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
 
 
 -(void)testGuideVc{
-    [LSUser_Default removeObjectForKey:@"didGuide"];
-    [LSUser_Default removeObjectForKey:@"didLogin"];
-    [LSUser_Default removeObjectForKey:@"didConfig"];
+//    [LSUser_Default removeObjectForKey:@"didGuide"];
+//    [LSUser_Default removeObjectForKey:@"didLogin"];
+//    [LSUser_Default removeObjectForKey:@"didConfig"];
+    [LSUser_Default setObject:@"yes" forKey:@"didGuide"];
+    [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
+    [LSUser_Default setObject:@"yes" forKey:@"didConfig"];
+
 }
 
 -(void)loadRootVc{

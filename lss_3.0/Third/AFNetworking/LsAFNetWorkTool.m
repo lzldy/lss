@@ -28,6 +28,16 @@
     return _manager;
 }
 
+-(void)get{
+    [self.manager GET:@"https://baidu.com" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+        NSLog(@"------------%@",downloadProgress);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        LsLog(@"----------成功········");
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        LsLog(@"----------失败········");
+    }];
+}
+
 +(void)monitorNet{
     
     AFNetworkReachabilityManager * manager = [AFNetworkReachabilityManager sharedManager];
