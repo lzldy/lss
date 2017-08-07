@@ -53,9 +53,11 @@
 
 //IP HOST
 #ifdef DEBUG_MODE
-#define BASE_URL                 @"AAAAA测试接口"
+#define BASE_URL                 @"http://api.iyoukiss.com"
 #else
 #define BASE_URL                 @"BBBBB正式接口"
 #endif
+
+#define CHANNEL                  @"liangshishuo"
 
 #endif /* PrefixHeader_pch */

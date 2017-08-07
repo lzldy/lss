@@ -272,12 +272,16 @@
                                          success:(void (^)(NSURLSessionDataTask *, id))success
                                          failure:(void (^)(NSURLSessionDataTask *, NSError *))failure
 {
+    NSString  *urlStr  =[NSString stringWithFormat:@"%@/%@",BASE_URL,URLString];
+    NSMutableDictionary *dict =[NSMutableDictionary dictionaryWithDictionary:parameters];
+    [dict setObject:CHANNEL forKey:@"channel"];
     NSError *serializationError = nil;
-    NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:&serializationError];
+    NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:urlStr relativeToURL:self.baseURL] absoluteString] parameters:dict error:&serializationError];
     if (serializationError) {
         if (failure) {
             dispatch_async(self.completionQueue ?: dispatch_get_main_queue(), ^{
                 failure(nil, serializationError);
+                LsLog(@"----------失败-----%@",serializationError.localizedDescription);
             });
         }
 
@@ -291,11 +295,24 @@
                        completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         if (error) {
             if (failure) {
+                LsLog(@"----------失败-----%@",error.localizedDescription);
+                [LsMethod alertMessage:error.localizedDescription WithTime:2];
                 failure(dataTask, error);
             }
         } else {
             if (success) {
-                success(dataTask, responseObject);
+                NSString *rtnCode=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"result"]];
+                NSString *rtnMess=[responseObject objectForKey:@"message"];
+
+                if ([URLString containsString:@"checkmobile.html"]) {
+                    success(dataTask, responseObject);
+                }else{
+                    if ([rtnCode isEqualToString:@"1"]) {
+                        success(dataTask, responseObject);
+                    }else{
+                        [LsMethod alertMessage:rtnMess WithTime:2];
+                    }
+                }
             }
         }
     }];

@@ -68,6 +68,26 @@
     }
 }
 
++(BOOL)haveValue:(id)obj{
+    if (!obj) {
+        return NO;
+    }else{
+        if ([obj isKindOfClass:[NSString class]]) {
+            if ([[LsMethod remove:obj] isEqualToString:@""]) {
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
+
++(NSString *)remove:(NSString*)str{
+    str = [str stringByReplacingOccurrencesOfString:@" "  withString: @""];
+    str = [str stringByReplacingOccurrencesOfString:@"\n" withString: @""];
+
+    return str;
+}
+
 + (NSString*)dictionaryToJson:(NSDictionary *)dic{
     
     NSError *parseError = nil;
@@ -211,7 +231,7 @@
 + (BOOL) isCode:(NSString *)codeNum{
     NSString *regex = @"[0-9]*";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
-    if ([pred evaluateWithObject:codeNum]&&codeNum.length==4) {
+    if ([pred evaluateWithObject:codeNum]&&codeNum.length==6) {
         return YES;
     }
     return NO;

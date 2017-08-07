@@ -87,7 +87,7 @@ static NSString * headerReuseIdentifier = @"header";
                    @[@{@"title":@"语文",@"didSelect":@"yes"},@{@"title":@"数学",@"didSelect":@"no"},
                      @{@"title":@"英语",@"didSelect":@"no"},@{@"title":@"音乐",@"didSelect":@"no"},
                      @{@"title":@"品德",@"didSelect":@"no"},@{@"title":@"美术",@"didSelect":@"no"},
-                     @{@"title":@"体育",@"didSelect":@"no"}],
+                     @{@"title":@"体育",@"didSelect":@"no"},@{@"title":@"科学",@"didSelect":@"no"}],
                    @[@{@"title":@"综合",@"didSelect":@"yes"}]
                   ];
     

@@ -11,10 +11,17 @@
 
 @interface LsAFNetWorkTool : AFHTTPSessionManager
 
-@property (nonatomic,strong) LsAFNetWorkTool *manager;
-
 +(void)monitorNet;
 
-+(instancetype)shareManger;
--(void)get;
++(instancetype _Nullable )shareManger;
+
+- (nullable NSURLSessionDataTask *)LSGET:(NSString *_Nullable)URLString
+                            parameters:(nullable id)parameters
+                               success:(nullable void (^)(NSURLSessionDataTask * _Nullable task, id _Nullable responseObject))success
+                               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error))failure;
+
+- (nullable NSURLSessionDataTask *)LSPOST:(NSString *_Nullable)URLString
+                             parameters:(nullable id)parameters
+                                success:(nullable void (^)(NSURLSessionDataTask * _Nullable task, id _Nullable responseObject))success
+                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error))failure;
 @end

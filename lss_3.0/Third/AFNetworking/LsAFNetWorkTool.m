@@ -21,21 +21,21 @@
     return mageer;
 }
 
--(LsAFNetWorkTool *)manager{
-    if (!_manager) {
-        _manager =[LsAFNetWorkTool shareManger];
-    }
-    return _manager;
+- (NSURLSessionDataTask *)LSGET:(NSString *)URLString
+                   parameters:(id)parameters
+                      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    
+    return [self GET:URLString parameters:parameters progress:nil success:success failure:failure];
 }
 
--(void)get{
-    [self.manager GET:@"https://baidu.com" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        NSLog(@"------------%@",downloadProgress);
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        LsLog(@"----------成功········");
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        LsLog(@"----------失败········");
-    }];
+- (NSURLSessionDataTask *)LSPOST:(NSString *)URLString
+                    parameters:(id)parameters
+                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    return [self POST:URLString parameters:parameters progress:nil success:success failure:failure];
 }
 
 +(void)monitorNet{
@@ -51,9 +51,9 @@
         if (status<1) {
             [LsMethod alertMessage:@"请检查您的网络设置" WithTime:2];
         }else if (status==1){
-            [LsMethod alertMessage:@"当前为4G网络" WithTime:2];
+//            [LsMethod alertMessage:@"当前为4G网络" WithTime:2];
         }else{
-            [LsMethod alertMessage:@"当前为WiFi网络" WithTime:2];
+//            [LsMethod alertMessage:@"当前为WiFi网络" WithTime:2];
         }
         switch (status) {
             case AFNetworkReachabilityStatusUnknown:

@@ -2,14 +2,14 @@
 //  UCCarouselCollectionViewCell.h
 //  UCCarouselView
 //
-//  Created by Uncle.Chen on 3/3/16.
-//  Copyright © 2016 UC. All rights reserved.
+//  Created by apple on 2017/8/7.
+//  Copyright © 2017年 lss. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface UCCarouselCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIImage *image; ///< UIimage 对象
+@property (nonatomic, strong) UIImage *image;
 
 @end

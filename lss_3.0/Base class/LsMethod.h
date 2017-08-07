@@ -74,4 +74,8 @@
 +(NSArray *)formatArrayFromDict:(NSDictionary*)dict WithKey:(NSString*)key;
 
 + (BOOL) isCode:(NSString *)codeNum;
+
++(NSString *)remove:(NSString*)str;
+
++(BOOL)haveValue:(id)obj;
 @end

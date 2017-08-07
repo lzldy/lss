@@ -2,8 +2,8 @@
 //  UCCarouselView.m
 //  UCCarouselView
 //
-//  Created by Uncle.Chen on 3/3/16.
-//  Copyright © 2016 UC. All rights reserved.
+//  Created by apple on 2017/8/7.
+//  Copyright © 2017年 lss. All rights reserved.
 //
 
 #import "UCCarouselView.h"
@@ -24,13 +24,13 @@ typedef void(^DidSelectItemBlock)(NSInteger didSelectItem);
 
 @interface UCCarouselView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) UIPageControl *pageControl; ///< pageControl
-@property (nonatomic, strong) UICollectionView *carouselCollectionView; ///< UCCarouselCollectionView
-@property (nonatomic, copy)   NSArray *dataArray; ///< dataArray
-@property (nonatomic, assign) CGFloat timeInterval; ///< 定时器滚动时间
-@property (nonatomic, assign) NSInteger currentItem; ///< 当前cell的item值
-@property (nonatomic, strong) NSTimer *timer; ///< 定时器
-@property (nonatomic, copy) DidSelectItemBlock didSelectItemBlock; ///< 选择回调
+@property (nonatomic, strong) UIPageControl        *pageControl;
+@property (nonatomic, strong) UICollectionView     *carouselCollectionView;
+@property (nonatomic, copy)   NSArray              *dataArray;
+@property (nonatomic, assign) CGFloat              timeInterval;
+@property (nonatomic, assign) NSInteger            currentItem;
+@property (nonatomic, strong) NSTimer              *timer;
+@property (nonatomic, copy)   DidSelectItemBlock   didSelectItemBlock;
 
 @end
 
