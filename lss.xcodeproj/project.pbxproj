@@ -120,6 +120,7 @@
 		18E82DE71F381E1B00D3154B /* banner5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DE21F381E1B00D3154B /* banner5.jpg */; };
 		18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */; };
 		18E82DEE1F3830C500D3154B /* UCCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEC1F3830C500D3154B /* UCCarouselView.m */; };
+		18E82E3C1F38A41F00D3154B /* LSLabel+TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -353,6 +354,8 @@
 		18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCCarouselCollectionViewCell.m; sourceTree = "<group>"; };
 		18E82DEB1F3830C500D3154B /* UCCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCCarouselView.h; sourceTree = "<group>"; };
 		18E82DEC1F3830C500D3154B /* UCCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCCarouselView.m; sourceTree = "<group>"; };
+		18E82E3A1F38A41F00D3154B /* LSLabel+TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LSLabel+TextField.h"; sourceTree = "<group>"; };
+		18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LSLabel+TextField.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -630,6 +633,8 @@
 		184CA1BC1F27243000ACB807 /* Base class */ = {
 			isa = PBXGroup;
 			children = (
+				18E82E3A1F38A41F00D3154B /* LSLabel+TextField.h */,
+				18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */,
 				189D948A1F2EBF270033C828 /* NSArray+Extension.h */,
 				189D948B1F2EBF270033C828 /* NSArray+Extension.m */,
 				189D948C1F2EBF270033C828 /* NSDictionary+Extension.h */,
@@ -1294,6 +1299,7 @@
 				18AF1AEA1F2731E800D05E4D /* IQNSArray+Sort.m in Sources */,
 				1854F5631F37088C00E1F603 /* AFSecurityPolicy.m in Sources */,
 				1854F5291F37024A00E1F603 /* MJRefreshFooterView.m in Sources */,
+				18E82E3C1F38A41F00D3154B /* LSLabel+TextField.m in Sources */,
 				1854F5271F37024A00E1F603 /* MJRefreshBaseView.m in Sources */,
 				1854F52F1F37024A00E1F603 /* NSData+ImageContentType.m in Sources */,
 				1854F4AA1F36BE2600E1F603 /* YYClassInfo.m in Sources */,

@@ -11,17 +11,20 @@
 #import "LsNavView.h"
 #import "LsConfigureViewController.h"
 #import "LsWebViewController.h"
+#import "LSLabel+TextField.h" 
 
 @interface LsLoginViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
     int           countTimer ;
     NSTimer       *timer;
+    BOOL          didClickCodeBtn;
+    LSLabel_TextField        * phoneNumView;
+    LSLabel_TextField        * passWordView;
 }
-@property (nonatomic,strong) UIButton    *nextBtn;
-@property (nonatomic,strong) UIView      *phoneView;
-@property (nonatomic,strong) UILabel     *label;
-@property (nonatomic,strong) UIButton    *codeBtn;
-@property (nonatomic,strong) UITextField *phoneTf;
+@property (nonatomic,strong) UIButton    *nextBtn;//下一步
+@property (nonatomic,strong) UILabel     *label;//条款
+@property (nonatomic,strong) UIButton    *codeBtn;//验证码
+
 @end
 
 @implementation LsLoginViewController
@@ -43,33 +46,17 @@
 }
 
 -(void)initBaseUIOfGetCode{
-    UILabel *phoneLabel =[[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.navView.frame), 200, 45*LSScale)];
-    phoneLabel.text     =[NSString stringWithFormat:@"您的手机号:%@",_phoneNumber];
-    phoneLabel.font     =[UIFont systemFontOfSize:13];
-    phoneLabel.textColor=[UIColor darkTextColor];
+    UILabel *phoneLabel                  =[[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.navView.frame), 200, 45*LSScale)];
+    phoneLabel.text                      =[NSString stringWithFormat:@"您的手机号:%@",_phoneNumber];
+    phoneLabel.font                      =[UIFont systemFontOfSize:13];
+    phoneLabel.textColor                 =[UIColor darkTextColor];
     [superView addSubview:phoneLabel];
     
-    _phoneView =[[UIView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(phoneLabel.frame), LSMainScreenW, 45*LSScale)];
-    _phoneView.backgroundColor =[UIColor whiteColor];
-    [superView addSubview:_phoneView];
+    phoneNumView                         =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(phoneLabel.frame), LSMainScreenW, 45*LSScale)];
+    phoneNumView.textField.delegate      =self;
+    phoneNumView.dataArray               =@[@"验证码：",@"请输入验证码"];
+    [superView addSubview:phoneNumView];
 
-    UILabel  *codeL =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 75, 45*LSScale)];
-    codeL.text      =@"验证码:";
-    codeL.textColor =[UIColor darkTextColor];
-    codeL.font      =[UIFont systemFontOfSize:17.5];
-    codeL.textAlignment =NSTextAlignmentRight;
-    [_phoneView addSubview:codeL];
-    
-    UITextField *codeF=[[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(codeL.frame), 0, LSMainScreenW-110*LSScale-CGRectGetMaxX(codeL.frame), 45*LSScale)];
-    codeF.placeholder   =@"请输入验证码";
-    codeF.text          =@"1111";
-    codeF.delegate      =self;
-    codeF.returnKeyType =UIReturnKeyDone;
-    codeF.keyboardType  =UIKeyboardTypeNumberPad;
-    [_phoneView addSubview:codeF];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:codeF];
-    
     _codeBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-88-15, 5, 88, 45*LSScale-10)];
     [_codeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
     _codeBtn.titleLabel.font  =[UIFont systemFontOfSize:15];
@@ -77,8 +64,14 @@
     [_codeBtn addTarget:self action:@selector(getCodeReqest) forControlEvents:UIControlEventTouchUpInside];
     _codeBtn.layer.cornerRadius=5;
     _codeBtn.layer.backgroundColor =LSNavColor.CGColor;
-    [_phoneView addSubview:_codeBtn];
+    [phoneNumView addSubview:_codeBtn];
     
+    passWordView                         =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(phoneNumView.frame)+15, LSMainScreenW, 45*LSScale)];
+    passWordView.textField.delegate      =self;
+    passWordView.dataArray               =@[@"设置密码：",@"请输入密码"];
+    passWordView.textField.keyboardType  =UIKeyboardTypeDefault;
+    [superView addSubview:passWordView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     [self loadBottomView];
 }
 
@@ -92,37 +85,25 @@
     }
 }
 
-
 -(void)initBaseUI{
-    _phoneView =[[UIView alloc] initWithFrame:CGRectMake(0, 20+CGRectGetMaxY(self.navView.frame), LSMainScreenW, 45*LSScale)];
-    _phoneView.backgroundColor =[UIColor whiteColor];
-    [superView addSubview:_phoneView];
-    
-    UILabel  *phoneNum =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 75, 45*LSScale)];
-    phoneNum.text      =@"手机号：";
-    phoneNum.textColor =[UIColor darkTextColor];
-    phoneNum.font      =[UIFont systemFontOfSize:17.5];
-    phoneNum.textAlignment =NSTextAlignmentRight;
-    [_phoneView addSubview:phoneNum];
-    
-    _phoneTf=[[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(phoneNum.frame), 0, LSMainScreenW-80, 45*LSScale)];
-    _phoneTf.placeholder   =@"请输入手机号";
-    _phoneTf.delegate      =self;
-    _phoneTf.returnKeyType =UIReturnKeyDone;
-    _phoneTf.keyboardType  =UIKeyboardTypeNumberPad;
-    [_phoneView addSubview:_phoneTf];
-    
+    phoneNumView                               =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, 20+CGRectGetMaxY(self.navView.frame), LSMainScreenW, 45*LSScale)];
+    phoneNumView.textField.delegate            =self;
+    phoneNumView.dataArray                     =@[@"手机号：",@"请输入您的手机号"];
+    [superView addSubview:phoneNumView];
     if (_isLoginVc) {
-        phoneNum.text         =@"密码：";
-        _phoneTf.placeholder   =@"请输入您的密码";
+        phoneNumView.dataArray                 =@[@"密码：",@"请输入您的密码"];
+        phoneNumView.textField.secureTextEntry =YES;
+        phoneNumView.textField.keyboardType    =UIKeyboardTypeDefault;
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:_phoneTf];
-   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     [self loadBottomView];
 }
 
 -(void)loadBottomView{
-    _nextBtn    =[[UIButton alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(_phoneView.frame)+30, LSMainScreenW-30, 42*LSScale)];
+    _nextBtn    =[[UIButton alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(phoneNumView.frame)+30, LSMainScreenW-30, 42*LSScale)];
+    if (_isRegisterVc) {
+        _nextBtn.frame =CGRectMake(15, CGRectGetMaxY(passWordView.frame)+15, LSMainScreenW-30, 42*LSScale);
+    }
     [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
     _nextBtn.titleLabel.font  =[UIFont systemFontOfSize:17.5];
     [_nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -204,7 +185,7 @@
 
 -(void)nextStep:(UIButton*)button{
     if (_isRegisterVc) {
-        if (_codeBtn.selected) {
+        if (didClickCodeBtn) {
             [self registerRequest];
         }else{
             [LsMethod alertMessage:@"请获取验证码" WithTime:2];
@@ -218,37 +199,46 @@
 
 #pragma - mark - UITextFieldDelegate TextField代理
 - (void)textFieldChanged:(NSNotification *)notification{
-     UITextField *textField = notification.object;
-    if ([LsMethod isMobile:textField.text]||(_isRegisterVc&&[LsMethod isCode:textField.text])||(_isLoginVc&&[LsMethod haveValue:textField.text])) {
-        [self resetStatus];
-        
+    if ([LsMethod isMobile:phoneNumView.textField.text]||(_isRegisterVc&&[LsMethod isCode:phoneNumView.textField.text]&&[LsMethod haveValue:passWordView.textField.text])||(_isLoginVc&&[LsMethod haveValue:phoneNumView.textField.text])) {
+        [self resetStatusHight:YES];
     }else{
-        _nextBtn.userInteractionEnabled=NO;
-        _nextBtn.layer.backgroundColor =LSColor(169, 170, 171, 1).CGColor;
+        [self resetStatusHight:NO];
     }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    if (textField.text&&![textField.text isEqualToString:@""]) {
-        if (!_isLoginVc) {
-            if ([LsMethod isMobile:textField.text]||(_isRegisterVc&&[LsMethod isCode:textField.text])||(_isLoginVc&&[LsMethod haveValue:textField.text])) {
-                [self resetStatus];
-            }else{
-                if (_isRegisterVc) {
-                    [LsMethod alertMessage:@"请核对您的验证码" WithTime:1.5];
-                }else{
-                    [LsMethod alertMessage:@"手机号有误，请重新输入" WithTime:1.5];
-                }
-            }
+    
+    if (!_isLoginVc&&!_isRegisterVc) {
+        if ([LsMethod isMobile:textField.text]){
+            [self resetStatusHight:YES];
+        }else if ([LsMethod haveValue:textField.text]){
+            [LsMethod alertMessage:@"请核对您的手机号" WithTime:2];
+        }
+    }
+    
+    if (_isLoginVc) {
+        if ([LsMethod haveValue:textField.text]) {
+            [self resetStatusHight:YES];
         }else{
-            [self resetStatus];
+            [LsMethod alertMessage:@"请输入您的密码" WithTime:2];
+        }
+    }
+    
+    if (_isRegisterVc) {
+        if ([LsMethod isCode:phoneNumView.textField.text]&&[LsMethod haveValue:passWordView.textField.text]) {
+            [self resetStatusHight:YES];
         }
     }
 }
 
--(void)resetStatus{
-    _nextBtn.userInteractionEnabled=YES;
-    _nextBtn.layer.backgroundColor =LSNavColor.CGColor;
+-(void)resetStatusHight:(BOOL)isYes{
+    if (isYes) {
+        _nextBtn.userInteractionEnabled=YES;
+        _nextBtn.layer.backgroundColor =LSNavColor.CGColor;
+    }else{
+        _nextBtn.userInteractionEnabled=NO;
+        _nextBtn.layer.backgroundColor =LSColor(169, 170, 171, 1).CGColor;
+    }
 }
 
 #pragma - mark - Net Request 请求接口
@@ -257,8 +247,9 @@
     NSDictionary *dict =@{@"mobile":self.phoneNumber};
     [[LsAFNetWorkTool shareManger] LSGET:@"preregist.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         LsLog(@"-------------成功-------%@",responseObject);
-        countTimer = 60;
-        _codeBtn.userInteractionEnabled=NO;
+        countTimer                      = 60;
+        _codeBtn.userInteractionEnabled =NO;
+        didClickCodeBtn                 =YES;
         [_codeBtn setTitle:[NSString stringWithFormat:@"%d秒",countTimer] forState:UIControlStateNormal];
         timer= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(daojishi) userInfo:nil repeats:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
@@ -267,15 +258,14 @@
 }
 
 -(void)checkmobileRequest{
-    NSDictionary *dict =@{@"mobile":_phoneTf.text};
+    NSDictionary *dict =@{@"mobile":phoneNumView.textField.text};
     [[LsAFNetWorkTool shareManger] LSGET:@"checkmobile.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         LsLog(@"----------------%@",responseObject);
         
         LsLoginViewController *loginVc = [[LsLoginViewController alloc] init];
-        //            loginVc.isGetCodeVc            =YES;
-        loginVc.phoneNumber            =_phoneTf.text;
-        loginVc.modalPresentationStyle =UIModalPresentationCustom;
-        loginVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;
+        loginVc.phoneNumber            = phoneNumView.textField.text;
+        loginVc.modalPresentationStyle = UIModalPresentationCustom;
+        loginVc.modalTransitionStyle   = UIModalTransitionStyleCrossDissolve;
         
         NSString *rtnCode=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"result"]];
         NSString *rtnMess=[responseObject objectForKey:@"message"];
@@ -296,7 +286,7 @@
 
 -(void)loginRequest{
     NSDictionary *dict  =@{@"mobile":_phoneNumber,
-                           @"password":_phoneTf.text};
+                           @"password":phoneNumView.textField.text};
     [[LsAFNetWorkTool shareManger] LSGET:@"mobilelogin.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         LsLog(@"----------登录成功---------%@",responseObject);
         [self loginSuccess];
@@ -306,9 +296,9 @@
 
 -(void)registerRequest{
     NSDictionary*dict =@{@"mobile":_phoneNumber,
-                         @"password":@"lzl123456",
-                         @"password2":@"lzl123456",
-                         @"smscheckcode":_phoneTf.text};
+                         @"password":passWordView.textField.text,
+                         @"password2":passWordView.textField.text,
+                         @"smscheckcode":phoneNumView.textField.text};
     [[LsAFNetWorkTool shareManger] LSGET:@"registuser.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         LsLog(@"----------成功-----%@",responseObject);
         [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
@@ -325,33 +315,26 @@
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
-    
 }
 
+-(void)thirdLoginRequest:(NSDictionary*)data{
+    [[LsAFNetWorkTool shareManger] LSPOST:@"umquicklogin.html" parameters:data success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        LsLog(@"---------------%@",responseObject);
+        [self loginSuccess];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
 
 #pragma - mark -  QQ WX 登录
-- (void)getAuthWithUserInfoFromQQ
-{
+- (void)getAuthWithUserInfoFromQQ{
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_QQ currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
-            
         } else {
             UMSocialUserInfoResponse *resp = result;
-            
-            // 授权信息
-            LsLog(@"QQ uid: %@", resp.uid);
-            LsLog(@"QQ openid: %@", resp.openid);
-            LsLog(@"QQ unionid: %@", resp.unionId);
-            LsLog(@"QQ accessToken: %@", resp.accessToken);
-            LsLog(@"QQ expiration: %@", resp.expiration);
-            
-            // 用户信息
-            LsLog(@"QQ name: %@", resp.name);
-            LsLog(@"QQ iconurl: %@", resp.iconurl);
-            LsLog(@"QQ gender: %@", resp.unionGender);
-            
-            // 第三方平台SDK源数据
-            LsLog(@"QQ originalResponse: %@", resp.originalResponse);
+            NSDictionary *dict =@{@"umsys":@"QQ",@"umuid":resp.uid,@"umname":resp.name,
+                                  @"umgender":resp.unionGender,@"umheadurl":resp.iconurl,
+                                  @"mchcode":resp.accessToken,@"umdata":resp.originalResponse};
+            [self thirdLoginRequest:dict];
         }
     }];
 }
@@ -359,26 +342,12 @@
 - (void)getAuthWithUserInfoFromWechat{
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
-            
         } else {
             UMSocialUserInfoResponse *resp = result;
-            
-            // 授权信息
-            LsLog(@"Wechat uid: %@", resp.uid);
-            LsLog(@"Wechat openid: %@", resp.openid);
-            LsLog(@"Wechat unionid: %@", resp.unionId);
-            LsLog(@"Wechat accessToken: %@", resp.accessToken);
-            LsLog(@"Wechat refreshToken: %@", resp.refreshToken);
-            LsLog(@"Wechat expiration: %@", resp.expiration);
-            
-            // 用户信息
-            LsLog(@"Wechat uid: %@", resp.uid);
-            LsLog(@"Wechat name: %@", resp.name);
-            LsLog(@"Wechat iconurl: %@", resp.iconurl);
-            LsLog(@"Wechat gender: %@", resp.unionGender);
-            
-            // 第三方平台SDK源数据
-            LsLog(@"Wechat originalResponse: %@", resp.originalResponse);
+            NSDictionary *dict =@{@"umsys":@"WX",@"umuid":resp.uid,@"umname":resp.name,
+                                  @"umgender":resp.unionGender,@"umheadurl":resp.iconurl,
+                                  @"mchcode":resp.accessToken,@"umdata":resp.originalResponse};
+            [self thirdLoginRequest:dict];
         }
     }];
 }

@@ -272,6 +272,11 @@
                                          success:(void (^)(NSURLSessionDataTask *, id))success
                                          failure:(void (^)(NSURLSessionDataTask *, NSError *))failure
 {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].delegate window] animated:YES];
+//    hud.mode = MBProgressHUDModeText;
+//    hud.labelText = @"努力加载中...";
+//    hud.margin = 20.f;//提示框的高度
+    hud.removeFromSuperViewOnHide = YES;
     NSString  *urlStr  =[NSString stringWithFormat:@"%@/%@",BASE_URL,URLString];
     NSMutableDictionary *dict =[NSMutableDictionary dictionaryWithDictionary:parameters];
     [dict setObject:CHANNEL forKey:@"channel"];
@@ -280,11 +285,11 @@
     if (serializationError) {
         if (failure) {
             dispatch_async(self.completionQueue ?: dispatch_get_main_queue(), ^{
+                [hud hide:YES];
                 failure(nil, serializationError);
                 LsLog(@"----------失败-----%@",serializationError.localizedDescription);
             });
         }
-
         return nil;
     }
 
@@ -295,12 +300,14 @@
                        completionHandler:^(NSURLResponse * __unused response, id responseObject, NSError *error) {
         if (error) {
             if (failure) {
+                [hud hide:YES];
                 LsLog(@"----------失败-----%@",error.localizedDescription);
                 [LsMethod alertMessage:error.localizedDescription WithTime:2];
                 failure(dataTask, error);
             }
         } else {
             if (success) {
+                [hud hide:YES];
                 NSString *rtnCode=[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"result"]];
                 NSString *rtnMess=[responseObject objectForKey:@"message"];
 
