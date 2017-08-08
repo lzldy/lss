@@ -16,9 +16,16 @@
 }
 
 +(void)alertMessage:(NSString *)message WithTime:(NSTimeInterval)time{
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
-    [alertView show];
-    [alertView performSelector:@selector(dismissAnimated:) withObject:nil afterDelay:time];
+//    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil, nil];
+//    [alertView show];
+//    [alertView performSelector:@selector(dismissAnimated:) withObject:nil afterDelay:time];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].delegate window] animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =message;
+    hud.margin = 20.f;//提示框的高度
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
 }
 
 +(void)alertMessage:(NSString *)message AndTitle:(NSString*)title{

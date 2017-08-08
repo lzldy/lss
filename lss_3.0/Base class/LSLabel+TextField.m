@@ -30,7 +30,7 @@
         UITextField *textField     = [[UITextField alloc] init];
         textField.keyboardType     = UIKeyboardTypeNumberPad;
         textField.returnKeyType    = UIReturnKeyDone;
-        textField.font             = [UIFont systemFontOfSize:16];
+        textField.font             = [UIFont systemFontOfSize:17];
         [self addSubview:textField];
         self.textField=textField;
     }

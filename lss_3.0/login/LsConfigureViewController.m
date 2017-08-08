@@ -185,8 +185,8 @@ static NSString * headerReuseIdentifier = @"header";
 -(void)resetFrame{
     NSInteger rowNum =[kemuArray[indexCollectView] count]/4+1;
     myCollectionView3.frame =CGRectMake(20,myCollectionView3.frame.origin.y, LSMainScreenW-40,30+40*rowNum);
-    saveBtn.frame =CGRectMake(35, CGRectGetMaxY(myCollectionView3.frame)+ 20, LSMainScreenW-70, 35);
-    bottomL.frame =CGRectMake(35, CGRectGetMaxY(saveBtn.frame)+10, LSMainScreenW-70, 20);
+    saveBtn.frame =CGRectMake(35, CGRectGetMaxY(myCollectionView3.frame)+ 20, LSMainScreenW-70, 35*LSScale);
+    bottomL.frame =CGRectMake(35, CGRectGetMaxY(saveBtn.frame)+10, LSMainScreenW-70, 20*LSScale);
     [scrollView setContentSize:CGSizeMake(LSMainScreenW, CGRectGetMaxY(bottomL.frame)+65)];
 }
 

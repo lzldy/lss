@@ -277,6 +277,7 @@
 //    hud.labelText = @"努力加载中...";
 //    hud.margin = 20.f;//提示框的高度
     hud.removeFromSuperViewOnHide = YES;
+    
     NSString  *urlStr  =[NSString stringWithFormat:@"%@/%@",BASE_URL,URLString];
     NSMutableDictionary *dict =[NSMutableDictionary dictionaryWithDictionary:parameters];
     [dict setObject:CHANNEL forKey:@"channel"];
