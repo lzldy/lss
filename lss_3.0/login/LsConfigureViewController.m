@@ -12,17 +12,11 @@
 #import "LsConfigureModel.h"
 #import "LsConfigureTwoViewController.h"
 
-static NSString * reuseIdentifier1 = @"Cell1";
-static NSString * reuseIdentifier2 = @"Cell2";
-static NSString * reuseIdentifier3 = @"Cell3";
-
+static NSString * reuseIdentifier = @"Cell";
 static NSString * headerReuseIdentifier = @"header";
 
 @interface LsConfigureViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
-    NSMutableArray    *kemuArray;
-    NSMutableArray    *kaoshiArray;
-    NSMutableArray    *mubiaoArray;
     NSArray           *headerArray;
     UICollectionView  *myCollectionView3;
     UIScrollView      *scrollView;
@@ -30,8 +24,8 @@ static NSString * headerReuseIdentifier = @"header";
     UIButton          *saveBtn;
     UILabel           *bottomL;
 }
-@property (nonatomic,strong)  NSMutableArray    *allDataArray;
-@property (nonatomic,strong)  LsConfigureModel  *model;
+@property (nonatomic,strong)  LsConfigureModel     *model;
+@property (nonatomic,strong)  NSMutableDictionary  *dataDict;
 
 @end
 
@@ -41,73 +35,32 @@ static NSString * headerReuseIdentifier = @"header";
     [super viewDidLoad];
     [superView addSubview:self.navView];
     self.navView.navTitle =@"确认我的梦想(1/2)";
-    [self initData];
-    [self initBaseUI];
+    headerArray =@[@"您参加的考试?",@"您教学的目标?",@"您教授的科目是?"];
+    [self loginRequest];
     [superView bringSubviewToFront:self.navView];
 }
 
--(void)initData{
-    kemuArray   =[NSMutableArray array];
-    kaoshiArray =[NSMutableArray array];
-    mubiaoArray =[NSMutableArray array];
+-(void)getData{
+    [[LsAFNetWorkTool shareManger] LSGET:@"listallsetting.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.model = [LsConfigureModel yy_modelWithJSON:responseObject];
+        [self.model fromDict:responseObject];
+        LsLog(@"------------%@",self.model);
+        [self initBaseUI];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
 
-    NSArray * kaoshiArr =@[@{@"title":@"教师资格证",@"didSelect":@"yes"},
-                         @{@"title":@"教师招聘",@"didSelect":@"no"},
-                         @{@"title":@"选调教师",@"didSelect":@"no"}];
-    
-    for (NSDictionary *dict in kaoshiArr) {
-        self.model = [LsConfigureModel yy_modelWithDictionary:dict];
-        [kaoshiArray addObject:self.model];
-    }
-    
-    NSArray * mubiaoArr =@[@{@"title":@"初中",@"didSelect":@"yes"},
-                         @{@"title":@"高中",@"didSelect":@"no"},
-                         @{@"title":@"小学",@"didSelect":@"no"},
-                         @{@"title":@"幼儿",@"didSelect":@"no"}];
-   
-    for (NSDictionary *dict in mubiaoArr) {
-        self.model = [LsConfigureModel yy_modelWithDictionary:dict];
-        [mubiaoArray addObject:self.model];
-    }
-
-   NSArray*kemuArr=@[@[@{@"title":@"语文",@"didSelect":@"yes"},@{@"title":@"数学",@"didSelect":@"no"},
-                     @{@"title":@"英语",@"didSelect":@"no"},@{@"title":@"物理",@"didSelect":@"no"},
-                     @{@"title":@"音乐",@"didSelect":@"no"},@{@"title":@"地理",@"didSelect":@"no"},
-                     @{@"title":@"政治",@"didSelect":@"no"},@{@"title":@"历史",@"didSelect":@"no"},
-                     @{@"title":@"美术",@"didSelect":@"no"},@{@"title":@"生物",@"didSelect":@"no"},
-                     @{@"title":@"信息",@"didSelect":@"no"},@{@"title":@"化学",@"didSelect":@"no"},
-                     @{@"title":@"体育",@"didSelect":@"no"}],
-                   @[@{@"title":@"语文",@"didSelect":@"yes"},@{@"title":@"数学",@"didSelect":@"no"},
-                     @{@"title":@"英语",@"didSelect":@"no"},@{@"title":@"物理",@"didSelect":@"no"},
-                     @{@"title":@"音乐",@"didSelect":@"no"},@{@"title":@"地理",@"didSelect":@"no"},
-                     @{@"title":@"政治",@"didSelect":@"no"},@{@"title":@"历史",@"didSelect":@"no"},
-                     @{@"title":@"美术",@"didSelect":@"no"},@{@"title":@"生物",@"didSelect":@"no"},
-                     @{@"title":@"信息",@"didSelect":@"no"},@{@"title":@"化学",@"didSelect":@"no"},
-                     @{@"title":@"体育",@"didSelect":@"no"}],
-                   @[@{@"title":@"语文",@"didSelect":@"yes"},@{@"title":@"数学",@"didSelect":@"no"},
-                     @{@"title":@"英语",@"didSelect":@"no"},@{@"title":@"音乐",@"didSelect":@"no"},
-                     @{@"title":@"品德",@"didSelect":@"no"},@{@"title":@"美术",@"didSelect":@"no"},
-                     @{@"title":@"体育",@"didSelect":@"no"},@{@"title":@"科学",@"didSelect":@"no"}],
-                   @[@{@"title":@"综合",@"didSelect":@"yes"}]
-                  ];
-    
-    for (NSArray *array in kemuArr) {
-        NSMutableArray *arr=[NSMutableArray array];
-        for (NSDictionary *dcit in array) {
-            self.model = [LsConfigureModel yy_modelWithDictionary:dcit];
-            [arr addObject:self.model];
-        }
-        [kemuArray addObject:arr];
-    }
-    
-    headerArray =@[@"您参加的考试?",@"您教学的目标?",@"您教授的科目是?"];
-    [self.allDataArray addObject:kaoshiArray];
-    [self.allDataArray addObject:mubiaoArray];
-    [self.allDataArray addObject:kemuArray];
+-(void)loginRequest{
+    NSDictionary *dict  =@{@"mobile":@"17507120068",
+                           @"password":@"lzl123456"};
+    [[LsAFNetWorkTool shareManger] LSGET:@"mobilelogin.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        LsLog(@"----------登录成功---------%@",responseObject);
+        [self getData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 -(void)initBaseUI{
-    
     scrollView          =[[UIScrollView alloc] init];
     scrollView.frame    =superView.frame;
     scrollView.showsVerticalScrollIndicator   =NO;
@@ -127,7 +80,7 @@ static NSString * headerReuseIdentifier = @"header";
     
     UICollectionView * myCollectionView1=[[UICollectionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(label.frame)+30, LSMainScreenW-40,70)
                                          collectionViewLayout:flowlaout1];
-    [myCollectionView1 registerClass:[LsBaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier1];
+    [myCollectionView1 registerClass:[LsBaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [myCollectionView1 registerClass:[LsCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseIdentifier];
     myCollectionView1.delegate=self;
     myCollectionView1.dataSource=self;
@@ -142,7 +95,7 @@ static NSString * headerReuseIdentifier = @"header";
     
     UICollectionView * myCollectionView2=[[UICollectionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(myCollectionView1.frame)+10, LSMainScreenW-40,70)
                                          collectionViewLayout:flowlaout2];
-    [myCollectionView2 registerClass:[LsBaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier2];
+    [myCollectionView2 registerClass:[LsBaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [myCollectionView2 registerClass:[LsCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseIdentifier];
     myCollectionView2.delegate=self;
     myCollectionView2.dataSource=self;
@@ -157,13 +110,17 @@ static NSString * headerReuseIdentifier = @"header";
     
     myCollectionView3=[[UICollectionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(myCollectionView2.frame)+10, LSMainScreenW-40,10)
                                          collectionViewLayout:flowlaout3];
-    [myCollectionView3 registerClass:[LsBaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier3];
+    [myCollectionView3 registerClass:[LsBaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [myCollectionView3 registerClass:[LsCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseIdentifier];
     myCollectionView3.backgroundColor=[UIColor whiteColor];
     myCollectionView3.delegate=self;
     myCollectionView3.dataSource=self;
     myCollectionView3.tag =33333;
     [scrollView addSubview:myCollectionView3];
+
+     [myCollectionView1 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    [myCollectionView2 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    [myCollectionView3 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 
     saveBtn =[[UIButton alloc] init];
     [saveBtn setTitle:@"保存我的梦想" forState:UIControlStateNormal];
@@ -183,7 +140,10 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)resetFrame{
-    NSInteger rowNum =[kemuArray[indexCollectView] count]/4+1;
+    NSInteger rowNum =0;
+    if ([[self.model.levels[indexCollectView] subjectArray] count]>0) {
+         rowNum =[[self.model.levels[indexCollectView] subjectArray]count]/4+1;
+    }
     myCollectionView3.frame =CGRectMake(20,myCollectionView3.frame.origin.y, LSMainScreenW-40,30+40*rowNum);
     saveBtn.frame =CGRectMake(35, CGRectGetMaxY(myCollectionView3.frame)+ 20, LSMainScreenW-70, 35*LSScale);
     bottomL.frame =CGRectMake(35, CGRectGetMaxY(saveBtn.frame)+10, LSMainScreenW-70, 20*LSScale);
@@ -191,106 +151,77 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)saveConfigureBtn{
-    NSMutableDictionary *dict =[NSMutableDictionary dictionary];
-    for (LsConfigureModel *modelll in kaoshiArray) {
-        if (modelll.didSelect==YES) {
-            [dict setObject:modelll.title forKey:@"1"];
-        }
-    }
-    for (LsConfigureModel *modelll in mubiaoArray) {
-        if (modelll.didSelect==YES) {
-            [dict setObject:modelll.title forKey:@"2"];
-        }
-    }
-    for (LsConfigureModel *modelll in kemuArray[indexCollectView]) {
-        if (modelll.didSelect==YES) {
-            [dict setObject:modelll.title forKey:@"3"];
-        }
-    }
-    LsConfigureTwoViewController *vc =[[LsConfigureTwoViewController alloc] init];
-    vc.dataDict                      =dict;
-    vc.modalPresentationStyle        =UIModalPresentationCustom;
-    vc.modalTransitionStyle          =UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:vc animated:YES completion:nil];
+    LsBaseConfigureModel  *aaa =[self.dataDict objectForKey:@"catgs"];
+    LsBaseConfigureModel  *bbb =[self.dataDict objectForKey:@"levels"];
+    [LsMethod alertMessage:aaa.name AndTitle:bbb.name];
+    LsLog(@"----------%@--------%@:%@",aaa.name,bbb.name,bbb.level);
+
+//    LsConfigureTwoViewController *vc =[[LsConfigureTwoViewController alloc] init];
+//    vc.dataDict                      =self.dataDict;
+//    vc.modalPresentationStyle        =UIModalPresentationCustom;
+//    vc.modalTransitionStyle          =UIModalTransitionStyleCrossDissolve;
+//    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma - mark -  collectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (collectionView.tag==11111) {
-        return  kaoshiArray.count;
+        return  self.model.catgs.count;
     }else if (collectionView.tag==22222){
-        return mubiaoArray.count;
+        return self.model.levels.count;
     }else{
-        return [kemuArray[indexCollectView] count];
+        return [[self.model.levels[indexCollectView] subjectArray] count];
     }
 }
 
 //cell的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView.tag==11111) {
-        return CGSizeMake((LSMainScreenW-40-15)/3,35);
+        if (self.model.catgs.count>3) {
+            return CGSizeMake((LSMainScreenW-40-15)/4,35);
+        }else{
+            return CGSizeMake((LSMainScreenW-40-15)/3,35);
+        }
     }else{
         return CGSizeMake((LSMainScreenW-40-15)/4,35);
     }
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-   
-    if (collectionView.tag==11111) {
-        LsBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier1 forIndexPath:indexPath];
-        [cell sizeToFit];
-        self.model =kaoshiArray[indexPath.row];
-        [cell reloadDataWith:self.model];
-        return  cell;
-    }else if (collectionView.tag==22222){
-        LsBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier2 forIndexPath:indexPath];
-        [cell sizeToFit];
-        self.model =mubiaoArray[indexPath.row];
-        [cell reloadDataWith:self.model];
-        return  cell;
-    }else{
-        LsBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier3 forIndexPath:indexPath];
-        [cell sizeToFit];
-        self.model=kemuArray[indexCollectView][indexPath.row];
-        [cell reloadDataWith:self.model];
-        return  cell;
+    LsBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    [cell sizeToFit];
+    if (cell) {
+        LsBaseConfigureModel *modelll =[[LsBaseConfigureModel alloc] init];
+        if (collectionView.tag==11111) {
+            modelll =self.model.catgs[indexPath.row];
+        }else if (collectionView.tag==22222){
+            modelll =self.model.levels[indexPath.row];
+        }else{
+            modelll =[self.model.levels[indexCollectView] subjectArray][indexPath.row];
+        }
+        cell.label.text =modelll.name;
     }
+    return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    LsBaseConfigureModel *modelll =[[LsBaseConfigureModel alloc] init];
     if (collectionView.tag==11111) {
-        for (int i=0; i<kaoshiArray.count; i++) {
-            self.model =kaoshiArray[i];
-            if (i==indexPath.row) {
-                self.model.didSelect=YES;
-            }else{
-                self.model.didSelect=NO;
-            }
-        }
+        modelll                   =self.model.catgs[indexPath.row];
+        [self.dataDict setObject:self.model.catgs[indexPath.row]  forKey:@"catgs"];
     }else if (collectionView.tag==22222){
-        for (int i=0; i<mubiaoArray.count; i++) {
-            self.model =mubiaoArray[i];
-            if (i==indexPath.row) {
-                self.model.didSelect=YES;
-                indexCollectView    =indexPath.row;
-            }else{
-                self.model.didSelect=NO;
-            }
+        modelll                   =self.model.levels[indexPath.row];
+        indexCollectView          =indexPath.row;
+        [myCollectionView3        reloadData];
+        [myCollectionView3 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        if ([[self.model.levels[indexPath.row] subjectArray] count]>0) {
+            [self.dataDict setObject:[self.model.levels[indexPath.row] subjectArray][0] forKey:@"levels"];
         }
     }else{
-        NSArray *array =kemuArray[indexCollectView];
-        for (int i=0; i<array.count; i++) {
-            self.model =array[i];
-            if (i==indexPath.row) {
-                self.model.didSelect=YES;
-            }else{
-                self.model.didSelect=NO;
-            }
-        }
+        modelll                   =[self.model.levels[indexCollectView] subjectArray][indexPath.row];
+        [self.dataDict setObject:[self.model.levels[indexCollectView] subjectArray][indexPath.row] forKey:@"levels"];
     }
-    [collectionView reloadData];
-    [myCollectionView3 reloadData];
     [self resetFrame];
 }
 
@@ -316,18 +247,20 @@ static NSString * headerReuseIdentifier = @"header";
     return reusableview;
 }
 
--(NSMutableArray *)allDataArray{
-    if (!_allDataArray) {
-        _allDataArray =[NSMutableArray array];
-    }
-    return _allDataArray;
-}
-
 -(LsConfigureModel *)model{
     if (!_model) {
         _model =[[LsConfigureModel alloc] init];
     }
     return _model;
+}
+
+-(NSMutableDictionary *)dataDict{
+    if (!_dataDict) {
+        _dataDict =[NSMutableDictionary dictionary];
+        [_dataDict setObject:self.model.catgs[0]  forKey:@"catgs"];
+        [_dataDict setObject:[self.model.levels[0] subjectArray][0] forKey:@"levels"];
+    }
+    return _dataDict;
 }
 
 - (void)didReceiveMemoryWarning {

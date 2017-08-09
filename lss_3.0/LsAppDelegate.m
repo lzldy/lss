@@ -12,6 +12,7 @@
 #import "LsTabBarViewController.h"
 #import "LsLoginViewController.h"
 #import "LsGuidePageViewController.h"
+#import "LsConfigureViewController.h"
 
 static NSString* WXAppid = @"wx5231d4d655cbf5c2";
 static NSString* WXSecret = @"875777926699ad7f9a0ad7675dfe2011";
@@ -104,7 +105,9 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
 
 -(void)loadRootVc{
     if (![LSUser_Default objectForKey:@"didGuide"]) {
-        [self loadGuideVc];
+//        [self loadGuideVc];
+        LsConfigureViewController *vc =[[LsConfigureViewController alloc] init];
+        self.window.rootViewController =vc;
     }else{
         if (![LSUser_Default objectForKey:@"didLogin"]) {
             [self loadLoginVc];

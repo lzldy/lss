@@ -19,7 +19,7 @@ static NSString * headerReuseIdentifier = @"header";
     NSArray           *headerArray;
     NSMutableArray    *allDataArray;
 }
-@property (nonatomic,strong)  LsConfigureModel  *model;
+@property (nonatomic,strong)  LsBaseConfigureModel  *model;
 
 @end
 
@@ -104,7 +104,7 @@ static NSString * headerReuseIdentifier = @"header";
     [cell sizeToFit];
     if (cell) {
         self.model      =allDataArray[indexPath.section][indexPath.row];
-        cell.label.text =self.model.title;
+        cell.label.text =self.model.name;
     }
     return cell;
 }
@@ -112,7 +112,7 @@ static NSString * headerReuseIdentifier = @"header";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     self.model    =allDataArray[indexPath.section][indexPath.row];
-    [self.dataDict setObject:self.model.title forKey:@"4"];
+    [self.dataDict setObject:self.model.name forKey:@"4"];
     [LSUser_Default setObject:@"yes" forKey:@"didConfig"];
     LsLog(@"==========================%@",self.dataDict);
     [self dismissViewControllerAnimated:YES completion:^{

@@ -43,14 +43,14 @@
     // Configure the view for the selected state
 }
 
--(void)reloadDataWith:(id)data{
-    LsConfigureModel *model =data;
-    if (model.didSelect) {
-        self.selected=YES;
-    }else{
-        self.selected=NO;
-    }
-    self.label.text =model.title;
-}
+//-(void)reloadDataWith:(id)data{
+//    LsBaseConfigureModel *model =data;
+//    if (model.didSelect) {
+//        self.selected=YES;
+//    }else{
+//        self.selected=NO;
+//    }
+//    self.label.text =model.name;
+//}
 
 @end
