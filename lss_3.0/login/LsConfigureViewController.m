@@ -36,7 +36,7 @@ static NSString * headerReuseIdentifier = @"header";
     [superView addSubview:self.navView];
     self.navView.navTitle =@"确认我的梦想(1/2)";
     headerArray =@[@"您参加的考试?",@"您教学的目标?",@"您教授的科目是?"];
-    [self loginRequest];
+    [self getData];
     [superView bringSubviewToFront:self.navView];
 }
 
@@ -44,18 +44,7 @@ static NSString * headerReuseIdentifier = @"header";
     [[LsAFNetWorkTool shareManger] LSGET:@"listallsetting.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model = [LsConfigureModel yy_modelWithJSON:responseObject];
         [self.model fromDict:responseObject];
-        LsLog(@"------------%@",self.model);
         [self initBaseUI];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-    }];
-}
-
--(void)loginRequest{
-    NSDictionary *dict  =@{@"mobile":@"17507120068",
-                           @"password":@"lzl123456"};
-    [[LsAFNetWorkTool shareManger] LSGET:@"mobilelogin.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        LsLog(@"----------登录成功---------%@",responseObject);
-        [self getData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
@@ -151,16 +140,12 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)saveConfigureBtn{
-    LsBaseConfigureModel  *aaa =[self.dataDict objectForKey:@"catgs"];
-    LsBaseConfigureModel  *bbb =[self.dataDict objectForKey:@"levels"];
-    [LsMethod alertMessage:aaa.name AndTitle:bbb.name];
-    LsLog(@"----------%@--------%@:%@",aaa.name,bbb.name,bbb.level);
-
-//    LsConfigureTwoViewController *vc =[[LsConfigureTwoViewController alloc] init];
-//    vc.dataDict                      =self.dataDict;
-//    vc.modalPresentationStyle        =UIModalPresentationCustom;
-//    vc.modalTransitionStyle          =UIModalTransitionStyleCrossDissolve;
-//    [self presentViewController:vc animated:YES completion:nil];
+    LsConfigureTwoViewController *vc =[[LsConfigureTwoViewController alloc] init];
+    vc.dataDict                      =self.dataDict;
+    vc.brachsArray                   =self.model.branchs;
+    vc.modalPresentationStyle        =UIModalPresentationCustom;
+    vc.modalTransitionStyle          =UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma - mark -  collectionView
@@ -209,18 +194,19 @@ static NSString * headerReuseIdentifier = @"header";
     LsBaseConfigureModel *modelll =[[LsBaseConfigureModel alloc] init];
     if (collectionView.tag==11111) {
         modelll                   =self.model.catgs[indexPath.row];
-        [self.dataDict setObject:self.model.catgs[indexPath.row]  forKey:@"catgs"];
+        [self.dataDict setObject:modelll.id_  forKey:@"catgid"];
     }else if (collectionView.tag==22222){
         modelll                   =self.model.levels[indexPath.row];
         indexCollectView          =indexPath.row;
         [myCollectionView3        reloadData];
         [myCollectionView3 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-        if ([[self.model.levels[indexPath.row] subjectArray] count]>0) {
-            [self.dataDict setObject:[self.model.levels[indexPath.row] subjectArray][0] forKey:@"levels"];
+        if (modelll.subjectArray.count>0) {
+            LsBaseConfigureModel *amodel =modelll.subjectArray[0];
+            [self.dataDict setObject:amodel.id_ forKey:@"scatgid"];
         }
     }else{
         modelll                   =[self.model.levels[indexCollectView] subjectArray][indexPath.row];
-        [self.dataDict setObject:[self.model.levels[indexCollectView] subjectArray][indexPath.row] forKey:@"levels"];
+        [self.dataDict setObject:modelll.id_ forKey:@"scatgid"];
     }
     [self resetFrame];
 }
@@ -257,8 +243,11 @@ static NSString * headerReuseIdentifier = @"header";
 -(NSMutableDictionary *)dataDict{
     if (!_dataDict) {
         _dataDict =[NSMutableDictionary dictionary];
-        [_dataDict setObject:self.model.catgs[0]  forKey:@"catgs"];
-        [_dataDict setObject:[self.model.levels[0] subjectArray][0] forKey:@"levels"];
+        LsBaseConfigureModel *model1 =self.model.catgs[0];
+        LsBaseConfigureModel *model2 =[self.model.levels[0] subjectArray][0];
+
+        [_dataDict setObject:model1.id_  forKey:@"catgid"];
+        [_dataDict setObject:model2.id_  forKey:@"scatgid"];
     }
     return _dataDict;
 }

@@ -11,11 +11,12 @@
 
 @interface LsBaseConfigureModel : NSObject
 
-@property (nonatomic,strong)     NSString *id_;
-@property (nonatomic,strong)     NSString *name;
-@property (nonatomic,strong)     NSString *code;
-@property (nonatomic,strong)     NSString *level;
+@property (nonatomic,strong)     NSString        *id_;
+@property (nonatomic,strong)     NSString        *name;
+@property (nonatomic,strong)     NSString        *code;
+@property (nonatomic,strong)     NSString        *level;
 @property (nonatomic,strong)     NSMutableArray  *subjectArray;
+@property (nonatomic,strong)     NSString        *status;
 
 @end
 

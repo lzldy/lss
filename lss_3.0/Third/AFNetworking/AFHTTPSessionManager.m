@@ -316,6 +316,7 @@
                     success(dataTask, responseObject);
                 }else{
                     if ([rtnCode isEqualToString:@"1"]) {
+                        LsLog(@"-----------请求成功---------%@",responseObject);
                         success(dataTask, responseObject);
                     }else{
                         [LsMethod alertMessage:rtnMess WithTime:2];

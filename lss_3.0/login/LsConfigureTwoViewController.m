@@ -34,30 +34,20 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)initData{
-    headerArray  =@[@"已开通线下分校省份",@"其他省份 (暂时没有线下分校,但是学习内容依然完善)"];
-    allDataArray =[NSMutableArray array];
-    NSArray * alreadyOpened =@[@{@"title":@"湖南"},@{@"title":@"广东"},
-                               @{@"title":@"广西"},@{@"title":@"贵州"}];
-    NSMutableArray *alreadyOpenedArray =[NSMutableArray array];
-    for (NSDictionary *dict in alreadyOpened) {
-        self.model = [LsConfigureModel yy_modelWithDictionary:dict];
-        [alreadyOpenedArray addObject:self.model];
+    headerArray               =@[@"已开通线下分校省份",@"其他省份 (暂时没有线下分校,但是学习内容依然完善)"];
+    allDataArray              =[NSMutableArray array];
+    NSMutableArray *openedArr =[NSMutableArray array];
+    NSMutableArray *closedArr =[NSMutableArray array];
+
+    for (LsBaseConfigureModel *modelll in self.brachsArray) {
+        if ([modelll.status isEqualToString:@"Y"]) {
+            [openedArr addObject:modelll];
+        }else{
+            [closedArr addObject:modelll];
+        }
     }
-    [allDataArray addObject:alreadyOpenedArray];
-    
-    NSArray * other =@[@{@"title":@"北京"},@{@"title":@"天津"},@{@"title":@"上海"},@{@"title":@"重庆"},
-                       @{@"title":@"河北"},@{@"title":@"山西"},@{@"title":@"辽宁"},@{@"title":@"吉林"},
-                     @{@"title":@"黑龙江"},@{@"title":@"江苏"},@{@"title":@"浙江"},@{@"title":@"安徽"},
-                       @{@"title":@"福建"},@{@"title":@"江西"},@{@"title":@"山东"},@{@"title":@"河南"},
-                       @{@"title":@"湖北"},@{@"title":@"海南"},@{@"title":@"四川"},@{@"title":@"云南"},
-                     @{@"title":@"山西"},@{@"title":@"甘肃"},@{@"title":@"青海"},@{@"title":@"内蒙古"},
-                       @{@"title":@"宁夏"},@{@"title":@"新疆"},@{@"title":@"西藏"}];
-    NSMutableArray *otherArray =[NSMutableArray array];
-    for (NSDictionary *dict in other) {
-        self.model = [LsConfigureModel yy_modelWithDictionary:dict];
-        [otherArray addObject:self.model];
-    }
-    [allDataArray addObject:otherArray];
+    [allDataArray addObject:openedArr];
+    [allDataArray addObject:closedArr];
 }
 
 -(void)initBaseUI{
@@ -112,9 +102,20 @@ static NSString * headerReuseIdentifier = @"header";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     self.model    =allDataArray[indexPath.section][indexPath.row];
-    [self.dataDict setObject:self.model.name forKey:@"4"];
+    [self.dataDict setObject:self.model.id_ forKey:@"branchid"];
     [LSUser_Default setObject:@"yes" forKey:@"didConfig"];
     LsLog(@"==========================%@",self.dataDict);
+    [self settingRequest];
+}
+
+-(void)settingRequest{
+    [[LsAFNetWorkTool shareManger] LSPOST:@"updateallsetting.html" parameters:self.dataDict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [self settingSuccess];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
+
+-(void)settingSuccess{
     [self dismissViewControllerAnimated:YES completion:^{
     }];
     LsAppDelegate *appdele=(LsAppDelegate*)[UIApplication sharedApplication].delegate;
@@ -155,9 +156,9 @@ static NSString * headerReuseIdentifier = @"header";
     // Dispose of any resources that can be recreated.
 }
 
--(LsConfigureModel *)model{
+-(LsBaseConfigureModel *)model{
     if (!_model) {
-        _model =[[LsConfigureModel alloc] init];
+        _model =[[LsBaseConfigureModel alloc] init];
     }
     return _model;
 }

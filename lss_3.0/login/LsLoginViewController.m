@@ -243,24 +243,20 @@
 
 #pragma - mark - Net Request 请求接口
 -(void)getCodeReqest{
-    LsLog(@"------获取验证码----");
     NSDictionary *dict =@{@"mobile":self.phoneNumber};
     [[LsAFNetWorkTool shareManger] LSGET:@"preregist.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        LsLog(@"-------------成功-------%@",responseObject);
         countTimer                      = 60;
         _codeBtn.userInteractionEnabled =NO;
         didClickCodeBtn                 =YES;
         [_codeBtn setTitle:[NSString stringWithFormat:@"%d秒",countTimer] forState:UIControlStateNormal];
         timer= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(daojishi) userInfo:nil repeats:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-        LsLog(@"-------------失败-------%@",error);
     }];
 }
 
 -(void)checkmobileRequest{
     NSDictionary *dict =@{@"mobile":phoneNumView.textField.text};
     [[LsAFNetWorkTool shareManger] LSGET:@"checkmobile.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        LsLog(@"----------------%@",responseObject);
         
         LsLoginViewController *loginVc = [[LsLoginViewController alloc] init];
         loginVc.phoneNumber            = phoneNumView.textField.text;
@@ -288,7 +284,6 @@
     NSDictionary *dict  =@{@"mobile":_phoneNumber,
                            @"password":phoneNumView.textField.text};
     [[LsAFNetWorkTool shareManger] LSGET:@"mobilelogin.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        LsLog(@"----------登录成功---------%@",responseObject);
         [self loginSuccess];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -300,7 +295,6 @@
                          @"password2":passWordView.textField.text,
                          @"smscheckcode":phoneNumView.textField.text};
     [[LsAFNetWorkTool shareManger] LSGET:@"registuser.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        LsLog(@"----------成功-----%@",responseObject);
         [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
         if (![LSUser_Default objectForKey:@"didConfig"]) {
             LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
@@ -319,7 +313,6 @@
 
 -(void)thirdLoginRequest:(NSDictionary*)data{
     [[LsAFNetWorkTool shareManger] LSPOST:@"umquicklogin.html" parameters:data success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        LsLog(@"---------------%@",responseObject);
         [self loginSuccess];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];

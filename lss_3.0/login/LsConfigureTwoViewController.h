@@ -11,4 +11,6 @@
 @interface LsConfigureTwoViewController : LsBaseViewController
 
 @property (nonatomic,strong)  NSMutableDictionary *dataDict;
+@property (nonatomic,strong)  NSArray             *brachsArray;
+
 @end

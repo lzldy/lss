@@ -105,9 +105,7 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
 
 -(void)loadRootVc{
     if (![LSUser_Default objectForKey:@"didGuide"]) {
-//        [self loadGuideVc];
-        LsConfigureViewController *vc =[[LsConfigureViewController alloc] init];
-        self.window.rootViewController =vc;
+        [self loadGuideVc];
     }else{
         if (![LSUser_Default objectForKey:@"didLogin"]) {
             [self loadLoginVc];
@@ -119,7 +117,6 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
 
 -(void)loadMianTab{
     LsTabBarViewController *tab =[[LsTabBarViewController alloc] init];
-//    [tab setSelectedIndex:1];
     self.window.rootViewController =tab;
 }
 

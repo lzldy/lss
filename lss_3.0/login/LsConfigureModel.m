@@ -54,25 +54,11 @@
             modelll.code                  =[dict objectForKey:@"code"];
             modelll.level                 =[dict objectForKey:@"level"];
             
-            
             for (LsBaseConfigureModel *model in self.levels) {
                 if ([model.code isEqualToString:modelll.level]) {
                     [model.subjectArray addObject:modelll];
                 }
             }
-
-//            if ([modelll.level isEqualToString:@"ELE"]) {
-//                [eleSubject addObject:modelll];
-//            }
-//            if ([modelll.level isEqualToString:@"MID"]) {
-//                [midSubject addObject:modelll];
-//            }
-//            if ([modelll.level isEqualToString:@"KD"]) {
-//                [kdSubject addObject:modelll];
-//            }
-//            if ([modelll.level isEqualToString:@"HMD"]) {
-//                [hmdSubject addObject:modelll];
-//            }
         }
     }
     
@@ -80,7 +66,6 @@
     [self.allSubject addObject:eleSubject];
     [self.allSubject addObject:midSubject];
     [self.allSubject addObject:hmdSubject];
-
 }
 
 
