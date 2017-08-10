@@ -31,7 +31,6 @@ static NSString * headerReuseIdentifier = @"header";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [superView addSubview:self.navView];
     self.navView.navTitle =@"确认我的梦想(2/2)";
     [self initData];
     [self initBaseUI];
@@ -196,7 +195,6 @@ static NSString * headerReuseIdentifier = @"header";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(LsBaseConfigureModel *)model{

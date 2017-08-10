@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.navView.navTitle =@"面试";
     [self getUserInfo];
     [self initData];

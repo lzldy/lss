@@ -32,7 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     superView.backgroundColor =LSColor(229, 230, 231, 1);
-    [superView addSubview:self.navView];
     self.navView.navTitle =@"注册与登录";
     if (_isRegisterVc) {
         self.navView.navTitle =@"注册";
