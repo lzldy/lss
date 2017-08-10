@@ -55,13 +55,18 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)initBaseUI{
+    scrollView          =[[UIScrollView alloc] init];
+    scrollView.frame    =superView.frame;
+    scrollView.showsVerticalScrollIndicator   =NO;
+    [superView  addSubview:scrollView];
+    
     UILabel *label      =[[UILabel alloc] initWithFrame:CGRectMake(30, 40+CGRectGetMaxY(self.navView.frame), LSMainScreenW-60, 60)];
     label.text          =@"最后一步\n个性化学习内容即将呈现";
     label.numberOfLines =0;
     label.textAlignment =NSTextAlignmentCenter;
     label.font          =[UIFont systemFontOfSize:23];
     label.textColor     =LSNavColor;
-    [superView addSubview:label];
+    [scrollView addSubview:label];
     
     UICollectionViewFlowLayout *flowlaout=[[UICollectionViewFlowLayout alloc]init];
     [flowlaout setScrollDirection:UICollectionViewScrollDirectionVertical];//垂直方向
@@ -76,8 +81,9 @@ static NSString * headerReuseIdentifier = @"header";
     myCollectionView.delegate                      =self;
     myCollectionView.dataSource                    =self;
     myCollectionView.showsVerticalScrollIndicator  =NO;
+    myCollectionView.scrollEnabled                 =NO;
     myCollectionView.backgroundColor               =[UIColor whiteColor];
-    [superView addSubview:myCollectionView];
+    [scrollView addSubview:myCollectionView];
     
     saveBtn =[[UIButton alloc] init];
     [saveBtn setTitle:@"保存我的梦想" forState:UIControlStateNormal];
@@ -99,13 +105,17 @@ static NSString * headerReuseIdentifier = @"header";
 -(void)resetFrame{
     NSInteger rowNum =0;
     for (NSArray *array in allDataArray) {
-        if (array.count%4>0) {
-            rowNum =array.count/4+1+rowNum;
+        if (array.count>4) {
+            if (array.count%4>0) {
+                rowNum =array.count/4+1+rowNum;
+            }else{
+                rowNum =array.count/4+rowNum;
+            }
         }else{
-            rowNum =array.count/4+rowNum;
+            rowNum =1+rowNum;
         }
     }
-    myCollectionView.frame =CGRectMake(20,myCollectionView.frame.origin.y, LSMainScreenW-40,30*2+35*rowNum);
+    myCollectionView.frame =CGRectMake(20,myCollectionView.frame.origin.y, LSMainScreenW-40,30*2+30+35*rowNum+20);
     saveBtn.frame =CGRectMake(35, CGRectGetMaxY(myCollectionView.frame)+ 30, LSMainScreenW-70, 35*LSScale);
     bottomL.frame =CGRectMake(35, CGRectGetMaxY(saveBtn.frame)+10, LSMainScreenW-70, 20*LSScale);
     [scrollView setContentSize:CGSizeMake(LSMainScreenW, CGRectGetMaxY(bottomL.frame)+65)];
