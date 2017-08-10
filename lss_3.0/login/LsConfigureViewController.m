@@ -112,7 +112,7 @@ static NSString * headerReuseIdentifier = @"header";
     [myCollectionView3 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 
     saveBtn =[[UIButton alloc] init];
-    [saveBtn setTitle:@"保存我的梦想" forState:UIControlStateNormal];
+    [saveBtn setTitle:@"下一步" forState:UIControlStateNormal];
     saveBtn.layer.cornerRadius =5;
     saveBtn.layer.backgroundColor =LSNavColor.CGColor;
     [saveBtn addTarget:self action:@selector(saveConfigureBtn) forControlEvents:UIControlEventTouchUpInside];

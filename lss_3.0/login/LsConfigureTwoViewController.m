@@ -18,6 +18,10 @@ static NSString * headerReuseIdentifier = @"header";
 {
     NSArray           *headerArray;
     NSMutableArray    *allDataArray;
+    UIScrollView      *scrollView;
+    UIButton          *saveBtn;
+    UILabel           *bottomL;
+    UICollectionView  *myCollectionView;
 }
 @property (nonatomic,strong)  LsBaseConfigureModel  *model;
 
@@ -61,19 +65,50 @@ static NSString * headerReuseIdentifier = @"header";
     
     UICollectionViewFlowLayout *flowlaout=[[UICollectionViewFlowLayout alloc]init];
     [flowlaout setScrollDirection:UICollectionViewScrollDirectionVertical];//垂直方向
-    flowlaout.minimumLineSpacing = 5;//设置最小行间距
-    flowlaout.minimumInteritemSpacing = 5;//item间距(最小值)
-    flowlaout.sectionInset          =UIEdgeInsetsMake(0, 0, 30, 0);
+    flowlaout.minimumLineSpacing         = 5;//设置最小行间距
+    flowlaout.minimumInteritemSpacing    = 5;//item间距(最小值)
+    flowlaout.sectionInset               =UIEdgeInsetsMake(0, 0, 30, 0);
     
-    UICollectionView * myCollectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(label.frame)+30, LSMainScreenW-40,LSMainScreenH-30-CGRectGetMaxY(label.frame))
+    myCollectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(label.frame)+30, LSMainScreenW-40,LSMainScreenH-30-CGRectGetMaxY(label.frame))
                                                             collectionViewLayout:flowlaout];
     [myCollectionView registerClass:[LsBaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [myCollectionView registerClass:[LsCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseIdentifier];
-    myCollectionView.delegate=self;
-    myCollectionView.dataSource=self;
-    myCollectionView.showsVerticalScrollIndicator=NO;
-    myCollectionView.backgroundColor=[UIColor whiteColor];
+    myCollectionView.delegate                      =self;
+    myCollectionView.dataSource                    =self;
+    myCollectionView.showsVerticalScrollIndicator  =NO;
+    myCollectionView.backgroundColor               =[UIColor whiteColor];
     [superView addSubview:myCollectionView];
+    
+    saveBtn =[[UIButton alloc] init];
+    [saveBtn setTitle:@"保存我的梦想" forState:UIControlStateNormal];
+    saveBtn.layer.cornerRadius            =5;
+    saveBtn.layer.backgroundColor         =LSNavColor.CGColor;
+    [saveBtn addTarget:self action:@selector(settingRequest) forControlEvents:UIControlEventTouchUpInside];
+    [scrollView addSubview:saveBtn];
+    
+    bottomL                =[[UILabel alloc] init];
+    bottomL.text           =@"学习过程中,您可通过个人设置进行修改";
+    bottomL.textColor      =LSColor(114, 113, 114, 1);
+    bottomL.font           =[UIFont systemFontOfSize:10];
+    bottomL.textAlignment  =NSTextAlignmentCenter;
+    [scrollView addSubview:bottomL];
+    
+    [self resetFrame];
+}
+
+-(void)resetFrame{
+    NSInteger rowNum =0;
+    for (NSArray *array in allDataArray) {
+        if (array.count%4>0) {
+            rowNum =array.count/4+1+rowNum;
+        }else{
+            rowNum =array.count/4+rowNum;
+        }
+    }
+    myCollectionView.frame =CGRectMake(20,myCollectionView.frame.origin.y, LSMainScreenW-40,30*2+35*rowNum);
+    saveBtn.frame =CGRectMake(35, CGRectGetMaxY(myCollectionView.frame)+ 30, LSMainScreenW-70, 35*LSScale);
+    bottomL.frame =CGRectMake(35, CGRectGetMaxY(saveBtn.frame)+10, LSMainScreenW-70, 20*LSScale);
+    [scrollView setContentSize:CGSizeMake(LSMainScreenW, CGRectGetMaxY(bottomL.frame)+65)];
 }
 
 #pragma - mark -  collectionView
@@ -100,12 +135,9 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     self.model    =allDataArray[indexPath.section][indexPath.row];
     [self.dataDict setObject:self.model.id_ forKey:@"branchid"];
-    [LSUser_Default setObject:@"yes" forKey:@"didConfig"];
     LsLog(@"==========================%@",self.dataDict);
-    [self settingRequest];
 }
 
 -(void)settingRequest{
@@ -116,6 +148,7 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)settingSuccess{
+    [LSUser_Default setObject:@"yes" forKey:@"didConfig"];
     [self dismissViewControllerAnimated:YES completion:^{
     }];
     LsAppDelegate *appdele=(LsAppDelegate*)[UIApplication sharedApplication].delegate;

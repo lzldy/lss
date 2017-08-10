@@ -281,6 +281,7 @@
     NSString  *urlStr  =[NSString stringWithFormat:@"%@/%@",BASE_URL,URLString];
     NSMutableDictionary *dict =[NSMutableDictionary dictionaryWithDictionary:parameters];
     [dict setObject:CHANNEL forKey:@"channel"];
+//    [dict setObject:[LSUser_Default objectForKey:@"token"] forKey:@""];
     NSError *serializationError = nil;
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:urlStr relativeToURL:self.baseURL] absoluteString] parameters:dict error:&serializationError];
     if (serializationError) {

@@ -281,10 +281,23 @@
 }
 
 -(void)loginRequest{
-    NSDictionary *dict  =@{@"mobile":_phoneNumber,
-                           @"password":phoneNumView.textField.text};
+    NSDictionary *dict  =[NSDictionary dictionary];
+    if (_isRegisterVc) {
+        dict  =@{@"mobile":_phoneNumber,@"password":passWordView.textField.text};
+    }else{
+        dict  =@{@"mobile":_phoneNumber,@"password":phoneNumView.textField.text};
+    }
     [[LsAFNetWorkTool shareManger] LSGET:@"mobilelogin.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        [self loginSuccess];
+        NSString *token =[responseObject objectForKey:@""];
+        [LSUser_Default setObject:token forKey:@"token"];
+        if (![LSUser_Default objectForKey:@"didConfig"]) {
+            LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
+            conVc.modalPresentationStyle =UIModalPresentationCustom;
+            conVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:conVc animated:YES completion:nil];
+        }else{
+            [self loginSuccess];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
@@ -295,18 +308,7 @@
                          @"password2":passWordView.textField.text,
                          @"smscheckcode":phoneNumView.textField.text};
     [[LsAFNetWorkTool shareManger] LSGET:@"registuser.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
-        if (![LSUser_Default objectForKey:@"didConfig"]) {
-            LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
-            conVc.modalPresentationStyle =UIModalPresentationCustom;
-            conVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;
-            [self presentViewController:conVc animated:YES completion:nil];
-        }else{
-            [self dismissViewControllerAnimated:YES completion:^{
-            }];
-            LsAppDelegate *appdele=(LsAppDelegate*)[UIApplication sharedApplication].delegate;
-            [appdele loadMianTab];
-        }
+        [self loginRequest];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
@@ -347,6 +349,8 @@
 
 -(void)loginSuccess{
     [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
+    [self dismissViewControllerAnimated:YES completion:^{
+    }];
     LsAppDelegate *appdele=(LsAppDelegate*)[UIApplication sharedApplication].delegate ;
     [appdele loadMianTab];
 }

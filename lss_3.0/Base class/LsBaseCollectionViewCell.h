@@ -15,6 +15,6 @@
 @property (nonatomic,assign)  NSInteger row;
 @property (nonatomic,assign)  BOOL      didClick;
 
--(void)reloadDataWith:(id)data;
+//-(void)reloadDataWith:(id)data;
 
 @end
