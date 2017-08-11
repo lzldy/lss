@@ -8,14 +8,17 @@
 
 #import "LsInterviewViewController.h"
 #import "UCCarouselView.h"
-#import "LsInterViewTableViewCell.h"
+#import "LsLiveTableViewCell.h"
+#import "LsPracticeTableViewCell.h"
 #import "LsInterView.h"
 #import "LsInterCellHeaderView.h"
 
 static NSString *cellId = @"cellId";
 
 @interface LsInterviewViewController ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate>
-
+{
+    NSArray  *cellHeaderArray;
+}
 @property (nonatomic,strong)  NSArray                  *bannerArray;
 @property (nonatomic,strong)  UITableView              *tabView;
 @property (nonatomic,strong)  UCCarouselView           *carouselView;
@@ -38,11 +41,11 @@ static NSString *cellId = @"cellId";
 }
 
 -(void)initData{
-    _bannerArray = @[LOADIMAGEWITHTYPE(@"banner1", @"jpg"),
-                     LOADIMAGEWITHTYPE(@"banner2", @"jpg"),
-                     LOADIMAGEWITHTYPE(@"banner3", @"jpg"),
-                     LOADIMAGEWITHTYPE(@"banner4", @"jpg"),
+    _bannerArray = @[LOADIMAGEWITHTYPE(@"banner1", @"jpg"),LOADIMAGEWITHTYPE(@"banner2", @"jpg"),
+                     LOADIMAGEWITHTYPE(@"banner3", @"jpg"),LOADIMAGEWITHTYPE(@"banner4", @"jpg"),
                      LOADIMAGEWITHTYPE(@"banner5", @"jpg")];
+    cellHeaderArray =@[@{@"leftTitle":@"最新直播",@"rightTitle":@"更多"},
+                       @{@"leftTitle":@"最新练课",@"rightTitle":@"全部"}];
 }
 
 -(void)loadBaseUI{
@@ -81,7 +84,19 @@ static NSString *cellId = @"cellId";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50*LSScale;
+    if (indexPath.section==0) {
+        return 100*LSScale;
+    }else{
+        if (@"personNum") {
+            if (indexPath==0) {
+                return 30*LSScale;
+            }else{
+                return 168*LSScale;
+            }
+        }else{
+            return 168*LSScale;
+        }
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -89,11 +104,24 @@ static NSString *cellId = @"cellId";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LsInterViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+
     if (!cell) {
-        cell = [[LsInterViewTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        if (indexPath.section==0) {
+            cell = [[LsLiveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
+        }else{
+            cell = [[LsPracticeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
+        }
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
     }
+    if (indexPath.section==0) {
+//        cell = [[LsLiveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];;
+        
+    }else{
+//        cell = [[LsPracticeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
+        
+    }
+    
     return cell;
 }
 
@@ -108,7 +136,10 @@ static NSString *cellId = @"cellId";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
     LsInterCellHeaderView *cellHeaderView =[[LsInterCellHeaderView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 45)];
-     [cellHeaderView setLeftTitle:@"最新直播" AndRightTitle:@"更多"];
+    NSDictionary          *dict           =cellHeaderArray[section];
+    NSString              *leftTitle      =[dict objectForKey:@"leftTitle"];
+    NSString              *rightTitle     =[dict objectForKey:@"rightTitle"];
+    [cellHeaderView setLeftTitle:leftTitle AndRightTitle:rightTitle];
     return cellHeaderView;
 }
 
@@ -141,9 +172,9 @@ static NSString *cellId = @"cellId";
     if (!_typeView) {
         _typeView =[[LsInterView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_carouselView.frame), LSMainScreenW, 80)];
         _typeView.dataArray =@[@{@"title":@"直播",@"imageName":@"zhibo"},
-                                 @{@"title":@"练课",@"imageName":@"lianke"},
-                                 @{@"title":@"资料",@"imageName":@"ziliao"},
-                                 @{@"title":@"公告",@"imageName":@"gonggao"}];
+                               @{@"title":@"练课",@"imageName":@"lianke"},
+                               @{@"title":@"资料",@"imageName":@"ziliao"},
+                               @{@"title":@"公告",@"imageName":@"gonggao"}];
         _typeView.delegate=self;
     }
     return _typeView;

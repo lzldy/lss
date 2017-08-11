@@ -121,9 +121,10 @@
 		18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */; };
 		18E82DEE1F3830C500D3154B /* UCCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEC1F3830C500D3154B /* UCCarouselView.m */; };
 		18E82E3C1F38A41F00D3154B /* LSLabel+TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */; };
-		18F74C811F3C7298007AA5F6 /* LsInterViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C801F3C7298007AA5F6 /* LsInterViewTableViewCell.m */; };
 		18F74C841F3C957F007AA5F6 /* LsInterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C831F3C957F007AA5F6 /* LsInterView.m */; };
 		18F74C871F3D4565007AA5F6 /* LsInterCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C861F3D4565007AA5F6 /* LsInterCellHeaderView.m */; };
+		18F74C8E1F3D89E7007AA5F6 /* LsLiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */; };
+		18F74C911F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C901F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -359,12 +360,14 @@
 		18E82DEC1F3830C500D3154B /* UCCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCCarouselView.m; sourceTree = "<group>"; };
 		18E82E3A1F38A41F00D3154B /* LSLabel+TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LSLabel+TextField.h"; sourceTree = "<group>"; };
 		18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LSLabel+TextField.m"; sourceTree = "<group>"; };
-		18F74C7F1F3C7298007AA5F6 /* LsInterViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterViewTableViewCell.h; sourceTree = "<group>"; };
-		18F74C801F3C7298007AA5F6 /* LsInterViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterViewTableViewCell.m; sourceTree = "<group>"; };
 		18F74C821F3C957F007AA5F6 /* LsInterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterView.h; sourceTree = "<group>"; };
 		18F74C831F3C957F007AA5F6 /* LsInterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterView.m; sourceTree = "<group>"; };
 		18F74C851F3D4565007AA5F6 /* LsInterCellHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterCellHeaderView.h; sourceTree = "<group>"; };
 		18F74C861F3D4565007AA5F6 /* LsInterCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterCellHeaderView.m; sourceTree = "<group>"; };
+		18F74C8C1F3D89E7007AA5F6 /* LsLiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveTableViewCell.h; sourceTree = "<group>"; };
+		18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveTableViewCell.m; sourceTree = "<group>"; };
+		18F74C8F1F3D8DEB007AA5F6 /* LsPracticeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeTableViewCell.h; sourceTree = "<group>"; };
+		18F74C901F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPracticeTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -897,6 +900,7 @@
 		18E82D631F37FB9400D3154B /* Interview */ = {
 			isa = PBXGroup;
 			children = (
+				18F74C881F3D89A9007AA5F6 /* Live */,
 				18E82D711F37FDB800D3154B /* Practice */,
 				18E82D641F37FB9400D3154B /* InterviewModel */,
 				18E82D651F37FB9400D3154B /* InterviewVc */,
@@ -925,8 +929,6 @@
 		18E82D681F37FB9400D3154B /* InterviewView */ = {
 			isa = PBXGroup;
 			children = (
-				18F74C7F1F3C7298007AA5F6 /* LsInterViewTableViewCell.h */,
-				18F74C801F3C7298007AA5F6 /* LsInterViewTableViewCell.m */,
 				18F74C851F3D4565007AA5F6 /* LsInterCellHeaderView.h */,
 				18F74C861F3D4565007AA5F6 /* LsInterCellHeaderView.m */,
 				18F74C821F3C957F007AA5F6 /* LsInterView.h */,
@@ -998,6 +1000,8 @@
 		18E82D761F37FDB800D3154B /* PracticeView */ = {
 			isa = PBXGroup;
 			children = (
+				18F74C8F1F3D8DEB007AA5F6 /* LsPracticeTableViewCell.h */,
+				18F74C901F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m */,
 			);
 			path = PracticeView;
 			sourceTree = "<group>";
@@ -1091,6 +1095,39 @@
 				18E82DEC1F3830C500D3154B /* UCCarouselView.m */,
 			);
 			path = UCCarouselView;
+			sourceTree = "<group>";
+		};
+		18F74C881F3D89A9007AA5F6 /* Live */ = {
+			isa = PBXGroup;
+			children = (
+				18F74C891F3D89A9007AA5F6 /* LiveModel */,
+				18F74C8A1F3D89A9007AA5F6 /* LiveVc */,
+				18F74C8B1F3D89A9007AA5F6 /* LiveView */,
+			);
+			path = Live;
+			sourceTree = "<group>";
+		};
+		18F74C891F3D89A9007AA5F6 /* LiveModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LiveModel;
+			sourceTree = "<group>";
+		};
+		18F74C8A1F3D89A9007AA5F6 /* LiveVc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LiveVc;
+			sourceTree = "<group>";
+		};
+		18F74C8B1F3D89A9007AA5F6 /* LiveView */ = {
+			isa = PBXGroup;
+			children = (
+				18F74C8C1F3D89E7007AA5F6 /* LsLiveTableViewCell.h */,
+				18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */,
+			);
+			path = LiveView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1287,7 +1324,6 @@
 				1854F52C1F37024A00E1F603 /* UIScrollView+MJRefresh.m in Sources */,
 				1854F52B1F37024A00E1F603 /* UIScrollView+MJExtension.m in Sources */,
 				18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */,
-				18F74C811F3C7298007AA5F6 /* LsInterViewTableViewCell.m in Sources */,
 				183E7AF91F2832E000A69596 /* LsTabBar.m in Sources */,
 				1854F5311F37024A00E1F603 /* SDWebImageCompat.m in Sources */,
 				1854F53B1F37024A00E1F603 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1298,6 +1334,7 @@
 				1854F5621F37088C00E1F603 /* AFNetworkReachabilityManager.m in Sources */,
 				18975FCB1F29C6BD00447721 /* LsLog.m in Sources */,
 				18AF1AEF1F2731E800D05E4D /* IQUIWindow+Hierarchy.m in Sources */,
+				18F74C911F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m in Sources */,
 				18AF1AF11F2731E800D05E4D /* IQKeyboardReturnKeyHandler.m in Sources */,
 				183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */,
 				189D948F1F2EBF270033C828 /* NSDictionary+Extension.m in Sources */,
@@ -1307,6 +1344,7 @@
 				1854F5281F37024A00E1F603 /* MJRefreshConst.m in Sources */,
 				18AF1AF21F2731E800D05E4D /* IQTextView.m in Sources */,
 				18975FDE1F29D86900447721 /* GCDSemaphore.m in Sources */,
+				18F74C8E1F3D89E7007AA5F6 /* LsLiveTableViewCell.m in Sources */,
 				18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */,
 				1854F5301F37024A00E1F603 /* SDImageCache.m in Sources */,
 				184CA1FD1F272FC800ACB807 /* main.m in Sources */,

@@ -36,7 +36,6 @@ static NSString * headerReuseIdentifier = @"header";
     self.navView.navTitle =@"确认我的梦想(1/2)";
     headerArray =@[@"您参加的考试?",@"您教学的目标?",@"您教授的科目是?"];
     [self getData];
-    [superView bringSubviewToFront:self.navView];
 }
 
 -(void)getData{
@@ -44,6 +43,7 @@ static NSString * headerReuseIdentifier = @"header";
         self.model = [LsConfigureModel yy_modelWithJSON:responseObject];
         [self.model fromDict:responseObject];
         [self initBaseUI];
+        [superView bringSubviewToFront:self.navView];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }

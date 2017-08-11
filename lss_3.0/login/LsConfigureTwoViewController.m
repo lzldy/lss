@@ -34,6 +34,7 @@ static NSString * headerReuseIdentifier = @"header";
     self.navView.navTitle =@"确认我的梦想(2/2)";
     [self initData];
     [self initBaseUI];
+    [superView bringSubviewToFront:self.navView];
 }
 
 -(void)initData{

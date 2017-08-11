@@ -61,7 +61,6 @@
             }
         }
     }
-    
     [self.allSubject addObject:kdSubject];
     [self.allSubject addObject:eleSubject];
     [self.allSubject addObject:midSubject];
