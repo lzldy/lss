@@ -82,8 +82,8 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WXAppid appSecret:WXSecret redirectURL:nil];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatTimeLine appKey:WXAppid appSecret:WXSecret redirectURL:nil];
     //QQ
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:QQAppid appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Qzone appKey:QQAppid appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:QQAppid appSecret:QQSecret redirectURL:@"http://mobile.umeng.com/social"];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Qzone appKey:QQAppid appSecret:QQSecret redirectURL:@"http://mobile.umeng.com/social"];
     //WB
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:WBAppid  appSecret:WBSecret redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
     
@@ -94,13 +94,14 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
 
 
 -(void)testGuideVc{
-    [LSUser_Default removeObjectForKey:@"didGuide"];
-    [LSUser_Default removeObjectForKey:@"didLogin"];
-    [LSUser_Default removeObjectForKey:@"didConfig"];
+//    [LSUser_Default removeObjectForKey:@"didGuide"];
+//    [LSUser_Default removeObjectForKey:@"didLogin"];
+//    [LSUser_Default removeObjectForKey:@"didConfig"];
 //    [LSUser_Default setObject:@"yes" forKey:@"didGuide"];
 //    [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
 //    [LSUser_Default setObject:@"yes" forKey:@"didConfig"];
-
+//    static NSString* QQAppid = @"1105807406";
+//    static NSString* QQSecret = @"IIwxLqdIAdZGG6R3";
 }
 
 -(void)loadRootVc{

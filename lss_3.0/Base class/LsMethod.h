@@ -78,4 +78,6 @@
 +(NSString *)remove:(NSString*)str;
 
 +(BOOL)haveValue:(id)obj;
+
++ (CGSize)sizeWithString:(NSString *)string font:(UIFont *)font;
 @end

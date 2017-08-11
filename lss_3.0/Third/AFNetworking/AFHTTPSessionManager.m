@@ -273,15 +273,12 @@
                                          failure:(void (^)(NSURLSessionDataTask *, NSError *))failure
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].delegate window] animated:YES];
-//    hud.mode = MBProgressHUDModeText;
-//    hud.labelText = @"努力加载中...";
-//    hud.margin = 20.f;//提示框的高度
     hud.removeFromSuperViewOnHide = YES;
     
     NSString  *urlStr  =[NSString stringWithFormat:@"%@/%@",BASE_URL,URLString];
     NSMutableDictionary *dict =[NSMutableDictionary dictionaryWithDictionary:parameters];
     [dict setObject:CHANNEL forKey:@"channel"];
-//    [dict setObject:[LSUser_Default objectForKey:@"token"] forKey:@""];
+//    [dict setObject:[LSUser_Default objectForKey:@"token"] forKey:@"token"];
     NSError *serializationError = nil;
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method URLString:[[NSURL URLWithString:urlStr relativeToURL:self.baseURL] absoluteString] parameters:dict error:&serializationError];
     if (serializationError) {

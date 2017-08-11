@@ -15,7 +15,7 @@ const CGFloat MJRefreshSlowAnimationDuration = 0.4;
 NSString *const MJRefreshBundleName = @"MJRefresh.bundle";
 
 NSString *const MJRefreshFooterPullToRefresh = @"上拉加载更多";
-NSString *const MJRefreshFooterReleaseToRefresh = @"松开立即加载";
+NSString *const MJRefreshFooterReleaseToRefresh = @"别再下拉啦 快点进去看看吧";
 NSString *const MJRefreshFooterRefreshing = @"正在努力加载中...";
 
 NSString *const MJRefreshHeaderPullToRefresh = @"下拉可以刷新";

@@ -255,4 +255,15 @@
     return dateString;
 }
 
+// 定义成方法方便多个label调用 增加代码的复用性
++ (CGSize)sizeWithString:(NSString *)string font:(UIFont *)font
+{
+    CGRect rect = [string boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 8000)//限制最大的宽度和高度
+                                       options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading  |NSStringDrawingUsesLineFragmentOrigin//采用换行模式
+                                    attributes:@{NSFontAttributeName: font}//传入的字体字典
+                                       context:nil];
+    
+    return rect.size;
+}
+
 @end

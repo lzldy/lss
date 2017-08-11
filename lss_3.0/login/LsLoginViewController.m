@@ -287,7 +287,10 @@
         dict  =@{@"mobile":_phoneNumber,@"password":phoneNumView.textField.text};
     }
     [[LsAFNetWorkTool shareManger] LSGET:@"mobilelogin.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        NSString *token =[responseObject objectForKey:@""];
+        NSDictionary  *usertokenDict =[responseObject objectForKey:@"usertoken"];
+        NSString      *uid           =[usertokenDict objectForKey:@"uid"];
+        NSString      *token         =[usertokenDict objectForKey:@"token"];
+        [LSUser_Default setObject:uid   forKey:@"uid"];
         [LSUser_Default setObject:token forKey:@"token"];
         if (![LSUser_Default objectForKey:@"didConfig"]) {
             LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
@@ -323,6 +326,7 @@
 - (void)getAuthWithUserInfoFromQQ{
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_QQ currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
+            LsLog(@"-----------QQ--------%@",error);
         } else {
             UMSocialUserInfoResponse *resp = result;
             NSDictionary *dict =@{@"umsys":@"QQ",@"umuid":resp.uid,@"umname":resp.name,
@@ -336,6 +340,7 @@
 - (void)getAuthWithUserInfoFromWechat{
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
+            LsLog(@"-----------WX--------%@",error);
         } else {
             UMSocialUserInfoResponse *resp = result;
             NSDictionary *dict =@{@"umsys":@"WX",@"umuid":resp.uid,@"umname":resp.name,
