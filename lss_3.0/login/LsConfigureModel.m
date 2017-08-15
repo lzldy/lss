@@ -8,19 +8,41 @@
 
 #import "LsConfigureModel.h"
 
-@implementation LsBaseConfigureModel
+@implementation LsCatgConfigureModel
+
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"id_"     : @"id"};
 }
 
--(NSMutableArray *)subjectArray{
-    if (!_subjectArray) {
-        _subjectArray =[NSMutableArray array];
-    }
-    return _subjectArray;
+@end
+
+@implementation LsLevelConfigureModel
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"id_"     : @"id"};
 }
 
 @end
+
+@implementation LsSubjectConfigureModel
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"id_"     : @"id"};
+}
+
+@end
+
+@implementation LsBranchConfigureModel
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"id_"     : @"id"};
+}
+
+@end
+
+
+
+
 
 @implementation LsConfigureModel
 
@@ -31,41 +53,78 @@
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"levels"  : [LsBaseConfigureModel class],
-             @"catgs"   : [LsBaseConfigureModel class],
-             @"branchs" : [LsBaseConfigureModel class]};
+    return @{@"levels"  : [LsLevelConfigureModel class],
+             @"catgs"   : [LsCatgConfigureModel class],
+             @"branchs" : [LsBranchConfigureModel class]};
 }
 
 -(void)fromDict:(NSDictionary *)dict{
-    self.allSubject            =[NSMutableArray array];
-    NSMutableArray *eleSubject =[NSMutableArray array];
-    NSMutableArray *midSubject =[NSMutableArray array];
-    NSMutableArray *kdSubject  =[NSMutableArray array];
-    NSMutableArray *hmdSubject =[NSMutableArray array];
-
-    for (LsBaseConfigureModel *model in self.catgs) {
+    NSMutableArray *dataArray =[NSMutableArray array];
+    for (int i = 0; i<self.catgs.count; i++) {
+        LsCatgConfigureModel *model =[[LsCatgConfigureModel alloc] init];
+        model          = self.catgs[i];
         NSString *ID   = model.id_;
         NSString *key  = [NSString stringWithFormat:@"scatgs-%@",ID];
         NSArray  *arr  = [[dict objectForKey:@"data"] objectForKey:key];
-        for(NSDictionary *dict  in arr) {
-            LsBaseConfigureModel *modelll =[[LsBaseConfigureModel alloc]init];
-            modelll.id_                   =[dict objectForKey:@"id"];
-            modelll.name                  =[dict objectForKey:@"name"];
-            modelll.code                  =[dict objectForKey:@"code"];
-            modelll.level                 =[dict objectForKey:@"level"];
+        NSMutableArray * levelsArray   = [NSMutableArray array];
+        
+        for (int j=0; j<self.levels.count; j++) {
+            LsLevelConfigureModel *modell123 =self.levels[j];
             
-            for (LsBaseConfigureModel *model in self.levels) {
-                if ([model.code isEqualToString:modelll.level]) {
-                    [model.subjectArray addObject:modelll];
+            LsLevelConfigureModel *modell =[[LsLevelConfigureModel alloc] init];
+            modell.level                  =key;
+            modell.name                   =modell123.name;
+            modell.code                   =modell123.code;
+            modell.subjects               =[NSMutableArray array];
+            [levelsArray addObject:modell];
+            
+            for(NSDictionary *dict  in arr) {
+                LsSubjectConfigureModel *modelll = [LsSubjectConfigureModel yy_modelWithJSON:dict];
+                if ([modelll.level isEqualToString:modell.code]) {
+                    [modell.subjects addObject:modelll];
                 }
             }
         }
+        model.levels =levelsArray;
+        [dataArray addObject:model];
     }
-    [self.allSubject addObject:kdSubject];
-    [self.allSubject addObject:eleSubject];
-    [self.allSubject addObject:midSubject];
-    [self.allSubject addObject:hmdSubject];
+    self.catgs =dataArray;
+
+    
+//    for (LsCatgConfigureModel *model in self.catgs) {
+//        NSString *ID   = model.id_;
+//        NSString *key  = [NSString stringWithFormat:@"scatgs-%@",ID];
+//        NSArray  *arr  = [[dict objectForKey:@"data"] objectForKey:key];
+//        model.levels   = [NSMutableArray array];
+//       
+//        for (LsLevelConfigureModel *modell in self.levels) {
+//            LsLevelConfigureModel *modell123 =[[LsLevelConfigureModel alloc] init];
+//
+//            modell123.level  =key;
+//            modell123.code   =modell.code;
+//            [model.levels addObject:modell];
+//            modell.subjects =[NSMutableArray array];
+//            for(NSDictionary *dict  in arr) {
+//                LsSubjectConfigureModel *modelll = [LsSubjectConfigureModel yy_modelWithJSON:dict];
+//                if ([modelll.level isEqualToString:modell.code]) {
+//                    [modell.subjects addObject:modelll];
+//                }
+//            }
+//        }
+//        [model.levels addObject:model];
+//    }
+//    self.catgs =dataArray;
 }
 
+//-(NSMutableArray *)arrayFromDict:(id)data{
+//    
+//}
+
+-(NSMutableArray *)catgs{
+    if (!_catgs) {
+        _catgs =[NSMutableArray array];
+    }
+    return _catgs;
+}
 
 @end

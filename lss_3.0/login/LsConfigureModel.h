@@ -8,23 +8,51 @@
 
 #import "LsBaseModel.h"
 
-
-@interface LsBaseConfigureModel : NSObject
+//项目
+@interface LsCatgConfigureModel : NSObject
 
 @property (nonatomic,strong)     NSString        *id_;
 @property (nonatomic,strong)     NSString        *name;
 @property (nonatomic,strong)     NSString        *code;
 @property (nonatomic,strong)     NSString        *level;
-@property (nonatomic,strong)     NSMutableArray  *subjectArray;
+@property (nonatomic,strong)     NSMutableArray  *levels;//学段
+
+
+@end
+
+//学段
+@interface LsLevelConfigureModel : NSObject
+
+@property (nonatomic,strong)     NSString        *name;
+@property (nonatomic,strong)     NSString        *code;
+@property (nonatomic,strong)     NSString        *level;
+@property (nonatomic,strong)     NSMutableArray  *subjects;//科目
+
+@end
+
+//科目
+@interface LsSubjectConfigureModel : NSObject
+
+@property (nonatomic,strong)     NSString        *id_;
+@property (nonatomic,strong)     NSString        *name;
+@property (nonatomic,strong)     NSString        *code;
+@property (nonatomic,strong)     NSString        *level;
+
+@end
+
+//分校
+@interface LsBranchConfigureModel : NSObject
+
+@property (nonatomic,strong)     NSString        *id_;
+@property (nonatomic,strong)     NSString        *prvnName;
 @property (nonatomic,strong)     NSString        *status;
 
 @end
 
 @interface LsConfigureModel : LsBaseModel
 
+@property (nonatomic,strong) NSMutableArray   *catgs;       //项目
 @property (nonatomic,strong) NSArray          *levels;      //学段
-@property (nonatomic,strong) NSArray          *catgs;       //项目
 @property (nonatomic,strong) NSArray          *branchs;     //分校
-@property (nonatomic,strong) NSMutableArray   *allSubject;  //all科目
 
 @end

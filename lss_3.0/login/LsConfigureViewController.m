@@ -18,9 +18,11 @@ static NSString * headerReuseIdentifier = @"header";
 @interface LsConfigureViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     NSArray           *headerArray;
+    UICollectionView  *myCollectionView2;
     UICollectionView  *myCollectionView3;
     UIScrollView      *scrollView;
-    NSInteger         indexCollectView;
+    NSInteger         indexCatgCollectView;
+    NSInteger         indexLevelCollectView;
     UIButton          *saveBtn;
     UILabel           *bottomL;
 }
@@ -81,7 +83,7 @@ static NSString * headerReuseIdentifier = @"header";
     flowlaout2.minimumLineSpacing = 5;//设置最小行间距
     flowlaout2.minimumInteritemSpacing = 5;//item间距(最小值)
     
-    UICollectionView * myCollectionView2=[[UICollectionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(myCollectionView1.frame)+10, LSMainScreenW-40,70)
+    myCollectionView2=[[UICollectionView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(myCollectionView1.frame)+10, LSMainScreenW-40,70)
                                          collectionViewLayout:flowlaout2];
     [myCollectionView2 registerClass:[LsBaseCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     [myCollectionView2 registerClass:[LsCollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerReuseIdentifier];
@@ -129,8 +131,8 @@ static NSString * headerReuseIdentifier = @"header";
 
 -(void)resetFrame{
     NSInteger rowNum =0;
-    if ([[self.model.levels[indexCollectView] subjectArray] count]>0) {
-         rowNum =[[self.model.levels[indexCollectView] subjectArray]count]/4+1;
+    if ([[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects] count]>0) {
+         rowNum =[[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects] count]/4+1;
     }
     myCollectionView3.frame =CGRectMake(20,myCollectionView3.frame.origin.y, LSMainScreenW-40,30+40*rowNum);
     saveBtn.frame =CGRectMake(35, CGRectGetMaxY(myCollectionView3.frame)+ 20, LSMainScreenW-70, 35*LSScale);
@@ -139,6 +141,10 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)saveConfigureBtn{
+
+//    NSString *sadas =[self.dataDict objectForKey:@"catgid"];
+//    NSString *fffff =[self.dataDict objectForKey:@"scatgid"];
+//    [LsMethod alertMessage:sadas AndTitle:fffff];
     LsConfigureTwoViewController *vc =[[LsConfigureTwoViewController alloc] init];
     vc.dataDict                      =self.dataDict;
     vc.brachsArray                   =self.model.branchs;
@@ -153,9 +159,9 @@ static NSString * headerReuseIdentifier = @"header";
     if (collectionView.tag==11111) {
         return  self.model.catgs.count;
     }else if (collectionView.tag==22222){
-        return self.model.levels.count;
+        return [[self.model.catgs[indexCatgCollectView] levels] count];
     }else{
-        return [[self.model.levels[indexCollectView] subjectArray] count];
+        return [[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects] count];
     }
 }
 
@@ -176,35 +182,49 @@ static NSString * headerReuseIdentifier = @"header";
     LsBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     [cell sizeToFit];
     if (cell) {
-        LsBaseConfigureModel *modelll =[[LsBaseConfigureModel alloc] init];
-        if (collectionView.tag==11111) {
+        if (collectionView.tag==11111){
+            LsCatgConfigureModel *modelll =[[LsCatgConfigureModel alloc] init];
             modelll =self.model.catgs[indexPath.row];
+            cell.label.text =modelll.name;
         }else if (collectionView.tag==22222){
-            modelll =self.model.levels[indexPath.row];
+            LsLevelConfigureModel *modelll =[[LsLevelConfigureModel alloc] init];
+            modelll =[self.model.catgs[indexCatgCollectView] levels][indexPath.row];
+            cell.label.text =modelll.name;
+
         }else{
-            modelll =[self.model.levels[indexCollectView] subjectArray][indexPath.row];
+            LsSubjectConfigureModel *modelll =[[LsSubjectConfigureModel alloc] init];
+            modelll =[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects][indexPath.row];
+            cell.label.text =modelll.name;
         }
-        cell.label.text =modelll.name;
     }
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    LsBaseConfigureModel *modelll =[[LsBaseConfigureModel alloc] init];
     if (collectionView.tag==11111) {
-        modelll                   =self.model.catgs[indexPath.row];
+        
+        LsCatgConfigureModel *modelll =[[LsCatgConfigureModel alloc] init];
+        modelll                       =self.model.catgs[indexPath.row];
+        indexCatgCollectView          =indexPath.row;
+        indexLevelCollectView         =0;
+        LsLog(@"---------------------indexCatgCollectView--%d",indexCatgCollectView);
         [self.dataDict setObject:modelll.id_  forKey:@"catgid"];
+        [myCollectionView2 reloadData];
+        [myCollectionView3 reloadData];
+        [myCollectionView2 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        [myCollectionView3 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
     }else if (collectionView.tag==22222){
-        modelll                   =self.model.levels[indexPath.row];
-        indexCollectView          =indexPath.row;
+        LsLevelConfigureModel *modelll =[[LsLevelConfigureModel alloc] init];
+        modelll                        =[self.model.catgs[indexCatgCollectView] levels][indexPath.row];
+        indexLevelCollectView          =indexPath.row;
         [myCollectionView3        reloadData];
         [myCollectionView3 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-        if (modelll.subjectArray.count>0) {
-            LsBaseConfigureModel *amodel =modelll.subjectArray[0];
+        if ([[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects] count]>0) {
+            LsSubjectConfigureModel *amodel =modelll.subjects[0];
             [self.dataDict setObject:amodel.id_ forKey:@"scatgid"];
         }
     }else{
-        modelll                   =[self.model.levels[indexCollectView] subjectArray][indexPath.row];
+        LsSubjectConfigureModel *modelll =[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects][indexPath.row];
         [self.dataDict setObject:modelll.id_ forKey:@"scatgid"];
     }
     [self resetFrame];
@@ -242,11 +262,12 @@ static NSString * headerReuseIdentifier = @"header";
 -(NSMutableDictionary *)dataDict{
     if (!_dataDict) {
         _dataDict =[NSMutableDictionary dictionary];
-        LsBaseConfigureModel *model1 =self.model.catgs[0];
-        LsBaseConfigureModel *model2 =[self.model.levels[0] subjectArray][0];
-
+        LsCatgConfigureModel *model1 =self.model.catgs[0];
+        if ([[[self.model.catgs[0] levels][0] subjects] count]>0) {
+            LsSubjectConfigureModel *model2 =[[self.model.catgs[0] levels][0] subjects][0];
+            [_dataDict setObject:model2.id_  forKey:@"scatgid"];
+        }
         [_dataDict setObject:model1.id_  forKey:@"catgid"];
-        [_dataDict setObject:model2.id_  forKey:@"scatgid"];
     }
     return _dataDict;
 }

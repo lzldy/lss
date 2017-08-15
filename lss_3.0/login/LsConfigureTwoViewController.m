@@ -23,7 +23,7 @@ static NSString * headerReuseIdentifier = @"header";
     UILabel           *bottomL;
     UICollectionView  *myCollectionView;
 }
-@property (nonatomic,strong)  LsBaseConfigureModel  *model;
+@property (nonatomic,strong)  LsBranchConfigureModel  *model;
 
 @end
 
@@ -43,7 +43,7 @@ static NSString * headerReuseIdentifier = @"header";
     NSMutableArray *openedArr =[NSMutableArray array];
     NSMutableArray *closedArr =[NSMutableArray array];
 
-    for (LsBaseConfigureModel *modelll in self.brachsArray) {
+    for (LsBranchConfigureModel *modelll in self.brachsArray) {
         if ([modelll.status isEqualToString:@"Y"]) {
             [openedArr addObject:modelll];
         }else{
@@ -139,7 +139,7 @@ static NSString * headerReuseIdentifier = @"header";
     [cell sizeToFit];
     if (cell) {
         self.model      =allDataArray[indexPath.section][indexPath.row];
-        cell.label.text =self.model.name;
+        cell.label.text =self.model.prvnName;
     }
     return cell;
 }
@@ -198,11 +198,12 @@ static NSString * headerReuseIdentifier = @"header";
     [super didReceiveMemoryWarning];
 }
 
--(LsBaseConfigureModel *)model{
+-(LsBranchConfigureModel *)model{
     if (!_model) {
-        _model =[[LsBaseConfigureModel alloc] init];
+        _model  =[[LsBranchConfigureModel alloc] init];
     }
     return _model;
 }
+
 
 @end
