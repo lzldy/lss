@@ -11,6 +11,6 @@
 
 @interface LsLiveTableViewCell : UITableViewCell
 
--(void)reloadCell:(LsLiveModel*)model;
+-(void)reloadCell:(LsLiveModel*)model Type:(NSString*)type;
 
 @end

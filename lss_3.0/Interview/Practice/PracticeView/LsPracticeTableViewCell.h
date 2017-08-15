@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LsPracticeModel.h"
 
 @interface LsPracticeTableViewCell : UITableViewCell
+
+@property(nonatomic,strong) UIButton *button;
+
+-(void)reloadCell:(id)model Type:(NSString*)type;
 
 @end

@@ -50,7 +50,7 @@
         [baseView addSubview:self.rightBtn];
         
         UIView *line =[[UIView alloc] initWithFrame:CGRectMake(0, baseView.frame.size.height-0.5, LSMainScreenW, 0.5)];
-        line.backgroundColor =[UIColor lightGrayColor];
+        line.backgroundColor =LSColor(243, 244, 245, 1);
         [baseView addSubview:line];
 
     }

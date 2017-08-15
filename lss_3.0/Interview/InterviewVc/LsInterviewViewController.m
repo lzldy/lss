@@ -98,20 +98,20 @@ static NSString *cellId = @"cellId";
         return 100*LSScale;
     }else{
         if (self.model.practiceModel.personNum>0) {
-            if (indexPath==0) {
+            if (indexPath.row==0) {
                 return 30*LSScale;
             }else{
-                return 168*LSScale;
+                return 195*LSScale;
             }
         }else{
-            return 168*LSScale;
+            return 195*LSScale;
         }
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
-        return self.model.liveArray.count;
+        return self.model.liveArray.count>0?self.model.liveArray.count:1;
     }else{
         return self.model.practiceModel.personNum>0?self.model.practiceModel.practiceLists.count+1:self.model.practiceModel.practiceLists.count;
     }
@@ -131,12 +131,23 @@ static NSString *cellId = @"cellId";
         
         cell = [[LsLiveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
-        [(LsLiveTableViewCell*)cell reloadCell:self.model.liveArray[indexPath.row]];
-        
+        if (self.model.liveArray.count>0) {
+            [(LsLiveTableViewCell*)cell reloadCell:self.model.liveArray[indexPath.row] Type:@"1"] ;
+        }else{
+            [(LsLiveTableViewCell*)cell reloadCell:nil Type:@"0"] ;
+        }
     }else{
         cell = [[LsPracticeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
-        
+        if (self.model.practiceModel.personNum>0) {
+            if (indexPath.row==0) {
+                [(LsPracticeTableViewCell*)cell reloadCell:self.model.practiceModel Type:@"0"] ;
+            }else{
+                [(LsPracticeTableViewCell*)cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row-1] Type:@"1"] ;
+            }
+        }else{
+            [(LsPracticeTableViewCell*)cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row] Type:@"1"] ;
+        }
     }
     
     return cell;

@@ -13,7 +13,10 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self =[super initWithFrame:frame];
     if (self) {
-        
+        UIView  *line         =[[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height-0.5, frame.size.width, 0.5)];
+        line.backgroundColor  =LSColor(243, 244, 245, 1);
+        [self addSubview:line];
+
     }
     return self;
 }
@@ -41,7 +44,6 @@
         label.textAlignment   =NSTextAlignmentCenter;
         label.font            =[UIFont systemFontOfSize:14];
         [view addSubview:label];
-
         
     }
 }
