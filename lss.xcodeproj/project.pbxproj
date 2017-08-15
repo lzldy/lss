@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182CDEC01F42A7BB00283EBA /* LsInterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEBF1F42A7BB00283EBA /* LsInterModel.m */; };
+		182CDEC31F42A9BA00283EBA /* LsLiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC21F42A9BA00283EBA /* LsLiveModel.m */; };
+		182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC51F42AA0600283EBA /* LsPracticeModel.m */; };
 		183E7AF91F2832E000A69596 /* LsTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E7AF81F2832E000A69596 /* LsTabBar.m */; };
 		183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E7AFB1F28330100A69596 /* LsTabBarViewController.m */; };
 		184335231F333B4500A53585 /* LsLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335221F333B4500A53585 /* LsLoginViewController.m */; };
@@ -145,6 +148,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182CDEBE1F42A7BB00283EBA /* LsInterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterModel.h; sourceTree = "<group>"; };
+		182CDEBF1F42A7BB00283EBA /* LsInterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterModel.m; sourceTree = "<group>"; };
+		182CDEC11F42A9BA00283EBA /* LsLiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveModel.h; sourceTree = "<group>"; };
+		182CDEC21F42A9BA00283EBA /* LsLiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveModel.m; sourceTree = "<group>"; };
+		182CDEC41F42AA0600283EBA /* LsPracticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeModel.h; sourceTree = "<group>"; };
+		182CDEC51F42AA0600283EBA /* LsPracticeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPracticeModel.m; sourceTree = "<group>"; };
 		183E7AF71F2832E000A69596 /* LsTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTabBar.h; sourceTree = "<group>"; };
 		183E7AF81F2832E000A69596 /* LsTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsTabBar.m; sourceTree = "<group>"; };
 		183E7AFA1F28330100A69596 /* LsTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTabBarViewController.h; sourceTree = "<group>"; };
@@ -913,6 +922,8 @@
 		18E82D641F37FB9400D3154B /* InterviewModel */ = {
 			isa = PBXGroup;
 			children = (
+				182CDEBE1F42A7BB00283EBA /* LsInterModel.h */,
+				182CDEBF1F42A7BB00283EBA /* LsInterModel.m */,
 			);
 			path = InterviewModel;
 			sourceTree = "<group>";
@@ -984,6 +995,8 @@
 		18E82D721F37FDB800D3154B /* PracticeModel */ = {
 			isa = PBXGroup;
 			children = (
+				182CDEC41F42AA0600283EBA /* LsPracticeModel.h */,
+				182CDEC51F42AA0600283EBA /* LsPracticeModel.m */,
 			);
 			path = PracticeModel;
 			sourceTree = "<group>";
@@ -1117,6 +1130,8 @@
 		18F74C8A1F3D89A9007AA5F6 /* LiveVc */ = {
 			isa = PBXGroup;
 			children = (
+				182CDEC11F42A9BA00283EBA /* LsLiveModel.h */,
+				182CDEC21F42A9BA00283EBA /* LsLiveModel.m */,
 			);
 			path = LiveVc;
 			sourceTree = "<group>";
@@ -1315,8 +1330,10 @@
 				1843357E1F341F5900A53585 /* LsNavView.m in Sources */,
 				1854F5381F37024A00E1F603 /* UIImage+GIF.m in Sources */,
 				1854F53A1F37024A00E1F603 /* UIImage+WebP.m in Sources */,
+				182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */,
 				18E82D851F37FFA700D3154B /* LsFindViewController.m in Sources */,
 				1843357B1F3419D300A53585 /* LsConfigureViewController.m in Sources */,
+				182CDEC31F42A9BA00283EBA /* LsLiveModel.m in Sources */,
 				18E82D691F37FB9400D3154B /* LsInterviewViewController.m in Sources */,
 				18AF1AED1F2731E800D05E4D /* IQUIView+Hierarchy.m in Sources */,
 				1854F52A1F37024A00E1F603 /* MJRefreshHeaderView.m in Sources */,
@@ -1328,6 +1345,7 @@
 				1854F5311F37024A00E1F603 /* SDWebImageCompat.m in Sources */,
 				1854F53B1F37024A00E1F603 /* UIImageView+HighlightedWebCache.m in Sources */,
 				18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */,
+				182CDEC01F42A7BB00283EBA /* LsInterModel.m in Sources */,
 				1854F53D1F37024A00E1F603 /* UIView+WebCacheOperation.m in Sources */,
 				1854F5391F37024A00E1F603 /* UIImage+MultiFormat.m in Sources */,
 				1854F5371F37024A00E1F603 /* UIButton+WebCache.m in Sources */,

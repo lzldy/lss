@@ -40,7 +40,7 @@
  *timeStamp:时间戳
  *
  */
-+(NSString *)toDateWithTimeStamp:(NSString *)timeStamp;
++(NSString *)toDateWithTimeStamp:(NSString *)timeStamp DateFormat:(NSString*)format;
 
 /**
  *取出标准字符串

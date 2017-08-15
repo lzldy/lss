@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LsLiveModel.h"
 
 @interface LsLiveTableViewCell : UITableViewCell
+
+-(void)reloadCell:(LsLiveModel*)model;
 
 @end

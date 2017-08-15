@@ -33,14 +33,13 @@
     [alertView show];
 }
 
-+(NSString *)toDateWithTimeStamp:(NSString *)timeStamp {
++(NSString *)toDateWithTimeStamp:(NSString *)timeStamp DateFormat:(NSString*)format{
     if (timeStamp&&![timeStamp isKindOfClass:[NSNull class]]) {
-        NSTimeInterval _interval=[timeStamp doubleValue] / 1000.0;
+        NSTimeInterval _interval=[timeStamp doubleValue];
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:_interval];
         NSDateFormatter *dateformat = [[NSDateFormatter alloc] init];
-        [dateformat setDateFormat:@"yyyy-MM-dd"];
+        [dateformat setDateFormat:format];
         return [dateformat stringFromDate: date];
-        
     }else{
         return @"";
     }

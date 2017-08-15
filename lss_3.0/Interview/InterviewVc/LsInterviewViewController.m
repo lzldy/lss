@@ -12,6 +12,7 @@
 #import "LsPracticeTableViewCell.h"
 #import "LsInterView.h"
 #import "LsInterCellHeaderView.h"
+#import "LsInterModel.h"
 
 static NSString *cellId = @"cellId";
 
@@ -23,6 +24,7 @@ static NSString *cellId = @"cellId";
 @property (nonatomic,strong)  UITableView              *tabView;
 @property (nonatomic,strong)  UCCarouselView           *carouselView;
 @property (nonatomic,strong)  LsInterView              *typeView;
+@property (nonatomic,strong)  LsInterModel             *model;
 
 @end
 
@@ -31,9 +33,19 @@ static NSString *cellId = @"cellId";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.navTitle =@"面试";
+    [self getData];
     [self getUserInfo];
     [self initData];
-    [self loadBaseUI];
+//    [self loadBaseUI];
+}
+
+-(void)getData{
+    [[LsAFNetWorkTool shareManger] LSPOST:@"homepagejson.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.model =[LsInterModel yy_modelWithJSON:responseObject];
+        [self loadBaseUI];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+        
+    }];
 }
 
 -(void)getUserInfo{
@@ -41,9 +53,9 @@ static NSString *cellId = @"cellId";
 }
 
 -(void)initData{
-    _bannerArray = @[LOADIMAGEWITHTYPE(@"banner1", @"jpg"),LOADIMAGEWITHTYPE(@"banner2", @"jpg"),
-                     LOADIMAGEWITHTYPE(@"banner3", @"jpg"),LOADIMAGEWITHTYPE(@"banner4", @"jpg"),
-                     LOADIMAGEWITHTYPE(@"banner5", @"jpg")];
+//    _bannerArray = @[LOADIMAGEWITHTYPE(@"banner1", @"jpg"),LOADIMAGEWITHTYPE(@"banner2", @"jpg"),
+//                     LOADIMAGEWITHTYPE(@"banner3", @"jpg"),LOADIMAGEWITHTYPE(@"banner4", @"jpg"),
+//                     LOADIMAGEWITHTYPE(@"banner5", @"jpg")];
     cellHeaderArray =@[@{@"leftTitle":@"最新直播",@"rightTitle":@"更多"},
                        @{@"leftTitle":@"最新练课",@"rightTitle":@"全部"}];
 }
@@ -52,15 +64,13 @@ static NSString *cellId = @"cellId";
     [self loadCarouselViewWithTimer];
     [superView addSubview:self.typeView];
     [superView addSubview:self.tabView];
-//    self.tabView.tableHeaderView  =self.cellHeaderView;
-
 }
 
 // 使用定时器初始化
 - (void)loadCarouselViewWithTimer {
 
     _carouselView  =[[UCCarouselView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 140*LSScale)
-                                                dataArray:_bannerArray
+                                                dataArray:self.bannerArray
                                              timeInterval:2
                                        didSelectItemBlock:^(NSInteger didSelectItem){
           LsLog(@"--------------%d",didSelectItem);
@@ -87,7 +97,7 @@ static NSString *cellId = @"cellId";
     if (indexPath.section==0) {
         return 100*LSScale;
     }else{
-        if (@"personNum") {
+        if (self.model.practiceModel.personNum>0) {
             if (indexPath==0) {
                 return 30*LSScale;
             }else{
@@ -100,7 +110,11 @@ static NSString *cellId = @"cellId";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return  3;
+    if (section==0) {
+        return self.model.liveArray.count;
+    }else{
+        return self.model.practiceModel.personNum>0?self.model.practiceModel.practiceLists.count+1:self.model.practiceModel.practiceLists.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -112,13 +126,16 @@ static NSString *cellId = @"cellId";
         }else{
             cell = [[LsPracticeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
         }
-        cell.selectionStyle =UITableViewCellSelectionStyleNone;
     }
     if (indexPath.section==0) {
-//        cell = [[LsLiveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];;
+        
+        cell = [[LsLiveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
+        cell.selectionStyle =UITableViewCellSelectionStyleNone;
+        [(LsLiveTableViewCell*)cell reloadCell:self.model.liveArray[indexPath.row]];
         
     }else{
-//        cell = [[LsPracticeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
+        cell = [[LsPracticeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
+        cell.selectionStyle =UITableViewCellSelectionStyleNone;
         
     }
     
@@ -143,10 +160,16 @@ static NSString *cellId = @"cellId";
     return cellHeaderView;
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//    UIView *view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 30);
-//    return view;
-//}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat sectionHeaderHeight = 45;
+    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+    }
+    else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+    }
+}
 
 - (void)didClickHeaderViewIndex:(NSInteger)index{
     LsLog(@"+++++++++++++++++===%d",index);
@@ -178,6 +201,24 @@ static NSString *cellId = @"cellId";
         _typeView.delegate=self;
     }
     return _typeView;
+}
+
+-(LsInterModel *)model{
+    if (!_model) {
+        _model =[[LsInterModel alloc] init];
+    }
+    return _model;
+}
+
+-(NSArray *)bannerArray{
+    if (!_bannerArray) {
+        NSMutableArray *dataArr =[NSMutableArray array];
+        for (LsBannerModel *model in self.model.bannerArray) {
+            [dataArr addObject:model.url];
+        }
+        _bannerArray =dataArr;
+    }
+    return _bannerArray;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -137,7 +137,9 @@ typedef void(^DidSelectItemBlock)(NSInteger didSelectItem);
     
     UCCarouselCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    cell.image = self.dataArray[indexPath.item];
+//    cell.image = self.dataArray[indexPath.item];
+    
+    [cell.imageView sd_setImageWithURL:self.dataArray[indexPath.row] placeholderImage:[UIImage imageNamed:@"banner1.jpg"]];
     
     return cell;
 }

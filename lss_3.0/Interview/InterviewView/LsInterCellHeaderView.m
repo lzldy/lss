@@ -28,10 +28,14 @@
         baseView.backgroundColor =[UIColor whiteColor];
         [self addSubview:baseView];
         
+        UIView *leftView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 2.5, baseView.frame.size.height)];
+        leftView.backgroundColor =LSNavColor;
+        [baseView addSubview:leftView];
+        
         self.leftLabel                      = [[UILabel alloc] init];
         self.leftLabel.numberOfLines        = 0;
         self.leftLabel.textColor            = [UIColor darkTextColor];
-        self.leftLabel.font                 = [UIFont systemFontOfSize:15];
+        self.leftLabel.font                 = [UIFont systemFontOfSize:13];
         [baseView addSubview:self.leftLabel];
         
         UIImage      *image        =[UIImage imageNamed:@"more_btn"];
@@ -41,9 +45,13 @@
         
         self.rightBtn              =[[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(imageView.frame)-35, 0, 35, baseView.frame.size.height)];
         self.rightBtn.backgroundColor =[UIColor clearColor];
-        self.rightBtn.titleLabel.font =[UIFont systemFontOfSize:15];
+        self.rightBtn.titleLabel.font =[UIFont systemFontOfSize:13];
         [self.rightBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         [baseView addSubview:self.rightBtn];
+        
+        UIView *line =[[UIView alloc] initWithFrame:CGRectMake(0, baseView.frame.size.height-0.5, LSMainScreenW, 0.5)];
+        line.backgroundColor =[UIColor lightGrayColor];
+        [baseView addSubview:line];
 
     }
     return self;
