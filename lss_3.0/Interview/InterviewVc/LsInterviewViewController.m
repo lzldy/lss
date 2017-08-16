@@ -13,10 +13,12 @@
 #import "LsInterView.h"
 #import "LsInterCellHeaderView.h"
 #import "LsInterModel.h"
+#import "LsPracticeViewController.h"
+#import "LsLiveViewController.h"
+#import "LsDataViewController.h"
+#import "LsNoticeViewController.h"
 
-static NSString *cellId = @"cellId";
-
-@interface LsInterviewViewController ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate>
+@interface LsInterviewViewController ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate,interCellHeaderViewDelegate,practiceTableViewCellDelegate>
 {
     NSArray  *cellHeaderArray;
 }
@@ -53,9 +55,6 @@ static NSString *cellId = @"cellId";
 }
 
 -(void)initData{
-//    _bannerArray = @[LOADIMAGEWITHTYPE(@"banner1", @"jpg"),LOADIMAGEWITHTYPE(@"banner2", @"jpg"),
-//                     LOADIMAGEWITHTYPE(@"banner3", @"jpg"),LOADIMAGEWITHTYPE(@"banner4", @"jpg"),
-//                     LOADIMAGEWITHTYPE(@"banner5", @"jpg")];
     cellHeaderArray =@[@{@"leftTitle":@"最新直播",@"rightTitle":@"更多"},
                        @{@"leftTitle":@"最新练课",@"rightTitle":@"全部"}];
 }
@@ -118,39 +117,43 @@ static NSString *cellId = @"cellId";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-
-    if (!cell) {
-        if (indexPath.section==0) {
-            cell = [[LsLiveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
-        }else{
-            cell = [[LsPracticeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
-        }
-    }
+    
     if (indexPath.section==0) {
-        
-        cell = [[LsLiveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
-        cell.selectionStyle =UITableViewCellSelectionStyleNone;
-        if (self.model.liveArray.count>0) {
-            [(LsLiveTableViewCell*)cell reloadCell:self.model.liveArray[indexPath.row] Type:@"1"] ;
-        }else{
-            [(LsLiveTableViewCell*)cell reloadCell:nil Type:@"0"] ;
+        static NSString *sectionID = @"section0";
+        LsLiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sectionID];
+        if (!cell) {
+            cell = [[LsLiveTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sectionID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        if (self.model.liveArray.count>0) {
+            [cell reloadCell:self.model.liveArray[indexPath.row] Type:@"1"] ;
+        }else{
+            [cell reloadCell:nil Type:@"0"] ;
+        }
+        return cell;
     }else{
-        cell = [[LsPracticeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault    reuseIdentifier:cellId];
-        cell.selectionStyle =UITableViewCellSelectionStyleNone;
+        static NSString *sectionIDD = @"section1";
+        LsPracticeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sectionIDD];
+        if (!cell) {
+            cell = [[LsPracticeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sectionIDD];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
         if (self.model.practiceModel.personNum>0) {
             if (indexPath.row==0) {
-                [(LsPracticeTableViewCell*)cell reloadCell:self.model.practiceModel Type:@"0"] ;
+                [cell reloadCell:self.model.practiceModel Type:@"0"] ;
+                cell.delegate=self;
             }else{
-                [(LsPracticeTableViewCell*)cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row-1] Type:@"1"] ;
+                [cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row-1] Type:@"1"] ;
             }
         }else{
-            [(LsPracticeTableViewCell*)cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row] Type:@"1"] ;
+            [cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row] Type:@"1"] ;
         }
+        return cell;
     }
-    
-    return cell;
+}
+
+- (void)didClickRightButton{
+    [self pushPracticeVc:0];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -165,10 +168,19 @@ static NSString *cellId = @"cellId";
 
     LsInterCellHeaderView *cellHeaderView =[[LsInterCellHeaderView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 45)];
     NSDictionary          *dict           =cellHeaderArray[section];
+    cellHeaderView.delegate               =self;
     NSString              *leftTitle      =[dict objectForKey:@"leftTitle"];
     NSString              *rightTitle     =[dict objectForKey:@"rightTitle"];
-    [cellHeaderView setLeftTitle:leftTitle AndRightTitle:rightTitle];
+    [cellHeaderView setLeftTitle:leftTitle AndRightTitle:rightTitle Index:section] ;
     return cellHeaderView;
+}
+
+- (void)didClickHeaderViewRightBtnIndex:(NSInteger)index{
+    if (index==0) {
+        [self pushLiveVc:0];
+    }else{
+        [self pushPracticeVc:0];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -183,7 +195,43 @@ static NSString *cellId = @"cellId";
 }
 
 - (void)didClickHeaderViewIndex:(NSInteger)index{
-    LsLog(@"+++++++++++++++++===%d",index);
+    switch (index) {
+        case 0:
+            [self pushLiveVc:0];
+            break;
+        case 1:
+            [self pushPracticeVc:0];
+            break;
+        case 2:
+            [self pushDataVc:0];
+            break;
+        case 3:
+            [self pushNoticeVc:0];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma - mrak -   跳转各个VC
+-(void)pushLiveVc:(NSInteger)id_{
+    LsLiveViewController *vc =[[LsLiveViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)pushPracticeVc:(NSInteger)id_{
+    LsPracticeViewController *vc =[[LsPracticeViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)pushDataVc:(NSInteger)id_{
+    LsDataViewController *vc =[[LsDataViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)pushNoticeVc:(NSInteger)id_{
+    LsNoticeViewController *vc =[[LsNoticeViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(UITableView *)tabView{

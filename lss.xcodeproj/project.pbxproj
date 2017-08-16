@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		182CDEC01F42A7BB00283EBA /* LsInterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEBF1F42A7BB00283EBA /* LsInterModel.m */; };
-		182CDEC31F42A9BA00283EBA /* LsLiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC21F42A9BA00283EBA /* LsLiveModel.m */; };
 		182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC51F42AA0600283EBA /* LsPracticeModel.m */; };
+		182CDEC91F43E83000283EBA /* LsLiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC81F43E83000283EBA /* LsLiveModel.m */; };
+		182CDECC1F43E85500283EBA /* LsLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDECB1F43E85500283EBA /* LsLiveViewController.m */; };
+		182CDED71F43EB5200283EBA /* LsDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDED61F43EB5200283EBA /* LsDataViewController.m */; };
+		182CDEDA1F43EB7800283EBA /* LsNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDED91F43EB7800283EBA /* LsNoticeViewController.m */; };
 		183E7AF91F2832E000A69596 /* LsTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E7AF81F2832E000A69596 /* LsTabBar.m */; };
 		183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E7AFB1F28330100A69596 /* LsTabBarViewController.m */; };
 		184335231F333B4500A53585 /* LsLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335221F333B4500A53585 /* LsLoginViewController.m */; };
@@ -150,10 +153,16 @@
 /* Begin PBXFileReference section */
 		182CDEBE1F42A7BB00283EBA /* LsInterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterModel.h; sourceTree = "<group>"; };
 		182CDEBF1F42A7BB00283EBA /* LsInterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterModel.m; sourceTree = "<group>"; };
-		182CDEC11F42A9BA00283EBA /* LsLiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveModel.h; sourceTree = "<group>"; };
-		182CDEC21F42A9BA00283EBA /* LsLiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveModel.m; sourceTree = "<group>"; };
 		182CDEC41F42AA0600283EBA /* LsPracticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeModel.h; sourceTree = "<group>"; };
 		182CDEC51F42AA0600283EBA /* LsPracticeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPracticeModel.m; sourceTree = "<group>"; };
+		182CDEC71F43E83000283EBA /* LsLiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveModel.h; sourceTree = "<group>"; };
+		182CDEC81F43E83000283EBA /* LsLiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveModel.m; sourceTree = "<group>"; };
+		182CDECA1F43E85500283EBA /* LsLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveViewController.h; sourceTree = "<group>"; };
+		182CDECB1F43E85500283EBA /* LsLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveViewController.m; sourceTree = "<group>"; };
+		182CDED51F43EB5200283EBA /* LsDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsDataViewController.h; sourceTree = "<group>"; };
+		182CDED61F43EB5200283EBA /* LsDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsDataViewController.m; sourceTree = "<group>"; };
+		182CDED81F43EB7800283EBA /* LsNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsNoticeViewController.h; sourceTree = "<group>"; };
+		182CDED91F43EB7800283EBA /* LsNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsNoticeViewController.m; sourceTree = "<group>"; };
 		183E7AF71F2832E000A69596 /* LsTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTabBar.h; sourceTree = "<group>"; };
 		183E7AF81F2832E000A69596 /* LsTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsTabBar.m; sourceTree = "<group>"; };
 		183E7AFA1F28330100A69596 /* LsTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTabBarViewController.h; sourceTree = "<group>"; };
@@ -421,6 +430,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		182CDECD1F43EB4100283EBA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				182CDECE1F43EB4100283EBA /* DataModel */,
+				182CDECF1F43EB4100283EBA /* DataVc */,
+				182CDED01F43EB4100283EBA /* DataView */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		182CDECE1F43EB4100283EBA /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		182CDECF1F43EB4100283EBA /* DataVc */ = {
+			isa = PBXGroup;
+			children = (
+				182CDED51F43EB5200283EBA /* LsDataViewController.h */,
+				182CDED61F43EB5200283EBA /* LsDataViewController.m */,
+			);
+			path = DataVc;
+			sourceTree = "<group>";
+		};
+		182CDED01F43EB4100283EBA /* DataView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataView;
+			sourceTree = "<group>";
+		};
+		182CDED11F43EB4100283EBA /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				182CDED21F43EB4100283EBA /* NoticeModel */,
+				182CDED31F43EB4100283EBA /* NoticeVc */,
+				182CDED41F43EB4100283EBA /* NoticeView */,
+			);
+			path = Notice;
+			sourceTree = "<group>";
+		};
+		182CDED21F43EB4100283EBA /* NoticeModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NoticeModel;
+			sourceTree = "<group>";
+		};
+		182CDED31F43EB4100283EBA /* NoticeVc */ = {
+			isa = PBXGroup;
+			children = (
+				182CDED81F43EB7800283EBA /* LsNoticeViewController.h */,
+				182CDED91F43EB7800283EBA /* LsNoticeViewController.m */,
+			);
+			path = NoticeVc;
+			sourceTree = "<group>";
+		};
+		182CDED41F43EB4100283EBA /* NoticeView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NoticeView;
+			sourceTree = "<group>";
+		};
 		183E7AF61F282E5300A69596 /* Home page */ = {
 			isa = PBXGroup;
 			children = (
@@ -909,6 +984,8 @@
 		18E82D631F37FB9400D3154B /* Interview */ = {
 			isa = PBXGroup;
 			children = (
+				182CDECD1F43EB4100283EBA /* Data */,
+				182CDED11F43EB4100283EBA /* Notice */,
 				18F74C881F3D89A9007AA5F6 /* Live */,
 				18E82D711F37FDB800D3154B /* Practice */,
 				18E82D641F37FB9400D3154B /* InterviewModel */,
@@ -1123,6 +1200,8 @@
 		18F74C891F3D89A9007AA5F6 /* LiveModel */ = {
 			isa = PBXGroup;
 			children = (
+				182CDEC71F43E83000283EBA /* LsLiveModel.h */,
+				182CDEC81F43E83000283EBA /* LsLiveModel.m */,
 			);
 			path = LiveModel;
 			sourceTree = "<group>";
@@ -1130,8 +1209,8 @@
 		18F74C8A1F3D89A9007AA5F6 /* LiveVc */ = {
 			isa = PBXGroup;
 			children = (
-				182CDEC11F42A9BA00283EBA /* LsLiveModel.h */,
-				182CDEC21F42A9BA00283EBA /* LsLiveModel.m */,
+				182CDECA1F43E85500283EBA /* LsLiveViewController.h */,
+				182CDECB1F43E85500283EBA /* LsLiveViewController.m */,
 			);
 			path = LiveVc;
 			sourceTree = "<group>";
@@ -1291,6 +1370,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				182CDECC1F43E85500283EBA /* LsLiveViewController.m in Sources */,
+				182CDED71F43EB5200283EBA /* LsDataViewController.m in Sources */,
 				18975FD11F29D0EC00447721 /* LsMethod.m in Sources */,
 				18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */,
 				184335231F333B4500A53585 /* LsLoginViewController.m in Sources */,
@@ -1324,6 +1405,7 @@
 				1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */,
 				184335871F34A84D00A53585 /* LsBaseCollectionViewCell.m in Sources */,
 				184CA1F71F272FC800ACB807 /* LsMyViewController.m in Sources */,
+				182CDEDA1F43EB7800283EBA /* LsNoticeViewController.m in Sources */,
 				1854F4A21F36BC7C00E1F603 /* LsConfigureModel.m in Sources */,
 				1854F5661F37088C00E1F603 /* AFURLSessionManager.m in Sources */,
 				1854F4A91F36BE2600E1F603 /* NSObject+YYModel.m in Sources */,
@@ -1333,7 +1415,6 @@
 				182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */,
 				18E82D851F37FFA700D3154B /* LsFindViewController.m in Sources */,
 				1843357B1F3419D300A53585 /* LsConfigureViewController.m in Sources */,
-				182CDEC31F42A9BA00283EBA /* LsLiveModel.m in Sources */,
 				18E82D691F37FB9400D3154B /* LsInterviewViewController.m in Sources */,
 				18AF1AED1F2731E800D05E4D /* IQUIView+Hierarchy.m in Sources */,
 				1854F52A1F37024A00E1F603 /* MJRefreshHeaderView.m in Sources */,
@@ -1364,6 +1445,7 @@
 				18975FDE1F29D86900447721 /* GCDSemaphore.m in Sources */,
 				18F74C8E1F3D89E7007AA5F6 /* LsLiveTableViewCell.m in Sources */,
 				18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */,
+				182CDEC91F43E83000283EBA /* LsLiveModel.m in Sources */,
 				1854F5301F37024A00E1F603 /* SDImageCache.m in Sources */,
 				184CA1FD1F272FC800ACB807 /* main.m in Sources */,
 				18975FDD1F29D86900447721 /* GCDQueue.m in Sources */,

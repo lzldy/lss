@@ -47,6 +47,7 @@
         self.rightBtn.backgroundColor =[UIColor clearColor];
         self.rightBtn.titleLabel.font =[UIFont systemFontOfSize:13];
         [self.rightBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [self.rightBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         [baseView addSubview:self.rightBtn];
         
         UIView *line =[[UIView alloc] initWithFrame:CGRectMake(0, baseView.frame.size.height-0.5, LSMainScreenW, 0.5)];
@@ -57,12 +58,19 @@
     return self;
 }
 
--(void)setLeftTitle:(NSString*)left AndRightTitle:(NSString*)right{
+-(void)clickBtn:(UIButton*)button{
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickHeaderViewRightBtnIndex:)]) {
+        [self.delegate didClickHeaderViewRightBtnIndex:button.tag];
+    }
+}
+
+-(void)setLeftTitle:(NSString*)left AndRightTitle:(NSString*)right  Index:(NSInteger)index{
    
     CGSize size           = [LsMethod sizeWithString:left font:self.leftLabel.font];
     self.leftLabel.frame  = CGRectMake(20, 0, size.width,baseView.frame.size.height);
     self.leftLabel.text   = left;
     [self.rightBtn setTitle:right forState:UIControlStateNormal];
+    self.rightBtn.tag     =index;
 
 }
 

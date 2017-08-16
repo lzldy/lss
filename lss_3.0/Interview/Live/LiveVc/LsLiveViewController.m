@@ -1,25 +1,24 @@
 //
-//  LsPracticeViewController.m
+//  LsLiveViewController.m
 //  lss
 //
-//  Created by apple on 2017/7/25.
+//  Created by apple on 2017/8/16.
 //  Copyright © 2017年 lss. All rights reserved.
 //
 
-#import "LsPracticeViewController.h"
+#import "LsLiveViewController.h"
 
-@interface LsPracticeViewController ()
+@interface LsLiveViewController ()
 
 @end
 
-@implementation LsPracticeViewController
+@implementation LsLiveViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navView.navTitle =@"直播";
 
-    self.navView.navTitle =@"练课";
-
-
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

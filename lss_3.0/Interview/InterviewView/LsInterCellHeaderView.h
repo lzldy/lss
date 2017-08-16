@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LsInterCellHeaderView : UIView
+@protocol interCellHeaderViewDelegate <NSObject>
 
--(void)setLeftTitle:(NSString*)left AndRightTitle:(NSString*)right;
+- (void)didClickHeaderViewRightBtnIndex:(NSInteger)index;
+
+@end
+
+@interface LsInterCellHeaderView : UIView
+@property (nonatomic, weak)  id<interCellHeaderViewDelegate> delegate;
+
+-(void)setLeftTitle:(NSString*)left AndRightTitle:(NSString*)right Index:(NSInteger)index;
 
 @end

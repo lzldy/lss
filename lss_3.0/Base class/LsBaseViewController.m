@@ -16,10 +16,20 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    superView =self.view;
+    [superView addSubview:self.navView];
+
     if (self.closeIQKeyBoard) {
         [IQKeyboardManager sharedManager].enable = NO;
     }
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    
+    if (self.hidesBottomBarWhenPushed==YES) {
+        self.navView.leftButton.hidden=NO;
+    }else{
+        self.navView.leftButton.hidden=YES;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -31,9 +41,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor =[UIColor whiteColor];
-    superView =self.view;
-    [superView addSubview:self.navView];
+    [self.navView.leftButton addTarget:self action:@selector(backBtn) forControlEvents:UIControlEventTouchUpInside];
 
+}
+
+-(void)backBtn{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

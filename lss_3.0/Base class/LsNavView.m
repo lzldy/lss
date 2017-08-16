@@ -19,8 +19,8 @@
         
         self.backgroundColor = LSNavColor;
         
-        self.leftButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 20, 44, 44)];
-        [_leftButton setImage:[UIImage imageNamed:@"icon-goback"] forState:UIControlStateNormal];
+        self.leftButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 20, 44, 44)];
+        [_leftButton setImage:[UIImage imageNamed:@"return_button"] forState:UIControlStateNormal];
         
         [self addSubview:_leftButton];
         

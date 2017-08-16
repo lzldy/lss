@@ -73,6 +73,7 @@
         
         self.button          =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-40, 0, 40, 30*LSScale)];
         [self.button setImage:[UIImage imageNamed:@"sj_button"] forState:UIControlStateNormal];
+        [self.button addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.button];
         
         line                 =[[UIView alloc] init];
@@ -82,36 +83,51 @@
     return self;
 }
 
-
+-(void)clickBtn{
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickRightButton)]) {
+        [self.delegate didClickRightButton];
+    }
+    
+}
 
 -(void)reloadCell:(id)model Type:(NSString*)type{
     
     if ([type isEqualToString:@"0"]) {
         LsPracticeModel *modelll =model;
         line.frame               =CGRectMake(0, 30*LSScale-0.5, LSMainScreenW, 0.5);
-        personNum.hidden         =NO;
         personNum.text           =[NSString stringWithFormat:@"本周共有%ld位同学获得了名师点评,快去看看吧",(long)modelll.personNum];
+        
+        personNum.hidden         =NO;
+        self.button.hidden       =NO;
+
+        titleL.hidden            =YES;
+        imageV.hidden            =YES;
+        authorL.hidden           =YES;
+        typeL.hidden             =YES;
         commentImageView.hidden  =YES;
         commentNumL.hidden       =YES;
-        self.button.hidden       =NO;
         
     }else if([type isEqualToString:@"1"]){
         LsPracticeListModel *modelll  =model;
-        personNum.hidden              =YES;
         line.frame                    =CGRectMake(0, 195*LSScale-0.5, LSMainScreenW, 0.5);
         titleL.text                   =modelll.title;
         [imageV sd_setImageWithURL:modelll.coverImage placeholderImage:nil];
         
-        CGSize size           = [LsMethod sizeWithString:modelll.author font:authorL.font];
-        authorL.frame         = CGRectMake(authorL.frame.origin.x,authorL.frame.origin.y, size.width,35*LSScale);
-        typeL.frame           =CGRectMake(CGRectGetMaxX(authorL.frame)+12, typeL.frame.origin.y, typeL.frame.size.width, typeL.frame.size.height);
+        CGSize size                   = [LsMethod sizeWithString:modelll.author font:authorL.font];
+        authorL.frame                 = CGRectMake(authorL.frame.origin.x,authorL.frame.origin.y, size.width,35*LSScale);
+        typeL.frame                   =CGRectMake(CGRectGetMaxX(authorL.frame)+12, typeL.frame.origin.y, typeL.frame.size.width, typeL.frame.size.height);
         authorL.text                  =modelll.author;
         typeL.text                    =modelll.classType;
         
+        titleL.hidden                 =NO;
+        imageV.hidden                 =NO;
+        authorL.hidden                =NO;
+        typeL.hidden                  =NO;
         commentImageView.hidden       =NO;
         commentNumL.hidden            =NO;
         commentNumL.text              =[NSString stringWithFormat:@"%ld",(long)modelll.commnetNum];
         
+        personNum.hidden              =YES;
         self.button.hidden            =YES;
     }
 }
