@@ -32,7 +32,7 @@
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(LSMainScreenW/2-80*LSScale, 20, 160*LSScale, 44)];
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont systemFontOfSize:19];
+        _titleLabel.font = [UIFont systemFontOfSize:20];
         [self addSubview:_titleLabel];
         
 //        _line =[[UIView alloc] initWithFrame:CGRectMake(0, 64-0.5, LSMainScreenW, 0.5)];

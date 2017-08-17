@@ -13,6 +13,7 @@
 		182CDECC1F43E85500283EBA /* LsLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDECB1F43E85500283EBA /* LsLiveViewController.m */; };
 		182CDED71F43EB5200283EBA /* LsDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDED61F43EB5200283EBA /* LsDataViewController.m */; };
 		182CDEDA1F43EB7800283EBA /* LsNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDED91F43EB7800283EBA /* LsNoticeViewController.m */; };
+		182CDF221F454F2A00283EBA /* LsNavTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDF211F454F2A00283EBA /* LsNavTabView.m */; };
 		183E7AF91F2832E000A69596 /* LsTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E7AF81F2832E000A69596 /* LsTabBar.m */; };
 		183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E7AFB1F28330100A69596 /* LsTabBarViewController.m */; };
 		184335231F333B4500A53585 /* LsLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335221F333B4500A53585 /* LsLoginViewController.m */; };
@@ -163,6 +164,8 @@
 		182CDED61F43EB5200283EBA /* LsDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsDataViewController.m; sourceTree = "<group>"; };
 		182CDED81F43EB7800283EBA /* LsNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsNoticeViewController.h; sourceTree = "<group>"; };
 		182CDED91F43EB7800283EBA /* LsNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsNoticeViewController.m; sourceTree = "<group>"; };
+		182CDF201F454F2A00283EBA /* LsNavTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsNavTabView.h; sourceTree = "<group>"; };
+		182CDF211F454F2A00283EBA /* LsNavTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsNavTabView.m; sourceTree = "<group>"; };
 		183E7AF71F2832E000A69596 /* LsTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTabBar.h; sourceTree = "<group>"; };
 		183E7AF81F2832E000A69596 /* LsTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsTabBar.m; sourceTree = "<group>"; };
 		183E7AFA1F28330100A69596 /* LsTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTabBarViewController.h; sourceTree = "<group>"; };
@@ -729,6 +732,8 @@
 		184CA1BC1F27243000ACB807 /* Base class */ = {
 			isa = PBXGroup;
 			children = (
+				182CDF201F454F2A00283EBA /* LsNavTabView.h */,
+				182CDF211F454F2A00283EBA /* LsNavTabView.m */,
 				18E82E3A1F38A41F00D3154B /* LSLabel+TextField.h */,
 				18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */,
 				189D948A1F2EBF270033C828 /* NSArray+Extension.h */,
@@ -1377,6 +1382,7 @@
 				184335231F333B4500A53585 /* LsLoginViewController.m in Sources */,
 				18AF1AF01F2731E800D05E4D /* IQKeyboardManager.m in Sources */,
 				1854F5351F37024A00E1F603 /* SDWebImageManager.m in Sources */,
+				182CDF221F454F2A00283EBA /* LsNavTabView.m in Sources */,
 				1854F53C1F37024A00E1F603 /* UIImageView+WebCache.m in Sources */,
 				184CA1F41F272FC800ACB807 /* LsBaseViewController.m in Sources */,
 				18975FCE1F29D06800447721 /* LsSingleton.m in Sources */,

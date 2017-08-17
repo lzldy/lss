@@ -24,6 +24,8 @@
 @property (nonatomic,strong) NSString  *title;
 @property (nonatomic,strong) NSString  *endTime;
 @property (nonatomic,strong) NSString  *startTime;
+@property (nonatomic,assign) BOOL       isPackage;
+
 @property (nonatomic,strong) NSArray<LsTeacherModel*>  *teacherArray;
 
 @end

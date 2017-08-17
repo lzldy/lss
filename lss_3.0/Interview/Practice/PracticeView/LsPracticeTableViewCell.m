@@ -27,26 +27,25 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor  =[UIColor whiteColor];
+        self.backgroundColor    =[UIColor whiteColor];
         
-        titleL                  =[[UILabel alloc] initWithFrame:CGRectMake(20, 0, LSMainScreenW-40, 35*LSScale)];
-        //        titleL.font             =[UIFont fontWithName:@"Helvetica-Bold" size:14];
-        titleL.font             =[UIFont systemFontOfSize:14];
+        titleL                  =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, 0, LSMainScreenW-40, 35*LSScale)];
+        titleL.font             =[UIFont systemFontOfSize:17.5];
         titleL.textColor        =[UIColor darkTextColor];
         titleL.textAlignment    =NSTextAlignmentLeft;
         [self addSubview:titleL];
         
-        imageV                  =[[UIImageView alloc] initWithFrame:CGRectMake(0, 35*LSScale, LSMainScreenW, 125*LSScale)];
+        imageV                  =[[UIImageView alloc] initWithFrame:CGRectMake(0, 35*LSScale, LSMainScreenW, 140*LSScale)];
         [self addSubview:imageV];
         
         authorL                 =[[UILabel alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(imageV.frame), 75, 35*LSScale)];
-        authorL.font            =[UIFont systemFontOfSize:12.5];
+        authorL.font            =[UIFont systemFontOfSize:15.5];
         authorL.textColor       =[UIColor darkTextColor];
         authorL.textAlignment   =NSTextAlignmentLeft;
         [self addSubview:authorL];
         
         typeL                    =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(authorL.frame), CGRectGetMaxY(imageV.frame)+7.5*LSScale, 60, 20*LSScale)];
-        typeL.font               =[UIFont systemFontOfSize:12.5];
+        typeL.font               =[UIFont systemFontOfSize:15];
         typeL.textColor          =LSNavColor;
         typeL.layer.cornerRadius =10*LSScale;
         typeL.layer.borderWidth  =1;
@@ -55,29 +54,29 @@
         [self addSubview:typeL];
         
         UIImage *image          =[UIImage imageNamed:@"note_button"];
-        commentImageView        =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW-60,CGRectGetMaxY(imageV.frame)+ 35*LSScale/2-image.size.height/2, image.size.width, image.size.height)];
+        commentImageView        =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW-80,CGRectGetMaxY(imageV.frame)+ 10*LSScale, 15*LSScale, 15*LSScale)];
         commentImageView.image  =image;
         [self addSubview:commentImageView];
 
-        commentNumL   =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(commentImageView.frame)+5, CGRectGetMaxY(imageV.frame),45, 35*LSScale)];
-        commentNumL.font          =[UIFont systemFontOfSize:12];
+        commentNumL   =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(commentImageView.frame)+5, CGRectGetMaxY(imageV.frame),50, 35*LSScale)];
+        commentNumL.font          =[UIFont systemFontOfSize:15.5];
         commentNumL.textAlignment =NSTextAlignmentLeft;
         commentNumL.textColor     =[UIColor lightGrayColor];
         [self addSubview:commentNumL];
         
-        personNum               =[[UILabel alloc] initWithFrame:CGRectMake(20, 0, LSMainScreenW, 30*LSScale)];
-        personNum.font          =[UIFont systemFontOfSize:12];
+        personNum               =[[UILabel alloc] initWithFrame:CGRectMake(10, 0, LSMainScreenW,35)];
+        personNum.font          =[UIFont systemFontOfSize:14];
         personNum.textAlignment =NSTextAlignmentLeft;
         personNum.textColor     =[UIColor lightGrayColor];
         [self addSubview:personNum];
         
-        self.button          =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-40, 0, 40, 30*LSScale)];
-        [self.button setImage:[UIImage imageNamed:@"sj_button"] forState:UIControlStateNormal];
+        self.button             =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-25, 9, 12, 15)];
+        [self.button setBackgroundImage:[UIImage imageNamed:@"sj_button"] forState:UIControlStateNormal];
         [self.button addTarget:self action:@selector(clickBtn) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.button];
         
         line                 =[[UIView alloc] init];
-        line.backgroundColor =LSColor(243, 244, 245, 1);
+        line.backgroundColor =LSLineColor;
         [self addSubview:line];
     }
     return self;
@@ -87,14 +86,13 @@
     if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickRightButton)]) {
         [self.delegate didClickRightButton];
     }
-    
 }
 
 -(void)reloadCell:(id)model Type:(NSString*)type{
     
     if ([type isEqualToString:@"0"]) {
         LsPracticeModel *modelll =model;
-        line.frame               =CGRectMake(0, 30*LSScale-0.5, LSMainScreenW, 0.5);
+        line.frame               =CGRectMake(0, 35-0.5, LSMainScreenW, 0.5);
         personNum.text           =[NSString stringWithFormat:@"本周共有%ld位同学获得了名师点评,快去看看吧",(long)modelll.personNum];
         
         personNum.hidden         =NO;
@@ -109,7 +107,7 @@
         
     }else if([type isEqualToString:@"1"]){
         LsPracticeListModel *modelll  =model;
-        line.frame                    =CGRectMake(0, 195*LSScale-0.5, LSMainScreenW, 0.5);
+        line.frame                    =CGRectMake(0, 210*LSScale-0.5, LSMainScreenW, 0.5);
         titleL.text                   =modelll.title;
         [imageV sd_setImageWithURL:modelll.coverImage placeholderImage:nil];
         

@@ -39,6 +39,7 @@
     [self getUserInfo];
     [self initData];
 //    [self loadBaseUI];
+    self.automaticallyAdjustsScrollViewInsets =NO;
 }
 
 -(void)getData{
@@ -51,7 +52,7 @@
 }
 
 -(void)getUserInfo{
-    
+
 }
 
 -(void)initData{
@@ -63,6 +64,15 @@
     [self loadCarouselViewWithTimer];
     [superView addSubview:self.typeView];
     [superView addSubview:self.tabView];
+    UIImage   *image         =[UIImage imageNamed:@"ct_icon"];
+    UIButton  *suspensionBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-10-image.size.width, LSMainScreenH-49-10-image.size.height, image.size.width, image.size.height)];
+    [suspensionBtn setImage:image forState:UIControlStateNormal];
+    [suspensionBtn addTarget:self action:@selector(clickSuspensionBtn) forControlEvents:UIControlEventTouchUpInside];
+    [superView addSubview:suspensionBtn];
+}
+
+-(void)clickSuspensionBtn{
+    LsLog(@"-----clickSuspensionBtn-----");
 }
 
 // 使用定时器初始化
@@ -94,16 +104,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        return 100*LSScale;
+        return 125*LSScale;
     }else{
         if (self.model.practiceModel.personNum>0) {
             if (indexPath.row==0) {
-                return 30*LSScale;
+                return 35;
             }else{
-                return 195*LSScale;
+                return 210*LSScale;
             }
         }else{
-            return 195*LSScale;
+            return 210*LSScale;
         }
     }
 }
@@ -157,16 +167,22 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.section==0) {
+        
+    }else{
+        if (indexPath.row==0&&self.model.practiceModel.personNum>0) {
+            [self pushPracticeVc:0];
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 45;
+    return 50;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
-    LsInterCellHeaderView *cellHeaderView =[[LsInterCellHeaderView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 45)];
+    LsInterCellHeaderView *cellHeaderView =[[LsInterCellHeaderView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 50)];
     NSDictionary          *dict           =cellHeaderArray[section];
     cellHeaderView.delegate               =self;
     NSString              *leftTitle      =[dict objectForKey:@"leftTitle"];
@@ -185,7 +201,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat sectionHeaderHeight = 45;
+    CGFloat sectionHeaderHeight = 50;
     if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
         scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
     }

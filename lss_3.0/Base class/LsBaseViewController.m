@@ -16,9 +16,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    superView =self.view;
-    [superView addSubview:self.navView];
 
     if (self.closeIQKeyBoard) {
         [IQKeyboardManager sharedManager].enable = NO;
@@ -40,6 +37,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    superView =self.view;
+    [superView addSubview:self.navView];
     self.view.backgroundColor =[UIColor whiteColor];
     [self.navView.leftButton addTarget:self action:@selector(backBtn) forControlEvents:UIControlEventTouchUpInside];
 
