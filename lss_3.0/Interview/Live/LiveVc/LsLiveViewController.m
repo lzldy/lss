@@ -37,7 +37,7 @@
 }
 #pragma  - mark -  tabview 代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 125*LSScale;
+    return 135*LSScale;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -57,9 +57,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     if (tableView.tag==10010) {
-        
+        [cell reloadCell:nil Type:@"2"];
     }else{
-        
+        [cell reloadCell:nil Type:@"2"];
     }
     return cell;
 }
@@ -145,7 +145,7 @@
         _scrView.contentSize                      =CGSizeMake(LSMainScreenW*2, 0);
         _scrView.showsHorizontalScrollIndicator   =NO;
         _scrView.backgroundColor                  =LSColor(243, 244, 245, 1);
-        _scrView.userInteractionEnabled           =NO;
+//        _scrView.userInteractionEnabled           =NO;
     }
     return _scrView;
 }
