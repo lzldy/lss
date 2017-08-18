@@ -15,6 +15,7 @@
     UIButton *btnOne;
     UIButton *btnTwo;
     NSInteger index;
+    BOOL     isClickBtn;
 }
 
 @end
@@ -56,16 +57,21 @@
 }
 
 -(void)clickBtn:(UIButton*)button{
+    isClickBtn=YES;
     if (button.tag!=index) {
         if (button.tag==0) {
             [btnOne  setTitleColor:LSNavColor forState:UIControlStateNormal];
             [btnTwo  setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            myLayer.position =CGPointMake(CGRectGetMidX(btnOne.frame), CGRectGetMidY(btnOne.frame));
+
         }else{
             [btnOne  setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [btnTwo  setTitleColor:LSNavColor forState:UIControlStateNormal];
+            myLayer.position =CGPointMake(CGRectGetMidX(btnTwo.frame), CGRectGetMidY(btnTwo.frame));
+
         }
         index    =button.tag;
-        myLayer.position =CGPointMake(CGRectGetMidX(button.frame), CGRectGetMidY(button.frame));
+//        myLayer.position =CGPointMake(CGRectGetMidX(button.frame), CGRectGetMidY(button.frame));
         //position  是中心点的位移
         
         if (self.delegate&&[self.delegate respondsToSelector:@selector(lsNavTabViewIndex:)]) {
@@ -73,5 +79,22 @@
         }
     }
 }
+
+-(void)tabIndex:(float)indexxx{
+        myLayer.position =CGPointMake(CGRectGetMidX(btnOne.frame)+CGRectGetWidth(self.frame)/2*indexxx, CGRectGetMidY(btnOne.frame));
+        
+        if (indexxx==1) {
+            index    =1;
+            [btnOne  setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btnTwo  setTitleColor:LSNavColor forState:UIControlStateNormal];
+        }
+        
+        if (indexxx==0) {
+            index  =0;
+            [btnOne  setTitleColor:LSNavColor forState:UIControlStateNormal];
+            [btnTwo  setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+}
+
 
 @end

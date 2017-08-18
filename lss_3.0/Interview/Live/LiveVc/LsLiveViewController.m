@@ -13,6 +13,7 @@
 @interface LsLiveViewController ()<lsNavTabViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     NSInteger  indexTabView;
+    BOOL       isScroll;
 }
 @property (nonatomic,strong) LsNavTabView *topTabView;
 @property (nonatomic,strong) UIScrollView *scrView;
@@ -95,6 +96,22 @@
     [self.scrView setContentOffset:CGPointMake(LSMainScreenW*index,0) animated:YES];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;{
+    
+    float index =scrollView.contentOffset.x/LSMainScreenW;
+    if (isScroll) {
+        [self.topTabView tabIndex:index];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    isScroll =YES;
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    isScroll =NO;
+}
+
 #pragma - mark -    懒加载
 -(LsNavTabView *)topTabView{
     if (!_topTabView) {
@@ -145,6 +162,8 @@
         _scrView.contentSize                      =CGSizeMake(LSMainScreenW*2, 0);
         _scrView.showsHorizontalScrollIndicator   =NO;
         _scrView.backgroundColor                  =LSColor(243, 244, 245, 1);
+        _scrView.delegate                         =self;
+        _scrView.bounces                          =NO;
 //        _scrView.userInteractionEnabled           =NO;
     }
     return _scrView;

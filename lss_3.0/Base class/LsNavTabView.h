@@ -17,4 +17,6 @@
 @interface LsNavTabView : UIView
 @property (nonatomic, weak)  id<lsNavTabViewDelegate> delegate;
 
+-(void)tabIndex:(float)indexxx;
+
 @end
