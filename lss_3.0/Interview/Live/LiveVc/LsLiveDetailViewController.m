@@ -8,8 +8,12 @@
 
 #import "LsLiveDetailViewController.h"
 #import "LsLiveDetailModel.h"
+#import "LsLiveDetailHeaderView.h"
 
 @interface LsLiveDetailViewController ()
+
+@property (nonatomic,strong) LsLiveDetailModel *model;
+@property (nonatomic,strong) LsLiveDetailHeaderView *headerView;
 
 @end
 
@@ -17,7 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.navTitle =@"课程详情";
+    self.view.backgroundColor   =LSColor(243, 244, 245, 1);
+    self.navView.navTitle       =@"课程详情";
     [self loadBaseUI];
     [self getData];
 }
@@ -27,15 +32,19 @@
     UIImageView *topImageV =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, topImage.size.height)];
     topImageV.image        =topImage;
     [superView addSubview:topImageV];
-    
     [superView bringSubviewToFront:self.navView];
+    
+    _headerView =[[LsLiveDetailHeaderView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.navView.frame), LSMainScreenW-20, 90)];
+    [superView addSubview:_headerView];
+    
 }
 
 -(void)getData{
-    [[LsAFNetWorkTool shareManger] LSPOST:@"listcourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        
+    NSDictionary *dict =@{@"courseid":self.classId};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"getcourseinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        _model  =[LsLiveDetailModel yy_modelWithDictionary:[responseObject objectForKey:@"data"]];
+        _headerView.model =_model;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-        
     }];
 }
 

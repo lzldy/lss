@@ -11,9 +11,11 @@
 #import "LsMyLiveModel.h"
 #import "LsMyLiveTabView.h"
 
-@interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate>
+@interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate,liveTableViewCellDelegate>
 {
-    float startY;
+    float      startY;
+    BOOL       isScroll;
+
 }
 @property (nonatomic,strong)  LsMyLiveModel            *model;
 @property (nonatomic,strong)  UITableView              *todayLiveTabView;
@@ -79,21 +81,28 @@
         cell = [[LsLiveTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    cell.delegate =self;
     LsLiveModel *modelll =[[LsLiveModel alloc] init];
     if (tableView.tag==20010) {
         if (indexPath.row+1<=self.model.todayLive.livingList.count) {
             modelll =self.model.todayLive.livingList[indexPath.row];
             [cell reloadCell:modelll Type:@"3"];
         }else{
-            modelll =self.model.todayLive.todayLiveList[indexPath.row-self.model.todayLive.livingList.count];
-            [cell reloadCell:modelll Type:@"4"];
+            if (self.model.todayLive.todayLiveList.count>0) {
+                modelll =self.model.todayLive.todayLiveList[indexPath.row-self.model.todayLive.livingList.count];
+                [cell reloadCell:modelll Type:@"4"];
+            }
         }
     }else if(tableView.tag==20020){
-        modelll  =self.model.notBegin[indexPath.row];
-        [cell reloadCell:modelll Type:@"5"];
+        if (self.model.notBegin.count>0) {
+            modelll  =self.model.notBegin[indexPath.row];
+            [cell reloadCell:modelll Type:@"5"];
+        }
     }else{
-        modelll  =self.model.playBack[indexPath.row];
-        [cell reloadCell:modelll Type:@"6"];
+        if (self.model.playBack.count>0) {
+            modelll  =self.model.playBack[indexPath.row];
+            [cell reloadCell:modelll Type:@"6"];
+        }
     }
     return cell;
 }
@@ -109,8 +118,24 @@
     }
 }
 
+#pragma - mark -  LsLiveTableViewCell 代理
+- (void)didClickIntoBtnIndex:(NSInteger)index{
+    LsLog(@"didClickIntoBtnIndex-------%d",index);
+}
+- (void)didClickEvaluateBtnIndex:(NSInteger)index{
+    LsLog(@"didClickEvaluateBtnIndex-------%d",index);
+}
+
+#pragma - mark -  LsMyLiveTabView 代理
 - (void)didClickMyLiveTabViewIndex:(NSInteger)index{
     LsLog(@"---------didClickMyLiveTabViewIndex---%d",index);
+    if (index==0) {
+        [self.todayLiveTabView reloadData];
+    }else if (index==1){
+        [self.notBeginTabView reloadData];
+    }else{
+        [self.playBackTabView reloadData];
+    }
     [self.scrView setContentOffset:CGPointMake(LSMainScreenW*index,0) animated:YES];
 }
 
@@ -122,10 +147,25 @@
         upDown=YES;
     }else{
         NSInteger index =scrollView.contentOffset.x/LSMainScreenW;
-        [self.headerTabView switchMyLiveTab:index];
+        if (isScroll&&!upDown) {
+            [self.headerTabView switchMyLiveTab:index];
+        }
     }
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    isScroll =YES;
+    if (scrollView.contentOffset.y>0) {
+        isScroll =NO;
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    isScroll =NO;
+}
+
+
+#pragma - mark -  懒加载
 -(UITableView *)playBackTabView{
     if (!_playBackTabView) {
         _playBackTabView =[[UITableView alloc] initWithFrame:CGRectMake(LSMainScreenW*2,0, LSMainScreenW,self.scrView.frame.size.height)];

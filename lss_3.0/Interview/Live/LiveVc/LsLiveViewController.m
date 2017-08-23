@@ -36,17 +36,11 @@
     [self.navView addSubview:self.topTabView];
     [self loadBaseUI];
     [self.interviewTabView headerBeginRefreshing];
-
 }
 
 -(void)getInterviewData{
     [[LsAFNetWorkTool shareManger] LSPOST:@"listinterviewcourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        
-//        _interviewModel =[LsLiveModel yy_modelWithDictionary:responseObject];
-        NSArray *array =[[responseObject objectForKey:@"data"] objectForKey:@"interview"];
-        NSDictionary  *dict =@{@"data":array};
-        _interviewModel =[LsLiveModel yy_modelWithDictionary:dict];
-
+        _interviewModel =[LsLiveModel yy_modelWithJSON:responseObject];
         [self.interviewTabView headerEndRefreshing];
         [self.interviewTabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
@@ -55,12 +49,7 @@
 
 -(void)getWrittenData{
     [[LsAFNetWorkTool shareManger] LSPOST:@"listwrittencourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-//        _writtenModel =[LsLiveModel yy_modelWithDictionary:responseObject];
-        
-        NSArray *array =[[responseObject objectForKey:@"data"] objectForKey:@"written"];
-        NSDictionary  *dict =@{@"data":array};
-        _writtenModel =[LsLiveModel yy_modelWithDictionary:dict];
-        
+        _writtenModel =[LsLiveModel yy_modelWithJSON:responseObject];
         [self.writtenTabView headerEndRefreshing];
         [self.writtenTabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {

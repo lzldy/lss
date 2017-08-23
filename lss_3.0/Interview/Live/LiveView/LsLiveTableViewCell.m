@@ -132,12 +132,15 @@
 }
 
 -(void)clickEvaluateBtn:(UIButton *)button{
-    LsLog(@"clickEvaluateBtn-------%d",button.tag);
-
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickEvaluateBtnIndex:)]) {
+        [self.delegate didClickEvaluateBtnIndex:button.tag];
+    }
 }
 
 -(void)clickIntoBtn:(UIButton*)button{
-    LsLog(@"clickIntoBtn-------%d",button.tag);
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickIntoBtnIndex:)]) {
+        [self.delegate didClickIntoBtnIndex:button.tag];
+    }
 }
 
 -(void)reloadCell:(LsLiveModel*)model Type:(NSString*)type{

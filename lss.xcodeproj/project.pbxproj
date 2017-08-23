@@ -92,6 +92,7 @@
 		1854F5651F37088C00E1F603 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F5491F37088C00E1F603 /* AFURLResponseSerialization.m */; };
 		1854F5661F37088C00E1F603 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F54B1F37088C00E1F603 /* AFURLSessionManager.m */; };
 		1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */; };
+		1877BD001F4D6646001F8EBD /* LsLiveDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */; };
 		18975FCB1F29C6BD00447721 /* LsLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FCA1F29C6BD00447721 /* LsLog.m */; };
 		18975FCE1F29D06800447721 /* LsSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FCD1F29D06800447721 /* LsSingleton.m */; };
 		18975FD11F29D0EC00447721 /* LsMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FD01F29D0EC00447721 /* LsMethod.m */; };
@@ -317,6 +318,8 @@
 		1854F54B1F37088C00E1F603 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		1854F5701F3709DD00E1F603 /* LsAFNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsAFNetWorkTool.h; sourceTree = "<group>"; };
 		1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsAFNetWorkTool.m; sourceTree = "<group>"; };
+		1877BCFE1F4D6646001F8EBD /* LsLiveDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailHeaderView.h; sourceTree = "<group>"; };
+		1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailHeaderView.m; sourceTree = "<group>"; };
 		18975FC91F29C6BD00447721 /* LsLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLog.h; sourceTree = "<group>"; };
 		18975FCA1F29C6BD00447721 /* LsLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLog.m; sourceTree = "<group>"; };
 		18975FCC1F29D06800447721 /* LsSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsSingleton.h; sourceTree = "<group>"; };
@@ -1250,6 +1253,8 @@
 			children = (
 				18F74C8C1F3D89E7007AA5F6 /* LsLiveTableViewCell.h */,
 				18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */,
+				1877BCFE1F4D6646001F8EBD /* LsLiveDetailHeaderView.h */,
+				1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */,
 			);
 			path = LiveView;
 			sourceTree = "<group>";
@@ -1469,6 +1474,7 @@
 				18975FCB1F29C6BD00447721 /* LsLog.m in Sources */,
 				18AF1AEF1F2731E800D05E4D /* IQUIWindow+Hierarchy.m in Sources */,
 				18F74C911F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m in Sources */,
+				1877BD001F4D6646001F8EBD /* LsLiveDetailHeaderView.m in Sources */,
 				18AF1AF11F2731E800D05E4D /* IQKeyboardReturnKeyHandler.m in Sources */,
 				183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */,
 				189D948F1F2EBF270033C828 /* NSDictionary+Extension.m in Sources */,
