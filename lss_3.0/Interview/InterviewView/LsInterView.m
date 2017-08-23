@@ -31,6 +31,7 @@
         
         NSString *imageName =[dataArray[i] objectForKey:@"imageName"];
         NSString *title     =[dataArray[i] objectForKey:@"title"];
+        UIColor  *col       =[dataArray[i] objectForKey:@"color"];
         UIImage  *image     =[UIImage imageNamed:imageName];
         
         UIButton *button    =[[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-image.size.width/2, 8, image.size.width, image.size.height)];
@@ -41,7 +42,7 @@
         
         UILabel  *label       =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(button.frame)+2, view.frame.size.width,20)];
         label.text            =title;
-        label.textColor       =[UIColor darkTextColor];
+        label.textColor       =col;
         label.textAlignment   =NSTextAlignmentCenter;
         label.font            =[UIFont systemFontOfSize:14];
         [view addSubview:label];

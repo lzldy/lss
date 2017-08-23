@@ -24,6 +24,9 @@
     UILabel           *noDataL;
     UIView            *baseView ;
     UIView            *line;
+    UIImageView       *imageV;
+    UIButton          *intoBtn;
+    UIButton          *evaluateBtn;
 }
 
 @end
@@ -101,13 +104,46 @@
         line           =[[UIView alloc] initWithFrame:CGRectMake(0, 125*LSScale-0.5, LSMainScreenW, 0.5)];
         line.backgroundColor   =LSLineColor;
         [baseView addSubview:line];
+
+        UIImage      *ima    =[UIImage imageNamed:@"tj"];
+        imageV               =[[UIImageView alloc] init];
+        imageV.frame         =CGRectMake(baseView.frame.size.width-ima.size.width, 0, ima.size.width, ima.size.height);
+        imageV.image         =ima;
+        imageV.hidden        =YES;
+        [baseView addSubview:imageV];
+
+        intoBtn              =[[UIButton alloc] init];
+        [intoBtn setTitleColor:[UIColor whiteColor] forState:0];
+        intoBtn.layer.cornerRadius    =12.5*LSScale;
+        intoBtn.layer.backgroundColor =LSNavColor.CGColor;
+        intoBtn.titleLabel.font       =[UIFont systemFontOfSize:15];
+        [intoBtn addTarget:self action:@selector(clickIntoBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [baseView addSubview:intoBtn];
+        
+        evaluateBtn              =[[UIButton alloc] init];
+        [evaluateBtn setTitleColor:[UIColor whiteColor] forState:0];
+        evaluateBtn.layer.cornerRadius    =12.5*LSScale;
+        evaluateBtn.layer.backgroundColor =LSNavColor.CGColor;
+        evaluateBtn.titleLabel.font       =[UIFont systemFontOfSize:15];
+        [evaluateBtn addTarget:self action:@selector(clickEvaluateBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [baseView addSubview:evaluateBtn];
     }
     return self;
 }
 
+-(void)clickEvaluateBtn:(UIButton *)button{
+    LsLog(@"clickEvaluateBtn-------%d",button.tag);
+
+}
+
+-(void)clickIntoBtn:(UIButton*)button{
+    LsLog(@"clickIntoBtn-------%d",button.tag);
+}
+
 -(void)reloadCell:(LsLiveModel*)model Type:(NSString*)type{
     
-    if ([type isEqualToString:@"0"]) {
+    if ([type isEqualToString:@"0"])//无数据
+    {
         noDataImageView.hidden   =NO;
         noDataL.hidden           =NO;
         UIImage  *iamge          =[UIImage imageNamed:@"kym_icon"];
@@ -116,56 +152,103 @@
     }else{
         noDataImageView.hidden  =YES;
         noDataL.hidden          =YES;
-        if ([type isEqualToString:@"1"]) {
-            titleL.text =model.title;
+        titleL.text             =model.title;
+        UIImage      *image     =[UIImage imageNamed:@"time_icon"];
+        timeIV.image            =image;
+        
+        NSString *startDate =[LsMethod toDateWithTimeStamp:model.startDate DateFormat:@"yyyy-MM-dd"];
+        NSString *endDate   =[LsMethod toDateWithTimeStamp:model.endDate   DateFormat:@"yyyy-MM-dd"];
+        NSString *startTime =[LsMethod toDateWithTimeStamp:model.startTime DateFormat:@"HH:mm"];
+        NSString *endTime   =[LsMethod toDateWithTimeStamp:model.endTime   DateFormat:@"HH:mm"];
+        if (model.isPackage) {
+            startDate =[LsMethod toDateWithTimeStamp:model.startDate DateFormat:@"yyyy.MM.dd"];
+            endDate   =[LsMethod toDateWithTimeStamp:model.endDate   DateFormat:@"yyyy.MM.dd"];
+            timeL.text  =[NSString stringWithFormat:@"%@-%@",startDate,endDate];
+        }else{
+            timeL.text  =[NSString stringWithFormat:@"%@  %@-%@",startDate,startTime,endTime];
+        }
+        
+        if (model.teacherArray.count>0) {
+            [teaOneIV sd_setImageWithURL:[NSURL URLWithString:[model.teacherArray[0] teacherIcon]] placeholderImage:[UIImage imageNamed:@"default"]];
+            teacherLOne.text     =[model.teacherArray[0] teacherName];
+            if (model.teacherArray.count>1) {
+                [teaTwoIV sd_setImageWithURL:[NSURL URLWithString:[model.teacherArray[1] teacherIcon]] placeholderImage:[UIImage imageNamed:@"default"]];
+                teacherLTwo.text =[model.teacherArray[1] teacherName];
+            }
+        }
+        personNumL.text          =[NSString stringWithFormat:@"已有%ld人报名",(long)model.personNum];
+        stausL.text              =@"正在报名";
+
+        if ([type isEqualToString:@"1"])//首页
+        {
             
-            UIImage      *image     =[UIImage imageNamed:@"time_icon"];
-            timeIV.image            =image;
-            
-            NSString *startDate =[LsMethod toDateWithTimeStamp:model.startDate DateFormat:@"yyyy-MM-dd"];
-            NSString *endDate   =[LsMethod toDateWithTimeStamp:model.endDate   DateFormat:@"yyyy-MM-dd"];
-            NSString *startTime =[LsMethod toDateWithTimeStamp:model.startTime DateFormat:@"HH:mm"];
-            NSString *endTime   =[LsMethod toDateWithTimeStamp:model.endTime   DateFormat:@"HH:mm"];
-            if (model.isPackage) {
-                timeL.text  =[NSString stringWithFormat:@"%@-%@",startDate,endDate];
+           
+        }else if ([type isEqualToString:@"2"])//直播页面
+        {
+            baseView.frame =CGRectMake(0, 10*LSScale, baseView.frame.size.width, baseView.frame.size.height);
+            imageV.hidden  =YES;
+            line.hidden    =YES;
+            if (model.isRecommend) {
+                imageV.hidden =NO;
+            }
+            if (model.enrollmentStatus) {
+                stausL.text              =@"正在报名";
+                stausL.textColor       =LSColor(255, 90, 122, 1);
             }else{
-                timeL.text  =[NSString stringWithFormat:@"%@  %@-%@",startDate,startTime,endTime];
+                stausL.text              =@"可回放";
+                stausL.textColor       =LSColor(38, 171, 255, 1);
+            }
+        }else if ([type isEqualToString:@"3"])//我的直播 今日直播 正在直播
+        {
+            personNumL.hidden =YES;
+            stausL.hidden     =NO;
+            intoBtn.frame     =CGRectMake(baseView.frame.size.width-10*LSScale-100*LSScale, CGRectGetMaxY(teacherLOne.frame)-25*LSScale, 100*LSScale, 25*LSScale);
+            [intoBtn setTitle:@"进入直播间" forState:0];
+            intoBtn.tag       =[model.id_ integerValue];
+            stausL.frame      =CGRectMake(CGRectGetMinX(intoBtn.frame)-10-80*LSScale, CGRectGetMinY(intoBtn.frame), 80*LSScale, 25*LSScale);
+            stausL.layer.cornerRadius =12.5*LSScale;
+            stausL.layer.backgroundColor =LSNavColor.CGColor;
+            stausL.font       =[UIFont systemFontOfSize:15];
+            stausL.text       =@"正在直播";
+            stausL.textColor  =[UIColor whiteColor];
+            stausL.textAlignment =NSTextAlignmentCenter;
+           
+        }else if ([type isEqualToString:@"4"]||[type isEqualToString:@"5"])//今日直播 未开始
+        {
+            personNumL.hidden =YES;
+            stausL.hidden=YES;
+            intoBtn.frame     =CGRectMake(baseView.frame.size.width-10*LSScale-100*LSScale, CGRectGetMaxY(teacherLOne.frame)-25*LSScale, 100*LSScale, 25*LSScale);
+            [intoBtn setTitle:@"进入直播间" forState:0];
+            intoBtn.tag       =[model.id_ integerValue];
+        }else if ([type isEqualToString:@"6"])//可回放
+        {
+            personNumL.hidden =YES;
+            stausL.hidden=YES;
+            
+            evaluateBtn.frame         =CGRectMake(baseView.frame.size.width-10*LSScale-70*LSScale, CGRectGetMaxY(teacherLOne.frame)-25*LSScale, 70*LSScale, 25*LSScale);
+            [evaluateBtn setTitle:@"去评价" forState:0];
+            evaluateBtn.tag           =[model.id_ integerValue];
+            evaluateBtn.layer.backgroundColor =LSNavColor.CGColor;
+
+            if (model.isEvaluated) {
+                [evaluateBtn setTitle:@"已评价" forState:0];
+                evaluateBtn.layer.backgroundColor =LSColor(169, 170, 171, 1).CGColor;
             }
             
-            if (model.teacherArray.count>0) {
-                [teaOneIV sd_setImageWithURL:[NSURL URLWithString:[model.teacherArray[0] teacherIcon]] placeholderImage:[UIImage imageNamed:@"default"]];
-                teacherLOne.text     =[model.teacherArray[0] teacherName];
-                if (model.teacherArray.count>1) {
-                    [teaTwoIV sd_setImageWithURL:[NSURL URLWithString:[model.teacherArray[1] teacherIcon]] placeholderImage:[UIImage imageNamed:@"default"]];
-                    teacherLTwo.text =[model.teacherArray[1] teacherName];
-                }
-            }
-            personNumL.text          =[NSString stringWithFormat:@"已有%ld人报名",(long)model.personNum];
-            stausL.text              =@"正在报名";
-        }else if ([type isEqualToString:@"2"]){
-            baseView.frame =CGRectMake(10*LSScale, 10*LSScale, LSMainScreenW-20*LSScale, 125*LSScale);
-            line.hidden=YES;
+            intoBtn.frame     =CGRectMake(CGRectGetMinX(evaluateBtn.frame)-10-80*LSScale, CGRectGetMaxY(teacherLOne.frame)-25*LSScale, 80*LSScale, 25*LSScale);
+            [intoBtn setTitle:@"查看回放" forState:0];
+            [intoBtn setTitleColor:[UIColor darkGrayColor] forState:0];
+            intoBtn.layer.backgroundColor  =[UIColor whiteColor].CGColor;
+            intoBtn.layer.borderWidth=1;
+            intoBtn.layer.borderColor=[UIColor darkGrayColor].CGColor;
+            intoBtn.tag       =[model.id_ integerValue];
             
         }
     }
 }
 
-- (void)reSetFrame:(CGRect)frame {
-    
-    frame.origin.x += 10*LSScale;
-    frame.origin.y += 10*LSScale;
-
-    frame.size.width  -= 20 * LSScale;
-    frame.size.height -= 10 * LSScale;
-
-    [super setFrame:frame];
-    
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

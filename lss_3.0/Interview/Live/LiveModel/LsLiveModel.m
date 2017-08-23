@@ -14,15 +14,22 @@
 
 @end
 
+@implementation LsCourseIntroductionModel
+
+@end
+
 @implementation LsLiveModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"id_"          : @"id",
-             @"teacherArray" : @"teachers"};
+             @"teacherArray" : @"teachers",
+             @"liveArray"    : @"data"
+             };
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"teacherArray"    : [LsTeacherModel class]};
+    return @{@"teacherArray"    : [LsTeacherModel class],
+             @"liveArray"       : [LsLiveModel class]};
 }
 
 @end

@@ -14,6 +14,7 @@
 		182CDED71F43EB5200283EBA /* LsDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDED61F43EB5200283EBA /* LsDataViewController.m */; };
 		182CDEDA1F43EB7800283EBA /* LsNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDED91F43EB7800283EBA /* LsNoticeViewController.m */; };
 		182CDF221F454F2A00283EBA /* LsNavTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDF211F454F2A00283EBA /* LsNavTabView.m */; };
+		182CDF251F4691D100283EBA /* LsLiveDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDF241F4691D100283EBA /* LsLiveDetailViewController.m */; };
 		183E7AF91F2832E000A69596 /* LsTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E7AF81F2832E000A69596 /* LsTabBar.m */; };
 		183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E7AFB1F28330100A69596 /* LsTabBarViewController.m */; };
 		184335231F333B4500A53585 /* LsLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335221F333B4500A53585 /* LsLoginViewController.m */; };
@@ -98,6 +99,10 @@
 		18975FDD1F29D86900447721 /* GCDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FD71F29D86900447721 /* GCDQueue.m */; };
 		18975FDE1F29D86900447721 /* GCDSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FD91F29D86900447721 /* GCDSemaphore.m */; };
 		18975FDF1F29D86900447721 /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FDB1F29D86900447721 /* GCDTimer.m */; };
+		189840A31F4BD8D400C6A8A0 /* LsMyLiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189840A21F4BD8D400C6A8A0 /* LsMyLiveListViewController.m */; };
+		189840A61F4BE30100C6A8A0 /* LsLiveDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189840A51F4BE30100C6A8A0 /* LsLiveDetailModel.m */; };
+		189840A91F4C0A4B00C6A8A0 /* LsMyLiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189840A81F4C0A4B00C6A8A0 /* LsMyLiveModel.m */; };
+		189840AC1F4C375E00C6A8A0 /* LsMyLiveTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189840AB1F4C375E00C6A8A0 /* LsMyLiveTabView.m */; };
 		189D948E1F2EBF270033C828 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D948B1F2EBF270033C828 /* NSArray+Extension.m */; };
 		189D948F1F2EBF270033C828 /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D948D1F2EBF270033C828 /* NSDictionary+Extension.m */; };
 		18AF1AEA1F2731E800D05E4D /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1AC81F2731E800D05E4D /* IQNSArray+Sort.m */; };
@@ -166,6 +171,8 @@
 		182CDED91F43EB7800283EBA /* LsNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsNoticeViewController.m; sourceTree = "<group>"; };
 		182CDF201F454F2A00283EBA /* LsNavTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsNavTabView.h; sourceTree = "<group>"; };
 		182CDF211F454F2A00283EBA /* LsNavTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsNavTabView.m; sourceTree = "<group>"; };
+		182CDF231F4691D100283EBA /* LsLiveDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailViewController.h; sourceTree = "<group>"; };
+		182CDF241F4691D100283EBA /* LsLiveDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailViewController.m; sourceTree = "<group>"; };
 		183E7AF71F2832E000A69596 /* LsTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTabBar.h; sourceTree = "<group>"; };
 		183E7AF81F2832E000A69596 /* LsTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsTabBar.m; sourceTree = "<group>"; };
 		183E7AFA1F28330100A69596 /* LsTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTabBarViewController.h; sourceTree = "<group>"; };
@@ -325,6 +332,14 @@
 		18975FD91F29D86900447721 /* GCDSemaphore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDSemaphore.m; sourceTree = "<group>"; };
 		18975FDA1F29D86900447721 /* GCDTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
 		18975FDB1F29D86900447721 /* GCDTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTimer.m; sourceTree = "<group>"; };
+		189840A11F4BD8D400C6A8A0 /* LsMyLiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsMyLiveListViewController.h; sourceTree = "<group>"; };
+		189840A21F4BD8D400C6A8A0 /* LsMyLiveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsMyLiveListViewController.m; sourceTree = "<group>"; };
+		189840A41F4BE30100C6A8A0 /* LsLiveDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailModel.h; sourceTree = "<group>"; };
+		189840A51F4BE30100C6A8A0 /* LsLiveDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailModel.m; sourceTree = "<group>"; };
+		189840A71F4C0A4B00C6A8A0 /* LsMyLiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsMyLiveModel.h; sourceTree = "<group>"; };
+		189840A81F4C0A4B00C6A8A0 /* LsMyLiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsMyLiveModel.m; sourceTree = "<group>"; };
+		189840AA1F4C375E00C6A8A0 /* LsMyLiveTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsMyLiveTabView.h; sourceTree = "<group>"; };
+		189840AB1F4C375E00C6A8A0 /* LsMyLiveTabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsMyLiveTabView.m; sourceTree = "<group>"; };
 		189D948A1F2EBF270033C828 /* NSArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extension.h"; sourceTree = "<group>"; };
 		189D948B1F2EBF270033C828 /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
 		189D948C1F2EBF270033C828 /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
@@ -766,6 +781,8 @@
 		184CA1D21F2726F600ACB807 /* MyModel */ = {
 			isa = PBXGroup;
 			children = (
+				189840A71F4C0A4B00C6A8A0 /* LsMyLiveModel.h */,
+				189840A81F4C0A4B00C6A8A0 /* LsMyLiveModel.m */,
 			);
 			path = MyModel;
 			sourceTree = "<group>";
@@ -775,6 +792,8 @@
 			children = (
 				184CA1D41F2726F600ACB807 /* LsMyViewController.h */,
 				184CA1D51F2726F600ACB807 /* LsMyViewController.m */,
+				189840A11F4BD8D400C6A8A0 /* LsMyLiveListViewController.h */,
+				189840A21F4BD8D400C6A8A0 /* LsMyLiveListViewController.m */,
 			);
 			path = MyVc;
 			sourceTree = "<group>";
@@ -782,6 +801,8 @@
 		184CA1D61F2726F600ACB807 /* MyView */ = {
 			isa = PBXGroup;
 			children = (
+				189840AA1F4C375E00C6A8A0 /* LsMyLiveTabView.h */,
+				189840AB1F4C375E00C6A8A0 /* LsMyLiveTabView.m */,
 			);
 			path = MyView;
 			sourceTree = "<group>";
@@ -1207,6 +1228,8 @@
 			children = (
 				182CDEC71F43E83000283EBA /* LsLiveModel.h */,
 				182CDEC81F43E83000283EBA /* LsLiveModel.m */,
+				189840A41F4BE30100C6A8A0 /* LsLiveDetailModel.h */,
+				189840A51F4BE30100C6A8A0 /* LsLiveDetailModel.m */,
 			);
 			path = LiveModel;
 			sourceTree = "<group>";
@@ -1216,6 +1239,8 @@
 			children = (
 				182CDECA1F43E85500283EBA /* LsLiveViewController.h */,
 				182CDECB1F43E85500283EBA /* LsLiveViewController.m */,
+				182CDF231F4691D100283EBA /* LsLiveDetailViewController.h */,
+				182CDF241F4691D100283EBA /* LsLiveDetailViewController.m */,
 			);
 			path = LiveVc;
 			sourceTree = "<group>";
@@ -1395,7 +1420,9 @@
 				1854F5641F37088C00E1F603 /* AFURLRequestSerialization.m in Sources */,
 				184CA1F51F272FC800ACB807 /* LsBaseNaViewController.m in Sources */,
 				1854F5251F37024A00E1F603 /* MBProgressHUD.m in Sources */,
+				189840A61F4BE30100C6A8A0 /* LsLiveDetailModel.m in Sources */,
 				1854F4AD1F36E84E00E1F603 /* LsConfigureTwoViewController.m in Sources */,
+				182CDF251F4691D100283EBA /* LsLiveDetailViewController.m in Sources */,
 				18AF1AF41F2731E800D05E4D /* IQPreviousNextView.m in Sources */,
 				1854F5341F37024A00E1F603 /* SDWebImageDownloaderOperation.m in Sources */,
 				18AF1AEC1F2731E800D05E4D /* IQUITextFieldView+Additions.m in Sources */,
@@ -1417,6 +1444,7 @@
 				1854F4A91F36BE2600E1F603 /* NSObject+YYModel.m in Sources */,
 				1843357E1F341F5900A53585 /* LsNavView.m in Sources */,
 				1854F5381F37024A00E1F603 /* UIImage+GIF.m in Sources */,
+				189840A31F4BD8D400C6A8A0 /* LsMyLiveListViewController.m in Sources */,
 				1854F53A1F37024A00E1F603 /* UIImage+WebP.m in Sources */,
 				182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */,
 				18E82D851F37FFA700D3154B /* LsFindViewController.m in Sources */,
@@ -1436,6 +1464,7 @@
 				1854F53D1F37024A00E1F603 /* UIView+WebCacheOperation.m in Sources */,
 				1854F5391F37024A00E1F603 /* UIImage+MultiFormat.m in Sources */,
 				1854F5371F37024A00E1F603 /* UIButton+WebCache.m in Sources */,
+				189840AC1F4C375E00C6A8A0 /* LsMyLiveTabView.m in Sources */,
 				1854F5621F37088C00E1F603 /* AFNetworkReachabilityManager.m in Sources */,
 				18975FCB1F29C6BD00447721 /* LsLog.m in Sources */,
 				18AF1AEF1F2731E800D05E4D /* IQUIWindow+Hierarchy.m in Sources */,
@@ -1452,6 +1481,7 @@
 				18F74C8E1F3D89E7007AA5F6 /* LsLiveTableViewCell.m in Sources */,
 				18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */,
 				182CDEC91F43E83000283EBA /* LsLiveModel.m in Sources */,
+				189840A91F4C0A4B00C6A8A0 /* LsMyLiveModel.m in Sources */,
 				1854F5301F37024A00E1F603 /* SDImageCache.m in Sources */,
 				184CA1FD1F272FC800ACB807 /* main.m in Sources */,
 				18975FDD1F29D86900447721 /* GCDQueue.m in Sources */,

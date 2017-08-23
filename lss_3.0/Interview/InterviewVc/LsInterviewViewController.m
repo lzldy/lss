@@ -269,10 +269,10 @@
 -(LsInterView *)typeView{
     if (!_typeView) {
         _typeView =[[LsInterView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_carouselView.frame), LSMainScreenW, 80)];
-        _typeView.dataArray =@[@{@"title":@"直播",@"imageName":@"zhibo"},
-                               @{@"title":@"练课",@"imageName":@"lianke"},
-                               @{@"title":@"资料",@"imageName":@"ziliao"},
-                               @{@"title":@"公告",@"imageName":@"gonggao"}];
+    _typeView.dataArray =@[@{@"title":@"直播",@"imageName":@"zhibo",@"color":LSColor(255,61,49,1)},
+                           @{@"title":@"练课",@"imageName":@"lianke",@"color":LSColor(255,72,130,1)},
+                           @{@"title":@"资料",@"imageName":@"ziliao",@"color":LSColor(133,106,255,1)},
+                           @{@"title":@"公告",@"imageName":@"gonggao",@"color":LSColor(87,160,255,1)}];
         _typeView.delegate=self;
     }
     return _typeView;
