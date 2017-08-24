@@ -26,7 +26,7 @@
     UIView            *line;
     UIImageView       *imageV;
     LsButton          *intoBtn;
-    UIButton          *evaluateBtn;
+    LsButton          *evaluateBtn;
 }
 
 @end
@@ -120,7 +120,7 @@
         [intoBtn addTarget:self action:@selector(clickIntoBtn:) forControlEvents:UIControlEventTouchUpInside];
         [baseView addSubview:intoBtn];
         
-        evaluateBtn              =[[UIButton alloc] init];
+        evaluateBtn              =[[LsButton alloc] init];
         [evaluateBtn setTitleColor:[UIColor whiteColor] forState:0];
         evaluateBtn.layer.cornerRadius    =12.5*LSScale;
         evaluateBtn.layer.backgroundColor =LSNavColor.CGColor;
@@ -131,9 +131,9 @@
     return self;
 }
 
--(void)clickEvaluateBtn:(UIButton *)button{
+-(void)clickEvaluateBtn:(LsButton *)button{
     if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickEvaluateBtnIndex:)]) {
-        [self.delegate didClickEvaluateBtnIndex:button.tag];
+        [self.delegate didClickEvaluateBtnIndex:button];
     }
 }
 
@@ -240,7 +240,8 @@
             
             evaluateBtn.frame         =CGRectMake(baseView.frame.size.width-10*LSScale-70*LSScale, CGRectGetMaxY(teacherLOne.frame)-25*LSScale, 70*LSScale, 25*LSScale);
             [evaluateBtn setTitle:@"去评价" forState:0];
-            evaluateBtn.tag           =[model.id_ integerValue];
+            evaluateBtn.videoID       =model.id_ ;
+            evaluateBtn.title         =model.title;
             evaluateBtn.layer.backgroundColor =LSNavColor.CGColor;
 
             if (model.isEvaluated) {

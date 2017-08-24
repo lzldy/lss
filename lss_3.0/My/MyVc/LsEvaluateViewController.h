@@ -11,5 +11,6 @@
 @interface LsEvaluateViewController : LsBaseViewController
 
 @property(nonatomic,strong) NSString *classID;
+@property(nonatomic,strong) NSString *title_;
 
 @end

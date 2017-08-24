@@ -134,9 +134,10 @@
         [LsMethod alertMessage:@"直接进入直播间" WithTime:2];
     }
 }
-- (void)didClickEvaluateBtnIndex:(NSInteger)index{
+- (void)didClickEvaluateBtnIndex:(LsButton *)btn{
     LsEvaluateViewController *vc =[[LsEvaluateViewController alloc] init];
-    vc.classID                   =[NSString stringWithFormat:@"%ld",(long)index];
+    vc.classID                   =btn.videoID;
+    vc.title_                    =btn.title;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

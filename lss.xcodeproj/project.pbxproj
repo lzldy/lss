@@ -139,6 +139,7 @@
 		18F32C591F4E80BA0081629E /* LsLiveDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C581F4E80BA0081629E /* LsLiveDetailBottomView.m */; };
 		18F32C5C1F4EAE730081629E /* LsEnrollSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C5B1F4EAE730081629E /* LsEnrollSuccessViewController.m */; };
 		18F32C5F1F4EC91E0081629E /* LsEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C5E1F4EC91E0081629E /* LsEvaluateViewController.m */; };
+		18F32C631F4EEF080081629E /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C621F4EEF080081629E /* XHStarRateView.m */; };
 		18F74C841F3C957F007AA5F6 /* LsInterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C831F3C957F007AA5F6 /* LsInterView.m */; };
 		18F74C871F3D4565007AA5F6 /* LsInterCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C861F3D4565007AA5F6 /* LsInterCellHeaderView.m */; };
 		18F74C8E1F3D89E7007AA5F6 /* LsLiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */; };
@@ -414,6 +415,8 @@
 		18F32C5B1F4EAE730081629E /* LsEnrollSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsEnrollSuccessViewController.m; sourceTree = "<group>"; };
 		18F32C5D1F4EC91E0081629E /* LsEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsEvaluateViewController.h; sourceTree = "<group>"; };
 		18F32C5E1F4EC91E0081629E /* LsEvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsEvaluateViewController.m; sourceTree = "<group>"; };
+		18F32C611F4EEF080081629E /* XHStarRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHStarRateView.h; sourceTree = "<group>"; };
+		18F32C621F4EEF080081629E /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		18F74C821F3C957F007AA5F6 /* LsInterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterView.h; sourceTree = "<group>"; };
 		18F74C831F3C957F007AA5F6 /* LsInterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterView.m; sourceTree = "<group>"; };
 		18F74C851F3D4565007AA5F6 /* LsInterCellHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterCellHeaderView.h; sourceTree = "<group>"; };
@@ -726,6 +729,7 @@
 		184CA1A81F271BB100ACB807 /* Third */ = {
 			isa = PBXGroup;
 			children = (
+				18F32C601F4EEF080081629E /* EvaluateStar */,
 				18E82DE81F3830C500D3154B /* UCCarouselView */,
 				1854F53E1F37088C00E1F603 /* AFNetworking */,
 				1854F4DB1F37024A00E1F603 /* HUD */,
@@ -1235,6 +1239,15 @@
 			path = UCCarouselView;
 			sourceTree = "<group>";
 		};
+		18F32C601F4EEF080081629E /* EvaluateStar */ = {
+			isa = PBXGroup;
+			children = (
+				18F32C611F4EEF080081629E /* XHStarRateView.h */,
+				18F32C621F4EEF080081629E /* XHStarRateView.m */,
+			);
+			path = EvaluateStar;
+			sourceTree = "<group>";
+		};
 		18F74C881F3D89A9007AA5F6 /* Live */ = {
 			isa = PBXGroup;
 			children = (
@@ -1434,6 +1447,7 @@
 				182CDED71F43EB5200283EBA /* LsDataViewController.m in Sources */,
 				18975FD11F29D0EC00447721 /* LsMethod.m in Sources */,
 				18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */,
+				18F32C631F4EEF080081629E /* XHStarRateView.m in Sources */,
 				184335231F333B4500A53585 /* LsLoginViewController.m in Sources */,
 				18AF1AF01F2731E800D05E4D /* IQKeyboardManager.m in Sources */,
 				1854F5351F37024A00E1F603 /* SDWebImageManager.m in Sources */,

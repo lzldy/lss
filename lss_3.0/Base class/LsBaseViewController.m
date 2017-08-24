@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     superView =self.view;
-    [superView addSubview:self.navView];
+    [[[UIApplication sharedApplication].delegate window] addSubview:self.navView];
     self.view.backgroundColor =[UIColor whiteColor];
     [self.navView.leftButton addTarget:self action:@selector(backBtn) forControlEvents:UIControlEventTouchUpInside];
 
