@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "LsLiveDetailModel.h"
 
+@protocol liveDetailHeaderViewDelegate <NSObject>
+
+@optional
+
+- (void)didClickBtnIndex:(NSInteger)index;
+
+@end
+
 @interface LsLiveDetailHeaderView : UIView
 
 @property (nonatomic,strong)  LsLiveDetailModel *model;
+@property (nonatomic,  weak)  id<liveDetailHeaderViewDelegate> delegate;
 
 @end

@@ -10,6 +10,8 @@
 #import "LsLiveTableViewCell.h"
 #import "LsMyLiveModel.h"
 #import "LsMyLiveTabView.h"
+#import "LsLiveDetailViewController.h"
+#import "LsEvaluateViewController.h"
 
 @interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate,liveTableViewCellDelegate>
 {
@@ -45,16 +47,20 @@
     [superView bringSubviewToFront:self.navView];
     [superView addSubview:self.headerTabView];
     [superView addSubview:self.scrView];
+    
+    [self.scrView   addSubview:self.todayLiveTabView];
+    [self.scrView   addSubview:self.notBeginTabView];
+    [self.scrView   addSubview:self.playBackTabView];
 }
 
 -(void)getData{
     [[LsAFNetWorkTool shareManger] LSPOST:@"mycourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model      =[LsMyLiveModel yy_modelWithJSON:responseObject];
-        [self.scrView   addSubview:self.todayLiveTabView];
-        [self.scrView   addSubview:self.notBeginTabView];
-        [self.scrView   addSubview:self.playBackTabView];
+//        [self.scrView   addSubview:self.todayLiveTabView];
+//        [self.scrView   addSubview:self.notBeginTabView];
+//        [self.scrView   addSubview:self.playBackTabView];
+        [self.todayLiveTabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-        
     }];
 }
 
@@ -119,11 +125,19 @@
 }
 
 #pragma - mark -  LsLiveTableViewCell 代理
-- (void)didClickIntoBtnIndex:(NSInteger)index{
-    LsLog(@"didClickIntoBtnIndex-------%d",index);
+- (void)didClickIntoBtn:(NSString *)ID  isPackage:(BOOL)ispackage{
+    if (ispackage) {
+        LsLiveDetailViewController *vc =[[LsLiveDetailViewController alloc] init];
+        vc.classId                     =ID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        [LsMethod alertMessage:@"直接进入直播间" WithTime:2];
+    }
 }
 - (void)didClickEvaluateBtnIndex:(NSInteger)index{
-    LsLog(@"didClickEvaluateBtnIndex-------%d",index);
+    LsEvaluateViewController *vc =[[LsEvaluateViewController alloc] init];
+    vc.classID                   =[NSString stringWithFormat:@"%ld",(long)index];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma - mark -  LsMyLiveTabView 代理
@@ -149,6 +163,13 @@
         NSInteger index =scrollView.contentOffset.x/LSMainScreenW;
         if (isScroll&&!upDown) {
             [self.headerTabView switchMyLiveTab:index];
+            if (index==0) {
+                [self.todayLiveTabView reloadData];
+            }else if (index==1){
+                [self.notBeginTabView reloadData];
+            }else{
+                [self.playBackTabView reloadData];
+            }
         }
     }
 }

@@ -80,4 +80,7 @@
 +(BOOL)haveValue:(id)obj;
 
 + (CGSize)sizeWithString:(NSString *)string font:(UIFont *)font;
+
++(CABasicAnimation*)opacityAnimationFormValue:(float)fromValue ToValue:(float)toValue;
+
 @end

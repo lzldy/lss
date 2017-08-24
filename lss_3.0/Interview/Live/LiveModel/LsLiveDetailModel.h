@@ -17,7 +17,7 @@
 @property (nonatomic,strong)  NSString  *startTime;
 
 @property (nonatomic,strong)  NSString  *testPaperTitle;
-@property (nonatomic,strong)  NSString  *testUrl;
+@property (nonatomic,strong)  NSURL     *testUrl;
 @property (nonatomic,strong)  NSString  *title;
 @property (nonatomic,strong)  NSString  *videoId;
 

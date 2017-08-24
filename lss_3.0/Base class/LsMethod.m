@@ -265,4 +265,18 @@
     return rect.size;
 }
 
++(CABasicAnimation*)opacityAnimationFormValue:(float)fromValue ToValue:(float)toValue{
+    
+    CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    
+    opacityAnimation.fromValue = [NSNumber numberWithFloat:fromValue];
+    
+    opacityAnimation.toValue   = [NSNumber numberWithFloat:toValue];
+    
+    opacityAnimation.duration  = 0.5f;
+    
+    opacityAnimation.autoreverses= NO;
+    
+    return opacityAnimation;
+}
 @end

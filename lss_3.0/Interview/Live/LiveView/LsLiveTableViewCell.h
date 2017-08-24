@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "LsLiveModel.h"
+#import "LsButton.h"
 
 @protocol liveTableViewCellDelegate <NSObject>
 
 @optional
-- (void)didClickIntoBtnIndex:(NSInteger)index;
+
+- (void)didClickIntoBtn:(NSString *)ID  isPackage:(BOOL)ispackage;
 - (void)didClickEvaluateBtnIndex:(NSInteger)index;
 
 @end

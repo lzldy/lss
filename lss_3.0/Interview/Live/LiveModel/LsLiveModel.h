@@ -31,7 +31,7 @@
 @property (nonatomic,strong) NSString  *title;
 @property (nonatomic,strong) NSString  *endTime;
 @property (nonatomic,strong) NSString  *startTime;
-
+@property (nonatomic,strong) NSString  *videoId;
 @property (nonatomic,assign) BOOL       isPackage;//套餐
 @property (nonatomic,assign) BOOL       isRecommend;//推荐
 @property (nonatomic,assign) BOOL       enrollmentStatus;//正在报名

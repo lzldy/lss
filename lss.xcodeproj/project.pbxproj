@@ -134,6 +134,11 @@
 		18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */; };
 		18E82DEE1F3830C500D3154B /* UCCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEC1F3830C500D3154B /* UCCarouselView.m */; };
 		18E82E3C1F38A41F00D3154B /* LSLabel+TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */; };
+		18F32C531F4E6A460081629E /* LsLiveDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C521F4E6A460081629E /* LsLiveDetailTableViewCell.m */; };
+		18F32C561F4E7AF30081629E /* LsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C551F4E7AF30081629E /* LsButton.m */; };
+		18F32C591F4E80BA0081629E /* LsLiveDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C581F4E80BA0081629E /* LsLiveDetailBottomView.m */; };
+		18F32C5C1F4EAE730081629E /* LsEnrollSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C5B1F4EAE730081629E /* LsEnrollSuccessViewController.m */; };
+		18F32C5F1F4EC91E0081629E /* LsEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C5E1F4EC91E0081629E /* LsEvaluateViewController.m */; };
 		18F74C841F3C957F007AA5F6 /* LsInterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C831F3C957F007AA5F6 /* LsInterView.m */; };
 		18F74C871F3D4565007AA5F6 /* LsInterCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C861F3D4565007AA5F6 /* LsInterCellHeaderView.m */; };
 		18F74C8E1F3D89E7007AA5F6 /* LsLiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */; };
@@ -399,6 +404,16 @@
 		18E82DEC1F3830C500D3154B /* UCCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCCarouselView.m; sourceTree = "<group>"; };
 		18E82E3A1F38A41F00D3154B /* LSLabel+TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LSLabel+TextField.h"; sourceTree = "<group>"; };
 		18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LSLabel+TextField.m"; sourceTree = "<group>"; };
+		18F32C511F4E6A460081629E /* LsLiveDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailTableViewCell.h; sourceTree = "<group>"; };
+		18F32C521F4E6A460081629E /* LsLiveDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailTableViewCell.m; sourceTree = "<group>"; };
+		18F32C541F4E7AF30081629E /* LsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsButton.h; sourceTree = "<group>"; };
+		18F32C551F4E7AF30081629E /* LsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsButton.m; sourceTree = "<group>"; };
+		18F32C571F4E80BA0081629E /* LsLiveDetailBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailBottomView.h; sourceTree = "<group>"; };
+		18F32C581F4E80BA0081629E /* LsLiveDetailBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailBottomView.m; sourceTree = "<group>"; };
+		18F32C5A1F4EAE730081629E /* LsEnrollSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsEnrollSuccessViewController.h; sourceTree = "<group>"; };
+		18F32C5B1F4EAE730081629E /* LsEnrollSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsEnrollSuccessViewController.m; sourceTree = "<group>"; };
+		18F32C5D1F4EC91E0081629E /* LsEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsEvaluateViewController.h; sourceTree = "<group>"; };
+		18F32C5E1F4EC91E0081629E /* LsEvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsEvaluateViewController.m; sourceTree = "<group>"; };
 		18F74C821F3C957F007AA5F6 /* LsInterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterView.h; sourceTree = "<group>"; };
 		18F74C831F3C957F007AA5F6 /* LsInterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterView.m; sourceTree = "<group>"; };
 		18F74C851F3D4565007AA5F6 /* LsInterCellHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterCellHeaderView.h; sourceTree = "<group>"; };
@@ -776,6 +791,8 @@
 				18975FCD1F29D06800447721 /* LsSingleton.m */,
 				18975FCF1F29D0EC00447721 /* LsMethod.h */,
 				18975FD01F29D0EC00447721 /* LsMethod.m */,
+				18F32C541F4E7AF30081629E /* LsButton.h */,
+				18F32C551F4E7AF30081629E /* LsButton.m */,
 			);
 			name = "Base class";
 			path = "lss_3.0/Base class";
@@ -797,6 +814,8 @@
 				184CA1D51F2726F600ACB807 /* LsMyViewController.m */,
 				189840A11F4BD8D400C6A8A0 /* LsMyLiveListViewController.h */,
 				189840A21F4BD8D400C6A8A0 /* LsMyLiveListViewController.m */,
+				18F32C5D1F4EC91E0081629E /* LsEvaluateViewController.h */,
+				18F32C5E1F4EC91E0081629E /* LsEvaluateViewController.m */,
 			);
 			path = MyVc;
 			sourceTree = "<group>";
@@ -1244,6 +1263,8 @@
 				182CDECB1F43E85500283EBA /* LsLiveViewController.m */,
 				182CDF231F4691D100283EBA /* LsLiveDetailViewController.h */,
 				182CDF241F4691D100283EBA /* LsLiveDetailViewController.m */,
+				18F32C5A1F4EAE730081629E /* LsEnrollSuccessViewController.h */,
+				18F32C5B1F4EAE730081629E /* LsEnrollSuccessViewController.m */,
 			);
 			path = LiveVc;
 			sourceTree = "<group>";
@@ -1255,6 +1276,10 @@
 				18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */,
 				1877BCFE1F4D6646001F8EBD /* LsLiveDetailHeaderView.h */,
 				1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */,
+				18F32C571F4E80BA0081629E /* LsLiveDetailBottomView.h */,
+				18F32C581F4E80BA0081629E /* LsLiveDetailBottomView.m */,
+				18F32C511F4E6A460081629E /* LsLiveDetailTableViewCell.h */,
+				18F32C521F4E6A460081629E /* LsLiveDetailTableViewCell.m */,
 			);
 			path = LiveView;
 			sourceTree = "<group>";
@@ -1412,6 +1437,7 @@
 				184335231F333B4500A53585 /* LsLoginViewController.m in Sources */,
 				18AF1AF01F2731E800D05E4D /* IQKeyboardManager.m in Sources */,
 				1854F5351F37024A00E1F603 /* SDWebImageManager.m in Sources */,
+				18F32C5C1F4EAE730081629E /* LsEnrollSuccessViewController.m in Sources */,
 				182CDF221F454F2A00283EBA /* LsNavTabView.m in Sources */,
 				1854F53C1F37024A00E1F603 /* UIImageView+WebCache.m in Sources */,
 				184CA1F41F272FC800ACB807 /* LsBaseViewController.m in Sources */,
@@ -1429,9 +1455,11 @@
 				1854F4AD1F36E84E00E1F603 /* LsConfigureTwoViewController.m in Sources */,
 				182CDF251F4691D100283EBA /* LsLiveDetailViewController.m in Sources */,
 				18AF1AF41F2731E800D05E4D /* IQPreviousNextView.m in Sources */,
+				18F32C531F4E6A460081629E /* LsLiveDetailTableViewCell.m in Sources */,
 				1854F5341F37024A00E1F603 /* SDWebImageDownloaderOperation.m in Sources */,
 				18AF1AEC1F2731E800D05E4D /* IQUITextFieldView+Additions.m in Sources */,
 				189D948E1F2EBF270033C828 /* NSArray+Extension.m in Sources */,
+				18F32C561F4E7AF30081629E /* LsButton.m in Sources */,
 				1854F5361F37024A00E1F603 /* SDWebImagePrefetcher.m in Sources */,
 				18AF1AF31F2731E800D05E4D /* IQBarButtonItem.m in Sources */,
 				184CA1F61F272FC800ACB807 /* LsBaseModel.m in Sources */,
@@ -1450,6 +1478,8 @@
 				1843357E1F341F5900A53585 /* LsNavView.m in Sources */,
 				1854F5381F37024A00E1F603 /* UIImage+GIF.m in Sources */,
 				189840A31F4BD8D400C6A8A0 /* LsMyLiveListViewController.m in Sources */,
+				18F32C5F1F4EC91E0081629E /* LsEvaluateViewController.m in Sources */,
+				18F32C591F4E80BA0081629E /* LsLiveDetailBottomView.m in Sources */,
 				1854F53A1F37024A00E1F603 /* UIImage+WebP.m in Sources */,
 				182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */,
 				18E82D851F37FFA700D3154B /* LsFindViewController.m in Sources */,

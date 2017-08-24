@@ -25,7 +25,7 @@
     UIView            *baseView ;
     UIView            *line;
     UIImageView       *imageV;
-    UIButton          *intoBtn;
+    LsButton          *intoBtn;
     UIButton          *evaluateBtn;
 }
 
@@ -112,7 +112,7 @@
         imageV.hidden        =YES;
         [baseView addSubview:imageV];
 
-        intoBtn              =[[UIButton alloc] init];
+        intoBtn              =[[LsButton alloc] init];
         [intoBtn setTitleColor:[UIColor whiteColor] forState:0];
         intoBtn.layer.cornerRadius    =12.5*LSScale;
         intoBtn.layer.backgroundColor =LSNavColor.CGColor;
@@ -137,9 +137,9 @@
     }
 }
 
--(void)clickIntoBtn:(UIButton*)button{
-    if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickIntoBtnIndex:)]) {
-        [self.delegate didClickIntoBtnIndex:button.tag];
+-(void)clickIntoBtn:(LsButton*)button{
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickIntoBtn:isPackage:)]) {
+        [self.delegate didClickIntoBtn:button.videoID isPackage:button.isPackage];
     }
 }
 
@@ -207,7 +207,12 @@
             stausL.hidden     =NO;
             intoBtn.frame     =CGRectMake(baseView.frame.size.width-10*LSScale-100*LSScale, CGRectGetMaxY(teacherLOne.frame)-25*LSScale, 100*LSScale, 25*LSScale);
             [intoBtn setTitle:@"进入直播间" forState:0];
-            intoBtn.tag       =[model.id_ integerValue];
+            intoBtn.isPackage =model.isPackage;
+            if (model.isPackage) {
+                intoBtn.videoID   = model.id_;
+            }else{
+                intoBtn.videoID   = model.videoId;
+            }
             stausL.frame      =CGRectMake(CGRectGetMinX(intoBtn.frame)-10-80*LSScale, CGRectGetMinY(intoBtn.frame), 80*LSScale, 25*LSScale);
             stausL.layer.cornerRadius =12.5*LSScale;
             stausL.layer.backgroundColor =LSNavColor.CGColor;
@@ -222,7 +227,12 @@
             stausL.hidden=YES;
             intoBtn.frame     =CGRectMake(baseView.frame.size.width-10*LSScale-100*LSScale, CGRectGetMaxY(teacherLOne.frame)-25*LSScale, 100*LSScale, 25*LSScale);
             [intoBtn setTitle:@"进入直播间" forState:0];
-            intoBtn.tag       =[model.id_ integerValue];
+            intoBtn.isPackage =model.isPackage;
+            if (model.isPackage) {
+                intoBtn.videoID   = model.id_;
+            }else{
+                intoBtn.videoID   = model.videoId;
+            }
         }else if ([type isEqualToString:@"6"])//可回放
         {
             personNumL.hidden =YES;
