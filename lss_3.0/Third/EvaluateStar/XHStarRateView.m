@@ -15,13 +15,13 @@ typedef void(^completeBlock)(CGFloat currentScore);
 
 @interface XHStarRateView()
 
-@property (nonatomic, strong) UIView *foregroundStarView;
-@property (nonatomic, strong) UIView *backgroundStarView;
+@property (nonatomic, strong) UIView        *foregroundStarView;
+@property (nonatomic, strong) UIView        *backgroundStarView;
 
-@property (nonatomic, assign) NSInteger numberOfStars;
-@property (nonatomic, assign) CGFloat currentScore;   // 当前评分：0-5  默认0
+@property (nonatomic, assign) NSInteger     numberOfStars;
+@property (nonatomic, assign) CGFloat       currentScore;   // 当前评分：0-5  默认0
 
-@property (nonatomic,strong)completeBlock complete;
+@property (nonatomic, copy  ) completeBlock complete;
 
 @end
 
@@ -36,6 +36,17 @@ typedef void(^completeBlock)(CGFloat currentScore);
     }
     return self;
 }
+
+-(instancetype)initWithFrame:(CGRect)frame numberOfStars:(float)num{
+    if (self = [super initWithFrame:frame]) {
+        _numberOfStars = num;
+        _rateStyle = WholeStar;
+        self.backgroundStarView = [self createStarViewWithImage:ForegroundStarImage];
+        [self addSubview:_backgroundStarView];
+    }
+    return self;
+}
+
 
 -(instancetype)initWithFrame:(CGRect)frame numberOfStars:(NSInteger)numberOfStars rateStyle:(RateStyle)rateStyle isAnination:(BOOL)isAnimation delegate:(id)delegate{
     if (self = [super initWithFrame:frame]) {

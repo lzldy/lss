@@ -39,7 +39,6 @@
     [self getUserInfo];
     [self initData];
 //    [self loadBaseUI];
-    self.automaticallyAdjustsScrollViewInsets =NO;
 }
 
 -(void)getData{

@@ -31,17 +31,18 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+//    [[[UIApplication sharedApplication].delegate window] addSubview:self.navView];
     [IQKeyboardManager sharedManager].enable = YES;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets =NO;
     superView =self.view;
-    [[[UIApplication sharedApplication].delegate window] addSubview:self.navView];
+    [superView addSubview:self.navView];
     self.view.backgroundColor =[UIColor whiteColor];
     [self.navView.leftButton addTarget:self action:@selector(backBtn) forControlEvents:UIControlEventTouchUpInside];
-
 }
 
 -(void)backBtn{
@@ -64,6 +65,10 @@
         _navView =[[LsNavView alloc] init];
     }
     return _navView;
+}
+
+-(void)dealloc{
+    
 }
 
 - (void)didReceiveMemoryWarning {
