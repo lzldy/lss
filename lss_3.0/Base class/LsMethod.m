@@ -279,4 +279,18 @@
     
     return opacityAnimation;
 }
+
++ (UIImage *)imageWithRoundCorner:(UIImage *)sourceImage cornerRadius:(CGFloat)cornerRadius{
+    CGFloat scale = [UIScreen mainScreen].scale;
+    UIGraphicsBeginImageContextWithOptions(sourceImage.size, NO, scale);
+    CGRect bounds = CGRectMake(0, 0, sourceImage.size.width, sourceImage.size.height);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:cornerRadius*scale];
+    [path addClip];
+    [sourceImage drawInRect:bounds];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 @end

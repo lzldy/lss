@@ -81,6 +81,7 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
     //WX
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WXAppid appSecret:WXSecret redirectURL:nil];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatTimeLine appKey:WXAppid appSecret:WXSecret redirectURL:nil];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatFavorite appKey:WXAppid appSecret:WXSecret redirectURL:nil];
     //QQ
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:QQAppid appSecret:QQSecret redirectURL:@"http://mobile.umeng.com/social"];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Qzone appKey:QQAppid appSecret:QQSecret redirectURL:@"http://mobile.umeng.com/social"];

@@ -34,11 +34,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.navTitle =@"面试";
+    self.navView.navTitle =@"";
     [self getData];
     [self getUserInfo];
     [self initData];
-//    [self loadBaseUI];
 }
 
 -(void)getData{
@@ -77,7 +76,7 @@
 // 使用定时器初始化
 - (void)loadCarouselViewWithTimer {
 
-    _carouselView  =[[UCCarouselView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 140*LSScale)
+    _carouselView  =[[UCCarouselView alloc] initWithFrame:CGRectMake(0, 20, LSMainScreenW, 140*LSScale)
                                                 dataArray:self.bannerArray
                                              timeInterval:2
                                        didSelectItemBlock:^(NSInteger didSelectItem){

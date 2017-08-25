@@ -93,6 +93,7 @@
 		1854F5661F37088C00E1F603 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F54B1F37088C00E1F603 /* AFURLSessionManager.m */; };
 		1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */; };
 		1877BD001F4D6646001F8EBD /* LsLiveDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */; };
+		188DB7DE1F5019F700852DD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188DB7DD1F5019F700852DD4 /* QuartzCore.framework */; };
 		18975FCB1F29C6BD00447721 /* LsLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FCA1F29C6BD00447721 /* LsLog.m */; };
 		18975FCE1F29D06800447721 /* LsSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FCD1F29D06800447721 /* LsSingleton.m */; };
 		18975FD11F29D0EC00447721 /* LsMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FD01F29D0EC00447721 /* LsMethod.m */; };
@@ -327,6 +328,7 @@
 		1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsAFNetWorkTool.m; sourceTree = "<group>"; };
 		1877BCFE1F4D6646001F8EBD /* LsLiveDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailHeaderView.h; sourceTree = "<group>"; };
 		1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailHeaderView.m; sourceTree = "<group>"; };
+		188DB7DD1F5019F700852DD4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		18975FC91F29C6BD00447721 /* LsLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLog.h; sourceTree = "<group>"; };
 		18975FCA1F29C6BD00447721 /* LsLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLog.m; sourceTree = "<group>"; };
 		18975FCC1F29D06800447721 /* LsSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsSingleton.h; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188DB7DE1F5019F700852DD4 /* QuartzCore.framework in Frameworks */,
 				184335781F33623400A53585 /* ImageIO.framework in Frameworks */,
 				184335761F33621E00A53585 /* libz.tbd in Frameworks */,
 				184335751F33620F00A53585 /* libc++.tbd in Frameworks */,
@@ -573,6 +576,7 @@
 		1843353F1F33536C00A53585 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				188DB7DD1F5019F700852DD4 /* QuartzCore.framework */,
 				184335771F33623400A53585 /* ImageIO.framework */,
 				184335741F33620F00A53585 /* libc++.tbd */,
 				184335721F3361DE00A53585 /* CoreGraphics.framework */,

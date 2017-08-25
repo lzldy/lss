@@ -8,8 +8,14 @@
 
 #import "LsShareEvaluateViewController.h"
 #import "XHStarRateView.h"
-@interface LsShareEvaluateViewController ()
+#import <UShareUI/UShareUI.h>
+#import <QuartzCore/QuartzCore.h>
 
+@interface LsShareEvaluateViewController ()
+{
+    UIImage *shareImage;
+    UIView  *backgroundView;
+}
 @end
 
 @implementation LsShareEvaluateViewController
@@ -28,9 +34,9 @@
     [superView addSubview:topImageV];
     [superView bringSubviewToFront:self.navView];
     
-    UIView  *backgroundView =[[UIView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(self.navView.frame), LSMainScreenW-20*LSScale, 235*LSScale)];
+    backgroundView =[[UIView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(self.navView.frame), LSMainScreenW-20*LSScale, 235*LSScale)];
     backgroundView.backgroundColor     =[UIColor whiteColor];
-    backgroundView.layer.cornerRadius  =6;
+    backgroundView.layer.cornerRadius  =5;
     [superView addSubview:backgroundView];
     
     UIImageView *headIcon   =[[UIImageView alloc] initWithFrame:CGRectMake(15*LSScale, 15*LSScale, 40*LSScale, 40*LSScale)];
@@ -41,7 +47,7 @@
     [backgroundView addSubview:headIcon];
     
     UILabel *typeL          =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headIcon.frame)+5*LSScale, 3*LSScale+headIcon.frame.origin.y, 150*LSScale, 17*LSScale)];
-    typeL.text              =@"学生";
+    typeL.text              =@"吕宁";
     typeL.font              =[UIFont systemFontOfSize:13.5*LSScale];
     typeL.textColor         =[UIColor darkTextColor];
     typeL.textAlignment     =NSTextAlignmentLeft;
@@ -96,7 +102,55 @@
 }
 
 - (void)didcClickShareBtn{
-    [LsMethod alertMessage:@"立即分享页面" WithTime:2];
+    [self ScreenShot];
+}
+
+-(void)shareAction{
+    //显示分享面板
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+        [self shareImageToPlatformType:platformType];
+    }];
+    
+}
+
+- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建图片内容对象
+    UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+    //如果有缩略图，则设置缩略图
+    shareObject.thumbImage = [UIImage imageNamed:@"icon"];
+    [shareObject setShareImage:shareImage];
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            LsLog(@"************Share fail with error %@*********",error);
+        }else{
+            LsLog(@"************response data is %@",data);
+            [LsMethod alertMessage:@"分享成功" WithTime:1];
+        }
+    }];
+}
+
+-(void)ScreenShot{
+    CGFloat lsScale =[UIScreen mainScreen].scale;
+    UIGraphicsBeginImageContextWithOptions(superView.bounds.size, YES,0);//设置截屏大小
+    [superView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage =UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    CGImageRef imageRef =viewImage.CGImage;
+    CGRect rect = CGRectMake(backgroundView.frame.origin.x*lsScale+5*lsScale,backgroundView.frame.origin.y*lsScale+5*lsScale, backgroundView.frame.size.width*lsScale-10*lsScale, backgroundView.frame.size.height*lsScale-10*lsScale);//这里可以设置想要截图的区域
+    CGImageRef imageRefRect =CGImageCreateWithImageInRect(imageRef, rect);
+    UIImage * Image =[[UIImage alloc] initWithCGImage:imageRefRect];
+    shareImage =Image;
+    CGImageRelease(imageRefRect);
+    
+    [self shareAction];
 }
 
 - (void)didReceiveMemoryWarning {

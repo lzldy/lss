@@ -7,6 +7,7 @@
 //
 
 #import "LsEnrollSuccessViewController.h"
+#import <UShareUI/UShareUI.h>
 
 @interface LsEnrollSuccessViewController ()
 
@@ -65,7 +66,41 @@
 }
 
 -(void)didClickShareBtn{
-    [LsMethod alertMessage:@"分享" WithTime:2];
+//    [LsMethod alertMessage:@"分享" WithTime:2];
+    [self shareAction];
+}
+
+-(void)shareAction{
+    //显示分享面板
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        // 根据获取的platformType确定所选平台进行下一步操作
+        [self shareImageToPlatformType:platformType];
+    }];
+    
+}
+
+- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    //创建网页内容对象
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"分享标题" descr:@"分享内容描述" thumImage:[UIImage imageNamed:@"play"]];
+    //设置网页地址
+    shareObject.webpageUrl =@"http://mobile.umeng.com/social";
+    
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        if (error) {
+            LsLog(@"************Share fail with error %@*********",error);
+        }else{
+            LsLog(@"response data is %@",data);
+            [LsMethod alertMessage:@"分享成功" WithTime:1];
+        }
+    }];
 }
 
 -(void)didClickIntoBtn{

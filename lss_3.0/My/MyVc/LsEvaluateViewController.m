@@ -152,6 +152,7 @@
     LsShareEvaluateViewController *vc =[[LsShareEvaluateViewController alloc] init];
     vc.title_                         =_title_;
     vc.starNum                        =_starNum;
+    vc.money                          =textField_.text;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
