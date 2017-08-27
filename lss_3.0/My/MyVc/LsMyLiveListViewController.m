@@ -12,6 +12,7 @@
 #import "LsMyLiveTabView.h"
 #import "LsLiveDetailViewController.h"
 #import "LsEvaluateViewController.h"
+#import "LsCustomPlayerViewController.h"
 
 @interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate,liveTableViewCellDelegate>
 {
@@ -131,7 +132,9 @@
         vc.classId                     =ID;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        [LsMethod alertMessage:@"直接进入直播间" WithTime:2];
+        LsCustomPlayerViewController *player = [[LsCustomPlayerViewController alloc] init];
+        player.videoId = ID;
+        [self.navigationController pushViewController:player animated:YES];
     }
 }
 - (void)didClickEvaluateBtnIndex:(LsButton *)btn{

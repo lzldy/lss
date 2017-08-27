@@ -12,6 +12,7 @@
 #import "LsLiveDetailTableViewCell.h"
 #import "LsLiveDetailBottomView.h"
 #import "LsEnrollSuccessViewController.h"
+#import "LsCustomPlayerViewController.h"
 
 @interface LsLiveDetailViewController ()<liveDetailHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource,liveDetailBottomViewDelegate,liveDetailTableViewCellDelegate>
 
@@ -107,7 +108,9 @@
 
 #pragma  - mark -  tabview 代理
 - (void)didClickPlayBtnWithID:(NSString*)videoid{
-    [LsMethod alertMessage:[NSString stringWithFormat:@"videoid=%@",videoid] WithTime:2];
+    LsCustomPlayerViewController *player = [[LsCustomPlayerViewController alloc] init];
+    player.videoId = videoid;
+    [self.navigationController pushViewController:player animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

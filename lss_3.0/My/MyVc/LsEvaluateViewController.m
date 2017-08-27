@@ -9,8 +9,9 @@
 #import "LsEvaluateViewController.h"
 #import "XHStarRateView.h"
 #import "LsShareEvaluateViewController.h"
+#import "ActionSheetView.h"
 
-@interface LsEvaluateViewController ()<UITextViewDelegate,UITextFieldDelegate>
+@interface LsEvaluateViewController ()<UITextViewDelegate,UITextFieldDelegate,ActionSheetViewDelegate,BeeCloudDelegate>
 {
     UITextView           *textView_;
     UITextField          *textField_;
@@ -23,6 +24,12 @@
 @end
 
 @implementation LsEvaluateViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+#pragma mark - 设置delegate
+    [BeeCloud setBeeCloudDelegate:self];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -126,7 +133,109 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    [_dataDict setObject:textField.text forKey:@"money"];
+    if ([LsMethod haveValue:textField.text]) {
+        ActionSheetView *sheetView =[[ActionSheetView alloc] initWithFrame:CGRectMake(30*LSScale,LSMainScreenH/2 -50*LSScale, LSMainScreenW-60*LSScale, 100*LSScale)];
+        sheetView.delegate=self;
+        [superView addSubview:sheetView];
+    }
+}
+
+-(void)chooseBtn:(NSString *)type{
+    if ([type isEqualToString:@"微信支付"]) {
+        [self doPay:PayChannelWxApp];
+    }else{
+        [self doPay:PayChannelAliApp];
+    }
+}
+
+- (void)doPay:(PayChannel)channel {
+    NSString *billno = [self genBillNo];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"ce",@"shi", nil];
+    
+    BCPayReq *payReq = [[BCPayReq alloc] init];
+    payReq.channel = channel; //支付渠道
+    payReq.title = _title_; //订单标题
+    payReq.totalFee = @"1"; //订单价格
+    payReq.billNo = billno; //商户自定义订单号
+    payReq.scheme = @"shishuo"; //URL Scheme,在Info.plist中配置;
+    payReq.billTimeOut = 300; //订单超时时间
+    payReq.optional = dict;//商户业务扩展参数，会在webhook回调时返回
+    payReq.cardType = 0; // 0 表示不区分卡类型；1 表示只支持借记卡；2 表示支持信用卡；默认为0
+    payReq.viewController = self.navigationController;
+    [BeeCloud sendBCReq:payReq];
+}
+
+#pragma mark - BCPay回调
+
+- (void)onBeeCloudResp:(BCBaseResp *)resp {
+    
+    switch (resp.type) {
+        case BCObjsTypePayResp:
+        {
+            // 支付请求响应
+            BCPayResp *tempResp = (BCPayResp *)resp;
+            if (tempResp.resultCode == 0) {
+                BCPayReq *payReq = (BCPayReq *)resp.request;
+                //百度钱包比较特殊需要用户用获取到的orderInfo，调用百度钱包SDK发起支付
+                if (payReq.channel == PayChannelBaiduApp && ![BeeCloud getCurrentMode]) {
+                    
+                } else {
+                    //微信、支付宝、银联支付成功
+                    [self showAlertView:resp.resultMsg];
+                }
+            } else {
+                //支付取消或者支付失败
+                [self showAlertView:[NSString stringWithFormat:@"%@ : %@",tempResp.resultMsg, tempResp.errDetail]];
+            }
+        }
+            break;
+        case BCObjsTypeQueryBillsResp:
+        {
+            BCQueryBillsResp *tempResp = (BCQueryBillsResp *)resp;
+            if (resp.resultCode == 0) {
+                if (tempResp.count == 0) {
+                    [self showAlertView:@"未找到相关订单信息"];
+                } else {
+                    [self performSegueWithIdentifier:@"queryResult" sender:self];
+                }
+            } else {
+                [self showAlertView:[NSString stringWithFormat:@"%@ : %@",tempResp.resultMsg, tempResp.errDetail]];
+            }
+        }
+            break;
+        case BCObjsTypeQueryRefundsResp:
+        {
+            BCQueryRefundsResp *tempResp = (BCQueryRefundsResp *)resp;
+            if (resp.resultCode == 0) {
+                if (tempResp.count == 0) {
+                    [self showAlertView:@"未找到相关订单信息"];
+                } else {
+                    [self performSegueWithIdentifier:@"queryResult" sender:self];
+                }
+            } else {
+                [self showAlertView:[NSString stringWithFormat:@"%@ : %@",tempResp.resultMsg, tempResp.errDetail]];
+            }
+        }
+            break;
+            
+        case BCObjsTypeOfflinePayResp:
+            break;
+        case BCObjsTypeOfflineBillStatusResp:
+            break;
+        case BCObjsTypeOfflineRevertResp:
+            break;
+    }
+}
+
+- (void)showAlertView:(NSString *)msg {
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+- (NSString *)genBillNo {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyyMMddHHmmssSSS"];
+    return [formatter stringFromDate:[NSDate date]];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{

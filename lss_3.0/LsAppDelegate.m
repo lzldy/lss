@@ -14,14 +14,18 @@
 #import "LsGuidePageViewController.h"
 #import "LsConfigureViewController.h"
 
-static NSString* WXAppid = @"wx5231d4d655cbf5c2";
-static NSString* WXSecret = @"875777926699ad7f9a0ad7675dfe2011";
 
-static NSString* QQAppid = @"1105807406";
-static NSString* QQSecret = @"IIwxLqdIAdZGG6R3";
+static NSString* WXAppid        = @"wx5231d4d655cbf5c2";
+static NSString* WXSecret       = @"875777926699ad7f9a0ad7675dfe2011";
 
-static NSString* WBAppid = @"2862859337";
-static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
+static NSString* QQAppid        = @"1105807406";
+static NSString* QQSecret       = @"IIwxLqdIAdZGG6R3";
+
+static NSString* WBAppid        = @"2862859337";
+static NSString* WBSecret       = @"06f988828740fee943633953dcf73ba3";
+
+static NSString* BeeCloudID     = @"04250155-4651-42d1-917d-2f793f720806";
+static NSString* BeeCloudSecret = @"811671b6-34d6-4db5-b020-484dcc8bf844";
 
 @interface LsAppDelegate ()
 
@@ -37,11 +41,20 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
     [self testGuideVc];
 #endif
     [self initUM];
+    [self initPay];
     [self loadRootVc];
     [self setIQKeyboard];
     [self.window makeKeyAndVisible];
   
     return YES;
+}
+
+-(void)initPay{
+   [BeeCloud initWithAppID:BeeCloudID andAppSecret:BeeCloudSecret];
+   [BeeCloud initWeChatPay:WXAppid];
+ [BeeCloud initPayPal:@"AVT1Ch18aTIlUJIeeCxvC7ZKQYHczGwiWm8jOwhrREc4a5FnbdwlqEB4evlHPXXUA67RAAZqZM0H8TCR"
+                  secret:@"EL-fkjkEUyxrwZAmrfn46awFXlX-h2nRkyCVhhpeVdlSRuhPJKXx3ZvUTTJqPQuAeomXA8PZ2MkX24vF"
+                 sandbox:YES];
 }
 
 -(void)initUM{
@@ -154,9 +167,19 @@ static NSString* WBSecret = @"06f988828740fee943633953dcf73ba3";
     //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (!result) {
-        // 其他如支付等SDK的回调
+        if ([BeeCloud handleOpenUrl:url]) {
+            
+        }
     }
     return result;
+}
+
+//iOS9之后apple官方建议使用此方法
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
+    if (![BeeCloud handleOpenUrl:url]) {
+        //handle其他类型的url
+    }
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

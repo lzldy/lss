@@ -25,6 +25,8 @@
 #import "IQKeyboardManager.h"
 #import <UMSocialCore/UMSocialCore.h>
 
+#import "BeeCloud.h"
+
 //base class
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
@@ -47,6 +49,11 @@
 #define LOADIMAGEWITHTYPE(file, type)    [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:type]]
 #define LSFont(px)               [UIFont systemFontOfSize:(px)/(96/72)]
 
+#define CCLIVE_USERID            @"372FAB00A0958D2F"
+#define CCLIVE_APIKEY            @"ucW1LbUbg3KfTWJtioNr4fhAb8UjnFVE"
+
+#define CC_USERID                @"1F95D50A9DE128D5"
+#define CC_APIKEY                @"qhfARw0Xo1Ge1cnfXUWxAzZaki7LNazg"
 
 //color
 #define LSNavColor                LSColor(255, 90, 122,  1)
