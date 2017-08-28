@@ -224,6 +224,7 @@
             break;
         case BCObjsTypeOfflineRevertResp:
             break;
+        default:break;
     }
 }
 
