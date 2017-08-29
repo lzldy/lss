@@ -9,7 +9,7 @@
 #import "LsPracticeViewController.h"
 #import "LsChooseView.h"
 
-@interface LsPracticeViewController ()
+@interface LsPracticeViewController ()<chooseViewDelegate>
 
 @property (nonatomic,strong)  LsChooseView *chooseView;
 
@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    superView.backgroundColor =[UIColor redColor];
     self.navView.navTitle =@"练课";
     [self.navView.rightButton setImage:[UIImage imageNamed:@"sl"] forState:UIControlStateNormal];
     [self.navView.rightButton setImage:[UIImage imageNamed:@"xl"] forState:UIControlStateSelected];
@@ -38,10 +38,10 @@
     }
 }
 
--(void)loadChooseView{
-    [UIView animateWithDuration:0.3 animations:^{
-        
-    }];
+- (void)chooseBtn:(LsButton*)button{
+    [LsMethod alertMessage:button.videoID WithTime:1.5];
+    [self performSelector:@selector(hiddenChooseView) withObject:nil afterDelay:0.25];
+//    [self hiddenChooseView];
 }
 
 -(LsChooseView *)chooseView{
@@ -53,13 +53,18 @@
                                  @{@"title":@"结构化",@"ID":@"13"},
                                  @{@"title":@"答辩",@"ID":@"14"}];
         _chooseView.hidden    =YES;
+        _chooseView.delegate  =self;
     }
     return _chooseView;
 }
 
+-(void)hiddenChooseView{
+    self.chooseView.hidden              =YES;
+    self.navView.rightButton.selected   =NO;
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    self.chooseView.hidden=YES;
-    self.navView.rightButton.selected=NO;
+    [self hiddenChooseView];
 }
 
 - (void)didReceiveMemoryWarning {

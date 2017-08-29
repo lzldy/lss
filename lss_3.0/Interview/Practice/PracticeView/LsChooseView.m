@@ -7,7 +7,6 @@
 //
 
 #import "LsChooseView.h"
-#import "LsButton.h"
 
 @interface LsChooseView ()
 {
@@ -75,7 +74,7 @@
     }
 }
 
--(void)didClickBtn:(UIButton*)button{
+-(void)didClickBtn:(LsButton*)button{
     for (int i=0; i<viewArray.count; i++) {
         LsButton *btn      =viewArray[i];
         if (button.tag==i) {
@@ -91,6 +90,9 @@
             btn.layer.borderColor   =LSLineColor.CGColor;
 
         }
+    }
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(chooseBtn:)]) {
+        [self.delegate chooseBtn:button];
     }
 }
 
