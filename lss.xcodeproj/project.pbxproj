@@ -47,6 +47,7 @@
 		184335811F346F5000A53585 /* LsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335801F346F5000A53585 /* LsWebViewController.m */; };
 		184335841F349CBF00A53585 /* LsCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335831F349CBF00A53585 /* LsCollectionHeaderView.m */; };
 		184335871F34A84D00A53585 /* LsBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335861F34A84D00A53585 /* LsBaseCollectionViewCell.m */; };
+		1849ECEB1F55460900B2B9B1 /* LsChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849ECEA1F55460900B2B9B1 /* LsChooseView.m */; };
 		184CA18F1F27199F00ACB807 /* lss_3_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA18E1F27199F00ACB807 /* lss_3_0Tests.m */; };
 		184CA19A1F27199F00ACB807 /* lss_3_0UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1991F27199F00ACB807 /* lss_3_0UITests.m */; };
 		184CA1F21F272FA300ACB807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184CA1801F27199F00ACB807 /* Assets.xcassets */; };
@@ -291,6 +292,8 @@
 		184335831F349CBF00A53585 /* LsCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCollectionHeaderView.m; sourceTree = "<group>"; };
 		184335851F34A84D00A53585 /* LsBaseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsBaseCollectionViewCell.h; sourceTree = "<group>"; };
 		184335861F34A84D00A53585 /* LsBaseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsBaseCollectionViewCell.m; sourceTree = "<group>"; };
+		1849ECE91F55460900B2B9B1 /* LsChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsChooseView.h; sourceTree = "<group>"; };
+		1849ECEA1F55460900B2B9B1 /* LsChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsChooseView.m; sourceTree = "<group>"; };
 		184CA1711F27199F00ACB807 /* lss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		184CA1771F27199F00ACB807 /* LsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsAppDelegate.h; sourceTree = "<group>"; };
 		184CA1781F27199F00ACB807 /* LsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsAppDelegate.m; sourceTree = "<group>"; };
@@ -1368,6 +1371,8 @@
 			children = (
 				18F74C8F1F3D8DEB007AA5F6 /* LsPracticeTableViewCell.h */,
 				18F74C901F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m */,
+				1849ECE91F55460900B2B9B1 /* LsChooseView.h */,
+				1849ECEA1F55460900B2B9B1 /* LsChooseView.m */,
 			);
 			path = PracticeView;
 			sourceTree = "<group>";
@@ -2102,6 +2107,7 @@
 				18F74C871F3D4565007AA5F6 /* LsInterCellHeaderView.m in Sources */,
 				1854F52E1F37024A00E1F603 /* MKAnnotationView+WebCache.m in Sources */,
 				18FEF68F1F5279B500F74BB6 /* DWTableView.m in Sources */,
+				1849ECEB1F55460900B2B9B1 /* LsChooseView.m in Sources */,
 				18FEF8A71F52C6F300F74BB6 /* BCQueryRefundResult.m in Sources */,
 				1854F5331F37024A00E1F603 /* SDWebImageDownloader.m in Sources */,
 				1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */,

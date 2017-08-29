@@ -61,8 +61,9 @@
     [self.scrView addSubview:self.interviewTabView];
     [self.scrView addSubview:self.writtenTabView];
     
-    UIButton *myLive =[[UIButton alloc] initWithFrame:CGRectMake(0, LSMainScreenH-50, LSMainScreenW, 50)];
+    UIButton *myLive =[[UIButton alloc] initWithFrame:CGRectMake(0, LSMainScreenH-50*LSScale, LSMainScreenW, 50*LSScale)];
     [myLive setTitle:@"我的直播" forState:0];
+    myLive.titleLabel.font   =[UIFont systemFontOfSize:19];
     myLive.backgroundColor   =LSNavColor;
     [myLive addTarget:self action:@selector(clickMyLiveBtn) forControlEvents:UIControlEventTouchUpInside];
     [superView addSubview:myLive];
