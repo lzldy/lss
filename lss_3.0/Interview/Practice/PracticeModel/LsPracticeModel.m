@@ -17,11 +17,13 @@
 @implementation LsPracticeModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"practiceLists"          : @"practiceList"};
+    return @{@"practiceLists"          :@"practiceList",
+             @"practiceDataArray"      :@"data"};
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"practiceLists"    : [LsPracticeListModel class]};
+    return @{@"practiceLists"        : [LsPracticeListModel class],
+             @"practiceDataArray"    : [LsPracticeListModel class]};
 }
 
 @end

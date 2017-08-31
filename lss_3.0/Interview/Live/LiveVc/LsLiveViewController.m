@@ -35,7 +35,7 @@
     self.navView.navTitle =@"直播";
     [self.navView addSubview:self.topTabView];
     [self loadBaseUI];
-    [self.interviewTabView headerBeginRefreshing];
+    [self getInterviewData];
 }
 
 -(void)getInterviewData{

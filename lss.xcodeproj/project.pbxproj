@@ -147,6 +147,7 @@
 		18F74C871F3D4565007AA5F6 /* LsInterCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C861F3D4565007AA5F6 /* LsInterCellHeaderView.m */; };
 		18F74C8E1F3D89E7007AA5F6 /* LsLiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */; };
 		18F74C911F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C901F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m */; };
+		18FA66771F57E418006587AF /* LsPractiveDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA66761F57E418006587AF /* LsPractiveDetailViewController.m */; };
 		18FEF6811F52773B00F74BB6 /* vrlibraw.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18FEF67F1F52773B00F74BB6 /* vrlibraw.bundle */; };
 		18FEF6841F5277C600F74BB6 /* DWCustomPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF6831F5277C600F74BB6 /* DWCustomPlayerViewController.m */; };
 		18FEF6871F52791200F74BB6 /* DWGestureButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF6861F52791200F74BB6 /* DWGestureButton.m */; };
@@ -495,6 +496,8 @@
 		18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveTableViewCell.m; sourceTree = "<group>"; };
 		18F74C8F1F3D8DEB007AA5F6 /* LsPracticeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeTableViewCell.h; sourceTree = "<group>"; };
 		18F74C901F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPracticeTableViewCell.m; sourceTree = "<group>"; };
+		18FA66751F57E418006587AF /* LsPractiveDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPractiveDetailViewController.h; sourceTree = "<group>"; };
+		18FA66761F57E418006587AF /* LsPractiveDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPractiveDetailViewController.m; sourceTree = "<group>"; };
 		18FEF66B1F52773B00F74BB6 /* DW360Director.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DW360Director.h; sourceTree = "<group>"; };
 		18FEF66C1F52773B00F74BB6 /* DW360Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DW360Program.h; sourceTree = "<group>"; };
 		18FEF66D1F52773B00F74BB6 /* DWAdInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWAdInfo.h; sourceTree = "<group>"; };
@@ -1362,6 +1365,8 @@
 			children = (
 				18E82D741F37FDB800D3154B /* LsPracticeViewController.h */,
 				18E82D751F37FDB800D3154B /* LsPracticeViewController.m */,
+				18FA66751F57E418006587AF /* LsPractiveDetailViewController.h */,
+				18FA66761F57E418006587AF /* LsPractiveDetailViewController.m */,
 			);
 			path = PracticeVc;
 			sourceTree = "<group>";
@@ -2165,6 +2170,7 @@
 				18FEF8D01F52C6F300F74BB6 /* WXPayAdapter.m in Sources */,
 				18AF1AEF1F2731E800D05E4D /* IQUIWindow+Hierarchy.m in Sources */,
 				18F74C911F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m in Sources */,
+				18FA66771F57E418006587AF /* LsPractiveDetailViewController.m in Sources */,
 				1877BD001F4D6646001F8EBD /* LsLiveDetailHeaderView.m in Sources */,
 				18AF1AF11F2731E800D05E4D /* IQKeyboardReturnKeyHandler.m in Sources */,
 				18FEF8A91F52C6F300F74BB6 /* BCSubscription.m in Sources */,
