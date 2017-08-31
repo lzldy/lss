@@ -80,9 +80,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LsPracticeListModel *model            =self.model.practiceDataArray[indexPath.row];
+//    LsPracticeListModel *model            =self.model.practiceDataArray[indexPath.row];
     LsPractiveDetailViewController *praVc =[[LsPractiveDetailViewController alloc] init];
-    praVc.authorType                      =model.authorType ;
+//    praVc.authorType                      =model.authorType ;
+    praVc.authorType                      =@"老师";
     [self.navigationController pushViewController:praVc animated:YES];
 }
 

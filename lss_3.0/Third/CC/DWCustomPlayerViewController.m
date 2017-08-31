@@ -689,7 +689,7 @@ typedef NSInteger DWPLayerScreenSizeMode;
             
         }else if (_skipTime >0){
             
-            [closeBtn setTitle:[NSString stringWithFormat:@"%lds后可关闭广告",_skipTime] forState:UIControlStateNormal];
+            [closeBtn setTitle:[NSString stringWithFormat:@"%lds后可关闭广告",(long)_skipTime] forState:UIControlStateNormal];
             closeBtn.frame = CGRectMake(LSMainScreenW - 130, 20, 120, 30);
             _timeLabel.frame =CGRectMake(LSMainScreenW- 130-5-30, 20, 30, 30);
             

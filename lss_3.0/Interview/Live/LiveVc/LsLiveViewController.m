@@ -191,7 +191,7 @@
 
 -(UITableView *)writtenTabView{
     if (!_writtenTabView) {
-        _writtenTabView =[[UITableView alloc] initWithFrame:CGRectMake(LSMainScreenW,0, LSMainScreenW,self.scrView.frame.size.height)];
+        _writtenTabView =[[UITableView alloc] initWithFrame:CGRectMake(LSMainScreenW,0, LSMainScreenW,self.scrView.frame.size.height-50*LSScale)];
         _writtenTabView.delegate         =self;
         _writtenTabView.dataSource       =self;
         _writtenTabView.tableFooterView  =[[UIView alloc] init];
@@ -208,7 +208,7 @@
 
 -(UITableView *)interviewTabView{
     if (!_interviewTabView) {
-        _interviewTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,0, LSMainScreenW,self.scrView.frame.size.height)];
+        _interviewTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,0, LSMainScreenW,self.scrView.frame.size.height-50*LSScale)];
         _interviewTabView.delegate         =self;
         _interviewTabView.dataSource       =self;
         _interviewTabView.tableFooterView  =[[UIView alloc] init];
