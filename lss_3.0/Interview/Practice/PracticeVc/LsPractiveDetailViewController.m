@@ -10,9 +10,12 @@
 #import "LsCommentTableViewCell.h"
 #import "LsCommentViewController.h"
 #import "LsCommentView.h"
+#import "LsCustomPlayerViewController.h"
 
 @interface LsPractiveDetailViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate>
-
+{
+    UIView *blackGroudView;
+}
 @property (nonatomic,strong) UITableView *tabView;
 
 @end
@@ -35,7 +38,16 @@
     UIButton *videoBtn             =[[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 130*LSScale)];
     videoBtn.backgroundColor       =[UIColor greenColor];
     [videoBtn setImage:[UIImage imageNamed:@"banner1.jpg"] forState:0];
+    videoBtn.tag           =1314;
+    videoBtn.adjustsImageWhenHighlighted = NO;
+    [videoBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [superView addSubview:videoBtn];
+    
+    UIImage *bf_image              =[UIImage imageNamed:@"bf_button"];
+    UIImageView    *playBtn        =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, bf_image.size.width, bf_image.size.height)];
+    playBtn.center                 =videoBtn.center;
+    playBtn.image                  =bf_image;
+    [superView addSubview:playBtn];
     
     UIView   *headerView           =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(videoBtn.frame), LSMainScreenW, 50*LSScale)];
     headerView.backgroundColor     =[UIColor whiteColor];
@@ -60,6 +72,7 @@
     [comBtn setTitleColor:[UIColor darkTextColor]       forState:UIControlStateNormal];
     comBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     [comBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,10, 0.0,0.0)];
+    comBtn.adjustsImageWhenHighlighted = NO;
     [comBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     comBtn.tag  =567;
     [headerView addSubview:comBtn];
@@ -74,6 +87,7 @@
     goodBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     [goodBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,5, 0.0,0.0)];
     goodBtn.tag   =765;
+    goodBtn.adjustsImageWhenHighlighted = NO;
     [goodBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:goodBtn];
     
@@ -88,7 +102,7 @@
     [commentView addSubview:reviewL];
     
     UIButton *seeCommentBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-100*LSScale,0, 100*LSScale, 40*LSScale)];
-    [seeCommentBtn setImage:[UIImage imageNamed:@"more_btn"] forState:UIControlStateNormal];
+    [seeCommentBtn setImage:[UIImage imageNamed:@"jj_button"] forState:UIControlStateNormal];
     [seeCommentBtn setTitle:@"查看全部点评" forState:UIControlStateNormal];
     seeCommentBtn.titleLabel.font   =[UIFont systemFontOfSize:15*LSScale];
     [seeCommentBtn setTitleColor:LSNavColor forState:UIControlStateNormal];
@@ -114,6 +128,20 @@
         commentView.frame = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, 40*LSScale);
         _tabView.frame    = CGRectMake(0, CGRectGetMaxY(commentView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(commentView.frame));
     }else{
+        UIButton *introductionBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-70*LSScale,CGRectGetMaxY(goodBtn.frame), 70*LSScale, 20*LSScale)];
+        [introductionBtn setImage:[UIImage imageNamed:@"jj_button"] forState:UIControlStateNormal];
+        [introductionBtn setTitle:@"查看简介" forState:UIControlStateNormal];
+        introductionBtn.titleLabel.font   =[UIFont systemFontOfSize:12.5*LSScale];
+        [introductionBtn setTitleColor:LSNavColor forState:UIControlStateNormal];
+        introductionBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        introductionBtn.imageEdgeInsets = UIEdgeInsetsMake(0, introductionBtn.frame.size.width - introductionBtn.imageView.frame.origin.x - introductionBtn.imageView.frame.size.width, 0, 0);
+        introductionBtn.titleEdgeInsets = UIEdgeInsetsMake(0,-13*LSScale, 0, 0);
+        introductionBtn.tag   =8008;
+        [introductionBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [headerView addSubview:introductionBtn];
+        
+        commentView.hidden  =YES;
+        
         _tabView.frame    = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(headerView.frame));
     }
     
@@ -129,9 +157,11 @@
 }
 
 -(void)clickBtn:(UIButton *)button{
-    button.selected=YES;
-    if (button.tag==567) {
-        [LsMethod alertMessage:@"点赞" WithTime:1.5];
+    if (button.tag==765) {
+        if (button.selected==NO) {
+            [LsMethod alertMessage:@"点赞" WithTime:1.5];
+            button.selected=YES;
+        }
     }else if(button.tag ==555){
         LsCommentViewController *comVc =[[LsCommentViewController alloc] init];
         [self.navigationController  pushViewController:comVc animated:YES];
@@ -141,7 +171,35 @@
         commentView.textPlaceholder    =@"写下您此刻的想法······";
         commentView.commitBtnText      =@"发送评论";
         [superView addSubview:commentView];
+    }else if (button.tag ==1314){
+        LsCustomPlayerViewController *playVc =[[LsCustomPlayerViewController alloc] init];
+        [self.navigationController pushViewController:playVc animated:YES];
+    }else if (button.tag ==8008){
+        [self initIntroductionView];
+    }else if (button.tag ==999){
+        [blackGroudView removeFromSuperview];
     }
+}
+
+-(void)initIntroductionView{
+    blackGroudView  =[[UIView alloc] initWithFrame:superView.bounds];
+    blackGroudView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+    [superView addSubview:blackGroudView];
+    
+    UIScrollView *introductionView =[[UIScrollView alloc] initWithFrame:CGRectMake(0,LSMainScreenH, LSMainScreenW, CGRectGetHeight(self.tabView.frame))];
+    introductionView.backgroundColor  =[UIColor whiteColor];
+    [blackGroudView addSubview:introductionView];
+
+    UIImage   *btnImage    =[UIImage imageNamed:@"gb_introduction"];
+    UIButton  *closeBtn    =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-10*LSScale-btnImage.size.width, 10*LSScale, btnImage.size.width, btnImage.size.height)];
+    [closeBtn setImage:btnImage forState:0];
+    [closeBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    closeBtn.tag           =999;
+    [introductionView addSubview:closeBtn];
+    
+    [UIView  animateWithDuration:0.3 animations:^{
+        introductionView.frame  =CGRectMake(0,  CGRectGetMinY(self.tabView.frame), LSMainScreenW, CGRectGetHeight(self.tabView.frame));
+    }];
 }
 
 - (void)didClickCommitButton:(NSString*)text{
@@ -188,6 +246,10 @@
 //    //    praVc.authorType                      =model.authorType ;
 //    praVc.authorType                      =@"学生";
 //    [self.navigationController pushViewController:praVc animated:YES];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [blackGroudView removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning {
