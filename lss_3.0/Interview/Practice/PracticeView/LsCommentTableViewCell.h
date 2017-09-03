@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol commentTableViewCellDelegate <NSObject>
+
+- (void)replyComment:(UIButton *)button;
+
+@end
+
 @interface LsCommentTableViewCell : UITableViewCell
+
+@property (nonatomic, weak) id<commentTableViewCellDelegate> delegate;
 
 -(void)reloadCellWithData:(id)data type:(NSString*)type;
 

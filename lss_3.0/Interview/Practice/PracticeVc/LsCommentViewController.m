@@ -10,7 +10,7 @@
 #import "LsCommentTableViewCell.h"
 #import "LsCommentView.h"
 
-@interface LsCommentViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LsCommentViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate,commentTableViewCellDelegate>
 
 @property (nonatomic,strong) UITableView *tabView;
 
@@ -31,6 +31,18 @@
 
 -(void)didClickNavViewRightBtn:(UIButton*)button{
     [LsMethod alertMessage:@"分享" WithTime:1.5];
+}
+
+- (void)replyComment:(UIButton *)button{
+    LsCommentView *commentView     =[[LsCommentView alloc] init];
+    commentView.delegate           =self;
+    commentView.textPlaceholder    =@"回复李老师的点评";
+    commentView.commitBtnText      =@"发送回复";
+    [superView addSubview:commentView];
+}
+
+- (void)didClickCommitButton:(NSString*)text{
+    [LsMethod alertMessage:text WithTime:1.5];
 }
 
 #pragma - mark -  tabview 代理
@@ -63,7 +75,7 @@
         cell = [[LsCommentTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    //    LsPracticeListModel *model =self.model.practiceDataArray[indexPath.row];
+    cell.delegate    =self;
     [cell reloadCellWithData:nil type:@"1"];
     return cell;
 }

@@ -11,7 +11,7 @@
 #import "LsCommentViewController.h"
 #import "LsCommentView.h"
 
-@interface LsPractiveDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface LsPractiveDetailViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate>
 
 @property (nonatomic,strong) UITableView *tabView;
 
@@ -136,9 +136,18 @@
         LsCommentViewController *comVc =[[LsCommentViewController alloc] init];
         [self.navigationController  pushViewController:comVc animated:YES];
     }else if(button.tag== 888){
-        [LsMethod alertMessage:@"我要评论" WithTime:1.5];
+        LsCommentView *commentView     =[[LsCommentView alloc] init];
+        commentView.delegate           =self;
+        commentView.textPlaceholder    =@"写下您此刻的想法······";
+        commentView.commitBtnText      =@"发送评论";
+        [superView addSubview:commentView];
     }
 }
+
+- (void)didClickCommitButton:(NSString*)text{
+    [LsMethod alertMessage:text WithTime:1.5];
+}
+
 #pragma - mark -  tabview 代理
 -(void)headerRefresh{
     [self.tabView reloadData];
@@ -151,9 +160,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    LsLog(@"cell height %f",cell.frame.size.height);
     return cell.frame.size.height;
 }
 
@@ -185,7 +192,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

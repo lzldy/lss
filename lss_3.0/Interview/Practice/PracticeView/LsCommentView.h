@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol commentViewDelegate <NSObject>
+
+- (void)didClickCommitButton:(NSString*)text;
+
+@end
+
+
 @interface LsCommentView : UIView
+
+@property (nonatomic,strong)  NSString   *textPlaceholder;
+@property (nonatomic,strong)  NSString   *commitBtnText;
+
+@property (nonatomic, weak) id<commentViewDelegate> delegate;
 
 @end

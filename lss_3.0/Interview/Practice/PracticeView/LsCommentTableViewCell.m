@@ -74,7 +74,9 @@
 }
 
 -(void)didClickReplyBtn:(UIButton *)button{
-    [LsMethod alertMessage:@"回复老师点评" WithTime:1.5];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(replyComment:)]) {
+        [self.delegate replyComment:button];
+    }
 }
 
 -(void)reloadCellWithData:(id)data type:(NSString*)type{

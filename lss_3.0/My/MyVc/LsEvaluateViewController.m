@@ -114,7 +114,7 @@
     textView_      =[[UITextView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(starRateView.frame)+10*LSScale, midView.frame.size.width-20*LSScale, midView.frame.size.height-25*LSScale-CGRectGetMaxY(starRateView.frame))];
     textView_.delegate         =self;
     textView_.font             =[UIFont systemFontOfSize:16*LSScale];
-    textView_.scrollEnabled    =NO;
+//    textView_.scrollEnabled    =NO;
     textView_.layer.borderColor=LSLineColor.CGColor;
     textView_.layer.borderWidth=1;
     textView_.textColor        =[UIColor darkGrayColor];
