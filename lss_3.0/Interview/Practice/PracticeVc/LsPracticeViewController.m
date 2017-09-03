@@ -83,7 +83,7 @@
 //    LsPracticeListModel *model            =self.model.practiceDataArray[indexPath.row];
     LsPractiveDetailViewController *praVc =[[LsPractiveDetailViewController alloc] init];
 //    praVc.authorType                      =model.authorType ;
-    praVc.authorType                      =@"老师";
+    praVc.authorType                      =@"学生";
     [self.navigationController pushViewController:praVc animated:YES];
 }
 

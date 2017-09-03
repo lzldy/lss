@@ -7,10 +7,14 @@
 //
 
 #import "LsPractiveDetailViewController.h"
+#import "LsCommentTableViewCell.h"
+#import "LsCommentViewController.h"
+#import "LsCommentView.h"
 
 @interface LsPractiveDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tabView;
+
 @end
 
 @implementation LsPractiveDetailViewController
@@ -18,6 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     superView.backgroundColor  =LSColor(243, 244, 245, 1);
+    
+    [self.navView.rightButton setImage:[UIImage imageNamed:@"fx"] forState:UIControlStateNormal];
+    [self.navView.rightButton setImage:[UIImage imageNamed:@"fx"] forState:UIControlStateSelected];
+    [self.navView.rightButton addTarget:self action:@selector(didClickNavViewRightBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
     self.navView.navTitle =self.authorType;
     [self loadBaseUI];
 }
@@ -25,23 +34,77 @@
 -(void)loadBaseUI{
     UIButton *videoBtn             =[[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 130*LSScale)];
     videoBtn.backgroundColor       =[UIColor greenColor];
+    [videoBtn setImage:[UIImage imageNamed:@"banner1.jpg"] forState:0];
     [superView addSubview:videoBtn];
     
     UIView   *headerView           =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(videoBtn.frame), LSMainScreenW, 50*LSScale)];
-    headerView.backgroundColor     =[UIColor blueColor];
+    headerView.backgroundColor     =[UIColor whiteColor];
     [superView addSubview:headerView];
+
+    UILabel  *titleL               =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 5*LSScale, LSMainScreenW/2+30*LSScale, 20*LSScale)];
+    titleL.text                    =@"教师资格证备考视频";
+    titleL.font                    =[UIFont systemFontOfSize:13*LSScale];
+    titleL.textColor               =[UIColor darkTextColor];
+    [headerView addSubview:titleL];
+    
+    UILabel  *uploadTimeL         =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, headerView.frame.size.height/2, LSMainScreenW, 20*LSScale)];
+    uploadTimeL.text              =@"共34人观看   2017年8月27日发布";
+    uploadTimeL.font              =[UIFont systemFontOfSize:12*LSScale];
+    uploadTimeL.textColor         =[UIColor darkGrayColor];
+    [headerView addSubview:uploadTimeL];
+    
+    UIButton *comBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-10*LSScale-45*LSScale, 5*LSScale, 45*LSScale, 20*LSScale)];
+    [comBtn setImage:[UIImage imageNamed:@"dx_icon"]    forState:UIControlStateNormal];
+    [comBtn setTitle:@"187" forState:UIControlStateNormal];
+    comBtn.titleLabel.font   =[UIFont systemFontOfSize:12*LSScale];
+    [comBtn setTitleColor:[UIColor darkTextColor]       forState:UIControlStateNormal];
+    comBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [comBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,10, 0.0,0.0)];
+    [comBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    comBtn.tag  =567;
+    [headerView addSubview:comBtn];
+    
+    UIButton *goodBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-55*LSScale-45*LSScale,5*LSScale, 45*LSScale, 20*LSScale)];
+    [goodBtn setImage:[UIImage imageNamed:@"dz_icon"] forState:UIControlStateNormal];
+    [goodBtn setImage:[UIImage imageNamed:@"dz_icon_xz"] forState:UIControlStateSelected];
+    [goodBtn setTitle:@"1232" forState:UIControlStateNormal];
+    goodBtn.titleLabel.font   =[UIFont systemFontOfSize:12*LSScale];
+    [goodBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
+    [goodBtn setTitleColor:LSNavColor forState:UIControlStateSelected];
+    goodBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    [goodBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,5, 0.0,0.0)];
+    goodBtn.tag   =765;
+    [goodBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:goodBtn];
     
     UIView  *commentView           =[[UIView alloc] init];
-    commentView.backgroundColor    =[UIColor brownColor];
+    commentView.backgroundColor    =[UIColor whiteColor];
     [superView addSubview:commentView];
     
-    _tabView =[[UITableView alloc] init];
-    _tabView.delegate         =self;
-    _tabView.dataSource       =self;
-    _tabView.tableFooterView  =[[UIView alloc] init];
+    UILabel *reviewL               =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 0, LSMainScreenW/2+30*LSScale, 40*LSScale)];
+    reviewL.text              =@"该视频共有5位老师点评";
+    reviewL.font              =[UIFont systemFontOfSize:15*LSScale];
+    reviewL.textColor         =[UIColor darkTextColor];
+    [commentView addSubview:reviewL];
+    
+    UIButton *seeCommentBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-100*LSScale,0, 100*LSScale, 40*LSScale)];
+    [seeCommentBtn setImage:[UIImage imageNamed:@"more_btn"] forState:UIControlStateNormal];
+    [seeCommentBtn setTitle:@"查看全部点评" forState:UIControlStateNormal];
+    seeCommentBtn.titleLabel.font   =[UIFont systemFontOfSize:15*LSScale];
+    [seeCommentBtn setTitleColor:LSNavColor forState:UIControlStateNormal];
+    seeCommentBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    seeCommentBtn.imageEdgeInsets = UIEdgeInsetsMake(0, seeCommentBtn.frame.size.width - seeCommentBtn.imageView.frame.origin.x - seeCommentBtn.imageView.frame.size.width, 0, 0);
+    seeCommentBtn.titleEdgeInsets = UIEdgeInsetsMake(0,-18*LSScale, 0, 0);
+    seeCommentBtn.tag   =555;
+    [seeCommentBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [commentView addSubview:seeCommentBtn];
+    
+    _tabView                       =[[UITableView alloc] init];
+    _tabView.delegate              =self;
+    _tabView.dataSource            =self;
+    _tabView.tableFooterView       =[[UIView alloc] init];
     _tabView.showsVerticalScrollIndicator   =NO;
-    _tabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
-    _tabView.backgroundColor  =[UIColor redColor];
+    _tabView.separatorStyle        =UITableViewCellSeparatorStyleNone;//去线
     //增加上拉下拉刷新事件
     [_tabView addHeaderWithTarget:self action:@selector(headerRefresh)];
     [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
@@ -53,8 +116,30 @@
     }else{
         _tabView.frame    = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(headerView.frame));
     }
+    
+    UIButton  *commentBtn        =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-50*LSScale, LSMainScreenH-30*LSScale-50*LSScale, 50*LSScale, 50*LSScale)];
+    [commentBtn setImage:[UIImage imageNamed:@"pl"] forState:0];
+    [commentBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    commentBtn.tag   =888;
+    [superView addSubview:commentBtn];
 }
 
+-(void)didClickNavViewRightBtn:(UIButton*)button{
+    [LsMethod alertMessage:@"分享" WithTime:1.5];
+}
+
+-(void)clickBtn:(UIButton *)button{
+    button.selected=YES;
+    if (button.tag==567) {
+        [LsMethod alertMessage:@"点赞" WithTime:1.5];
+    }else if(button.tag ==555){
+        LsCommentViewController *comVc =[[LsCommentViewController alloc] init];
+        [self.navigationController  pushViewController:comVc animated:YES];
+    }else if(button.tag== 888){
+        [LsMethod alertMessage:@"我要评论" WithTime:1.5];
+    }
+}
+#pragma - mark -  tabview 代理
 -(void)headerRefresh{
     [self.tabView reloadData];
     [self.tabView headerEndRefreshing];
@@ -67,7 +152,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 220*LSScale;
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    LsLog(@"cell height %f",cell.frame.size.height);
+    return cell.frame.size.height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -77,14 +164,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *sectionIDD = @"section1";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sectionIDD];
+    static NSString *cellID = @"cellID";
+    LsCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sectionIDD];
+        cell = [[LsCommentTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 //    LsPracticeListModel *model =self.model.practiceDataArray[indexPath.row];
-//    [cell reloadCell:model Type:@"2"];
+    [cell reloadCellWithData:nil type:@"0"];
     return cell;
 }
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180BC98F1F5B9866001EE331 /* LsCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180BC98E1F5B9866001EE331 /* LsCommentTableViewCell.m */; };
+		180BC9921F5BA63D001EE331 /* LsCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180BC9911F5BA63D001EE331 /* LsCommentViewController.m */; };
+		180BC9951F5BAE50001EE331 /* LsCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180BC9941F5BAE50001EE331 /* LsCommentView.m */; };
 		182CDEC01F42A7BB00283EBA /* LsInterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEBF1F42A7BB00283EBA /* LsInterModel.m */; };
 		182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC51F42AA0600283EBA /* LsPracticeModel.m */; };
 		182CDEC91F43E83000283EBA /* LsLiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC81F43E83000283EBA /* LsLiveModel.m */; };
@@ -230,6 +233,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180BC98D1F5B9866001EE331 /* LsCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsCommentTableViewCell.h; sourceTree = "<group>"; };
+		180BC98E1F5B9866001EE331 /* LsCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCommentTableViewCell.m; sourceTree = "<group>"; };
+		180BC9901F5BA63D001EE331 /* LsCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsCommentViewController.h; sourceTree = "<group>"; };
+		180BC9911F5BA63D001EE331 /* LsCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCommentViewController.m; sourceTree = "<group>"; };
+		180BC9931F5BAE50001EE331 /* LsCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsCommentView.h; sourceTree = "<group>"; };
+		180BC9941F5BAE50001EE331 /* LsCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCommentView.m; sourceTree = "<group>"; };
 		182CDEBE1F42A7BB00283EBA /* LsInterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterModel.h; sourceTree = "<group>"; };
 		182CDEBF1F42A7BB00283EBA /* LsInterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterModel.m; sourceTree = "<group>"; };
 		182CDEC41F42AA0600283EBA /* LsPracticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeModel.h; sourceTree = "<group>"; };
@@ -1367,6 +1376,8 @@
 				18E82D751F37FDB800D3154B /* LsPracticeViewController.m */,
 				18FA66751F57E418006587AF /* LsPractiveDetailViewController.h */,
 				18FA66761F57E418006587AF /* LsPractiveDetailViewController.m */,
+				180BC9901F5BA63D001EE331 /* LsCommentViewController.h */,
+				180BC9911F5BA63D001EE331 /* LsCommentViewController.m */,
 			);
 			path = PracticeVc;
 			sourceTree = "<group>";
@@ -1376,8 +1387,12 @@
 			children = (
 				18F74C8F1F3D8DEB007AA5F6 /* LsPracticeTableViewCell.h */,
 				18F74C901F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m */,
+				180BC98D1F5B9866001EE331 /* LsCommentTableViewCell.h */,
+				180BC98E1F5B9866001EE331 /* LsCommentTableViewCell.m */,
 				1849ECE91F55460900B2B9B1 /* LsChooseView.h */,
 				1849ECEA1F55460900B2B9B1 /* LsChooseView.m */,
+				180BC9931F5BAE50001EE331 /* LsCommentView.h */,
+				180BC9941F5BAE50001EE331 /* LsCommentView.m */,
 			);
 			path = PracticeView;
 			sourceTree = "<group>";
@@ -2118,6 +2133,7 @@
 				1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */,
 				184335871F34A84D00A53585 /* LsBaseCollectionViewCell.m in Sources */,
 				18FEF8911F52C6F300F74BB6 /* BCPayReq.m in Sources */,
+				180BC98F1F5B9866001EE331 /* LsCommentTableViewCell.m in Sources */,
 				184CA1F71F272FC800ACB807 /* LsMyViewController.m in Sources */,
 				182CDEDA1F43EB7800283EBA /* LsNoticeViewController.m in Sources */,
 				1854F4A21F36BC7C00E1F603 /* LsConfigureModel.m in Sources */,
@@ -2150,6 +2166,7 @@
 				1854F52C1F37024A00E1F603 /* UIScrollView+MJRefresh.m in Sources */,
 				1854F52B1F37024A00E1F603 /* UIScrollView+MJExtension.m in Sources */,
 				18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */,
+				180BC9951F5BAE50001EE331 /* LsCommentView.m in Sources */,
 				183E7AF91F2832E000A69596 /* LsTabBar.m in Sources */,
 				1854F5311F37024A00E1F603 /* SDWebImageCompat.m in Sources */,
 				18FEF8B51F52C6F300F74BB6 /* NSString+IsValid.m in Sources */,
@@ -2176,6 +2193,7 @@
 				18FEF8A91F52C6F300F74BB6 /* BCSubscription.m in Sources */,
 				183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */,
 				189D948F1F2EBF270033C828 /* NSDictionary+Extension.m in Sources */,
+				180BC9921F5BA63D001EE331 /* LsCommentViewController.m in Sources */,
 				1854F52D1F37024A00E1F603 /* UIView+MJExtension.m in Sources */,
 				184CA1FC1F272FC800ACB807 /* LsAppDelegate.m in Sources */,
 				18FEF8981F52C6F300F74BB6 /* BCQueryBillByIdResp.m in Sources */,

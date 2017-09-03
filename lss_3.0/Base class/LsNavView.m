@@ -29,7 +29,7 @@
         [_rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self addSubview:_rightButton];
         
-        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(LSMainScreenW/2-80*LSScale, 20, 160*LSScale, 44)];
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(LSMainScreenW/2-120*LSScale, 20, 240*LSScale, 44)];
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.font = [UIFont systemFontOfSize:20];

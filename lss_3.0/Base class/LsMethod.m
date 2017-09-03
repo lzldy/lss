@@ -265,6 +265,16 @@
     return rect.size;
 }
 
++ (CGSize)sizeWithSize:(CGSize)sizeee String:(NSString *)string font:(UIFont *)font
+{
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(sizeee.width, 8000)//限制最大的宽度和高度
+                                       options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesFontLeading  |NSStringDrawingUsesLineFragmentOrigin//采用换行模式
+                                    attributes:@{NSFontAttributeName: font}//传入的字体字典
+                                       context:nil];
+    
+    return rect.size;
+}
+
 +(CABasicAnimation*)opacityAnimationFormValue:(float)fromValue ToValue:(float)toValue{
     
     CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
