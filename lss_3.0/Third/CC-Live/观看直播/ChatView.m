@@ -199,7 +199,7 @@
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     _keyboardRect = [aValue CGRectValue];
     CGFloat y = _keyboardRect.size.height;
-    CGFloat x = _keyboardRect.size.width;
+//    CGFloat x = _keyboardRect.size.width;
     //NSLog(@"键盘高度是  %d",(int)y);
     //NSLog(@"键盘宽度是  %d",(int)x);
     if ([self.chatTextField isFirstResponder]) {

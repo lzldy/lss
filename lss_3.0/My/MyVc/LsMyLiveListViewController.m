@@ -13,8 +13,11 @@
 #import "LsLiveDetailViewController.h"
 #import "LsEvaluateViewController.h"
 #import "LsCustomPlayerViewController.h"
+#import "PlayBackVC.h"
+#import "CCSDK/CCLiveUtil.h"
+#import "CCSDK/RequestDataPlayBack.h"
 
-@interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate,liveTableViewCellDelegate>
+@interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate,liveTableViewCellDelegate,RequestDataPlayBackDelegate>
 {
     float      startY;
     BOOL       isScroll;
@@ -26,7 +29,7 @@
 @property (nonatomic,strong)  UITableView              *notBeginTabView;
 @property (nonatomic,strong)  UIScrollView             *scrView;
 @property (nonatomic,strong)  LsMyLiveTabView          *headerTabView;
-
+@property (nonatomic,strong)  MBProgressHUD            *hud;
 @end
 
 @implementation LsMyLiveListViewController
@@ -132,11 +135,44 @@
         vc.classId                     =ID;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        LsCustomPlayerViewController *player = [[LsCustomPlayerViewController alloc] init];
-        player.videoId = ID;
-        [self.navigationController pushViewController:player animated:YES];
+//        LsCustomPlayerViewController *player = [[LsCustomPlayerViewController alloc] init];
+//        player.videoId = ID;
+//        [self.navigationController pushViewController:player animated:YES];
+        
+        _hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
+        _hud.removeFromSuperViewOnHide = YES;
+
+        PlayParameter *parameter = [[PlayParameter alloc] init];
+        parameter.userId = CCLIVE_USERID;
+        parameter.roomId =@"85339BECF4BA03FA9C33DC5901307461";
+        parameter.liveid = @"7E4226D46FD192E8";
+        parameter.viewerName = @"唐朝将军";
+        parameter.token = @"shishuo";
+        parameter.security = NO;
+        RequestDataPlayBack *requestDataPlayBack = [[RequestDataPlayBack alloc] initLoginWithParameter:parameter];
+        requestDataPlayBack.delegate = self;
     }
 }
+
+-(void)loginSucceedPlayBack {
+    [_hud hide:YES];    
+    LSApplication.idleTimerDisabled=YES;
+    PlayBackVC *playBackVC = [[PlayBackVC alloc] init];
+    [self presentViewController:playBackVC animated:YES completion:nil];
+}
+
+-(void)loginFailed:(NSError *)error reason:(NSString *)reason {
+    [_hud hide:YES];
+
+    NSString *message = nil;
+    if (reason == nil) {
+        message = [error localizedDescription];
+    } else {
+        message = reason;
+    }
+    [LsMethod alertMessage:message WithTime:2];
+}
+
 - (void)didClickEvaluateBtnIndex:(LsButton *)btn{
     LsEvaluateViewController *vc =[[LsEvaluateViewController alloc] init];
     vc.classID                   =btn.videoID;
