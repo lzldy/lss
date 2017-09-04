@@ -272,7 +272,7 @@
                                          success:(void (^)(NSURLSessionDataTask *, id))success
                                          failure:(void (^)(NSURLSessionDataTask *, NSError *))failure
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].delegate window] animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
     hud.removeFromSuperViewOnHide = YES;
     
     NSString  *urlStr  =[NSString stringWithFormat:@"%@/%@",BASE_URL,URLString];

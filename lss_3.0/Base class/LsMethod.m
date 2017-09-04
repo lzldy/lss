@@ -20,7 +20,7 @@
 //    [alertView show];
 //    [alertView performSelector:@selector(dismissAnimated:) withObject:nil afterDelay:time];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[UIApplication sharedApplication].delegate window] animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText =message;
     hud.margin = 20.f;//提示框的高度

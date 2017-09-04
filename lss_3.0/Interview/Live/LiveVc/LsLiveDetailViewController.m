@@ -13,15 +13,19 @@
 #import "LsLiveDetailBottomView.h"
 #import "LsEnrollSuccessViewController.h"
 #import "LsCustomPlayerViewController.h"
+#import "DWCustomPlayerViewController.h"
+#import "CCSDK/CCLiveUtil.h"
+#import "CCSDK/RequestData.h"
+#import "PlayForPCVC.h"
 
-@interface LsLiveDetailViewController ()<liveDetailHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource,liveDetailBottomViewDelegate,liveDetailTableViewCellDelegate>
+@interface LsLiveDetailViewController ()<liveDetailHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource,liveDetailBottomViewDelegate,liveDetailTableViewCellDelegate,RequestDataDelegate>
 
 @property (nonatomic,strong) LsLiveDetailModel      *model;
 @property (nonatomic,strong) LsLiveDetailHeaderView *headerView;
 @property (nonatomic,strong) UITableView            *tabView;
 @property (nonatomic,strong) LsLiveDetailBottomView *bottomView;
 @property (nonatomic,strong) UIView                 *backgroundView;
-
+@property (nonatomic,strong) MBProgressHUD          *hud;
 @end
 
 @implementation LsLiveDetailViewController
@@ -106,13 +110,49 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma  - mark -  tabview 代理
 - (void)didClickPlayBtnWithID:(NSString*)videoid{
-    LsCustomPlayerViewController *player = [[LsCustomPlayerViewController alloc] init];
-    player.videoId = videoid;
-    [self.navigationController pushViewController:player animated:YES];
+//    LsCustomPlayerViewController *player = [[LsCustomPlayerViewController alloc] init];
+//    player.videoId = videoid;
+//    [self.navigationController pushViewController:player animated:YES];
+    
+//    DWCustomPlayerViewController *player  =[[DWCustomPlayerViewController alloc] init];
+//    player.videoId                        =@"2DBC15008476D84C9C33DC5901307461";
+//    [self.navigationController pushViewController:player animated:YES];
+    
+    _hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
+    _hud.removeFromSuperViewOnHide = YES;
+
+    PlayParameter *parameter = [[PlayParameter alloc] init];
+    parameter.userId = CCLIVE_USERID;
+    parameter.roomId = @"0D6DAFFEADD16F749C33DC5901307461";
+    parameter.viewerName = @"唐朝将军";
+    parameter.token =@"shishuo";
+    parameter.security = NO;
+    parameter.viewercustomua = @"viewercustomua";
+    RequestData *requestData = [[RequestData alloc] initLoginWithParameter:parameter];
+    requestData.delegate = self;
 }
 
+#pragma mark - CCPushDelegate
+-(void)loginSucceedPlay {
+    [_hud hide:YES];
+    LSApplication.idleTimerDisabled=YES;//不锁屏
+    PlayForPCVC *playForPCVC = [[PlayForPCVC alloc] initWithLeftLabelText:@"直播"];
+    [self presentViewController:playForPCVC animated:YES completion:nil];
+}
+
+-(void)loginFailed:(NSError *)error reason:(NSString *)reason {
+    [_hud hide:YES];
+    NSString *message = nil;
+    if (reason == nil) {
+        message = [error localizedDescription];
+    } else {
+        message = reason;
+    }
+    [LsMethod alertMessage:message WithTime:2];
+}
+
+#pragma  - mark -  tabview 代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 120*LSScale;
 }

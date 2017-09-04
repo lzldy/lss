@@ -34,7 +34,7 @@ static NSString* BeeCloudSecret = @"811671b6-34d6-4db5-b020-484dcc8bf844";
 @implementation LsAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    LSApplication.statusBarStyle = UIStatusBarStyleLightContent;
     self.window =[[UIWindow alloc] initWithFrame:LSMainScreen];
     [LsAFNetWorkTool monitorNet];
 #ifdef DEBUG_MODE

@@ -162,7 +162,7 @@ static NSString * headerReuseIdentifier = @"header";
     [LSUser_Default setObject:@"yes" forKey:@"didConfig"];
     [self dismissViewControllerAnimated:YES completion:^{
     }];
-    LsAppDelegate *appdele=(LsAppDelegate*)[UIApplication sharedApplication].delegate;
+    LsAppDelegate *appdele=(LsAppDelegate*)LSApplicationDelegate;
     [appdele loadMianTab];
 }
 

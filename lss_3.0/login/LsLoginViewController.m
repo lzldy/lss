@@ -355,7 +355,7 @@
     [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
     [self dismissViewControllerAnimated:YES completion:^{
     }];
-    LsAppDelegate *appdele=(LsAppDelegate*)[UIApplication sharedApplication].delegate ;
+    LsAppDelegate *appdele=(LsAppDelegate*)LSApplicationDelegate;
     [appdele loadMianTab];
 }
 
