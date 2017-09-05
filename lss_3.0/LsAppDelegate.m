@@ -208,5 +208,11 @@ static NSString* BeeCloudSecret = @"811671b6-34d6-4db5-b020-484dcc8bf844";
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    if (self.allowRotation) {//如果设置了allowRotation属性，支持全屏
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }
+    return UIInterfaceOrientationMaskPortrait;//默认全局不支持横屏
+}
 
 @end

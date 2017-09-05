@@ -67,6 +67,16 @@
     return _navView;
 }
 
+- (BOOL)shouldAutorotate
+{
+    return false;
+}
+
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 -(void)dealloc{
     
 }

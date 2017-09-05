@@ -712,13 +712,18 @@
 }
 
 -(void)quanPingBtnClicked {
+    
     self.hiddenTime = 5.0f;
     if([self hasViewOnTheScreen:YES]) return;
     WS(ws)
     [self.view endEditing:YES];
+    [LsMethod begainFullScreen];
+
     if (!self.isScreenLandScape) {
         self.isScreenLandScape = YES;
         self.autoRotate = YES;
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];//保证入口是在竖屏方向
+
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeLeft] forKey:@"orientation"];
         [UIApplication sharedApplication].statusBarHidden = YES;
         [_requestData setPlayerFrame:self.view.frame];
@@ -976,6 +981,7 @@
         [_requestData setRemoteVideoFrameA:self.remoteView.frame];
     }
 //#endif
+    [LsMethod endFullScreen];
     self.autoRotate = NO;
 }
 
@@ -1466,6 +1472,8 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [IQKeyboardManager sharedManager].enable = NO;
+
     [UIApplication sharedApplication].idleTimerDisabled=YES;
 }
 

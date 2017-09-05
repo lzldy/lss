@@ -85,4 +85,8 @@
 +(CABasicAnimation*)opacityAnimationFormValue:(float)fromValue ToValue:(float)toValue;
 
 + (UIImage *)imageWithRoundCorner:(UIImage *)sourceImage cornerRadius:(CGFloat)cornerRadius;
++ (void)begainFullScreen;
++ (void)endFullScreen;
+
+
 @end

@@ -166,7 +166,7 @@
     if (!self.isScreenLandScape) {
         self.isScreenLandScape = YES;
         self.autoRotate = YES;
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeLeft] forKey:@"orientation"];
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeRight] forKey:@"orientation"];
         [UIApplication sharedApplication].statusBarHidden = YES;
         [_pptView removeFromSuperview];
         [self.view addSubview:_pptView];
@@ -195,17 +195,6 @@
     self.autoRotate = NO;
 }
 
-//-(UILabel *)playRateLabel {
-//    if(!_playRateLabel) {
-//        _playRateLabel = [UILabel new];
-//        _playRateLabel.font = [UIFont systemFontOfSize:FontSize_28];
-//        _playRateLabel.textAlignment = NSTextAlignmentCenter;
-//        _playRateLabel.textColor = CCRGBAColor(255,255,255,0.8);
-//        _playRateLabel.text = @"1.0x";
-//    }
-//    return _playRateLabel;
-//}
-
 - (void)timerfunc
 {
     if([_requestDataPlayBack isPlaying]) {
@@ -214,7 +203,6 @@
             _loadingView = nil;
         }
     }
-    
         dispatch_async(dispatch_get_main_queue(), ^{
             NSTimeInterval position = (int)round(_requestDataPlayBack.currentPlaybackTime);
             NSTimeInterval duration = (int)round(_requestDataPlayBack.playerDuration);
@@ -490,37 +478,43 @@
 }
 
 -(void)quanPingBtnClicked {
+
     self.hiddenTime = 5.0f;
     BOOL selected = _quanPingBtn.isSelected;
     _quanPingBtn.selected = !selected;
-    
+    [LsMethod begainFullScreen];
     WS(ws)
     if (!self.isScreenLandScape) {
+
         self.isScreenLandScape = YES;
         self.autoRotate = YES;
+
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeLeft] forKey:@"orientation"];
         [UIApplication sharedApplication].statusBarHidden = YES;
         [_requestDataPlayBack setPlayerFrame:self.view.frame];
         [_videoView setFrame:self.view.frame];
-        
+
         [_leftButton mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(ws.videoView).offset(CCGetRealFromPt(20));
             make.top.mas_equalTo(ws.videoView);
             make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(80), CCGetRealFromPt(80)));
         }];
-        
+
         [_leftLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(ws.leftButton.mas_right).offset(CCGetRealFromPt(14));
             make.centerY.mas_equalTo(ws.leftButton);
             make.size.mas_equalTo(CGSizeMake(ws.view.frame.size.width * 0.5, CCGetRealFromPt(30)));
         }];
-        
+
         [_huifangDot mas_updateConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(ws.videoView).mas_offset(-CCGetRealFromPt(30));
             make.centerY.mas_equalTo(ws.leftButton);
             make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(115), CCGetRealFromPt(52)));
         }];
     } else {
+        
         self.isScreenLandScape = NO;
         self.autoRotate = YES;
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
@@ -550,7 +544,9 @@
         [ws.view layoutIfNeeded];
     } completion:^(BOOL finished) {
     }];
+    [LsMethod endFullScreen];
     self.autoRotate = NO;
+
 }
 
 -(void)initUI {
@@ -716,11 +712,13 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].idleTimerDisabled=YES;
+//    [self begainFullScreen];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].idleTimerDisabled=NO;
+//    [self endFullScreen];
 }
 
 -(void)closeBtnClicked {
@@ -1222,8 +1220,7 @@
 }
 
 - (BOOL)shouldAutorotate{
-//    NSLog(@"---self.autoRotate = %d",self.autoRotate);
-    return self.autoRotate;
+    return _autoRotate;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
