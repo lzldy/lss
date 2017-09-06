@@ -357,6 +357,8 @@
 		180BD10B1F5D4A1B001EE331 /* 多选选中@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 180BD09E1F5D4A1B001EE331 /* 多选选中@3x.png */; };
 		180BD10E1F5D7E5B001EE331 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180BD10C1F5D7E5B001EE331 /* loading@2x.gif */; };
 		180BD10F1F5D7E5B001EE331 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180BD10D1F5D7E5B001EE331 /* loading@3x.gif */; };
+		182C686C1F5F8A6800DD1511 /* LsPlayBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C686B1F5F8A6800DD1511 /* LsPlayBackViewController.m */; };
+		182C686F1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C686E1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m */; };
 		182CDEC01F42A7BB00283EBA /* LsInterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEBF1F42A7BB00283EBA /* LsInterModel.m */; };
 		182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC51F42AA0600283EBA /* LsPracticeModel.m */; };
 		182CDEC91F43E83000283EBA /* LsLiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC81F43E83000283EBA /* LsLiveModel.m */; };
@@ -989,6 +991,10 @@
 		180BD09E1F5D4A1B001EE331 /* 多选选中@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "多选选中@3x.png"; sourceTree = "<group>"; };
 		180BD10C1F5D7E5B001EE331 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
 		180BD10D1F5D7E5B001EE331 /* loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@3x.gif"; sourceTree = "<group>"; };
+		182C686A1F5F8A6800DD1511 /* LsPlayBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPlayBackViewController.h; sourceTree = "<group>"; };
+		182C686B1F5F8A6800DD1511 /* LsPlayBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPlayBackViewController.m; sourceTree = "<group>"; };
+		182C686D1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPlayBackTableViewCell.h; sourceTree = "<group>"; };
+		182C686E1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPlayBackTableViewCell.m; sourceTree = "<group>"; };
 		182CDEBE1F42A7BB00283EBA /* LsInterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterModel.h; sourceTree = "<group>"; };
 		182CDEBF1F42A7BB00283EBA /* LsInterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterModel.m; sourceTree = "<group>"; };
 		182CDEC41F42AA0600283EBA /* LsPracticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeModel.h; sourceTree = "<group>"; };
@@ -1462,15 +1468,15 @@
 		180BCA0B1F5CFF88001EE331 /* CC-Live */ = {
 			isa = PBXGroup;
 			children = (
+				180BCA6E1F5D055F001EE331 /* Dialogue.h */,
+				180BCA6F1F5D055F001EE331 /* Dialogue.m */,
+				180BD02E1F5D44D1001EE331 /* PlayBackVC.h */,
+				180BD02F1F5D44D1001EE331 /* PlayBackVC.m */,
 				180BD10C1F5D7E5B001EE331 /* loading@2x.gif */,
 				180BD10D1F5D7E5B001EE331 /* loading@3x.gif */,
 				180BD0311F5D4A1B001EE331 /* iOS观看直播image */,
-				180BD02E1F5D44D1001EE331 /* PlayBackVC.h */,
-				180BD02F1F5D44D1001EE331 /* PlayBackVC.m */,
 				180BD0011F5D4344001EE331 /* iOS观看回放切图 */,
 				180BCEC01F5D3E52001EE331 /* iOS我要直播image */,
-				180BCA6E1F5D055F001EE331 /* Dialogue.h */,
-				180BCA6F1F5D055F001EE331 /* Dialogue.m */,
 				180BCA241F5D051C001EE331 /* 自定义控件 */,
 				180BCA141F5D048A001EE331 /* 观看直播 */,
 				180BCA0C1F5D0006001EE331 /* CCSDK.framework */,
@@ -2264,6 +2270,8 @@
 				184CA1D51F2726F600ACB807 /* LsMyViewController.m */,
 				189840A11F4BD8D400C6A8A0 /* LsMyLiveListViewController.h */,
 				189840A21F4BD8D400C6A8A0 /* LsMyLiveListViewController.m */,
+				182C686A1F5F8A6800DD1511 /* LsPlayBackViewController.h */,
+				182C686B1F5F8A6800DD1511 /* LsPlayBackViewController.m */,
 				18F32C5D1F4EC91E0081629E /* LsEvaluateViewController.h */,
 				18F32C5E1F4EC91E0081629E /* LsEvaluateViewController.m */,
 				18F32C641F4F09750081629E /* LsShareEvaluateViewController.h */,
@@ -2277,6 +2285,8 @@
 			children = (
 				189840AA1F4C375E00C6A8A0 /* LsMyLiveTabView.h */,
 				189840AB1F4C375E00C6A8A0 /* LsMyLiveTabView.m */,
+				182C686D1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.h */,
+				182C686E1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m */,
 			);
 			path = MyView;
 			sourceTree = "<group>";
@@ -3646,6 +3656,7 @@
 				184335841F349CBF00A53585 /* LsCollectionHeaderView.m in Sources */,
 				180BCA901F5D0763001EE331 /* MASViewConstraint.m in Sources */,
 				180BCA5F1F5D051C001EE331 /* LoadingView.m in Sources */,
+				182C686F1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m in Sources */,
 				18AF1AF51F2731E800D05E4D /* IQTitleBarButtonItem.m in Sources */,
 				18F74C871F3D4565007AA5F6 /* LsInterCellHeaderView.m in Sources */,
 				1854F52E1F37024A00E1F603 /* MKAnnotationView+WebCache.m in Sources */,
@@ -3688,6 +3699,7 @@
 				18FEF6991F527B5C00F74BB6 /* Reachability.m in Sources */,
 				180BCA671F5D051C001EE331 /* SettingBaseViewController.m in Sources */,
 				18FEF8AA1F52C6F300F74BB6 /* BCSubscriptionQuery.m in Sources */,
+				182C686C1F5F8A6800DD1511 /* LsPlayBackViewController.m in Sources */,
 				180BCA5E1F5D051C001EE331 /* LianmaiView.m in Sources */,
 				18E82D691F37FB9400D3154B /* LsInterviewViewController.m in Sources */,
 				18AF1AED1F2731E800D05E4D /* IQUIView+Hierarchy.m in Sources */,

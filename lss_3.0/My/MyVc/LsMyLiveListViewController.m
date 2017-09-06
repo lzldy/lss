@@ -12,12 +12,11 @@
 #import "LsMyLiveTabView.h"
 #import "LsLiveDetailViewController.h"
 #import "LsEvaluateViewController.h"
-#import "LsCustomPlayerViewController.h"
-#import "PlayBackVC.h"
-#import "CCSDK/CCLiveUtil.h"
-#import "CCSDK/RequestDataPlayBack.h"
+//#import "LsCustomPlayerViewController.h"
+#import "LsPlayBackViewController.h"
+#import "LsButton.h"
 
-@interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate,liveTableViewCellDelegate,RequestDataPlayBackDelegate>
+@interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate,liveTableViewCellDelegate>
 {
     float      startY;
     BOOL       isScroll;
@@ -29,7 +28,6 @@
 @property (nonatomic,strong)  UITableView              *notBeginTabView;
 @property (nonatomic,strong)  UIScrollView             *scrView;
 @property (nonatomic,strong)  LsMyLiveTabView          *headerTabView;
-@property (nonatomic,strong)  MBProgressHUD            *hud;
 @end
 
 @implementation LsMyLiveListViewController
@@ -129,48 +127,20 @@
 }
 
 #pragma - mark -  LsLiveTableViewCell 代理
-- (void)didClickIntoBtn:(NSString *)ID  isPackage:(BOOL)ispackage{
+- (void)didClickIntoBtn:(LsButton *)btn  isPackage:(BOOL)ispackage{
     if (ispackage) {
         LsLiveDetailViewController *vc =[[LsLiveDetailViewController alloc] init];
-        vc.classId                     =ID;
+        vc.classId                     =btn.videoID;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
 //        LsCustomPlayerViewController *player = [[LsCustomPlayerViewController alloc] init];
 //        player.videoId = ID;
 //        [self.navigationController pushViewController:player animated:YES];
         
-        _hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
-        _hud.removeFromSuperViewOnHide = YES;
-
-        PlayParameter *parameter = [[PlayParameter alloc] init];
-        parameter.userId = CCLIVE_USERID;
-        parameter.roomId =@"85339BECF4BA03FA9C33DC5901307461";
-        parameter.liveid = @"7E4226D46FD192E8";
-        parameter.viewerName = @"唐朝将军";
-        parameter.token = @"shishuo";
-        parameter.security = NO;
-        RequestDataPlayBack *requestDataPlayBack = [[RequestDataPlayBack alloc] initLoginWithParameter:parameter];
-        requestDataPlayBack.delegate = self;
+        LsPlayBackViewController *plVc=[[LsPlayBackViewController alloc] init];
+        plVc.model =btn.model;
+        [self.navigationController pushViewController:plVc animated:YES];
     }
-}
-
--(void)loginSucceedPlayBack {
-    [_hud hide:YES];    
-    LSApplication.idleTimerDisabled=YES;
-    PlayBackVC *playBackVC = [[PlayBackVC alloc] init];
-    [self presentViewController:playBackVC animated:YES completion:nil];
-}
-
--(void)loginFailed:(NSError *)error reason:(NSString *)reason {
-    [_hud hide:YES];
-
-    NSString *message = nil;
-    if (reason == nil) {
-        message = [error localizedDescription];
-    } else {
-        message = reason;
-    }
-    [LsMethod alertMessage:message WithTime:2];
 }
 
 - (void)didClickEvaluateBtnIndex:(LsButton *)btn{

@@ -27,6 +27,8 @@
     UIImageView       *imageV;
     LsButton          *intoBtn;
     LsButton          *evaluateBtn;
+    
+    UIView            *topLine;
 }
 
 @end
@@ -36,10 +38,15 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor    =[UIColor clearColor];
-        baseView        =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 125*LSScale)];
+        self.backgroundColor     =[UIColor clearColor];
+        baseView                 =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 125*LSScale)];
         baseView.backgroundColor =[UIColor whiteColor];
         [self addSubview:baseView];
+        
+        topLine          =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 1.5*LSScale)];
+        topLine.backgroundColor  =LSNavColor;
+        topLine.hidden           =YES;
+        [baseView addSubview:topLine];
         
         titleL        =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, 8*LSScale, LSMainScreenW-40, 25*LSScale)];
         titleL.font             =[UIFont systemFontOfSize:17.5];
@@ -139,7 +146,7 @@
 
 -(void)clickIntoBtn:(LsButton*)button{
     if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickIntoBtn:isPackage:)]) {
-        [self.delegate didClickIntoBtn:button.videoID isPackage:button.isPackage];
+        [self.delegate didClickIntoBtn:button isPackage:button.isPackage];
     }
 }
 
@@ -191,6 +198,8 @@
             baseView.frame =CGRectMake(0, 10*LSScale, baseView.frame.size.width, baseView.frame.size.height);
             imageV.hidden  =YES;
             line.hidden    =YES;
+            topLine.hidden =NO;
+
             if (model.isRecommend) {
                 imageV.hidden =NO;
             }
@@ -233,6 +242,7 @@
             }else{
                 intoBtn.videoID   = model.videoId;
             }
+            
         }else if ([type isEqualToString:@"6"])//可回放
         {
             personNumL.hidden =YES;
@@ -255,8 +265,8 @@
             intoBtn.layer.backgroundColor  =[UIColor whiteColor].CGColor;
             intoBtn.layer.borderWidth=1;
             intoBtn.layer.borderColor=[UIColor darkGrayColor].CGColor;
-            intoBtn.tag       =[model.id_ integerValue];
-            
+//            intoBtn.tag       =[model.id_ integerValue];
+            intoBtn.model       =model;
         }
     }
 }

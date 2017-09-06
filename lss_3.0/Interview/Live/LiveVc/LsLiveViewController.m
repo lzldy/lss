@@ -18,6 +18,7 @@
     NSInteger  indexTabView;
     BOOL       isScroll;
     float      startY;
+    UIView     *myLive;
 }
 @property (nonatomic,strong) LsNavTabView *topTabView;
 @property (nonatomic,strong) UIScrollView *scrView;
@@ -57,16 +58,30 @@
 }
 
 -(void)loadBaseUI{
+    myLive                  =[[UIView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navView.frame), LSMainScreenW, 35*LSScale)];
+    myLive.backgroundColor  =[UIColor whiteColor];
+    [superView addSubview:myLive];
+    
+    UILabel *myL            =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale,0, LSMainScreenW-80*LSScale, 35*LSScale)];
+    myL.text                =@"我报名的直播课";
+    myL.textColor           =LSNavColor;
+    myL.textAlignment       =NSTextAlignmentLeft;
+    myL.font                =[UIFont systemFontOfSize:15.5*LSScale];
+    [myLive addSubview:myL];
+    
+    UIImage *myImsge        =[UIImage imageNamed:@"hsh"];
+    UIButton *myLiveBtn     =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-10*LSScale-35*LSScale, 0, 35*LSScale, 35*LSScale)];
+    [myLiveBtn setImage:myImsge forState:0];
+    [myLiveBtn addTarget:self action:@selector(clickMyLiveBtn) forControlEvents:UIControlEventTouchUpInside];
+    [myLive addSubview:myLiveBtn];
+    
+    UIView *line            =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(myLive.frame)-0.5*LSScale, LSMainScreenW, 0.5*LSScale)];
+    line.backgroundColor    =LSLineColor;
+    [myLive addSubview:line];
+    
     [superView addSubview:self.scrView];
     [self.scrView addSubview:self.interviewTabView];
     [self.scrView addSubview:self.writtenTabView];
-    
-    UIButton *myLive =[[UIButton alloc] initWithFrame:CGRectMake(0, LSMainScreenH-50*LSScale, LSMainScreenW, 50*LSScale)];
-    [myLive setTitle:@"我的直播" forState:0];
-    myLive.titleLabel.font   =[UIFont systemFontOfSize:19];
-    myLive.backgroundColor   =LSNavColor;
-    [myLive addTarget:self action:@selector(clickMyLiveBtn) forControlEvents:UIControlEventTouchUpInside];
-    [superView addSubview:myLive];
 }
 
 -(void)clickMyLiveBtn{
@@ -191,7 +206,7 @@
 
 -(UITableView *)writtenTabView{
     if (!_writtenTabView) {
-        _writtenTabView =[[UITableView alloc] initWithFrame:CGRectMake(LSMainScreenW,0, LSMainScreenW,self.scrView.frame.size.height-50*LSScale)];
+        _writtenTabView =[[UITableView alloc] initWithFrame:CGRectMake(LSMainScreenW,0, LSMainScreenW,self.scrView.frame.size.height)];
         _writtenTabView.delegate         =self;
         _writtenTabView.dataSource       =self;
         _writtenTabView.tableFooterView  =[[UIView alloc] init];
@@ -208,7 +223,7 @@
 
 -(UITableView *)interviewTabView{
     if (!_interviewTabView) {
-        _interviewTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,0, LSMainScreenW,self.scrView.frame.size.height-50*LSScale)];
+        _interviewTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,0, LSMainScreenW,self.scrView.frame.size.height)];
         _interviewTabView.delegate         =self;
         _interviewTabView.dataSource       =self;
         _interviewTabView.tableFooterView  =[[UIView alloc] init];
@@ -225,7 +240,7 @@
 
 -(UIScrollView *)scrView{
     if (!_scrView) {
-        _scrView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame),LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.navView.frame))];
+        _scrView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(myLive.frame),LSMainScreenW, LSMainScreenH-CGRectGetMaxY(myLive.frame))];
         _scrView.pagingEnabled                    =YES;
         _scrView.contentSize                      =CGSizeMake(LSMainScreenW*2, 0);
         _scrView.showsHorizontalScrollIndicator   =NO;

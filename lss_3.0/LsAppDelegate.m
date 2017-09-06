@@ -168,7 +168,7 @@ static NSString* BeeCloudSecret = @"811671b6-34d6-4db5-b020-484dcc8bf844";
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (!result) {
         if ([BeeCloud handleOpenUrl:url]) {
-            
+            LsLog(@"");
         }
     }
     return result;

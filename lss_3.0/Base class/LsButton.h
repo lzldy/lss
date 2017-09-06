@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LsLiveModel.h"
 
 @interface LsButton : UIButton
 
@@ -14,5 +15,7 @@
 @property (nonatomic,strong) NSURL    *url;
 @property (nonatomic,assign) BOOL     isPackage;
 @property (nonatomic,strong) NSString *title;
+
+@property (nonatomic,strong) LsLiveModel *model;
 
 @end

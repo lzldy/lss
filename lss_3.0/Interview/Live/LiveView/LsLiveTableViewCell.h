@@ -14,7 +14,7 @@
 
 @optional
 
-- (void)didClickIntoBtn:(NSString *)ID  isPackage:(BOOL)ispackage;
+- (void)didClickIntoBtn:(LsButton *)btn  isPackage:(BOOL)ispackage;
 - (void)didClickEvaluateBtnIndex:(LsButton*)btn;
 
 @end
