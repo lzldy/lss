@@ -33,7 +33,7 @@
 
 -(void)initView{
   
-    UIView   *baseView  =[[UIView alloc] initWithFrame:CGRectMake(0, 0,LSMainScreenW,70*LSScale)];
+    UIView   *baseView  =[[UIView alloc] initWithFrame:CGRectMake(0, 64,LSMainScreenW,70*LSScale)];
     baseView.backgroundColor  =[UIColor whiteColor];
     
     UILabel *label      =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 10*LSScale, baseView.frame.size.width-30*LSScale, 20*LSScale)];
