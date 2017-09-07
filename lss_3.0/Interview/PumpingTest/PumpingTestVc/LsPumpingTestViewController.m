@@ -15,6 +15,11 @@
 {
     LsButton     *rightBtn;
     UIButton     *startBtn;
+    LsButton     *shijiangBtn;
+    LsButton     *shuokeBtn;
+    LsButton     *jigouhuaBtn;
+    LsButton     *dabianBtn;
+
 }
 @property (nonatomic,strong)  LsTestChooseView *chooseView;
 
@@ -53,13 +58,67 @@
     midView.image           =midImage;
     [superView addSubview:midView];
     
-    startBtn         =[[UIButton alloc] initWithFrame:CGRectMake(15*LSScale, CGRectGetMaxY(midView.frame)+30*LSScale, LSMainScreenW-30*LSScale, 38*LSScale)];
+    shijiangBtn                    =[[LsButton alloc] initWithFrame:CGRectMake(60*LSScale, CGRectGetMinY(midView.frame)+80*LSScale, 70*LSScale, 60*LSScale)];
+    UIImage   *shijiangImage       =[UIImage imageNamed:@"sj"];
+    shijiangBtn.lsImageView.frame  =CGRectMake(CGRectGetWidth(shijiangBtn.frame)/2-shijiangImage.size.width/2, 0, shijiangImage.size.width, shijiangImage.size.height);
+    shijiangBtn.lsImageView.image  =shijiangImage;
+    shijiangBtn.lsLabel.frame      =CGRectMake(0,CGRectGetHeight(shijiangBtn.frame)-25*LSScale, CGRectGetWidth(shijiangBtn.frame), 25*LSScale);
+    shijiangBtn.lsLabel.text       =@"试课/试讲";
+    shijiangBtn.lsLabel.font       =[UIFont systemFontOfSize:12*LSScale];
+    shijiangBtn.lsLabel.textAlignment =NSTextAlignmentCenter;
+    shijiangBtn.lsLabel.textColor  =[UIColor grayColor];
+    shijiangBtn.tag                =0;
+    [shijiangBtn addTarget:self action:@selector(didClickTypeBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [superView addSubview:shijiangBtn];
+    
+    shuokeBtn                    =[[LsButton alloc] initWithFrame:CGRectMake(LSMainScreenW-60*LSScale-70*LSScale, CGRectGetMinY(midView.frame)+80*LSScale, 70*LSScale, 60*LSScale)];
+    UIImage   *shuokeimage       =[UIImage imageNamed:@"sk"];
+    shuokeBtn.lsImageView.frame  =CGRectMake(CGRectGetWidth(shuokeBtn.frame)/2-shuokeimage.size.width/2, 0, shuokeimage.size.width, shuokeimage.size.height);
+    shuokeBtn.lsImageView.image  =shuokeimage;
+    shuokeBtn.lsLabel.frame      =CGRectMake(0,CGRectGetHeight(shuokeBtn.frame)-25*LSScale, CGRectGetWidth(shuokeBtn.frame), 25*LSScale);
+    shuokeBtn.lsLabel.text       =@"说课";
+    shuokeBtn.lsLabel.font       =[UIFont systemFontOfSize:12*LSScale];
+    shuokeBtn.lsLabel.textAlignment =NSTextAlignmentCenter;
+    shuokeBtn.lsLabel.textColor  =[UIColor grayColor];
+    shuokeBtn.tag                =1;
+    [shuokeBtn addTarget:self action:@selector(didClickTypeBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [superView addSubview:shuokeBtn];
+
+    jigouhuaBtn                    =[[LsButton alloc] initWithFrame:CGRectMake(60*LSScale, CGRectGetMaxY(shijiangBtn.frame)+60*LSScale, 70*LSScale, 60*LSScale)];
+    UIImage   *jigouhuaImage       =[UIImage imageNamed:@"jgh"];
+    jigouhuaBtn.lsImageView.frame  =CGRectMake(CGRectGetWidth(jigouhuaBtn.frame)/2-jigouhuaImage.size.width/2, 0, jigouhuaImage.size.width, jigouhuaImage.size.height);
+    jigouhuaBtn.lsImageView.image  =jigouhuaImage;
+    jigouhuaBtn.lsLabel.frame      =CGRectMake(0, CGRectGetHeight(jigouhuaBtn.frame)-25*LSScale, CGRectGetWidth(jigouhuaBtn.frame),25*LSScale);
+    jigouhuaBtn.lsLabel.text       =@"结构化面试";
+    jigouhuaBtn.lsLabel.font       =[UIFont systemFontOfSize:12*LSScale];
+    jigouhuaBtn.lsLabel.textAlignment =NSTextAlignmentCenter;
+    jigouhuaBtn.tag                =2;
+    jigouhuaBtn.lsLabel.textColor  =[UIColor grayColor];
+    [jigouhuaBtn addTarget:self action:@selector(didClickTypeBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [superView addSubview:jigouhuaBtn];
+
+    dabianBtn                    =[[LsButton alloc] initWithFrame:CGRectMake(LSMainScreenW-60*LSScale-70*LSScale, CGRectGetMaxY(shijiangBtn.frame)+60*LSScale, 70*LSScale, 60*LSScale)];
+    UIImage   *dabianImage       =[UIImage imageNamed:@"db"];
+    dabianBtn.lsImageView.frame  =CGRectMake(CGRectGetWidth(dabianBtn.frame)/2-dabianImage.size.width/2, 0, dabianImage.size.width, dabianImage.size.height);
+    dabianBtn.lsImageView.image  =dabianImage;
+    dabianBtn.lsLabel.frame      =CGRectMake(0, CGRectGetHeight(dabianBtn.frame)-25*LSScale, CGRectGetWidth(dabianBtn.frame), 25*LSScale);
+    dabianBtn.lsLabel.text       =@"试课/试讲";
+    dabianBtn.lsLabel.font       =[UIFont systemFontOfSize:12*LSScale];
+    dabianBtn.lsLabel.textAlignment =NSTextAlignmentCenter;
+    dabianBtn.tag                =3;
+    dabianBtn.lsLabel.textColor  =[UIColor grayColor];
+    [dabianBtn addTarget:self action:@selector(didClickTypeBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [superView addSubview:dabianBtn];
+
+    
+    startBtn                       =[[UIButton alloc] initWithFrame:CGRectMake(15*LSScale, CGRectGetMaxY(midView.frame)+30*LSScale, LSMainScreenW-30*LSScale, 38*LSScale)];
     startBtn.layer.backgroundColor =LSColor(153, 153, 153, 1).CGColor;
     startBtn.layer.cornerRadius    =6*LSScale;
     [startBtn setTitle:@"开始抽题" forState:0];
     [startBtn setTitleColor:[UIColor whiteColor] forState:0];
     startBtn.titleLabel.font       =[UIFont systemFontOfSize:15*LSScale];
     [startBtn addTarget:self action:@selector(didClickStartBnt:) forControlEvents:UIControlEventTouchUpInside];
+    startBtn.userInteractionEnabled =NO;
     [superView addSubview:startBtn];
     
     UILabel  *bottomL     =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(startBtn.frame)+20*LSScale, LSMainScreenW, 60*LSScale)];
@@ -76,6 +135,39 @@
     [superView addSubview:bottomL];
     
     [superView addSubview:self.chooseView];
+}
+
+-(void)didClickTypeBtn:(LsButton*)btn{
+    startBtn.userInteractionEnabled =YES;
+    startBtn.layer.backgroundColor  =LSNavColor.CGColor;
+    [self reSetImageAndTextColor];
+    if (btn.tag==0) {
+        shijiangBtn.lsImageView.image =[UIImage imageNamed:@"sj_s"];
+        shijiangBtn.lsLabel.textColor =LSNavColor;
+    }else if (btn.tag==1){
+        shuokeBtn.lsImageView.image =[UIImage imageNamed:@"sk_s"];
+        shuokeBtn.lsLabel.textColor =LSNavColor;
+    }else if (btn.tag==2){
+        jigouhuaBtn.lsImageView.image =[UIImage imageNamed:@"jgh_s"];
+        jigouhuaBtn.lsLabel.textColor =LSNavColor;
+    }else if (btn.tag==3){
+        dabianBtn.lsImageView.image =[UIImage imageNamed:@"db_s"];
+        dabianBtn.lsLabel.textColor =LSNavColor;
+    }
+}
+
+-(void)reSetImageAndTextColor{
+    shijiangBtn.lsImageView.image =[UIImage imageNamed:@"sj"];
+    shijiangBtn.lsLabel.textColor =[UIColor grayColor];
+    
+    shuokeBtn.lsImageView.image   =[UIImage imageNamed:@"sk"];
+    shuokeBtn.lsLabel.textColor   =[UIColor grayColor];
+    
+    jigouhuaBtn.lsImageView.image =[UIImage imageNamed:@"jgh"];
+    jigouhuaBtn.lsLabel.textColor =[UIColor grayColor];
+    
+    dabianBtn.lsImageView.image   =[UIImage imageNamed:@"db"];
+    dabianBtn.lsLabel.textColor   =[UIColor grayColor];
 }
 
 -(void)didClickStartBnt:(UIButton*)btn{

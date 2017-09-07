@@ -30,10 +30,27 @@
     [superView addSubview:backImageV];
     [superView bringSubviewToFront:self.navView];
     
-    UIView  *midView        =[[UIView alloc] initWithFrame:CGRectMake(15*LSScale, CGRectGetMaxY(self.navView.frame)+80*LSScale, LSMainScreenW-30*LSScale, 250*LSScale)];
-    midView.layer.cornerRadius =10*LSScale;
-    midView.backgroundColor =[UIColor whiteColor];
-    [superView addSubview:midView];
+    UIImage     *backImage          =[UIImage imageNamed:@"kp_bj"];
+    UIImageView *backGroudImageView =[[UIImageView alloc] initWithFrame:CGRectMake(15*LSScale,  CGRectGetMaxY(self.navView.frame)+80*LSScale,LSMainScreenW-30*LSScale,(LSMainScreenW-30*LSScale)/backImage.size.width*backImage.size.height)];
+    backGroudImageView.image        =backImage;
+    [superView addSubview:backGroudImageView];
+    
+    UILabel   *label                =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, 11*LSScale, 150*LSScale, 30*LSScale)];
+    label.text                      =@"你本次说课的题目是：";
+    label.textAlignment             =NSTextAlignmentLeft;
+    label.textColor                 =[UIColor darkGrayColor];
+    label.font                      =[UIFont systemFontOfSize:13*LSScale];
+    [backGroudImageView addSubview:label];
+    
+    UILabel   *titleL                =[[UILabel alloc] initWithFrame:CGRectMake(20*LSScale,CGRectGetHeight(backGroudImageView.frame)/2+20*LSScale-50*LSScale,CGRectGetWidth(backGroudImageView.frame) -40*LSScale, 100*LSScale)];
+    titleL.layer.cornerRadius        =8*LSScale;
+    titleL.numberOfLines             =0;
+    titleL.text                      =@"你本次说课的题目是：打扫房间爱的开发卡登记反馈时代峰峻";
+    titleL.textAlignment             =NSTextAlignmentCenter;
+    titleL.textColor                 =[UIColor darkTextColor];
+    titleL.font                      =[UIFont systemFontOfSize:18*LSScale];
+    titleL.layer.backgroundColor     =LSColor(251, 243, 245, 1).CGColor;
+    [backGroudImageView addSubview:titleL];
     
     startBtn         =[[UIButton alloc] initWithFrame:CGRectMake(15*LSScale, LSMainScreenH-38*LSScale-20*LSScale, LSMainScreenW-30*LSScale, 38*LSScale)];
     startBtn.layer.backgroundColor =LSNavColor.CGColor;

@@ -32,7 +32,6 @@ static NSString * headerReuseIdentifier = @"header";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.navTitle =@"确认我的梦想(2/2)";
-    self.navView.titleLabel.font =[UIFont systemFontOfSize:15.5];
     [self initData];
     [self initBaseUI];
     [superView bringSubviewToFront:self.navView];

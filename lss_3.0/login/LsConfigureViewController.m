@@ -36,7 +36,6 @@ static NSString * headerReuseIdentifier = @"header";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.navTitle =@"确认我的梦想(1/2)";
-    self.navView.titleLabel.font =[UIFont systemFontOfSize:15.5];
     headerArray =@[@"您参加的考试?",@"您教学的目标?",@"您教授的科目是?"];
     [self getData];
 }
