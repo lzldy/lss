@@ -18,4 +18,7 @@
 
 @property (nonatomic,strong) LsLiveModel *model;
 
+@property (nonatomic,strong) UIImageView *lsImageView;
+@property (nonatomic,strong) UILabel     *lsLabel;
+
 @end

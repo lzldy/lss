@@ -359,7 +359,6 @@
 		180BD10F1F5D7E5B001EE331 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180BD10D1F5D7E5B001EE331 /* loading@3x.gif */; };
 		182C686C1F5F8A6800DD1511 /* LsPlayBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C686B1F5F8A6800DD1511 /* LsPlayBackViewController.m */; };
 		182C686F1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C686E1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m */; };
-		182CDEC01F42A7BB00283EBA /* LsInterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEBF1F42A7BB00283EBA /* LsInterModel.m */; };
 		182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC51F42AA0600283EBA /* LsPracticeModel.m */; };
 		182CDEC91F43E83000283EBA /* LsLiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC81F43E83000283EBA /* LsLiveModel.m */; };
 		182CDECC1F43E85500283EBA /* LsLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDECB1F43E85500283EBA /* LsLiveViewController.m */; };
@@ -402,13 +401,20 @@
 		1849ECEB1F55460900B2B9B1 /* LsChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849ECEA1F55460900B2B9B1 /* LsChooseView.m */; };
 		184CA18F1F27199F00ACB807 /* lss_3_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA18E1F27199F00ACB807 /* lss_3_0Tests.m */; };
 		184CA19A1F27199F00ACB807 /* lss_3_0UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1991F27199F00ACB807 /* lss_3_0UITests.m */; };
-		184CA1F21F272FA300ACB807 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184CA1801F27199F00ACB807 /* Assets.xcassets */; };
 		184CA1F41F272FC800ACB807 /* LsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1BE1F27248A00ACB807 /* LsBaseViewController.m */; };
 		184CA1F51F272FC800ACB807 /* LsBaseNaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1C11F2724C000ACB807 /* LsBaseNaViewController.m */; };
 		184CA1F61F272FC800ACB807 /* LsBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1C41F2724DB00ACB807 /* LsBaseModel.m */; };
 		184CA1F71F272FC800ACB807 /* LsMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1D51F2726F600ACB807 /* LsMyViewController.m */; };
 		184CA1FC1F272FC800ACB807 /* LsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1781F27199F00ACB807 /* LsAppDelegate.m */; };
 		184CA1FD1F272FC800ACB807 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1B01F27201500ACB807 /* main.m */; };
+		185296031F6015D4003D5D8A /* LsInterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 185295FA1F6015D4003D5D8A /* LsInterModel.m */; };
+		185296041F6015D4003D5D8A /* LsInterviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185295FD1F6015D4003D5D8A /* LsInterviewViewController.m */; };
+		185296051F6015D4003D5D8A /* LsInterCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296001F6015D4003D5D8A /* LsInterCellHeaderView.m */; };
+		185296061F6015D4003D5D8A /* LsInterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296021F6015D4003D5D8A /* LsInterView.m */; };
+		1852960D1F601680003D5D8A /* LsPumpingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1852960C1F601680003D5D8A /* LsPumpingTestViewController.m */; };
+		1852960F1F601C02003D5D8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1852960E1F601C02003D5D8A /* Assets.xcassets */; };
+		185296121F60216D003D5D8A /* LsTestChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296111F60216D003D5D8A /* LsTestChooseView.m */; };
+		185296151F60EC5D003D5D8A /* LsProFormaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296141F60EC5D003D5D8A /* LsProFormaViewController.m */; };
 		1854F4A21F36BC7C00E1F603 /* LsConfigureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */; };
 		1854F4A91F36BE2600E1F603 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A51F36BE2600E1F603 /* NSObject+YYModel.m */; };
 		1854F4AA1F36BE2600E1F603 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A71F36BE2600E1F603 /* YYClassInfo.m */; };
@@ -475,7 +481,6 @@
 		18AF1AF61F2731E800D05E4D /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1AE51F2731E800D05E4D /* IQToolbar.m */; };
 		18AF1AF71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1AE71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m */; };
 		18AF1AF81F2731E800D05E4D /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18AF1AE91F2731E800D05E4D /* IQKeyboardManager.bundle */; };
-		18E82D691F37FB9400D3154B /* LsInterviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D671F37FB9400D3154B /* LsInterviewViewController.m */; };
 		18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */; };
 		18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D751F37FDB800D3154B /* LsPracticeViewController.m */; };
 		18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D801F37FE3300D3154B /* LsDynamicViewController.m */; };
@@ -495,8 +500,6 @@
 		18F32C5F1F4EC91E0081629E /* LsEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C5E1F4EC91E0081629E /* LsEvaluateViewController.m */; };
 		18F32C631F4EEF080081629E /* XHStarRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C621F4EEF080081629E /* XHStarRateView.m */; };
 		18F32C661F4F09750081629E /* LsShareEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C651F4F09750081629E /* LsShareEvaluateViewController.m */; };
-		18F74C841F3C957F007AA5F6 /* LsInterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C831F3C957F007AA5F6 /* LsInterView.m */; };
-		18F74C871F3D4565007AA5F6 /* LsInterCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C861F3D4565007AA5F6 /* LsInterCellHeaderView.m */; };
 		18F74C8E1F3D89E7007AA5F6 /* LsLiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */; };
 		18F74C911F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F74C901F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m */; };
 		18FA66771F57E418006587AF /* LsPractiveDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FA66761F57E418006587AF /* LsPractiveDetailViewController.m */; };
@@ -995,8 +998,6 @@
 		182C686B1F5F8A6800DD1511 /* LsPlayBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPlayBackViewController.m; sourceTree = "<group>"; };
 		182C686D1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPlayBackTableViewCell.h; sourceTree = "<group>"; };
 		182C686E1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPlayBackTableViewCell.m; sourceTree = "<group>"; };
-		182CDEBE1F42A7BB00283EBA /* LsInterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterModel.h; sourceTree = "<group>"; };
-		182CDEBF1F42A7BB00283EBA /* LsInterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterModel.m; sourceTree = "<group>"; };
 		182CDEC41F42AA0600283EBA /* LsPracticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeModel.h; sourceTree = "<group>"; };
 		182CDEC51F42AA0600283EBA /* LsPracticeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPracticeModel.m; sourceTree = "<group>"; };
 		182CDEC71F43E83000283EBA /* LsLiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveModel.h; sourceTree = "<group>"; };
@@ -1064,7 +1065,6 @@
 		184CA1771F27199F00ACB807 /* LsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsAppDelegate.h; sourceTree = "<group>"; };
 		184CA1781F27199F00ACB807 /* LsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsAppDelegate.m; sourceTree = "<group>"; };
 		184CA17E1F27199F00ACB807 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		184CA1801F27199F00ACB807 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		184CA18A1F27199F00ACB807 /* lssTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lssTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		184CA18E1F27199F00ACB807 /* lss_3_0Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lss_3_0Tests.m; sourceTree = "<group>"; };
 		184CA1901F27199F00ACB807 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1081,6 +1081,21 @@
 		184CA1C41F2724DB00ACB807 /* LsBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsBaseModel.m; sourceTree = "<group>"; };
 		184CA1D41F2726F600ACB807 /* LsMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsMyViewController.h; sourceTree = "<group>"; };
 		184CA1D51F2726F600ACB807 /* LsMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsMyViewController.m; sourceTree = "<group>"; };
+		185295F91F6015D4003D5D8A /* LsInterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterModel.h; sourceTree = "<group>"; };
+		185295FA1F6015D4003D5D8A /* LsInterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterModel.m; sourceTree = "<group>"; };
+		185295FC1F6015D4003D5D8A /* LsInterviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterviewViewController.h; sourceTree = "<group>"; };
+		185295FD1F6015D4003D5D8A /* LsInterviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterviewViewController.m; sourceTree = "<group>"; };
+		185295FF1F6015D4003D5D8A /* LsInterCellHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterCellHeaderView.h; sourceTree = "<group>"; };
+		185296001F6015D4003D5D8A /* LsInterCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterCellHeaderView.m; sourceTree = "<group>"; };
+		185296011F6015D4003D5D8A /* LsInterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterView.h; sourceTree = "<group>"; };
+		185296021F6015D4003D5D8A /* LsInterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterView.m; sourceTree = "<group>"; };
+		1852960B1F601680003D5D8A /* LsPumpingTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPumpingTestViewController.h; sourceTree = "<group>"; };
+		1852960C1F601680003D5D8A /* LsPumpingTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPumpingTestViewController.m; sourceTree = "<group>"; };
+		1852960E1F601C02003D5D8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		185296101F60216D003D5D8A /* LsTestChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTestChooseView.h; sourceTree = "<group>"; };
+		185296111F60216D003D5D8A /* LsTestChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsTestChooseView.m; sourceTree = "<group>"; };
+		185296131F60EC5D003D5D8A /* LsProFormaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsProFormaViewController.h; sourceTree = "<group>"; };
+		185296141F60EC5D003D5D8A /* LsProFormaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsProFormaViewController.m; sourceTree = "<group>"; };
 		1854F4A01F36BC7C00E1F603 /* LsConfigureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsConfigureModel.h; sourceTree = "<group>"; };
 		1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsConfigureModel.m; sourceTree = "<group>"; };
 		1854F4A41F36BE2600E1F603 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
@@ -1217,8 +1232,6 @@
 		18AF1AE61F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
 		18AF1AE71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		18AF1AE91F2731E800D05E4D /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
-		18E82D661F37FB9400D3154B /* LsInterviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterviewViewController.h; sourceTree = "<group>"; };
-		18E82D671F37FB9400D3154B /* LsInterviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterviewViewController.m; sourceTree = "<group>"; };
 		18E82D6D1F37FCAE00D3154B /* LsWrittenExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenExaminationViewController.h; sourceTree = "<group>"; };
 		18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenExaminationViewController.m; sourceTree = "<group>"; };
 		18E82D741F37FDB800D3154B /* LsPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeViewController.h; sourceTree = "<group>"; };
@@ -1252,10 +1265,6 @@
 		18F32C621F4EEF080081629E /* XHStarRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHStarRateView.m; sourceTree = "<group>"; };
 		18F32C641F4F09750081629E /* LsShareEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsShareEvaluateViewController.h; sourceTree = "<group>"; };
 		18F32C651F4F09750081629E /* LsShareEvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsShareEvaluateViewController.m; sourceTree = "<group>"; };
-		18F74C821F3C957F007AA5F6 /* LsInterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterView.h; sourceTree = "<group>"; };
-		18F74C831F3C957F007AA5F6 /* LsInterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterView.m; sourceTree = "<group>"; };
-		18F74C851F3D4565007AA5F6 /* LsInterCellHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsInterCellHeaderView.h; sourceTree = "<group>"; };
-		18F74C861F3D4565007AA5F6 /* LsInterCellHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterCellHeaderView.m; sourceTree = "<group>"; };
 		18F74C8C1F3D89E7007AA5F6 /* LsLiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveTableViewCell.h; sourceTree = "<group>"; };
 		18F74C8D1F3D89E7007AA5F6 /* LsLiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveTableViewCell.m; sourceTree = "<group>"; };
 		18F74C8F1F3D8DEB007AA5F6 /* LsPracticeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeTableViewCell.h; sourceTree = "<group>"; };
@@ -1912,18 +1921,11 @@
 		182CDECD1F43EB4100283EBA /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				182CDECE1F43EB4100283EBA /* DataModel */,
+				185295F61F60159C003D5D8A /* DataModel */,
 				182CDECF1F43EB4100283EBA /* DataVc */,
 				182CDED01F43EB4100283EBA /* DataView */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		182CDECE1F43EB4100283EBA /* DataModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataModel;
 			sourceTree = "<group>";
 		};
 		182CDECF1F43EB4100283EBA /* DataVc */ = {
@@ -2146,10 +2148,10 @@
 		184CA1731F27199F00ACB807 /* lss_3.0 */ = {
 			isa = PBXGroup;
 			children = (
+				1852960E1F601C02003D5D8A /* Assets.xcassets */,
 				184CA1771F27199F00ACB807 /* LsAppDelegate.h */,
 				184CA1781F27199F00ACB807 /* LsAppDelegate.m */,
 				184CA17D1F27199F00ACB807 /* Main.storyboard */,
-				184CA1801F27199F00ACB807 /* Assets.xcassets */,
 			);
 			path = lss_3.0;
 			sourceTree = "<group>";
@@ -2289,6 +2291,89 @@
 				182C686E1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m */,
 			);
 			path = MyView;
+			sourceTree = "<group>";
+		};
+		185295F61F60159C003D5D8A /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		185295F71F6015D4003D5D8A /* Interview */ = {
+			isa = PBXGroup;
+			children = (
+				185295F81F6015D4003D5D8A /* InterviewModel */,
+				185295FB1F6015D4003D5D8A /* InterviewVc */,
+				185295FE1F6015D4003D5D8A /* InterviewView */,
+			);
+			path = Interview;
+			sourceTree = "<group>";
+		};
+		185295F81F6015D4003D5D8A /* InterviewModel */ = {
+			isa = PBXGroup;
+			children = (
+				185295F91F6015D4003D5D8A /* LsInterModel.h */,
+				185295FA1F6015D4003D5D8A /* LsInterModel.m */,
+			);
+			path = InterviewModel;
+			sourceTree = "<group>";
+		};
+		185295FB1F6015D4003D5D8A /* InterviewVc */ = {
+			isa = PBXGroup;
+			children = (
+				185295FC1F6015D4003D5D8A /* LsInterviewViewController.h */,
+				185295FD1F6015D4003D5D8A /* LsInterviewViewController.m */,
+			);
+			path = InterviewVc;
+			sourceTree = "<group>";
+		};
+		185295FE1F6015D4003D5D8A /* InterviewView */ = {
+			isa = PBXGroup;
+			children = (
+				185295FF1F6015D4003D5D8A /* LsInterCellHeaderView.h */,
+				185296001F6015D4003D5D8A /* LsInterCellHeaderView.m */,
+				185296011F6015D4003D5D8A /* LsInterView.h */,
+				185296021F6015D4003D5D8A /* LsInterView.m */,
+			);
+			path = InterviewView;
+			sourceTree = "<group>";
+		};
+		185296071F601663003D5D8A /* PumpingTest */ = {
+			isa = PBXGroup;
+			children = (
+				185296081F601663003D5D8A /* PumpingTestModel */,
+				185296091F601663003D5D8A /* PumpingTestVc */,
+				1852960A1F601663003D5D8A /* PumpingTestView */,
+			);
+			path = PumpingTest;
+			sourceTree = "<group>";
+		};
+		185296081F601663003D5D8A /* PumpingTestModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PumpingTestModel;
+			sourceTree = "<group>";
+		};
+		185296091F601663003D5D8A /* PumpingTestVc */ = {
+			isa = PBXGroup;
+			children = (
+				1852960B1F601680003D5D8A /* LsPumpingTestViewController.h */,
+				1852960C1F601680003D5D8A /* LsPumpingTestViewController.m */,
+				185296131F60EC5D003D5D8A /* LsProFormaViewController.h */,
+				185296141F60EC5D003D5D8A /* LsProFormaViewController.m */,
+			);
+			path = PumpingTestVc;
+			sourceTree = "<group>";
+		};
+		1852960A1F601663003D5D8A /* PumpingTestView */ = {
+			isa = PBXGroup;
+			children = (
+				185296101F60216D003D5D8A /* LsTestChooseView.h */,
+				185296111F60216D003D5D8A /* LsTestChooseView.m */,
+			);
+			path = PumpingTestView;
 			sourceTree = "<group>";
 		};
 		1854F4A31F36BE2600E1F603 /* YYModel */ = {
@@ -2494,45 +2579,15 @@
 		18E82D631F37FB9400D3154B /* Interview */ = {
 			isa = PBXGroup;
 			children = (
+				185296071F601663003D5D8A /* PumpingTest */,
+				185295F71F6015D4003D5D8A /* Interview */,
 				182CDECD1F43EB4100283EBA /* Data */,
 				182CDED11F43EB4100283EBA /* Notice */,
 				18F74C881F3D89A9007AA5F6 /* Live */,
 				18E82D711F37FDB800D3154B /* Practice */,
-				18E82D641F37FB9400D3154B /* InterviewModel */,
-				18E82D651F37FB9400D3154B /* InterviewVc */,
-				18E82D681F37FB9400D3154B /* InterviewView */,
 			);
 			name = Interview;
 			path = lss_3.0/Interview;
-			sourceTree = "<group>";
-		};
-		18E82D641F37FB9400D3154B /* InterviewModel */ = {
-			isa = PBXGroup;
-			children = (
-				182CDEBE1F42A7BB00283EBA /* LsInterModel.h */,
-				182CDEBF1F42A7BB00283EBA /* LsInterModel.m */,
-			);
-			path = InterviewModel;
-			sourceTree = "<group>";
-		};
-		18E82D651F37FB9400D3154B /* InterviewVc */ = {
-			isa = PBXGroup;
-			children = (
-				18E82D661F37FB9400D3154B /* LsInterviewViewController.h */,
-				18E82D671F37FB9400D3154B /* LsInterviewViewController.m */,
-			);
-			path = InterviewVc;
-			sourceTree = "<group>";
-		};
-		18E82D681F37FB9400D3154B /* InterviewView */ = {
-			isa = PBXGroup;
-			children = (
-				18F74C851F3D4565007AA5F6 /* LsInterCellHeaderView.h */,
-				18F74C861F3D4565007AA5F6 /* LsInterCellHeaderView.m */,
-				18F74C821F3C957F007AA5F6 /* LsInterView.h */,
-				18F74C831F3C957F007AA5F6 /* LsInterView.m */,
-			);
-			path = InterviewView;
 			sourceTree = "<group>";
 		};
 		18E82D6A1F37FCAE00D3154B /* WrittenExamination */ = {
@@ -3269,6 +3324,7 @@
 				180BCFC71F5D3E53001EE331 /* chat_ic_face_nor@2x.png in Resources */,
 				180BCFEB1F5D3E53001EE331 /* playback_rate_nor@2x.png in Resources */,
 				180BD0A01F5D4A1B001EE331 /* arrow@3x.png in Resources */,
+				1852960F1F601C02003D5D8A /* Assets.xcassets in Resources */,
 				180BD0CC1F5D4A1B001EE331 /* qs_choose_right@3x.png in Resources */,
 				180BD0C31F5D4A1B001EE331 /* notice_img_titlebig@2x.png in Resources */,
 				180BCF7F1F5D3E53001EE331 /* 016@2x.png in Resources */,
@@ -3474,7 +3530,6 @@
 				180BCFBC1F5D3E53001EE331 /* chat_em_face6@3x.png in Resources */,
 				180BCFAF1F5D3E53001EE331 /* chat_em_face1@2X.png in Resources */,
 				180BCF6A1F5D3E52001EE331 /* 005@3x.png in Resources */,
-				184CA1F21F272FA300ACB807 /* Assets.xcassets in Resources */,
 				180BD0201F5D4344001EE331 /* return_btn_playplan_nor@2x.png in Resources */,
 				180BCF711F5D3E52001EE331 /* 009@2x.png in Resources */,
 				180BCFA41F5D3E53001EE331 /* chat_em_face14@3x.png in Resources */,
@@ -3597,6 +3652,7 @@
 				18AF1AF01F2731E800D05E4D /* IQKeyboardManager.m in Sources */,
 				1854F5351F37024A00E1F603 /* SDWebImageManager.m in Sources */,
 				18FEF89C1F52C6F300F74BB6 /* BCQueryBillsCountResp.m in Sources */,
+				185296051F6015D4003D5D8A /* LsInterCellHeaderView.m in Sources */,
 				18F32C5C1F4EAE730081629E /* LsEnrollSuccessViewController.m in Sources */,
 				180BCA631F5D051C001EE331 /* PrivateChatViewForOne.m in Sources */,
 				18FEF8A51F52C6F300F74BB6 /* BCBaseResult.m in Sources */,
@@ -3609,7 +3665,6 @@
 				180BCA5D1F5D051C001EE331 /* InformationShowView.m in Sources */,
 				18975FCE1F29D06800447721 /* LsSingleton.m in Sources */,
 				18975FDC1F29D86900447721 /* GCDGroup.m in Sources */,
-				18F74C841F3C957F007AA5F6 /* LsInterView.m in Sources */,
 				18FEF89F1F52C6F300F74BB6 /* BCQueryRefundsReq.m in Sources */,
 				180BCA6D1F5D051C001EE331 /* UITouchView.m in Sources */,
 				18AF1AEE1F2731E800D05E4D /* IQUIViewController+Additions.m in Sources */,
@@ -3637,6 +3692,7 @@
 				18FEF89D1F52C6F300F74BB6 /* BCQueryRefundByIdReq.m in Sources */,
 				1854F4AD1F36E84E00E1F603 /* LsConfigureTwoViewController.m in Sources */,
 				182CDF251F4691D100283EBA /* LsLiveDetailViewController.m in Sources */,
+				185296121F60216D003D5D8A /* LsTestChooseView.m in Sources */,
 				180BCA1F1F5D048A001EE331 /* ChatView.m in Sources */,
 				18AF1AF41F2731E800D05E4D /* IQPreviousNextView.m in Sources */,
 				18FEF8991F52C6F300F74BB6 /* BCQueryBillsReq.m in Sources */,
@@ -3658,12 +3714,12 @@
 				180BCA5F1F5D051C001EE331 /* LoadingView.m in Sources */,
 				182C686F1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m in Sources */,
 				18AF1AF51F2731E800D05E4D /* IQTitleBarButtonItem.m in Sources */,
-				18F74C871F3D4565007AA5F6 /* LsInterCellHeaderView.m in Sources */,
 				1854F52E1F37024A00E1F603 /* MKAnnotationView+WebCache.m in Sources */,
 				18FEF68F1F5279B500F74BB6 /* DWTableView.m in Sources */,
 				1849ECEB1F55460900B2B9B1 /* LsChooseView.m in Sources */,
 				180BCA561F5D051C001EE331 /* CCPrivateChatView.m in Sources */,
 				18FEF8A71F52C6F300F74BB6 /* BCQueryRefundResult.m in Sources */,
+				185296061F6015D4003D5D8A /* LsInterView.m in Sources */,
 				180BCA6A1F5D051C001EE331 /* UIButtonImageLabel.m in Sources */,
 				1854F5331F37024A00E1F603 /* SDWebImageDownloader.m in Sources */,
 				1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */,
@@ -3680,6 +3736,7 @@
 				180BCA8E1F5D0763001EE331 /* MASLayoutConstraint.m in Sources */,
 				1854F4A91F36BE2600E1F603 /* NSObject+YYModel.m in Sources */,
 				180BCA691F5D051C001EE331 /* TextFieldUserInfo.m in Sources */,
+				185296031F6015D4003D5D8A /* LsInterModel.m in Sources */,
 				18FEF6871F52791200F74BB6 /* DWGestureButton.m in Sources */,
 				1843357E1F341F5900A53585 /* LsNavView.m in Sources */,
 				1854F5381F37024A00E1F603 /* UIImage+GIF.m in Sources */,
@@ -3698,10 +3755,10 @@
 				1843357B1F3419D300A53585 /* LsConfigureViewController.m in Sources */,
 				18FEF6991F527B5C00F74BB6 /* Reachability.m in Sources */,
 				180BCA671F5D051C001EE331 /* SettingBaseViewController.m in Sources */,
+				1852960D1F601680003D5D8A /* LsPumpingTestViewController.m in Sources */,
 				18FEF8AA1F52C6F300F74BB6 /* BCSubscriptionQuery.m in Sources */,
 				182C686C1F5F8A6800DD1511 /* LsPlayBackViewController.m in Sources */,
 				180BCA5E1F5D051C001EE331 /* LianmaiView.m in Sources */,
-				18E82D691F37FB9400D3154B /* LsInterviewViewController.m in Sources */,
 				18AF1AED1F2731E800D05E4D /* IQUIView+Hierarchy.m in Sources */,
 				1854F52A1F37024A00E1F603 /* MJRefreshHeaderView.m in Sources */,
 				184335261F333C2300A53585 /* LsGuidePageViewController.m in Sources */,
@@ -3716,7 +3773,6 @@
 				1854F53B1F37024A00E1F603 /* UIImageView+HighlightedWebCache.m in Sources */,
 				18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */,
 				18FEF88E1F52C6F300F74BB6 /* BCAuthReq.m in Sources */,
-				182CDEC01F42A7BB00283EBA /* LsInterModel.m in Sources */,
 				1854F53D1F37024A00E1F603 /* UIView+WebCacheOperation.m in Sources */,
 				1854F5391F37024A00E1F603 /* UIImage+MultiFormat.m in Sources */,
 				1854F5371F37024A00E1F603 /* UIButton+WebCache.m in Sources */,
@@ -3775,6 +3831,7 @@
 				18FEF6A21F528E5400F74BB6 /* LsCustomPlayerViewController.m in Sources */,
 				180BCA211F5D048A001EE331 /* PlayForPCVC.m in Sources */,
 				18F32C661F4F09750081629E /* LsShareEvaluateViewController.m in Sources */,
+				185296151F60EC5D003D5D8A /* LsProFormaViewController.m in Sources */,
 				18FEF88D1F52C6F300F74BB6 /* BeeCloud.m in Sources */,
 				1854F5291F37024A00E1F603 /* MJRefreshFooterView.m in Sources */,
 				180BCA8F1F5D0763001EE331 /* MASViewAttribute.m in Sources */,
@@ -3787,6 +3844,7 @@
 				1854F5321F37024A00E1F603 /* SDWebImageDecoder.m in Sources */,
 				18AF1AF61F2731E800D05E4D /* IQToolbar.m in Sources */,
 				18FEF8B11F52C6F300F74BB6 /* BCPayCache.m in Sources */,
+				185296041F6015D4003D5D8A /* LsInterviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

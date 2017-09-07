@@ -19,7 +19,7 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self =[super initWithFrame:frame];
     if (self) {
-        self.frame = CGRectMake(0,frame.origin.y, LSMainScreenW, LSMainScreenH-frame.origin.y);
+        self.frame = CGRectMake(0,0, LSMainScreenW, LSMainScreenH);
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
         
     }

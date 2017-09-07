@@ -17,6 +17,7 @@
 #import "LsLiveViewController.h"
 #import "LsDataViewController.h"
 #import "LsNoticeViewController.h"
+#import "LsPumpingTestViewController.h"
 
 @interface LsInterviewViewController ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate,interCellHeaderViewDelegate,practiceTableViewCellDelegate>
 {
@@ -70,7 +71,8 @@
 }
 
 -(void)clickSuspensionBtn{
-    LsLog(@"-----clickSuspensionBtn-----");
+    LsPumpingTestViewController *testVc =[[LsPumpingTestViewController alloc] init];
+    [self.navigationController pushViewController:testVc animated:YES];
 }
 
 // 使用定时器初始化

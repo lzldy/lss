@@ -27,8 +27,8 @@
     self.navView.navTitle =@"练课";
     superView.backgroundColor  =LSColor(243, 244, 245, 1);
 
-    [self.navView.rightButton setImage:[UIImage imageNamed:@"sl"] forState:UIControlStateNormal];
-    [self.navView.rightButton setImage:[UIImage imageNamed:@"xl"] forState:UIControlStateSelected];
+    [self.navView.rightButton setImage:[UIImage imageNamed:@"xl"] forState:UIControlStateNormal];
+    [self.navView.rightButton setImage:[UIImage imageNamed:@"sl"] forState:UIControlStateSelected];
     [self.navView.rightButton addTarget:self action:@selector(didClickNavViewRightBtn:) forControlEvents:UIControlEventTouchUpInside];
 
     [superView addSubview:self.tabView];

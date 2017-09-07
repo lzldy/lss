@@ -10,6 +10,16 @@
 
 @implementation LsButton
 
-
+-(instancetype)initWithFrame:(CGRect)frame{
+    self =[super initWithFrame:frame];
+    if (self) {
+        self.lsImageView  =[[UIImageView alloc] init];
+        [self addSubview:self.lsImageView];
+        
+        self.lsLabel      =[[UILabel alloc] init];
+        [self addSubview:self.lsLabel];
+    }
+    return self;
+}
 
 @end
