@@ -357,6 +357,8 @@
 		180BD10B1F5D4A1B001EE331 /* 多选选中@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 180BD09E1F5D4A1B001EE331 /* 多选选中@3x.png */; };
 		180BD10E1F5D7E5B001EE331 /* loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180BD10C1F5D7E5B001EE331 /* loading@2x.gif */; };
 		180BD10F1F5D7E5B001EE331 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180BD10D1F5D7E5B001EE331 /* loading@3x.gif */; };
+		181524861F64C7DC00E23257 /* LsVideotapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181524851F64C7DC00E23257 /* LsVideotapeViewController.m */; };
+		181524891F64E1AF00E23257 /* LsRecordingCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181524881F64E1AF00E23257 /* LsRecordingCompletedViewController.m */; };
 		182C686C1F5F8A6800DD1511 /* LsPlayBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C686B1F5F8A6800DD1511 /* LsPlayBackViewController.m */; };
 		182C686F1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C686E1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m */; };
 		182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC51F42AA0600283EBA /* LsPracticeModel.m */; };
@@ -415,6 +417,8 @@
 		1852960F1F601C02003D5D8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1852960E1F601C02003D5D8A /* Assets.xcassets */; };
 		185296121F60216D003D5D8A /* LsTestChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296111F60216D003D5D8A /* LsTestChooseView.m */; };
 		185296151F60EC5D003D5D8A /* LsProFormaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296141F60EC5D003D5D8A /* LsProFormaViewController.m */; };
+		1852961D1F622896003D5D8A /* AVCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1852961A1F622896003D5D8A /* AVCaptureManager.m */; };
+		1852961E1F622896003D5D8A /* VideoThumbnailGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1852961C1F622896003D5D8A /* VideoThumbnailGetter.m */; };
 		1854F4A21F36BC7C00E1F603 /* LsConfigureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */; };
 		1854F4A91F36BE2600E1F603 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A51F36BE2600E1F603 /* NSObject+YYModel.m */; };
 		1854F4AA1F36BE2600E1F603 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A71F36BE2600E1F603 /* YYClassInfo.m */; };
@@ -994,6 +998,10 @@
 		180BD09E1F5D4A1B001EE331 /* 多选选中@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "多选选中@3x.png"; sourceTree = "<group>"; };
 		180BD10C1F5D7E5B001EE331 /* loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@2x.gif"; sourceTree = "<group>"; };
 		180BD10D1F5D7E5B001EE331 /* loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@3x.gif"; sourceTree = "<group>"; };
+		181524841F64C7DC00E23257 /* LsVideotapeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsVideotapeViewController.h; sourceTree = "<group>"; };
+		181524851F64C7DC00E23257 /* LsVideotapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsVideotapeViewController.m; sourceTree = "<group>"; };
+		181524871F64E1AF00E23257 /* LsRecordingCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsRecordingCompletedViewController.h; sourceTree = "<group>"; };
+		181524881F64E1AF00E23257 /* LsRecordingCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsRecordingCompletedViewController.m; sourceTree = "<group>"; };
 		182C686A1F5F8A6800DD1511 /* LsPlayBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPlayBackViewController.h; sourceTree = "<group>"; };
 		182C686B1F5F8A6800DD1511 /* LsPlayBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPlayBackViewController.m; sourceTree = "<group>"; };
 		182C686D1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPlayBackTableViewCell.h; sourceTree = "<group>"; };
@@ -1096,6 +1104,10 @@
 		185296111F60216D003D5D8A /* LsTestChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsTestChooseView.m; sourceTree = "<group>"; };
 		185296131F60EC5D003D5D8A /* LsProFormaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsProFormaViewController.h; sourceTree = "<group>"; };
 		185296141F60EC5D003D5D8A /* LsProFormaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsProFormaViewController.m; sourceTree = "<group>"; };
+		185296191F622896003D5D8A /* AVCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCaptureManager.h; sourceTree = "<group>"; };
+		1852961A1F622896003D5D8A /* AVCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCaptureManager.m; sourceTree = "<group>"; };
+		1852961B1F622896003D5D8A /* VideoThumbnailGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoThumbnailGetter.h; sourceTree = "<group>"; };
+		1852961C1F622896003D5D8A /* VideoThumbnailGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoThumbnailGetter.m; sourceTree = "<group>"; };
 		1854F4A01F36BC7C00E1F603 /* LsConfigureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsConfigureModel.h; sourceTree = "<group>"; };
 		1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsConfigureModel.m; sourceTree = "<group>"; };
 		1854F4A41F36BE2600E1F603 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
@@ -2352,6 +2364,10 @@
 		185296081F601663003D5D8A /* PumpingTestModel */ = {
 			isa = PBXGroup;
 			children = (
+				185296191F622896003D5D8A /* AVCaptureManager.h */,
+				1852961A1F622896003D5D8A /* AVCaptureManager.m */,
+				1852961B1F622896003D5D8A /* VideoThumbnailGetter.h */,
+				1852961C1F622896003D5D8A /* VideoThumbnailGetter.m */,
 			);
 			path = PumpingTestModel;
 			sourceTree = "<group>";
@@ -2363,6 +2379,10 @@
 				1852960C1F601680003D5D8A /* LsPumpingTestViewController.m */,
 				185296131F60EC5D003D5D8A /* LsProFormaViewController.h */,
 				185296141F60EC5D003D5D8A /* LsProFormaViewController.m */,
+				181524841F64C7DC00E23257 /* LsVideotapeViewController.h */,
+				181524851F64C7DC00E23257 /* LsVideotapeViewController.m */,
+				181524871F64E1AF00E23257 /* LsRecordingCompletedViewController.h */,
+				181524881F64E1AF00E23257 /* LsRecordingCompletedViewController.m */,
 			);
 			path = PumpingTestVc;
 			sourceTree = "<group>";
@@ -3643,6 +3663,7 @@
 				18FEF8B01F52C6F300F74BB6 /* BCURLSessionManager.m in Sources */,
 				18FEF8A61F52C6F300F74BB6 /* BCQueryBillResult.m in Sources */,
 				180BCA911F5D0763001EE331 /* NSArray+MASAdditions.m in Sources */,
+				1852961E1F622896003D5D8A /* VideoThumbnailGetter.m in Sources */,
 				18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */,
 				18F32C631F4EEF080081629E /* XHStarRateView.m in Sources */,
 				184335231F333B4500A53585 /* LsLoginViewController.m in Sources */,
@@ -3659,6 +3680,7 @@
 				18FEF8AB1F52C6F300F74BB6 /* BCHTTPSessionManager.m in Sources */,
 				182CDF221F454F2A00283EBA /* LsNavTabView.m in Sources */,
 				1854F53C1F37024A00E1F603 /* UIImageView+WebCache.m in Sources */,
+				1852961D1F622896003D5D8A /* AVCaptureManager.m in Sources */,
 				184CA1F41F272FC800ACB807 /* LsBaseViewController.m in Sources */,
 				18FEF8B21F52C6F300F74BB6 /* BCPayUtil.m in Sources */,
 				18FEF8A31F52C6F300F74BB6 /* BCRefundStatusReq.m in Sources */,
@@ -3685,6 +3707,7 @@
 				180BCA921F5D0763001EE331 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				180BCA5A1F5D051C001EE331 /* Utility.m in Sources */,
 				1854F5251F37024A00E1F603 /* MBProgressHUD.m in Sources */,
+				181524861F64C7DC00E23257 /* LsVideotapeViewController.m in Sources */,
 				180BCA571F5D051C001EE331 /* CCPrivateTableViewCell.m in Sources */,
 				189840A61F4BE30100C6A8A0 /* LsLiveDetailModel.m in Sources */,
 				180BCA681F5D051C001EE331 /* SettingItem.m in Sources */,
@@ -3797,6 +3820,7 @@
 				189D948F1F2EBF270033C828 /* NSDictionary+Extension.m in Sources */,
 				180BC9921F5BA63D001EE331 /* LsCommentViewController.m in Sources */,
 				1854F52D1F37024A00E1F603 /* UIView+MJExtension.m in Sources */,
+				181524891F64E1AF00E23257 /* LsRecordingCompletedViewController.m in Sources */,
 				184CA1FC1F272FC800ACB807 /* LsAppDelegate.m in Sources */,
 				18FEF8981F52C6F300F74BB6 /* BCQueryBillByIdResp.m in Sources */,
 				18AF1AF71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m in Sources */,

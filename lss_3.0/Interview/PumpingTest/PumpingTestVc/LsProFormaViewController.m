@@ -7,6 +7,7 @@
 //
 
 #import "LsProFormaViewController.h"
+#import "LsVideotapeViewController.h"
 
 @interface LsProFormaViewController ()
 {
@@ -64,7 +65,8 @@
 }
 
 -(void)didClickStartBtn:(UIButton*)btn{
-    [LsMethod alertMessage:@"开始录视频" WithTime:1.5];
+    LsVideotapeViewController *vc =[[LsVideotapeViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

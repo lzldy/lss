@@ -45,7 +45,6 @@
     
     viewArray           =[NSMutableArray array];
     float   space1  =15*LSScale;
-//    float   space2  =30*LSScale;
     float   btnW    =(baseView.frame.size.width-2*space1-(_dataArray.count-1)*space1)/_dataArray.count;
     for (int i=0; i<_dataArray.count; i++) {
         NSString   *btnTitle=[_dataArray[i] objectForKey:@"title"];
