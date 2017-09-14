@@ -15,6 +15,7 @@
 @property(nonatomic,strong) NSString *id_;
 @property(nonatomic,strong) NSString *tag;
 @property(nonatomic,strong) NSURL    *url;
+@property(nonatomic,strong) NSArray  *bannerArray;
 
 @end
 
@@ -22,5 +23,5 @@
 
 @property (nonatomic,strong) NSArray<LsLiveModel*>         *liveArray;
 @property (nonatomic,strong) LsPracticeModel               *practiceModel;
-@property (nonatomic,strong) NSArray                       *bannerArray;
+
 @end

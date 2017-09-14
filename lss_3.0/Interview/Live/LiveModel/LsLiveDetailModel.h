@@ -36,6 +36,8 @@
 @property (nonatomic,strong)  NSString  *endTime;
 @property (nonatomic,strong)  NSString  *startTime;
 
+@property (nonatomic,strong)  NSString  *info;
+
 @property (nonatomic,assign)  BOOL       isPackage;//套餐
 @property (nonatomic,assign)  BOOL       enrollmentStatus;//正在报名
 @property (nonatomic,assign)  BOOL       isEnroll;//是否报名

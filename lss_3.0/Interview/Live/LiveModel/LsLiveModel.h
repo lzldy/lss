@@ -26,6 +26,7 @@
 
 @property (nonatomic,assign) NSInteger personNum;
 @property (nonatomic,strong) NSString  *id_;
+@property (nonatomic,strong) NSString  *code;
 @property (nonatomic,strong) NSString  *endDate;
 @property (nonatomic,strong) NSString  *startDate;
 @property (nonatomic,strong) NSString  *title;

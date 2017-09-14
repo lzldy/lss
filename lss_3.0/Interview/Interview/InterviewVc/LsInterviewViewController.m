@@ -28,6 +28,7 @@
 @property (nonatomic,strong)  UCCarouselView           *carouselView;
 @property (nonatomic,strong)  LsInterView              *typeView;
 @property (nonatomic,strong)  LsInterModel             *model;
+@property (nonatomic,strong)  LsBannerModel            *banModel;
 
 @end
 
@@ -42,9 +43,15 @@
 }
 
 -(void)getData{
+    [[LsAFNetWorkTool shareManger] LSPOST:@"homebannerjson.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.banModel =[LsBannerModel yy_modelWithJSON:responseObject];
+        [self loadBaseUI];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+        
+    }];
     [[LsAFNetWorkTool shareManger] LSPOST:@"homepagejson.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model =[LsInterModel yy_modelWithJSON:responseObject];
-        [self loadBaseUI];
+        [self.tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
         
     }];
@@ -285,10 +292,17 @@
     return _model;
 }
 
+-(LsBannerModel *)banModel{
+    if (!_banModel) {
+        _banModel  =[[LsBannerModel alloc] init];
+    }
+    return _banModel;
+}
+
 -(NSArray *)bannerArray{
     if (!_bannerArray) {
         NSMutableArray *dataArr =[NSMutableArray array];
-        for (LsBannerModel *model in self.model.bannerArray) {
+        for (LsBannerModel *model in self.banModel.bannerArray) {
             [dataArr addObject:model.url];
         }
         _bannerArray =dataArr;

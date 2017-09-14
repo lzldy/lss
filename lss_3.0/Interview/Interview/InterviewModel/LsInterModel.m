@@ -11,8 +11,12 @@
 @implementation LsBannerModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"id_"       : @"id",
-             };
+    return @{@"id_"             : @"id",
+             @"bannerArray"     : @"data.banner"};
+}
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"bannerArray"  : [LsBannerModel class]};
 }
 
 @end
@@ -21,15 +25,12 @@
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"liveArray"       : @"data.live",
-             @"practiceModel"   : @"data.practice",
-             @"bannerArray"     : @"data.banner"
+             @"practiceModel"   : @"data.practice"
             };
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"liveArray"    : [LsLiveModel   class],
-             @"bannerArray"  : [LsBannerModel class]
-             };
+    return @{@"liveArray"    : [LsLiveModel   class]};
 }
 
 @end

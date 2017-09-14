@@ -75,12 +75,12 @@
 }
 
 -(void)getData{
-    NSDictionary *dict =@{@"courseid":self.classId};
+    NSDictionary *dict =@{@"crcode":self.crcode};
     [[LsAFNetWorkTool shareManger] LSPOST:@"getcourseinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         _model  =[LsLiveDetailModel yy_modelWithDictionary:[responseObject objectForKey:@"data"]];
         _headerView.model =_model;
         _bottomView.model=_model;
-        if (_model.isPackage) {
+        if (_model.courseArrangement.count>0) {
             [self initCourseIntroductionView];
             [superView addSubview:self.tabView];
         }
@@ -171,6 +171,11 @@
     }
     cell.delegate=self;
     if (self.model.courseArrangement.count>0) {
+        if (self.model.isEnroll) {
+            cell.userInteractionEnabled=YES;
+        }else{
+            cell.userInteractionEnabled=NO;
+        }
         LsCourseArrangementModel *modelll =[[LsCourseArrangementModel alloc] init];
         modelll  =self.model.courseArrangement[indexPath.row];
         [cell reloadCell:modelll];
