@@ -46,6 +46,8 @@
 #define LSMainScreenW            [UIScreen mainScreen].bounds.size.width
 #define LSMainScreenH            [UIScreen mainScreen].bounds.size.height
 #define LSScale                  LSMainScreenW/320
+#define LSScaleW_H               LSMainScreenW/LSMainScreenH
+
 #define LOADIMAGE(name)          [UIImage imageNamed:name]
 #define LOADIMAGEWITHTYPE(file, type)    [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:file ofType:type]]
 #define LSFont(px)               [UIFont systemFontOfSize:(px)/(96/72)]

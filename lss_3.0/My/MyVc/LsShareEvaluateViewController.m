@@ -8,13 +8,14 @@
 
 #import "LsShareEvaluateViewController.h"
 #import "XHStarRateView.h"
-#import <UShareUI/UShareUI.h>
-#import <QuartzCore/QuartzCore.h>
+#import "LsShareModel.h"
+
 
 @interface LsShareEvaluateViewController ()
 {
-    UIImage *shareImage;
-    UIView  *backgroundView;
+    UIImage      *shareImage;
+    UIView       *backgroundView;
+    LsShareModel *shareModel;
 }
 @end
 
@@ -105,38 +106,6 @@
     [self ScreenShot];
 }
 
--(void)shareAction{
-    //显示分享面板
-    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
-        // 根据获取的platformType确定所选平台进行下一步操作
-        [self shareImageToPlatformType:platformType];
-    }];
-    
-}
-
-- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType
-{
-    //创建分享消息对象
-    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    
-    //创建图片内容对象
-    UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
-    //如果有缩略图，则设置缩略图
-    shareObject.thumbImage = [UIImage imageNamed:@"icon"];
-    [shareObject setShareImage:shareImage];
-    //分享消息对象设置分享内容对象
-    messageObject.shareObject = shareObject;
-    //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
-        if (error) {
-            LsLog(@"************Share fail with error %@*********",error);
-        }else{
-            LsLog(@"************response data is %@",data);
-            [LsMethod alertMessage:@"分享成功" WithTime:1];
-        }
-    }];
-}
-
 -(void)ScreenShot{
     CGFloat lsScale =[UIScreen mainScreen].scale;
     UIGraphicsBeginImageContextWithOptions(superView.bounds.size, YES,0);//设置截屏大小
@@ -150,7 +119,7 @@
     shareImage =Image;
     CGImageRelease(imageRefRect);
     
-    [self shareAction];
+    [shareModel shareActionWithImage:shareImage];
 }
 
 - (void)didReceiveMemoryWarning {

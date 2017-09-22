@@ -418,7 +418,6 @@
 		185296121F60216D003D5D8A /* LsTestChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296111F60216D003D5D8A /* LsTestChooseView.m */; };
 		185296151F60EC5D003D5D8A /* LsProFormaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296141F60EC5D003D5D8A /* LsProFormaViewController.m */; };
 		1852961D1F622896003D5D8A /* AVCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1852961A1F622896003D5D8A /* AVCaptureManager.m */; };
-		1852961E1F622896003D5D8A /* VideoThumbnailGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1852961C1F622896003D5D8A /* VideoThumbnailGetter.m */; };
 		1854F4A21F36BC7C00E1F603 /* LsConfigureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */; };
 		1854F4A91F36BE2600E1F603 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A51F36BE2600E1F603 /* NSObject+YYModel.m */; };
 		1854F4AA1F36BE2600E1F603 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A71F36BE2600E1F603 /* YYClassInfo.m */; };
@@ -485,6 +484,8 @@
 		18AF1AF61F2731E800D05E4D /* IQToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1AE51F2731E800D05E4D /* IQToolbar.m */; };
 		18AF1AF71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1AE71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m */; };
 		18AF1AF81F2731E800D05E4D /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18AF1AE91F2731E800D05E4D /* IQKeyboardManager.bundle */; };
+		18BBADA31F749F3C00475A20 /* LsVideoUploadSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBADA21F749F3C00475A20 /* LsVideoUploadSuccessViewController.m */; };
+		18BBADA61F74A6CC00475A20 /* LsShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBADA51F74A6CC00475A20 /* LsShareModel.m */; };
 		18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */; };
 		18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D751F37FDB800D3154B /* LsPracticeViewController.m */; };
 		18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D801F37FE3300D3154B /* LsDynamicViewController.m */; };
@@ -1106,8 +1107,6 @@
 		185296141F60EC5D003D5D8A /* LsProFormaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsProFormaViewController.m; sourceTree = "<group>"; };
 		185296191F622896003D5D8A /* AVCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCaptureManager.h; sourceTree = "<group>"; };
 		1852961A1F622896003D5D8A /* AVCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCaptureManager.m; sourceTree = "<group>"; };
-		1852961B1F622896003D5D8A /* VideoThumbnailGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoThumbnailGetter.h; sourceTree = "<group>"; };
-		1852961C1F622896003D5D8A /* VideoThumbnailGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoThumbnailGetter.m; sourceTree = "<group>"; };
 		1854F4A01F36BC7C00E1F603 /* LsConfigureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsConfigureModel.h; sourceTree = "<group>"; };
 		1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsConfigureModel.m; sourceTree = "<group>"; };
 		1854F4A41F36BE2600E1F603 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
@@ -1244,6 +1243,10 @@
 		18AF1AE61F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
 		18AF1AE71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		18AF1AE91F2731E800D05E4D /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		18BBADA11F749F3C00475A20 /* LsVideoUploadSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsVideoUploadSuccessViewController.h; sourceTree = "<group>"; };
+		18BBADA21F749F3C00475A20 /* LsVideoUploadSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsVideoUploadSuccessViewController.m; sourceTree = "<group>"; };
+		18BBADA41F74A6CC00475A20 /* LsShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsShareModel.h; sourceTree = "<group>"; };
+		18BBADA51F74A6CC00475A20 /* LsShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsShareModel.m; sourceTree = "<group>"; };
 		18E82D6D1F37FCAE00D3154B /* LsWrittenExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenExaminationViewController.h; sourceTree = "<group>"; };
 		18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenExaminationViewController.m; sourceTree = "<group>"; };
 		18E82D741F37FDB800D3154B /* LsPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeViewController.h; sourceTree = "<group>"; };
@@ -2263,6 +2266,8 @@
 				18975FD01F29D0EC00447721 /* LsMethod.m */,
 				18F32C541F4E7AF30081629E /* LsButton.h */,
 				18F32C551F4E7AF30081629E /* LsButton.m */,
+				18BBADA41F74A6CC00475A20 /* LsShareModel.h */,
+				18BBADA51F74A6CC00475A20 /* LsShareModel.m */,
 			);
 			name = "Base class";
 			path = "lss_3.0/Base class";
@@ -2366,8 +2371,6 @@
 			children = (
 				185296191F622896003D5D8A /* AVCaptureManager.h */,
 				1852961A1F622896003D5D8A /* AVCaptureManager.m */,
-				1852961B1F622896003D5D8A /* VideoThumbnailGetter.h */,
-				1852961C1F622896003D5D8A /* VideoThumbnailGetter.m */,
 			);
 			path = PumpingTestModel;
 			sourceTree = "<group>";
@@ -2383,6 +2386,8 @@
 				181524851F64C7DC00E23257 /* LsVideotapeViewController.m */,
 				181524871F64E1AF00E23257 /* LsRecordingCompletedViewController.h */,
 				181524881F64E1AF00E23257 /* LsRecordingCompletedViewController.m */,
+				18BBADA11F749F3C00475A20 /* LsVideoUploadSuccessViewController.h */,
+				18BBADA21F749F3C00475A20 /* LsVideoUploadSuccessViewController.m */,
 			);
 			path = PumpingTestVc;
 			sourceTree = "<group>";
@@ -3663,7 +3668,6 @@
 				18FEF8B01F52C6F300F74BB6 /* BCURLSessionManager.m in Sources */,
 				18FEF8A61F52C6F300F74BB6 /* BCQueryBillResult.m in Sources */,
 				180BCA911F5D0763001EE331 /* NSArray+MASAdditions.m in Sources */,
-				1852961E1F622896003D5D8A /* VideoThumbnailGetter.m in Sources */,
 				18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */,
 				18F32C631F4EEF080081629E /* XHStarRateView.m in Sources */,
 				184335231F333B4500A53585 /* LsLoginViewController.m in Sources */,
@@ -3770,6 +3774,7 @@
 				18FEF8B31F52C6F300F74BB6 /* BeeCloud+Utils.m in Sources */,
 				18F32C591F4E80BA0081629E /* LsLiveDetailBottomView.m in Sources */,
 				18FEF8AF1F52C6F300F74BB6 /* BCURLResponseSerialization.m in Sources */,
+				18BBADA31F749F3C00475A20 /* LsVideoUploadSuccessViewController.m in Sources */,
 				1854F53A1F37024A00E1F603 /* UIImage+WebP.m in Sources */,
 				182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */,
 				18FEF8931F52C6F300F74BB6 /* BCPayPalReq.m in Sources */,
@@ -3826,6 +3831,7 @@
 				18AF1AF71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				1854F5281F37024A00E1F603 /* MJRefreshConst.m in Sources */,
 				180BCA661F5D051C001EE331 /* ServerChildItem.m in Sources */,
+				18BBADA61F74A6CC00475A20 /* LsShareModel.m in Sources */,
 				18AF1AF21F2731E800D05E4D /* IQTextView.m in Sources */,
 				18975FDE1F29D86900447721 /* GCDSemaphore.m in Sources */,
 				180BCA6B1F5D051C001EE331 /* UINavigationController+Autorotate.m in Sources */,

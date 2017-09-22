@@ -35,7 +35,7 @@
 }
 
 -(void)loadBaseUI{
-    UIButton *videoBtn             =[[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 130*LSScale)];
+    UIButton *videoBtn             =[[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenW*LSScaleW_H)];
     videoBtn.backgroundColor       =[UIColor greenColor];
     [videoBtn setImage:[UIImage imageNamed:@"banner1.jpg"] forState:0];
     videoBtn.tag           =1314;
