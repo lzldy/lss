@@ -39,7 +39,7 @@
         btnOne        =[[UIButton alloc] initWithFrame:CGRectMake(0, 0, frame.size.width/2, frame.size.height)];
         btnOne.backgroundColor  =[UIColor clearColor];
         btnOne.tag              =0;
-        [btnOne setTitle:@"面试" forState:UIControlStateNormal];
+//        [btnOne setTitle:@"面试" forState:UIControlStateNormal];
         [btnOne  setTitleColor:LSNavColor forState:UIControlStateNormal];
         [btnOne addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnOne];
@@ -47,13 +47,19 @@
         btnTwo        =[[UIButton alloc] initWithFrame:CGRectMake( frame.size.width/2,0, frame.size.width/2, frame.size.height)];
         btnTwo.backgroundColor  =[UIColor clearColor];
         btnTwo.tag              =1;
-        [btnTwo setTitle:@"笔试" forState:UIControlStateNormal];
+//        [btnTwo setTitle:@"笔试" forState:UIControlStateNormal];
         [btnTwo  setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnTwo addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnTwo];
 
     }
     return self;
+}
+
+-(void)setDataArray:(NSArray *)dataArray{
+    _dataArray=dataArray;
+    [btnOne setTitle:dataArray[0] forState:UIControlStateNormal];
+    [btnTwo setTitle:dataArray[1] forState:UIControlStateNormal];
 }
 
 -(void)clickBtn:(UIButton*)button{

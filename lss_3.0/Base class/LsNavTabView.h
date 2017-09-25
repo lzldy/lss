@@ -16,6 +16,7 @@
 
 @interface LsNavTabView : UIView
 @property (nonatomic, weak)  id<lsNavTabViewDelegate> delegate;
+@property (nonatomic,strong) NSArray *dataArray;
 
 -(void)tabIndex:(float)indexxx;
 

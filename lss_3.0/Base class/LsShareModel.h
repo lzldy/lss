@@ -12,4 +12,6 @@
 
 -(void)shareActionWithImage:(UIImage*)image;
 
+-(void)shareActionWithUrl:(NSString*)url;
+
 @end

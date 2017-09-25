@@ -199,6 +199,7 @@
 -(LsNavTabView *)topTabView{
     if (!_topTabView) {
         _topTabView =[[LsNavTabView alloc] initWithFrame:CGRectMake(LSMainScreenW/2-80, 20+7, 160, 30)];
+        _topTabView.dataArray =@[@"面试",@"笔试"];
         _topTabView.delegate=self;
     }
     return _topTabView;
