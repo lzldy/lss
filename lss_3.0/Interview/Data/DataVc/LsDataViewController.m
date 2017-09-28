@@ -45,7 +45,6 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    LsLiveModel *modelll =[[LsLiveModel alloc] init];
    
     return cell;
 }
