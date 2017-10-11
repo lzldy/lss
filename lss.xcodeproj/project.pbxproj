@@ -486,6 +486,7 @@
 		18AF1AF81F2731E800D05E4D /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18AF1AE91F2731E800D05E4D /* IQKeyboardManager.bundle */; };
 		18BBADA31F749F3C00475A20 /* LsVideoUploadSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBADA21F749F3C00475A20 /* LsVideoUploadSuccessViewController.m */; };
 		18BBADA61F74A6CC00475A20 /* LsShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBADA51F74A6CC00475A20 /* LsShareModel.m */; };
+		18E5D0E21F8DAF6700F9CCDA /* LsWrittenHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */; };
 		18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */; };
 		18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D751F37FDB800D3154B /* LsPracticeViewController.m */; };
 		18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D801F37FE3300D3154B /* LsDynamicViewController.m */; };
@@ -1247,6 +1248,8 @@
 		18BBADA21F749F3C00475A20 /* LsVideoUploadSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsVideoUploadSuccessViewController.m; sourceTree = "<group>"; };
 		18BBADA41F74A6CC00475A20 /* LsShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsShareModel.h; sourceTree = "<group>"; };
 		18BBADA51F74A6CC00475A20 /* LsShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsShareModel.m; sourceTree = "<group>"; };
+		18E5D0E01F8DAF6600F9CCDA /* LsWrittenHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenHeaderView.h; sourceTree = "<group>"; };
+		18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenHeaderView.m; sourceTree = "<group>"; };
 		18E82D6D1F37FCAE00D3154B /* LsWrittenExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenExaminationViewController.h; sourceTree = "<group>"; };
 		18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenExaminationViewController.m; sourceTree = "<group>"; };
 		18E82D741F37FDB800D3154B /* LsPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeViewController.h; sourceTree = "<group>"; };
@@ -2645,6 +2648,8 @@
 		18E82D6F1F37FCAE00D3154B /* WrittenExaminationView */ = {
 			isa = PBXGroup;
 			children = (
+				18E5D0E01F8DAF6600F9CCDA /* LsWrittenHeaderView.h */,
+				18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */,
 			);
 			path = WrittenExaminationView;
 			sourceTree = "<group>";
@@ -3853,6 +3858,7 @@
 				180BCA591F5D051C001EE331 /* UIImage+Extension.m in Sources */,
 				18FEF8AD1F52C6F300F74BB6 /* BCSecurityPolicy.m in Sources */,
 				18FEF8B61F52C6F300F74BB6 /* BeeCloudAdapter.m in Sources */,
+				18E5D0E21F8DAF6700F9CCDA /* LsWrittenHeaderView.m in Sources */,
 				18975FDF1F29D86900447721 /* GCDTimer.m in Sources */,
 				18AF1AEA1F2731E800D05E4D /* IQNSArray+Sort.m in Sources */,
 				180BCA8B1F5D0763001EE331 /* MASCompositeConstraint.m in Sources */,
