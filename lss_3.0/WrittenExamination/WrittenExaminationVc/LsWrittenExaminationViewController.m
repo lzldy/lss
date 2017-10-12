@@ -9,6 +9,8 @@
 #import "LsWrittenExaminationViewController.h"
 #import "LsNavTabView.h"
 #import "LsWrittenHeaderView.h"
+#import "LsWrittenTableViewCell.h"
+#import "LsLiveTableViewCell.h"
 
 @interface LsWrittenExaminationViewController ()<lsNavTabViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -21,6 +23,7 @@
 @property (nonatomic,strong) LsWrittenHeaderView *headerView;
 @property (nonatomic,strong) UITableView  *upTabView;
 @property (nonatomic,strong) UITableView  *downTabView;
+@property (nonatomic,strong) UIScrollView *scrView1;
 
 @end
 
@@ -39,13 +42,14 @@
     UIImage     *topImage  =[UIImage imageNamed:@"top_background"];
     UIImageView *topImageV =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, topImage.size.height)];
     topImageV.image        =topImage;
-    [superView addSubview:topImageV];
-    [superView bringSubviewToFront:self.navView];
-    
-    [superView    addSubview:self.scrView];
-    [self.scrView addSubview:self.headerView];
-    [self.scrView addSubview:self.upTabView];
-
+    [superView     addSubview:topImageV];
+    [superView     bringSubviewToFront:self.navView];
+    [superView     addSubview:self.headerView];
+    [superView     addSubview:self.scrView];
+    [self.scrView  addSubview:self.scrView1];
+    [self.scrView1 addSubview:self.upTabView];
+    [self.scrView1 addSubview:self.downTabView];
+    [self.scrView1 setContentSize:CGSizeMake(LSMainScreenW*2, CGRectGetMaxY(self.downTabView.frame)+80*LSScale)];
 }
 
 #pragma  - mark -  NavTabView 代理
@@ -53,44 +57,47 @@
     [self.scrView setContentOffset:CGPointMake(LSMainScreenW*index,0) animated:NO];
     if (index==0) {
         LsLog(@"11111111111111");
-        //        [self.interviewTabView headerBeginRefreshing];
     }else{
         LsLog(@"22222222222");
-        //        [self.writtenTabView headerBeginRefreshing];
     }
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView;{
-    float currentPostion = scrollView.contentOffset.y;
-    BOOL  upDown = false;
-    if (currentPostion - startY > 0 ||startY - currentPostion > 0) {
-        startY = currentPostion;
-        upDown=YES;
-    }else{
-        float index =scrollView.contentOffset.x/LSMainScreenW;
-        if (isScroll&&!upDown) {
-            [self.topTabView tabIndex:index];
-            //            if (index==1&&!_writtenModel) {
-            //                [self.writtenTabView headerBeginRefreshing];
-            //            }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+        float currentPostion = scrollView.contentOffset.y;
+        BOOL  upDown = false;
+        if (currentPostion - startY > 35 ||startY - currentPostion > 35) {
+            startY = currentPostion;
+            upDown=YES;
+        }else{
+            float index =scrollView.contentOffset.x/LSMainScreenW;
+            if (isScroll&&!upDown) {
+                [self.topTabView tabIndex:index];
+                //            if (index==1&&!_writtenModel) {
+                //                [self.writtenTabView headerBeginRefreshing];
+                //            }
+            }
         }
-    }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    isScroll =YES;
-    if (scrollView.contentOffset.y>0) {
-        isScroll =NO;
-    }
+        isScroll =YES;
+        if (scrollView.contentOffset.y>0) {
+            isScroll =NO;
+        }
 }
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    isScroll =NO;
+        isScroll =NO;
 }
 
 #pragma  - mark -  tabview 代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 55*LSScale;
+    if (tableView.tag==100) {
+        return 55*LSScale;
+    }else if (tableView.tag==200){
+        return 135*LSScale;
+    }
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -99,44 +106,90 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (tableView.tag==100) {
+        static NSString *cellID = @"upCellID";
+        LsWrittenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!cell) {
+            cell = [[LsWrittenTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        
+        
+        return cell;
+
+    }else if (tableView.tag==200){
+        static NSString *cellID = @"downCellID";
+        LsLiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!cell) {
+            cell = [[LsLiveTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        LsLiveModel *modelll =[[LsLiveModel alloc] init];
+                [cell reloadCell:modelll Type:@"2"];
+        
+        
+        return cell;
     }
-    return cell;
+       return nil;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 28*LSScale)];
-    view.backgroundColor  =[UIColor redColor];
+    UIView  *view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 30*LSScale)];
+    view.backgroundColor =[UIColor whiteColor];
+    UILabel *titleL     =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 0, 200, 30*LSScale)];
+    titleL.font         =[UIFont systemFontOfSize:13.5*LSScale];
+    titleL.textAlignment=NSTextAlignmentLeft;
+    [view addSubview:titleL];
+    
+    UIView  *line =[[UIView alloc] initWithFrame:CGRectMake(0, 30*LSScale-0.5*LSScale, LSMainScreenW, 0.5*LSScale)];
+    line.backgroundColor =LSLineColor;
+    [view addSubview:line];
+    
+    if (tableView.tag==100) {
+        titleL.text         =@"针对性刷题";
+
+    }else if(tableView.tag==200){
+        titleL.text         =@"做题+听直播";
+
+    }
     return view;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 28*LSScale)];
-    view.backgroundColor  =[UIColor greenColor];
+    UIView *view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 30*LSScale)];
+    UILabel *titleL     =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 0, 200, 30*LSScale)];
+    titleL.font         =[UIFont systemFontOfSize:12*LSScale];
+    titleL.textAlignment=NSTextAlignmentLeft;
+    titleL.textColor    =LSNavColor;
+    view.backgroundColor =[UIColor whiteColor];
+    [view addSubview:titleL];
+
+    if (tableView.tag==100) {
+        titleL.text         =@"查看所有试卷";
+        
+    }
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 28*LSScale;
+    return 30*LSScale;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 28*LSScale;
+    return 30*LSScale;
 }
 
 -(UITableView *)upTabView{
     if (!_upTabView) {
-        _upTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.headerView.frame)+10*LSScale, LSMainScreenW,55*LSScale*3+28*LSScale*2)];
+        _upTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,0, LSMainScreenW,55*LSScale*3+30*LSScale*2)];
         _upTabView.delegate         =self;
         _upTabView.dataSource       =self;
         _upTabView.showsVerticalScrollIndicator   =NO;
         _upTabView.scrollEnabled    =NO;
-//        _tabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
+        _upTabView.tag              =100;
+        _upTabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
         _upTabView.backgroundColor  =[UIColor clearColor];
     }
     return _upTabView;
@@ -144,12 +197,14 @@
 
 -(UITableView *)downTabView{
     if (!_downTabView) {
-        _downTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.upTabView.frame)+10*LSScale, LSMainScreenW,LSMainScreenH-CGRectGetMaxY(self.headerView.frame)-10*LSScale)];
+        _downTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.upTabView.frame)+10*LSScale, LSMainScreenW,30*LSScale+135*LSScale*3)];
         _downTabView.delegate         =self;
         _downTabView.dataSource       =self;
         _downTabView.showsVerticalScrollIndicator   =NO;
         _downTabView.scrollEnabled    =NO;
-        //        _tabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
+        _downTabView.tag              =200;
+        _downTabView.tableFooterView  =[[UIView alloc] init];
+        _downTabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
         _downTabView.backgroundColor  =[UIColor clearColor];
     }
     return _downTabView;
@@ -166,19 +221,33 @@
 
 -(UIScrollView *)scrView{
     if (!_scrView) {
-        _scrView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame),LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.headerView.frame)-15)];
+        _scrView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame)+10*LSScale,LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.headerView.frame)-10*LSScale)];
         _scrView.pagingEnabled                    =YES;
         _scrView.contentSize                      =CGSizeMake(LSMainScreenW*2, 0);
         _scrView.showsHorizontalScrollIndicator   =NO;
+        _scrView.showsVerticalScrollIndicator     =NO;
         _scrView.delegate                         =self;
         _scrView.bounces                          =NO;
     }
     return _scrView;
 }
 
+-(UIScrollView *)scrView1{
+    if (!_scrView1) {
+        _scrView1=[[UIScrollView alloc]initWithFrame:CGRectMake(0,0,LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.headerView.frame)-10*LSScale)];
+        _scrView1.pagingEnabled                    =YES;
+        _scrView1.contentSize                      =CGSizeMake(LSMainScreenW, 0);
+        _scrView1.showsHorizontalScrollIndicator   =NO;
+        _scrView1.showsVerticalScrollIndicator     =NO;
+        _scrView1.delegate                         =self;
+        _scrView1.bounces                          =NO;
+    }
+    return _scrView1;
+}
+
 -(LsWrittenHeaderView *)headerView{
     if (!_headerView) {
-        _headerView =[[LsWrittenHeaderView alloc] initWithFrame:CGRectMake(10*LSScale, 0, LSMainScreenW-20*LSScale, 85*LSScale)];
+        _headerView =[[LsWrittenHeaderView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(self.navView.frame), LSMainScreenW-20*LSScale, 85*LSScale)];
         _headerView.dataDcit  =@{@"testPaper":@"6套",@"testQuestions":@"50",@"correctRate":@"88%"};
     }
     return _headerView;

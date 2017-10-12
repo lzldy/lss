@@ -8,16 +8,19 @@
 
 #import "LsDataViewController.h"
 #import "LsNavTabView.h"
+#import "LsDataTableViewCell.h"
+#import "LsDataModel.h"
 
-@interface LsDataViewController ()<lsNavTabViewDelegate,UIScrollViewDelegate>
+@interface LsDataViewController ()<lsNavTabViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     BOOL       isScroll;
     float      startY;
 
 }
-@property (nonatomic,strong) LsNavTabView *topTabView;
-@property (nonatomic,strong) UIScrollView *scrView;
-
+@property (nonatomic,strong)  LsNavTabView             *topTabView;
+@property (nonatomic,strong)  UIScrollView             *scrView;
+@property (nonatomic,strong)  UITableView              *tabView;
+@property (nonatomic,strong)  LsDataModel              *model;
 @end
 
 @implementation LsDataViewController
@@ -25,24 +28,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.navTitle =@"资料";
+    superView.backgroundColor                  =LSColor(243, 244, 245, 1);
     [self.navView addSubview:self.topTabView];
+    [self getData];
+}
+
+-(void)getData{
+    [[LsAFNetWorkTool shareManger] LSPOST:@"listinfo.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.model =[LsDataModel yy_modelWithJSON:responseObject];
+        [self loadBaseUI];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+        
+    }];
+}
+
+-(void)loadBaseUI{
     [superView addSubview:self.scrView];
+    [self.scrView addSubview:self.tabView];
 }
 
 #pragma  - mark -  tabview 代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 135*LSScale;
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.model.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    LsDataTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LsDataTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
    
@@ -136,6 +155,29 @@
         _scrView.bounces                          =NO;
     }
     return _scrView;
+}
+
+-(UITableView *)tabView{
+    if (!_tabView) {
+        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, self.scrView.frame.size.height)];
+        _tabView.delegate         =self;
+        _tabView.dataSource       =self;
+        _tabView.tableFooterView  =[[UIView alloc] init];
+        _tabView.showsVerticalScrollIndicator   =NO;
+//        _tabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
+        _tabView.backgroundColor  =LSColor(243, 244, 245, 1);
+        //增加上拉下拉刷新事件
+//        [_tabView addHeaderWithTarget:self action:@selector(headerRefresh)];
+//        [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
+    }
+    return _tabView;
+}
+
+-(LsDataModel *)model{
+    if (!_model) {
+        _model =[[LsDataModel alloc] init];
+    }
+    return _model;
 }
 
 - (void)didReceiveMemoryWarning {

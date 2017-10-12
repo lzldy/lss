@@ -487,6 +487,9 @@
 		18BBADA31F749F3C00475A20 /* LsVideoUploadSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBADA21F749F3C00475A20 /* LsVideoUploadSuccessViewController.m */; };
 		18BBADA61F74A6CC00475A20 /* LsShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBADA51F74A6CC00475A20 /* LsShareModel.m */; };
 		18E5D0E21F8DAF6700F9CCDA /* LsWrittenHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */; };
+		18E5D0E51F8E050600F9CCDA /* LsWrittenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E41F8E050600F9CCDA /* LsWrittenTableViewCell.m */; };
+		18E5D0E81F8E0E3F00F9CCDA /* LsDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E71F8E0E3F00F9CCDA /* LsDataTableViewCell.m */; };
+		18E5D0EB1F8E125000F9CCDA /* LsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0EA1F8E125000F9CCDA /* LsDataModel.m */; };
 		18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */; };
 		18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D751F37FDB800D3154B /* LsPracticeViewController.m */; };
 		18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D801F37FE3300D3154B /* LsDynamicViewController.m */; };
@@ -1250,6 +1253,12 @@
 		18BBADA51F74A6CC00475A20 /* LsShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsShareModel.m; sourceTree = "<group>"; };
 		18E5D0E01F8DAF6600F9CCDA /* LsWrittenHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenHeaderView.h; sourceTree = "<group>"; };
 		18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenHeaderView.m; sourceTree = "<group>"; };
+		18E5D0E31F8E050600F9CCDA /* LsWrittenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenTableViewCell.h; sourceTree = "<group>"; };
+		18E5D0E41F8E050600F9CCDA /* LsWrittenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenTableViewCell.m; sourceTree = "<group>"; };
+		18E5D0E61F8E0E3F00F9CCDA /* LsDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsDataTableViewCell.h; sourceTree = "<group>"; };
+		18E5D0E71F8E0E3F00F9CCDA /* LsDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsDataTableViewCell.m; sourceTree = "<group>"; };
+		18E5D0E91F8E125000F9CCDA /* LsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsDataModel.h; sourceTree = "<group>"; };
+		18E5D0EA1F8E125000F9CCDA /* LsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsDataModel.m; sourceTree = "<group>"; };
 		18E82D6D1F37FCAE00D3154B /* LsWrittenExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenExaminationViewController.h; sourceTree = "<group>"; };
 		18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenExaminationViewController.m; sourceTree = "<group>"; };
 		18E82D741F37FDB800D3154B /* LsPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeViewController.h; sourceTree = "<group>"; };
@@ -1958,6 +1967,8 @@
 		182CDED01F43EB4100283EBA /* DataView */ = {
 			isa = PBXGroup;
 			children = (
+				18E5D0E61F8E0E3F00F9CCDA /* LsDataTableViewCell.h */,
+				18E5D0E71F8E0E3F00F9CCDA /* LsDataTableViewCell.m */,
 			);
 			path = DataView;
 			sourceTree = "<group>";
@@ -2316,6 +2327,8 @@
 		185295F61F60159C003D5D8A /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				18E5D0E91F8E125000F9CCDA /* LsDataModel.h */,
+				18E5D0EA1F8E125000F9CCDA /* LsDataModel.m */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -2650,6 +2663,8 @@
 			children = (
 				18E5D0E01F8DAF6600F9CCDA /* LsWrittenHeaderView.h */,
 				18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */,
+				18E5D0E31F8E050600F9CCDA /* LsWrittenTableViewCell.h */,
+				18E5D0E41F8E050600F9CCDA /* LsWrittenTableViewCell.m */,
 			);
 			path = WrittenExaminationView;
 			sourceTree = "<group>";
@@ -3814,6 +3829,7 @@
 				180BD0301F5D44D1001EE331 /* PlayBackVC.m in Sources */,
 				18FEF89A1F52C6F300F74BB6 /* BCQueryBillsResp.m in Sources */,
 				18FEF8A11F52C6F300F74BB6 /* BCQueryRefundsCountReq.m in Sources */,
+				18E5D0E81F8E0E3F00F9CCDA /* LsDataTableViewCell.m in Sources */,
 				180BCA611F5D051C001EE331 /* MySlider.m in Sources */,
 				18975FCB1F29C6BD00447721 /* LsLog.m in Sources */,
 				18FEF8BA1F52C6F300F74BB6 /* AliPayAdapter.m in Sources */,
@@ -3846,12 +3862,14 @@
 				189840A91F4C0A4B00C6A8A0 /* LsMyLiveModel.m in Sources */,
 				180BCA6C1F5D051C001EE331 /* UISetingChildItem.m in Sources */,
 				1854F5301F37024A00E1F603 /* SDImageCache.m in Sources */,
+				18E5D0E51F8E050600F9CCDA /* LsWrittenTableViewCell.m in Sources */,
 				184CA1FD1F272FC800ACB807 /* main.m in Sources */,
 				18FEF6961F527A9A00F74BB6 /* CustomDirectorFactory.m in Sources */,
 				18975FDD1F29D86900447721 /* GCDQueue.m in Sources */,
 				180BCA621F5D051C001EE331 /* NavigationView.m in Sources */,
 				1854F5651F37088C00E1F603 /* AFURLResponseSerialization.m in Sources */,
 				184335811F346F5000A53585 /* LsWebViewController.m in Sources */,
+				18E5D0EB1F8E125000F9CCDA /* LsDataModel.m in Sources */,
 				18FEF88F1F52C6F300F74BB6 /* BCBaseReq.m in Sources */,
 				18FEF8A81F52C6F300F74BB6 /* BCNewSubscription.m in Sources */,
 				18FEF8A21F52C6F300F74BB6 /* BCQueryRefundsCountResp.m in Sources */,
