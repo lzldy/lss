@@ -59,4 +59,13 @@
     self.textField.frame =CGRectMake(CGRectGetMaxX(self.label.frame), 0, LSMainScreenW-CGRectGetMaxX(self.label.frame)-15, self.frame.size.height);
 }
 
+-(void)setHaveLine:(BOOL)haveLine{
+    _haveLine =haveLine;
+    if (haveLine) {
+        UIView *line =[[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-0.5*LSScale, self.frame.size.width, 0.5*LSScale)];
+        line.backgroundColor =LSLineColor;
+        [self addSubview:line];
+    }
+}
+
 @end

@@ -15,6 +15,7 @@
 @property (nonatomic,strong) NSString *createTime;
 @property (nonatomic,strong) NSString *creator;
 @property (nonatomic,strong) NSString *headImgUrl;
+@property (nonatomic,strong) NSString *imgUrl;
 
 @end
 

@@ -64,7 +64,7 @@
         cell = [[LsDataTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-   
+    [cell reloadCell:self.model.dataArray[indexPath.row]];
     return cell;
 }
 

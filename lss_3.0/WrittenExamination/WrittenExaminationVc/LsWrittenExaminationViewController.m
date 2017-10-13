@@ -95,7 +95,7 @@
     if (tableView.tag==100) {
         return 55*LSScale;
     }else if (tableView.tag==200){
-        return 135*LSScale;
+        return 125*LSScale;
     }
     return 0;
 }
@@ -126,7 +126,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         LsLiveModel *modelll =[[LsLiveModel alloc] init];
-                [cell reloadCell:modelll Type:@"2"];
+                [cell reloadCell:modelll Type:@"1"];
         
         
         return cell;
@@ -197,7 +197,7 @@
 
 -(UITableView *)downTabView{
     if (!_downTabView) {
-        _downTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.upTabView.frame)+10*LSScale, LSMainScreenW,30*LSScale+135*LSScale*3)];
+        _downTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.upTabView.frame)+10*LSScale, LSMainScreenW,30*LSScale+125*LSScale*3)];
         _downTabView.delegate         =self;
         _downTabView.dataSource       =self;
         _downTabView.showsVerticalScrollIndicator   =NO;

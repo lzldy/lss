@@ -40,6 +40,8 @@
 #import "LsButton.h"
 
 //other
+
+#define LSCustomerService        [NSURL URLWithString:@"http://html.ecqun.com/kf/sdk/openwin.html?corpid=4752991&cstype=rand&mode=0&cskey=qsocaZNfbAGeeXfU7z"]
 #define LSColor(r, g, b, a)      [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 #define LSUser_Default           [NSUserDefaults standardUserDefaults]
 #define LSMainScreen             [UIScreen mainScreen].bounds

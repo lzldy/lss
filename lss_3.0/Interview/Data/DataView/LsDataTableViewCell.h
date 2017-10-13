@@ -11,6 +11,6 @@
 
 @interface LsDataTableViewCell : UITableViewCell
 
--(void)reloadCell:(LsDataModel*)model Image:(BOOL)haveImage;
+-(void)reloadCell:(LsDataDetailModel*)model;
 
 @end

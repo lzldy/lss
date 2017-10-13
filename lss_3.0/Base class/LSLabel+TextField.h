@@ -13,5 +13,6 @@
 @property (nonatomic,strong)  UILabel     *label;
 @property (nonatomic,strong)  UITextField *textField;
 @property (nonatomic,strong)  NSArray     *dataArray;
+@property (nonatomic,assign)  BOOL        haveLine;
 
 @end
