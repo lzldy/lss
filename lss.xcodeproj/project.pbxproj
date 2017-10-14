@@ -494,6 +494,8 @@
 		18E5D0F11F90A3EE00F9CCDA /* LsActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0F01F90A3EE00F9CCDA /* LsActivityViewController.m */; };
 		18E5D0F41F90A43800F9CCDA /* LsTribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0F31F90A43800F9CCDA /* LsTribeViewController.m */; };
 		18E5D0F71F90BD4A00F9CCDA /* LsOneToOneDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0F61F90BD4A00F9CCDA /* LsOneToOneDetailViewController.m */; };
+		18E5D0FA1F90EA2300F9CCDA /* LsActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0F91F90EA2300F9CCDA /* LsActivityTableViewCell.m */; };
+		18E5D0FD1F90ECAD00F9CCDA /* LsActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0FC1F90ECAD00F9CCDA /* LsActivityDetailViewController.m */; };
 		18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */; };
 		18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D751F37FDB800D3154B /* LsPracticeViewController.m */; };
 		18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D801F37FE3300D3154B /* LsDynamicViewController.m */; };
@@ -1271,6 +1273,10 @@
 		18E5D0F31F90A43800F9CCDA /* LsTribeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsTribeViewController.m; sourceTree = "<group>"; };
 		18E5D0F51F90BD4A00F9CCDA /* LsOneToOneDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsOneToOneDetailViewController.h; sourceTree = "<group>"; };
 		18E5D0F61F90BD4A00F9CCDA /* LsOneToOneDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsOneToOneDetailViewController.m; sourceTree = "<group>"; };
+		18E5D0F81F90EA2300F9CCDA /* LsActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsActivityTableViewCell.h; sourceTree = "<group>"; };
+		18E5D0F91F90EA2300F9CCDA /* LsActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsActivityTableViewCell.m; sourceTree = "<group>"; };
+		18E5D0FB1F90ECAD00F9CCDA /* LsActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsActivityDetailViewController.h; sourceTree = "<group>"; };
+		18E5D0FC1F90ECAD00F9CCDA /* LsActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsActivityDetailViewController.m; sourceTree = "<group>"; };
 		18E82D6D1F37FCAE00D3154B /* LsWrittenExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenExaminationViewController.h; sourceTree = "<group>"; };
 		18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenExaminationViewController.m; sourceTree = "<group>"; };
 		18E82D741F37FDB800D3154B /* LsPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeViewController.h; sourceTree = "<group>"; };
@@ -2758,6 +2764,8 @@
 				18E5D0F61F90BD4A00F9CCDA /* LsOneToOneDetailViewController.m */,
 				18E5D0EF1F90A3EE00F9CCDA /* LsActivityViewController.h */,
 				18E5D0F01F90A3EE00F9CCDA /* LsActivityViewController.m */,
+				18E5D0FB1F90ECAD00F9CCDA /* LsActivityDetailViewController.h */,
+				18E5D0FC1F90ECAD00F9CCDA /* LsActivityDetailViewController.m */,
 				18E5D0F21F90A43800F9CCDA /* LsTribeViewController.h */,
 				18E5D0F31F90A43800F9CCDA /* LsTribeViewController.m */,
 			);
@@ -2767,6 +2775,8 @@
 		18E82D7B1F37FE1000D3154B /* FindView */ = {
 			isa = PBXGroup;
 			children = (
+				18E5D0F81F90EA2300F9CCDA /* LsActivityTableViewCell.h */,
+				18E5D0F91F90EA2300F9CCDA /* LsActivityTableViewCell.m */,
 			);
 			path = FindView;
 			sourceTree = "<group>";
@@ -3759,6 +3769,7 @@
 				189840A61F4BE30100C6A8A0 /* LsLiveDetailModel.m in Sources */,
 				180BCA681F5D051C001EE331 /* SettingItem.m in Sources */,
 				18FEF8AE1F52C6F300F74BB6 /* BCURLRequestSerialization.m in Sources */,
+				18E5D0FD1F90ECAD00F9CCDA /* LsActivityDetailViewController.m in Sources */,
 				18FEF89D1F52C6F300F74BB6 /* BCQueryRefundByIdReq.m in Sources */,
 				1854F4AD1F36E84E00E1F603 /* LsConfigureTwoViewController.m in Sources */,
 				182CDF251F4691D100283EBA /* LsLiveDetailViewController.m in Sources */,
@@ -3769,6 +3780,7 @@
 				18F32C531F4E6A460081629E /* LsLiveDetailTableViewCell.m in Sources */,
 				1854F5341F37024A00E1F603 /* SDWebImageDownloaderOperation.m in Sources */,
 				18AF1AEC1F2731E800D05E4D /* IQUITextFieldView+Additions.m in Sources */,
+				18E5D0FA1F90EA2300F9CCDA /* LsActivityTableViewCell.m in Sources */,
 				189D948E1F2EBF270033C828 /* NSArray+Extension.m in Sources */,
 				18F32C561F4E7AF30081629E /* LsButton.m in Sources */,
 				1854F5361F37024A00E1F603 /* SDWebImagePrefetcher.m in Sources */,
