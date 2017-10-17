@@ -94,8 +94,8 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         if (btn.tag==123) {
-            guaranteeBtn.selected=NO;
-            introduceBtn.selected=YES;
+            guaranteeBtn.selected =NO;
+            introduceBtn.selected =YES;
             
             self.scrView.hidden   =NO;
             self.scrView1.hidden  =YES;
@@ -106,7 +106,7 @@
             guaranteeBtn.selected=YES;
             
             self.scrView1.hidden   =NO;
-            self.scrView.hidden  =YES;
+            self.scrView.hidden    =YES;
             [superView bringSubviewToFront:self.scrView1];
             [self.scrView1.layer addAnimation:[LsMethod opacityAnimationFormValue:0 ToValue:1] forKey:nil];
         }

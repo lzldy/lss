@@ -496,6 +496,7 @@
 		18E5D0F71F90BD4A00F9CCDA /* LsOneToOneDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0F61F90BD4A00F9CCDA /* LsOneToOneDetailViewController.m */; };
 		18E5D0FA1F90EA2300F9CCDA /* LsActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0F91F90EA2300F9CCDA /* LsActivityTableViewCell.m */; };
 		18E5D0FD1F90ECAD00F9CCDA /* LsActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0FC1F90ECAD00F9CCDA /* LsActivityDetailViewController.m */; };
+		18E5D1001F95A95B00F9CCDA /* LsDataDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0FF1F95A95B00F9CCDA /* LsDataDetailViewController.m */; };
 		18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */; };
 		18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D751F37FDB800D3154B /* LsPracticeViewController.m */; };
 		18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D801F37FE3300D3154B /* LsDynamicViewController.m */; };
@@ -1277,6 +1278,8 @@
 		18E5D0F91F90EA2300F9CCDA /* LsActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsActivityTableViewCell.m; sourceTree = "<group>"; };
 		18E5D0FB1F90ECAD00F9CCDA /* LsActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsActivityDetailViewController.h; sourceTree = "<group>"; };
 		18E5D0FC1F90ECAD00F9CCDA /* LsActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsActivityDetailViewController.m; sourceTree = "<group>"; };
+		18E5D0FE1F95A95B00F9CCDA /* LsDataDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsDataDetailViewController.h; sourceTree = "<group>"; };
+		18E5D0FF1F95A95B00F9CCDA /* LsDataDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsDataDetailViewController.m; sourceTree = "<group>"; };
 		18E82D6D1F37FCAE00D3154B /* LsWrittenExaminationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenExaminationViewController.h; sourceTree = "<group>"; };
 		18E82D6E1F37FCAE00D3154B /* LsWrittenExaminationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenExaminationViewController.m; sourceTree = "<group>"; };
 		18E82D741F37FDB800D3154B /* LsPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPracticeViewController.h; sourceTree = "<group>"; };
@@ -1978,6 +1981,8 @@
 			children = (
 				182CDED51F43EB5200283EBA /* LsDataViewController.h */,
 				182CDED61F43EB5200283EBA /* LsDataViewController.m */,
+				18E5D0FE1F95A95B00F9CCDA /* LsDataDetailViewController.h */,
+				18E5D0FF1F95A95B00F9CCDA /* LsDataDetailViewController.m */,
 			);
 			path = DataVc;
 			sourceTree = "<group>";
@@ -3909,6 +3914,7 @@
 				18FEF8A81F52C6F300F74BB6 /* BCNewSubscription.m in Sources */,
 				18FEF8A21F52C6F300F74BB6 /* BCQueryRefundsCountResp.m in Sources */,
 				180BCA591F5D051C001EE331 /* UIImage+Extension.m in Sources */,
+				18E5D1001F95A95B00F9CCDA /* LsDataDetailViewController.m in Sources */,
 				18FEF8AD1F52C6F300F74BB6 /* BCSecurityPolicy.m in Sources */,
 				18E5D0F41F90A43800F9CCDA /* LsTribeViewController.m in Sources */,
 				18FEF8B61F52C6F300F74BB6 /* BeeCloudAdapter.m in Sources */,
