@@ -18,7 +18,7 @@
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"practiceLists"          :@"practiceList",
-             @"practiceDataArray"      :@"data"};
+             @"practiceDataArray"      :@"data.list"};
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {

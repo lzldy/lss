@@ -64,14 +64,18 @@
 }
 
 -(void)didClickConsultationBtn:(LsButton*)button{
-    [LsMethod alertMessage:@"咨询" WithTime:2];
+    [LSApplication openURL:LSCustomerService];
+
+//    [LsMethod alertMessage:@"咨询" WithTime:2];
 }
 
 -(void)setModel:(LsLiveDetailModel *)model{
     _model=model;
-    if (_model.isFree) {
-        freeL.text= @"免费";
-    }
+//    if (_model.isFree) {
+//        freeL.text= @"免费";
+//    }
+    freeL.text= @"免费";
+
     _model.isEnroll =NO;
     if (_model.isEnroll) {
         [enrollBtn setTitle:@"已报名" forState:UIControlStateNormal];

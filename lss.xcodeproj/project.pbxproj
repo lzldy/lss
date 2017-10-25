@@ -14,8 +14,6 @@
 		180BCA061F5CFE71001EE331 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA051F5CFE71001EE331 /* GLKit.framework */; };
 		180BCA081F5CFE7A001EE331 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA071F5CFE7A001EE331 /* VideoToolbox.framework */; };
 		180BCA0A1F5CFE8B001EE331 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA091F5CFE8B001EE331 /* AVFoundation.framework */; };
-		180BCA101F5D0006001EE331 /* CCSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA0C1F5D0006001EE331 /* CCSDK.framework */; };
-		180BCA111F5D0006001EE331 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA0D1F5D0006001EE331 /* IJKMediaFramework.framework */; };
 		180BCA121F5D0006001EE331 /* socketio.html in Resources */ = {isa = PBXBuildFile; fileRef = 180BCA0E1F5D0006001EE331 /* socketio.html */; };
 		180BCA131F5D0006001EE331 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA0F1F5D0006001EE331 /* WebRTC.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		180BCA1F1F5D048A001EE331 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180BCA161F5D048A001EE331 /* ChatView.m */; };
@@ -57,7 +55,6 @@
 		180BCA931F5D0763001EE331 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 180BCA871F5D0763001EE331 /* View+MASAdditions.m */; };
 		180BCA941F5D0763001EE331 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 180BCA8A1F5D0763001EE331 /* ViewController+MASAdditions.m */; };
 		180BCA981F5D09BE001EE331 /* UIButton+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 180BCA971F5D09BE001EE331 /* UIButton+UserInfo.m */; };
-		180BCA991F5D2999001EE331 /* WebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA0F1F5D0006001EE331 /* WebRTC.framework */; };
 		180BCA9A1F5D2999001EE331 /* WebRTC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA0F1F5D0006001EE331 /* WebRTC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		180BCA9C1F5D29C1001EE331 /* CCSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA0C1F5D0006001EE331 /* CCSDK.framework */; };
 		180BCA9D1F5D29C1001EE331 /* CCSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCA0C1F5D0006001EE331 /* CCSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -509,6 +506,7 @@
 		18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */; };
 		18E82DEE1F3830C500D3154B /* UCCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEC1F3830C500D3154B /* UCCarouselView.m */; };
 		18E82E3C1F38A41F00D3154B /* LSLabel+TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */; };
+		18F034311F9F3224001A305D /* LsPracticeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F034301F9F3224001A305D /* LsPracticeDetailModel.m */; };
 		18F32C531F4E6A460081629E /* LsLiveDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C521F4E6A460081629E /* LsLiveDetailTableViewCell.m */; };
 		18F32C561F4E7AF30081629E /* LsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C551F4E7AF30081629E /* LsButton.m */; };
 		18F32C591F4E80BA0081629E /* LsLiveDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C581F4E80BA0081629E /* LsLiveDetailBottomView.m */; };
@@ -1299,6 +1297,8 @@
 		18E82DEC1F3830C500D3154B /* UCCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCCarouselView.m; sourceTree = "<group>"; };
 		18E82E3A1F38A41F00D3154B /* LSLabel+TextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LSLabel+TextField.h"; sourceTree = "<group>"; };
 		18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LSLabel+TextField.m"; sourceTree = "<group>"; };
+		18F0342F1F9F3224001A305D /* LsPracticeDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsPracticeDetailModel.h; sourceTree = "<group>"; };
+		18F034301F9F3224001A305D /* LsPracticeDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsPracticeDetailModel.m; sourceTree = "<group>"; };
 		18F32C511F4E6A460081629E /* LsLiveDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailTableViewCell.h; sourceTree = "<group>"; };
 		18F32C521F4E6A460081629E /* LsLiveDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailTableViewCell.m; sourceTree = "<group>"; };
 		18F32C541F4E7AF30081629E /* LsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsButton.h; sourceTree = "<group>"; };
@@ -1495,13 +1495,10 @@
 				1843354F1F3355FE00A53585 /* CoreTelephony.framework in Frameworks */,
 				180BCA9C1F5D29C1001EE331 /* CCSDK.framework in Frameworks */,
 				1843354D1F3355F100A53585 /* Security.framework in Frameworks */,
-				180BCA991F5D2999001EE331 /* WebRTC.framework in Frameworks */,
-				180BCA101F5D0006001EE331 /* CCSDK.framework in Frameworks */,
 				184335691F33612F00A53585 /* libSocialSina.a in Frameworks */,
 				1843356E1F33612F00A53585 /* libUMSocialLog.a in Frameworks */,
 				184335411F33536C00A53585 /* SystemConfiguration.framework in Frameworks */,
 				184335701F33612F00A53585 /* UShareUI.framework in Frameworks */,
-				180BCA111F5D0006001EE331 /* IJKMediaFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2707,6 +2704,8 @@
 			children = (
 				182CDEC41F42AA0600283EBA /* LsPracticeModel.h */,
 				182CDEC51F42AA0600283EBA /* LsPracticeModel.m */,
+				18F0342F1F9F3224001A305D /* LsPracticeDetailModel.h */,
+				18F034301F9F3224001A305D /* LsPracticeDetailModel.m */,
 			);
 			path = PracticeModel;
 			sourceTree = "<group>";
@@ -3335,7 +3334,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Ls;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = lss;
 				TargetAttributes = {
 					184CA1701F27199F00ACB807 = {
@@ -3798,6 +3797,7 @@
 				180BCA231F5D048A001EE331 /* QuestionView.m in Sources */,
 				184335841F349CBF00A53585 /* LsCollectionHeaderView.m in Sources */,
 				180BCA901F5D0763001EE331 /* MASViewConstraint.m in Sources */,
+				18F034311F9F3224001A305D /* LsPracticeDetailModel.m in Sources */,
 				180BCA5F1F5D051C001EE331 /* LoadingView.m in Sources */,
 				182C686F1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m in Sources */,
 				18AF1AF51F2731E800D05E4D /* IQTitleBarButtonItem.m in Sources */,
@@ -3997,7 +3997,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -4005,7 +4007,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -4045,7 +4051,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -4053,7 +4061,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

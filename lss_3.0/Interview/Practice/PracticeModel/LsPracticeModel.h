@@ -19,6 +19,17 @@
 @property (nonatomic,strong) NSString   *  uploadDate;
 @property (nonatomic,assign) BOOL          isRecommend;
 
+@property (nonatomic,strong) NSURL      *  videoHeadUrl;
+@property (nonatomic,strong) NSString   *  teacher;
+@property (nonatomic,assign) BOOL          isRefered;
+@property (nonatomic,strong) NSString   *  ctag1;
+@property (nonatomic,strong) NSString   *  ctag2;
+@property (nonatomic,strong) NSString   *  viewtime;
+@property (nonatomic,strong) NSString   *  endDate;
+@property (nonatomic,strong) NSString   *  startDate;
+
+@property (nonatomic,strong) NSString   *  code;
+
 @end
 
 @interface LsPracticeModel : NSObject

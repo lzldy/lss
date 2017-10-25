@@ -70,7 +70,7 @@
     [_backgroundView addSubview:line];
     
     UIImageView  *imageview  =[[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame), LSMainScreenW, LSMainScreenH-CGRectGetMaxY(line.frame)-50*LSScale)];
-    [imageview sd_setImageWithURL:_model.courseIntroduction.introduceUrl placeholderImage:[UIImage imageNamed:@""]];
+    [imageview sd_setImageWithURL:_model.courseIntroduction.introduceUrl placeholderImage:[UIImage imageNamed:@"zhibo"]];
     [superView addSubview:_backgroundView];
 }
 

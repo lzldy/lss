@@ -11,5 +11,6 @@
 @interface LsPractiveDetailViewController : LsBaseViewController
 
 @property (nonatomic,strong) NSString *authorType;
+@property (nonatomic,strong) NSString *code_;
 
 @end

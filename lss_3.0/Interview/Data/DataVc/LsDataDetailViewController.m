@@ -26,11 +26,12 @@
     [self.navView.rightButton setImage:[UIImage imageNamed:@"data_fx"] forState:0];
     [self.navView.rightButton addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *collectionBtn      =[[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.navView.rightButton.frame)-44, 20, 44, 44 )];
+    UIButton *collectionBtn      =[[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.navView.rightButton.frame)-35, 24, 36, 35 )];
     [collectionBtn setImage:[UIImage imageNamed:@"data_sc"] forState:0];
     [collectionBtn setImage:[UIImage imageNamed:@"data_sc_dl"] forState:UIControlStateSelected];
     collectionBtn.tag            =110086;
     [collectionBtn addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navView addSubview:collectionBtn];
 
     [self getData];
 }
@@ -53,9 +54,9 @@
         [superView bringSubviewToFront:self.navView];
         NSURLRequest *request =[NSURLRequest requestWithURL:self.model.url];
         [self.webView_ loadRequest:request];
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
+    
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{

@@ -82,7 +82,7 @@
         nameL.frame      =CGRectMake(CGRectGetMaxX(imageView.frame)+15*LSScale, 40*LSScale, 80*LSScale, 25*LSScale);
         nameL.textAlignment =NSTextAlignmentLeft;
  
-        [imageView sd_setImageWithURL:model.headImgUrl placeholderImage:[UIImage imageNamed:@""]];
+        [imageView sd_setImageWithURL:model.headImgUrl placeholderImage:[UIImage imageNamed:@"zhibo"]];
     }else{
         titleL.frame     =CGRectMake(15*LSScale, 10*LSScale, LSMainScreenW-15*LSScale, 20*LSScale);
 //        iconView.frame   =CGRectMake(15*LSScale, 35*LSScale, 25*LSScale, 25*LSScale);

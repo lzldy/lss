@@ -33,6 +33,21 @@
 
     [superView addSubview:self.tabView];
     [superView addSubview:self.chooseView];
+    
+    [self getData:nil];
+}
+
+-(void)getData:(NSString*)ctag{
+//    listvideotables.html
+    NSMutableDictionary *dict =[NSMutableDictionary dictionary];
+    if ([LsMethod haveValue:ctag]) {
+        [dict setObject:ctag forKey:@"ctag1"];
+    }
+    [[LsAFNetWorkTool shareManger] LSPOST:@"listvideotables.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.model  =[LsPracticeModel yy_modelWithJSON:responseObject];
+        [self.tabView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 -(void)didClickNavViewRightBtn:(UIButton *)btn{
@@ -62,8 +77,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
-//    return self.model.practiceDataArray.count;
+    return self.model.practiceDataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -80,27 +94,37 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    LsPracticeListModel *model            =self.model.practiceDataArray[indexPath.row];
+    LsPracticeListModel *modelll            =self.model.practiceDataArray[indexPath.row];
+    if ([LsMethod haveValue:modelll.ctag2]) {
+        if ([modelll.ctag2 isEqualToString:@"STUD"]) {
+            modelll.ctag2 =@"学生";
+        }else if([modelll.ctag2 isEqualToString:@"TEACH"]){
+            modelll.ctag2 =@"名师";
+        }
+    }else{
+        modelll.ctag2 =@"神秘人";
+    }
     LsPractiveDetailViewController *praVc =[[LsPractiveDetailViewController alloc] init];
-//    praVc.authorType                      =model.authorType ;
-    praVc.authorType                      =@"老师";
+    praVc.authorType                      =modelll.ctag2;
+    praVc.code_                           =modelll.code;
     [self.navigationController pushViewController:praVc animated:YES];
 }
 
 
 - (void)chooseBtn:(LsButton*)button{
-    [LsMethod alertMessage:button.videoID WithTime:1.5];
+//    [LsMethod alertMessage:button.videoID WithTime:1.5];
+    [self getData:button.videoID];
     [self performSelector:@selector(hiddenChooseView) withObject:nil afterDelay:0.25];
 }
 
 -(LsChooseView *)chooseView{
     if (!_chooseView) {
         _chooseView           =[[LsChooseView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 70*LSScale)];
-        _chooseView.dataArray =@[@{@"title":@"全部",@"ID":@"10"},
-                                 @{@"title":@"说课",@"ID":@"11"},
-                                 @{@"title":@"试讲",@"ID":@"12"},
-                                 @{@"title":@"结构化",@"ID":@"13"},
-                                 @{@"title":@"答辩",@"ID":@"14"}];
+        _chooseView.dataArray =@[@{@"title":@"全部",@"ID":@""},
+                                 @{@"title":@"说课",@"ID":@"SK"},
+                                 @{@"title":@"试讲",@"ID":@"SJ"},
+                                 @{@"title":@"结构化",@"ID":@"JGH"},
+                                 @{@"title":@"答辩",@"ID":@"DB"}];
         _chooseView.hidden    =YES;
         _chooseView.delegate  =self;
     }

@@ -148,7 +148,7 @@
         titleL.text                   =modelll.title;
         line.frame                    =CGRectMake(0, 210*LSScale-0.5, LSMainScreenW, 0.5);
 
-        [imageV sd_setImageWithURL:modelll.coverImage placeholderImage:nil];
+        [imageV sd_setImageWithURL:modelll.coverImage placeholderImage:[UIImage imageNamed:@"banner"]];
         
         CGSize size                   = [LsMethod sizeWithString:modelll.author font:authorL.font];
         authorL.frame                 = CGRectMake(authorL.frame.origin.x,authorL.frame.origin.y, size.width,35*LSScale);
@@ -180,9 +180,55 @@
             if (modelll.isRecommend) {
                 recommendImageV.hidden   =NO;
             }
+            line.frame                    =CGRectMake(0,0, LSMainScreenW, 1.5*LSScale);
+            line.backgroundColor          =LSNavColor;
+            
+            NSString  *strDate            =[LsMethod toDateWithTimeStamp:modelll.endDate DateFormat:@"yyyy年MM月dd日"];
+            CGSize uploadDateLSize        = [LsMethod sizeWithString:strDate font:uploadDateL.font];
+            uploadDateL.text              =strDate;
+            uploadDateL.frame             =CGRectMake(uploadDateL.frame.origin.x, uploadDateL.frame.origin.y,uploadDateLSize.width, uploadDateL.frame.size.height);
+            
+            titleL.frame                  =CGRectMake(titleL.frame.origin.x, titleL.frame.origin.y, CGRectGetMinX(uploadDateL.frame)-titleL.frame.origin.x, titleL.frame.size.height);
+            
+            CGSize size                   = [LsMethod sizeWithString:modelll.teacher font:authorL.font];
+            authorL.frame                 = CGRectMake(authorL.frame.origin.x,authorL.frame.origin.y, size.width,35*LSScale);
+            authorL.textColor             =LSNavColor;
+            typeL.frame                   =CGRectMake(CGRectGetMaxX(authorL.frame)+12, typeL.frame.origin.y, typeL.frame.size.width, typeL.frame.size.height);
             authorTypeL.frame         =CGRectMake(CGRectGetMaxX(typeL.frame)+12, authorTypeL.frame.origin.y, authorTypeL.frame.size.width, authorTypeL.frame.size.height);
             
-        }
+            [imageV sd_setImageWithURL:modelll.videoHeadUrl placeholderImage:[UIImage imageNamed:@"banner"]];
+            
+            if ([LsMethod haveValue:modelll.ctag1]) {
+                if ([modelll.ctag1 isEqualToString:@"SK"]) {
+                    modelll.ctag1 =@"说课";
+                }else if([modelll.ctag1 isEqualToString:@"SJ"]){
+                    modelll.ctag1 =@"试讲";
+                }else if([modelll.ctag1 isEqualToString:@"JGH"]){
+                    modelll.ctag1 =@"结构化";
+                }else if([modelll.ctag1 isEqualToString:@"DB"]){
+                    modelll.ctag1 =@"答辩";
+                }
+            }else{
+                modelll.ctag1 =@"全部";
+            }
+            
+            if ([LsMethod haveValue:modelll.ctag2]) {
+                if ([modelll.ctag2 isEqualToString:@"STUD"]) {
+                    modelll.ctag2 =@"学生";
+                }else if([modelll.ctag2 isEqualToString:@"TEACH"]){
+                    modelll.ctag2 =@"名师";
+                }
+            }else{
+                modelll.ctag2 =@"神秘人";
+            }
+            
+            
+            titleL.text                   =modelll.title;
+            authorL.text                  =modelll.teacher;
+            typeL.text                    =modelll.ctag1;
+            authorTypeL.text              =modelll.ctag2;
+            commentNumL.text              =[NSString stringWithFormat:@"%ld",(long)modelll.commnetNum];
+            }
     }
 }
 

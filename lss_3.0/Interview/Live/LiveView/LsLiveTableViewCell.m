@@ -179,10 +179,11 @@
         }
         
         if (model.teacherArray.count>0) {
-            [teaOneIV sd_setImageWithURL:[NSURL URLWithString:[model.teacherArray[0] teacherIcon]] placeholderImage:[UIImage imageNamed:@"default"]];
+//            zhibo
+            [teaOneIV sd_setImageWithURL:[NSURL URLWithString:[model.teacherArray[0] teacherIcon]] placeholderImage:[UIImage imageNamed:@"zhibo"]];
             teacherLOne.text     =[model.teacherArray[0] teacherName];
             if (model.teacherArray.count>1) {
-                [teaTwoIV sd_setImageWithURL:[NSURL URLWithString:[model.teacherArray[1] teacherIcon]] placeholderImage:[UIImage imageNamed:@"default"]];
+                [teaTwoIV sd_setImageWithURL:[NSURL URLWithString:[model.teacherArray[1] teacherIcon]] placeholderImage:[UIImage imageNamed:@"zhibo"]];
                 teacherLTwo.text =[model.teacherArray[1] teacherName];
             }
         }

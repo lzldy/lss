@@ -11,13 +11,14 @@
 #import "LsCommentViewController.h"
 #import "LsCommentView.h"
 #import "LsCustomPlayerViewController.h"
+#import "LsPracticeDetailModel.h"
 
 @interface LsPractiveDetailViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate>
 {
     UIView *blackGroudView;
 }
 @property (nonatomic,strong) UITableView *tabView;
-
+@property (nonatomic,strong) LsPracticeDetailModel *model;
 @end
 
 @implementation LsPractiveDetailViewController
@@ -32,6 +33,16 @@
     
     self.navView.navTitle =self.authorType;
     [self loadBaseUI];
+    [self getData];
+}
+
+-(void)getData{
+    NSDictionary *dict =@{@"code":self.code_};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"getvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.model  =[LsPracticeDetailModel yy_modelWithDictionary:[responseObject objectForKey:@"data"] ];
+        [self.tabView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 -(void)loadBaseUI{
@@ -124,7 +135,7 @@
     [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
     [superView addSubview:_tabView];
     
-    if ([self.authorType isEqualToString:@"学生"]) {
+    if ([self.authorType isEqualToString:@"学生"]||[self.authorType isEqualToString:@"神秘人"]) {
         commentView.frame = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, 40*LSScale);
         _tabView.frame    = CGRectMake(0, CGRectGetMaxY(commentView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(commentView.frame));
     }else{
@@ -250,6 +261,13 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [blackGroudView removeFromSuperview];
+}
+
+-(LsPracticeDetailModel *)model{
+    if (!_model) {
+        _model =[[LsPracticeDetailModel alloc] init];
+    }
+    return _model;
 }
 
 - (void)didReceiveMemoryWarning {

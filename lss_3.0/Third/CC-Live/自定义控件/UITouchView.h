@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^ViewBeTouched)();
+typedef void(^ViewBeTouched)(void);
 
 @interface UITouchView : UIView
 
