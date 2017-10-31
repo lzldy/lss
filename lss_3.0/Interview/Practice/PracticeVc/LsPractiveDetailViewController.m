@@ -12,6 +12,7 @@
 #import "LsCommentView.h"
 #import "LsCustomPlayerViewController.h"
 #import "LsPracticeDetailModel.h"
+#import "DWCustomPlayerViewController.h"
 
 @interface LsPractiveDetailViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate>
 {
@@ -19,6 +20,7 @@
 }
 @property (nonatomic,strong) UITableView *tabView;
 @property (nonatomic,strong) LsPracticeDetailModel *model;
+@property (nonatomic,strong) LsCustomPlayerViewController *childVC;
 @end
 
 @implementation LsPractiveDetailViewController
@@ -46,21 +48,25 @@
 }
 
 -(void)loadBaseUI{
-    UIButton *videoBtn             =[[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenW*LSScaleW_H)];
-    videoBtn.backgroundColor       =[UIColor greenColor];
-    [videoBtn setImage:[UIImage imageNamed:@"banner1.jpg"] forState:0];
-    videoBtn.tag           =1314;
-    videoBtn.adjustsImageWhenHighlighted = NO;
-    [videoBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [superView addSubview:videoBtn];
+    self.childVC                   =[[LsCustomPlayerViewController alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenW*LSScaleW_H)];
+    [self addChildViewController:self.childVC];
+    [superView addSubview:self.childVC.view];
+
+//    UIButton *videoBtn             =[[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenW*LSScaleW_H)];
+//    videoBtn.backgroundColor       =[UIColor greenColor];
+//    [videoBtn setImage:[UIImage imageNamed:@"banner1.jpg"] forState:0];
+//    videoBtn.tag           =1314;
+//    videoBtn.adjustsImageWhenHighlighted = NO;
+//    [videoBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [superView addSubview:videoBtn];
     
-    UIImage *bf_image              =[UIImage imageNamed:@"bf_button"];
-    UIImageView    *playBtn        =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, bf_image.size.width, bf_image.size.height)];
-    playBtn.center                 =videoBtn.center;
-    playBtn.image                  =bf_image;
-    [superView addSubview:playBtn];
+//    UIImage *bf_image              =[UIImage imageNamed:@"bf_button"];
+//    UIImageView    *playBtn        =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, bf_image.size.width, bf_image.size.height)];
+//    playBtn.center                 =self.childVC.view.center;
+//    playBtn.image                  =bf_image;
+//    [superView addSubview:playBtn];
     
-    UIView   *headerView           =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(videoBtn.frame), LSMainScreenW, 50*LSScale)];
+    UIView   *headerView           =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_childVC.view.frame), LSMainScreenW, 50*LSScale)];
     headerView.backgroundColor     =[UIColor whiteColor];
     [superView addSubview:headerView];
 
@@ -161,6 +167,8 @@
     [commentBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     commentBtn.tag   =888;
     [superView addSubview:commentBtn];
+    
+    [superView bringSubviewToFront:self.childVC.view];
 }
 
 -(void)didClickNavViewRightBtn:(UIButton*)button{
@@ -174,6 +182,7 @@
             button.selected=YES;
         }
     }else if(button.tag ==555){
+        
         LsCommentViewController *comVc =[[LsCommentViewController alloc] init];
         [self.navigationController  pushViewController:comVc animated:YES];
     }else if(button.tag== 888){
@@ -183,6 +192,14 @@
         commentView.commitBtnText      =@"发送评论";
         [superView addSubview:commentView];
     }else if (button.tag ==1314){
+//        DWCustomPlayerViewController *player = [[DWCustomPlayerViewController alloc] init];
+//        player.playMode = NO;
+//        player.videoId = @"2DBC15008476D84C9C33DC5901307461";
+////        player.videos = self.videoIds;
+////        player.indexpath = indexPath;
+////        player.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:player animated:NO];
+        
         LsCustomPlayerViewController *playVc =[[LsCustomPlayerViewController alloc] init];
         [self.navigationController pushViewController:playVc animated:YES];
     }else if (button.tag ==8008){

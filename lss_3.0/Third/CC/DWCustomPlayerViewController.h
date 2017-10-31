@@ -2,7 +2,7 @@
 
 #import "DWSDK.h"
 
-@interface DWCustomPlayerViewController : UIViewController
+@interface DWCustomPlayerViewController : LsBaseViewController
 
 @property (copy,   nonatomic) NSString  *videoId;
 @property (copy,   nonatomic) NSString  *videoLocalPath;

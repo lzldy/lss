@@ -3,12 +3,15 @@
 #import <AVKit/AVKit.h>
 
 #import "DWCustomPlayerViewController.h"
+//#import "DWOfflineViewController.h"
 #import "DWGestureButton.h"
 #import "DWPlayerMenuView.h"
 #import "DWTableView.h"
 #import "DWTools.h"
 #import "DWMediaSubtitle.h"
 #import "Reachability.h"
+
+//#import "DWDownloadViewController.h"
 
 #import "DWPlayerView.h"
 
@@ -689,7 +692,7 @@ typedef NSInteger DWPLayerScreenSizeMode;
             
         }else if (_skipTime >0){
             
-            [closeBtn setTitle:[NSString stringWithFormat:@"%lds后可关闭广告",(long)_skipTime] forState:UIControlStateNormal];
+            [closeBtn setTitle:[NSString stringWithFormat:@"%lds后可关闭广告",_skipTime] forState:UIControlStateNormal];
             closeBtn.frame = CGRectMake(LSMainScreenW - 130, 20, 120, 30);
             _timeLabel.frame =CGRectMake(LSMainScreenW- 130-5-30, 20, 30, 30);
             
@@ -775,7 +778,7 @@ typedef NSInteger DWPLayerScreenSizeMode;
 //    frame.origin.x = self.headerView.frame.size.width - 100;
 //    frame.origin.y = self.backButton.frame.origin.y;
 //    self.downloadButton.frame = frame;
-//    
+//
 //    self.downloadButton.backgroundColor = [UIColor clearColor];
 //    [self.downloadButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 //    [self.downloadButton setImage:[UIImage imageNamed:@"download_ic"] forState:UIControlStateNormal];
@@ -787,42 +790,42 @@ typedef NSInteger DWPLayerScreenSizeMode;
 //-(void)downloadButtonAction:(UIButton *)button
 //{
 //
-//    
+//
 // //下载
-//    
+//
 //    if (!_isDowning) {
-//        
-//        
-//        
+//
+//
+//
 //       // 获取下载地址
-//        DWPlayInfo *playinfo = [[DWPlayInfo alloc] initWithUserId:CC_USERID andVideoId:self.videoId key:CC_APIKEY hlsSupport:@"0"];
-//        
+//        DWPlayInfo *playinfo = [[DWPlayInfo alloc] initWithUserId:DWACCOUNT_USERID andVideoId:self.videoId key:DWACCOUNT_APIKEY hlsSupport:@"0"];
+//
 //        NSLog(@"%@__%@",self.playUrls,self.videoId);
-//        
+//
 //        //网络请求超时时间
 //        playinfo.timeoutSeconds =20;
 //        playinfo.errorBlock = ^(NSError *error){
-//            
-//            
+//
+//
 //        };
-//        
+//
 //        playinfo.finishBlock = ^(NSDictionary *response){
-//            
+//
 //            NSDictionary *playUrls =[DWUtils parsePlayInfoResponse:response];
-//            
+//
 //            if (!playUrls) {
 //                //说明 网络资源暂时不可用
 //            }
-//            
-//          
+//
+//
 //            NSLog(@"---%@",playUrls);
-//            
+//
 //            //获取PlayInfo 配对url 推送offlineview
 //            NSArray *videos = [playUrls valueForKey:@"definitions"];
-//            
+//
 //            //注意 自己根据数据处理
 //            NSDictionary *videoInfo = videos[0];
-//            
+//
 //            //字典转模型
 //            DWOfflineModel *model =[[DWOfflineModel alloc]init];
 //            model.definition =[videoInfo objectForKey:@"definition"];
@@ -830,104 +833,104 @@ typedef NSInteger DWPLayerScreenSizeMode;
 //            model.playurl =[videoInfo objectForKey:@"playurl"];
 //            model.videoId =self.videoId;
 //            model.token =[playUrls objectForKey:@"token"];
-// 
-//            
-//            
-//            
+//
+//
+//
+//
 //            //路径
 //            // 开始下载
 //            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //            NSString *documentDirectory = [paths objectAtIndex:0];
-//            
-//            
+//
+//
 //            /* 注意：
 //             若你所下载的 videoId 未启用视频加密功能，则保存的文件扩展名[必须]是 mp4，否则无法播放。
 //             若你所下载的 videoId 启用了视频加密功能，则保存的文件扩展名[必须]是 pcm，否则无法播放。
 //             */
-//            
+//
 //            NSString *videoPath;
 //            if (!model.definition) {
-//                
+//
 //                videoPath = [NSString stringWithFormat:@"%@/%@.mp4", documentDirectory, model.videoId];
 //            } else {
-//                
+//
 //                videoPath = [NSString stringWithFormat:@"%@/%@-%@.mp4", documentDirectory, model.videoId, model.definition];
 //            }
-//            
+//
 //            model.videoPath =videoPath;
 //            DWDownloadViewController *viewCtrl =[DWDownloadViewController sharedInstance];
 //          //  DWDownloadViewController *viewCtrl =[[DWDownloadViewController alloc]init];
 //            BOOL repeat =[self cleanRepeatModel:model];
 //            if (repeat) return;
-//            
+//
 //            [viewCtrl startDownloadWith:model videoPath:model.videoPath isBegin:YES];
-//            
-//            
+//
+//
 //        };
 //        [playinfo start];
-//        
+//
 //        _isDowning =YES;
-//        
+//
 //    }else{
-//    
+//
 //        [self loadTipLabelview];
 //        self.tipLabel.text = @"该视频已经下载";
 //        self.tipHiddenSeconds = 2;
-//    
+//
 //    }
-//    
+//
 //}
 //
 //- (BOOL )cleanRepeatModel:(DWOfflineModel *)model{
-//    
-//    
-//    
+//
+//
+//
 //    _isRepeat =NO;
-//    
+//
 //    NSMutableArray *downingArray =[[[NSUserDefaults standardUserDefaults] objectForKey:@"downingArray"] mutableCopy];
 //    NSMutableArray *finishDicArray =[[[NSUserDefaults standardUserDefaults] objectForKey:@"finishDicArray"] mutableCopy];
-//    
+//
 //    //先看完成的数组里有没有 再看正在下载的
 //    [finishDicArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        
+//
 //        NSString *str1 =[NSString stringWithFormat:@"%@",[obj objectForKey:@"videoId"]];
 //        NSString *str2 =[NSString stringWithFormat:@"%@",[obj objectForKey:@"definition"]];
-//        
+//
 //        NSString *str3 =[NSString stringWithFormat:@"%@",model.videoId];
 //        NSString *str4 =[NSString stringWithFormat:@"%@",model.definition];
-//        
-//        
+//
+//
 //        if ([str1 isEqualToString:str3] && [str2 isEqualToString:str4] ){
-//            
+//
 //            _isRepeat =YES;
 //        }
-//        
-//        
+//
+//
 //    }];
-//    
+//
 //    if (_isRepeat) return _isRepeat;
-//    
+//
 //    [downingArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        
+//
 //        NSString *str1 =[NSString stringWithFormat:@"%@",[obj objectForKey:@"videoId"]];
 //        NSString *str2 =[NSString stringWithFormat:@"%@",[obj objectForKey:@"definition"]];
-//        
+//
 //        NSString *str3 =[NSString stringWithFormat:@"%@",model.videoId];
 //        NSString *str4 =[NSString stringWithFormat:@"%@",model.definition];
-//        
+//
 //        if ([str1 isEqualToString:str3] && [str2 isEqualToString:str4]){
-//            
+//
 //            _isRepeat =YES;
-//            
+//
 //        }
-//        
-//        
+//
+//
 //    }];
-//    
-//    
-//    
+//
+//
+//
 //    return _isRepeat;
-//    
+//
 //}
 
 # pragma mark 菜单 ...
@@ -1475,9 +1478,9 @@ typedef NSInteger DWPLayerScreenSizeMode;
 //    [self.vrView removeFromSuperview];
 //    [self.overlayView removeFromSuperview];
     
-    self.view.transform = CGAffineTransformIdentity;
-    self.videoBackgroundView.transform =CGAffineTransformIdentity;
-    self.overlayView.transform = CGAffineTransformIdentity;
+    self.view.transform = CGAffineTransformMakeRotation(M_PI);
+//    self.videoBackgroundView.transform =CGAffineTransformIdentity;
+//    self.overlayView.transform = CGAffineTransformIdentity;
     self.vrView.transform =CGAffineTransformIdentity;
     
     
@@ -1485,7 +1488,7 @@ typedef NSInteger DWPLayerScreenSizeMode;
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
     
     //此种方法组合可以实现Motion下的正确方向
-    BOOL haveMotion = false;
+    BOOL haveMotion;
     if (_interative ==DWModeInteractiveMotion || _interative ==DWModeInteractiveMotionWithTouch) {
         
         haveMotion =YES;

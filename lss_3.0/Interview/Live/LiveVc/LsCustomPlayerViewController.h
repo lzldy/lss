@@ -23,4 +23,6 @@
 
 @property (nonatomic ,strong) NSString  *videoId;
 
+- (id)initWithFrame:(CGRect)frame;
+
 @end
