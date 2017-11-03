@@ -319,6 +319,9 @@
                         LsLog(@"-----------请求成功---------%@",responseObject);
                         success(dataTask, responseObject);
                     }else{
+                        if ([rtnMess isKindOfClass:[NSNull class]]) {
+                            rtnMess =@"出错啦···稍等下下";
+                        }
                         [LsMethod alertMessage:rtnMess WithTime:2];
                     }
                 }

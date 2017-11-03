@@ -168,7 +168,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		// Set default values for properties
 		self.animationType = MBProgressHUDAnimationFade;
 		self.mode = MBProgressHUDModeIndeterminate;
-		self.labelText = nil;
+		self.labelText = @"";
 		self.detailsLabelText = nil;
 		self.opacity = 0.8f;
 		self.color = nil;
@@ -542,6 +542,9 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	totalSize.width = MAX(totalSize.width, indicatorF.size.width);
 	totalSize.height += indicatorF.size.height;
 	
+    if (!label.text) {
+        label.text =@"1";
+    }
 	CGSize labelSize = MB_TEXTSIZE(label.text, label.font);
 	labelSize.width = MIN(labelSize.width, maxWidth);
 	totalSize.width = MAX(totalSize.width, labelSize.width);

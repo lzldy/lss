@@ -9,6 +9,7 @@
 #import "LsRecordingCompletedViewController.h"
 #import "LSLabel+TextField.h"
 #import "LsVideoUploadSuccessViewController.h"
+#import "DWUploader.h"
 
 @interface LsRecordingCompletedViewController ()<UITextFieldDelegate>
 {
@@ -17,6 +18,11 @@
     UIButton    *dabianBtn;
     UIButton    *jiegouhuaBtn;
     UIButton    *chooseImageBtn;
+    LSLabel_TextField  *titleL;
+    NSDictionary*_videoContext;
+    DWUploader  *_uploader;
+    NSString    *selectedType;
+    UIImageView *videoImgView;
 }
 
 @end
@@ -33,13 +39,13 @@
 }
 
 -(void)loadBaseUI{
-    UIImageView *videoImgView      =[[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 150*LSScale)];
+    videoImgView      =[[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 150*LSScale)];
     videoImgView.backgroundColor   =[UIColor whiteColor];
     videoImgView.image             = [LsMethod thumbnailImageForVideo:_videoURL atTime:1];
     videoImgView.contentMode       =UIViewContentModeScaleAspectFit;
     [superView addSubview:videoImgView];
     
-    LSLabel_TextField  *titleL     =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(videoImgView.frame)+10*LSScale, LSMainScreenW,35*LSScale)];
+    titleL     =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(videoImgView.frame)+10*LSScale, LSMainScreenW,35*LSScale)];
     titleL.textField.delegate      =self;
     titleL.label.textColor         =[UIColor darkGrayColor];
     titleL.dataArray               =@[@"标题：",@""];
@@ -152,6 +158,63 @@
 }
 
 -(void)didClickUploadBtn{
+    
+    if (!titleL.textField.text.length) {
+        [LsMethod alertMessage:@"请输入视频标题" WithTime:1.5];
+        return;
+    }
+    if (!selectedType) {
+        [LsMethod alertMessage:@"请选择视频标签" WithTime:1.5];
+        return;
+    }
+    
+    MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
+    hud.removeFromSuperViewOnHide = YES;
+    
+    DWUploader *uploader = [[DWUploader alloc] initWithUserId:CC_USERID andKey:CC_APIKEY uploadVideoTitle:@"练课" videoDescription:titleL.textField.text videoTag:@"练课" videoPath:self.videoURL.path notifyURL:nil];
+    uploader.timeoutSeconds = 30;
+    uploader.videoContextForRetryBlock = ^(NSDictionary *videoContext) {
+        _videoContext = videoContext;
+    };
+    uploader.finishBlock = ^() {
+        [hud hide:YES];
+        [self uploadToServer];
+    };
+    uploader.failBlock = ^(NSError *error){
+        [hud hide:YES];
+        [LsMethod alertMessage:@"上传视频失败" WithTime:1.5];
+    };
+    [uploader start];
+    _uploader = uploader;
+}
+
+- (void)uploadToServer{
+    
+//    setid：必选，getvcpsetting.html获得的点播配置cfgSetId值,现在的值是2
+//    videoid:视频id
+//    name：课时名称
+//    desc：课时描述
+//    ctag1：类型，说课SK，结构化JGH，答辩DB，试讲SJ
+//    ctag2：TEACH名师/STUD学生，可选
+
+    NSString *videoId = [_videoContext objectForKey:@"videoid"];
+    NSMutableDictionary *dict =[NSMutableDictionary dictionary];
+    [dict setObject:@"2"                    forKey:@"setid"];
+    [dict setObject:videoId                 forKey:@"videoid"];
+    [dict setObject:titleL.textField.text   forKey:@"name"];
+    [dict setObject:selectedType            forKey:@"ctag1"];
+    [dict setObject:@"练课"                     forKey:@"desc"];
+
+    [[LsAFNetWorkTool shareManger] LSPOST:@"addnewvideo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [LsMethod alertMessage:[responseObject objectForKey:@"message"] WithTime:1.5];
+        [self uploadSuccess];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    
+    }];
+    
+}
+
+-(void)uploadSuccess{
     LsVideoUploadSuccessViewController *vc =[[LsVideoUploadSuccessViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -160,6 +223,7 @@
     switch (btn.tag) {
         case 111:
         {
+            selectedType =@"SJ";
             [shijiangBtn   setTitleColor:[UIColor whiteColor] forState:0];
             shijiangBtn.layer.backgroundColor  =LSNavColor.CGColor;
             [shuokeBtn     setTitleColor:LSNavColor forState:0];
@@ -172,6 +236,7 @@
             break;
         case 112:
         {
+            selectedType =@"SK";
             [shijiangBtn   setTitleColor:LSNavColor forState:0];
             shijiangBtn.layer.backgroundColor  =[UIColor whiteColor].CGColor;
             [shuokeBtn     setTitleColor:[UIColor whiteColor] forState:0];
@@ -184,6 +249,7 @@
             break;
         case 113:
         {
+            selectedType =@"DB";
             [shijiangBtn  setTitleColor:LSNavColor forState:0];
             shijiangBtn.layer.backgroundColor  =[UIColor whiteColor].CGColor;
             [shuokeBtn    setTitleColor:LSNavColor forState:0];
@@ -196,6 +262,7 @@
             break;
         case 114:
         {
+            selectedType =@"JGH";
             [shijiangBtn   setTitleColor:LSNavColor forState:0];
             shijiangBtn.layer.backgroundColor  =[UIColor whiteColor].CGColor;
             [shuokeBtn     setTitleColor:LSNavColor forState:0];

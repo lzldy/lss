@@ -483,6 +483,9 @@
 		18AF1AF81F2731E800D05E4D /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18AF1AE91F2731E800D05E4D /* IQKeyboardManager.bundle */; };
 		18BBADA31F749F3C00475A20 /* LsVideoUploadSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBADA21F749F3C00475A20 /* LsVideoUploadSuccessViewController.m */; };
 		18BBADA61F74A6CC00475A20 /* LsShareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBADA51F74A6CC00475A20 /* LsShareModel.m */; };
+		18C277F61FAC4F8F001A9BE0 /* LsProFormaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C277F51FAC4F8F001A9BE0 /* LsProFormaModel.m */; };
+		18C277FD1FAC5A18001A9BE0 /* JZAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C277FA1FAC5A18001A9BE0 /* JZAlbumViewController.m */; };
+		18C277FE1FAC5A18001A9BE0 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C277FC1FAC5A18001A9BE0 /* PhotoView.m */; };
 		18E5D0E21F8DAF6700F9CCDA /* LsWrittenHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */; };
 		18E5D0E51F8E050600F9CCDA /* LsWrittenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E41F8E050600F9CCDA /* LsWrittenTableViewCell.m */; };
 		18E5D0E81F8E0E3F00F9CCDA /* LsDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E71F8E0E3F00F9CCDA /* LsDataTableViewCell.m */; };
@@ -1336,6 +1339,12 @@
 		18BBADA21F749F3C00475A20 /* LsVideoUploadSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsVideoUploadSuccessViewController.m; sourceTree = "<group>"; };
 		18BBADA41F74A6CC00475A20 /* LsShareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsShareModel.h; sourceTree = "<group>"; };
 		18BBADA51F74A6CC00475A20 /* LsShareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsShareModel.m; sourceTree = "<group>"; };
+		18C277F41FAC4F8F001A9BE0 /* LsProFormaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsProFormaModel.h; sourceTree = "<group>"; };
+		18C277F51FAC4F8F001A9BE0 /* LsProFormaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsProFormaModel.m; sourceTree = "<group>"; };
+		18C277F91FAC5A18001A9BE0 /* JZAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAlbumViewController.h; sourceTree = "<group>"; };
+		18C277FA1FAC5A18001A9BE0 /* JZAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAlbumViewController.m; sourceTree = "<group>"; };
+		18C277FB1FAC5A18001A9BE0 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
+		18C277FC1FAC5A18001A9BE0 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
 		18E5D0E01F8DAF6600F9CCDA /* LsWrittenHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenHeaderView.h; sourceTree = "<group>"; };
 		18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenHeaderView.m; sourceTree = "<group>"; };
 		18E5D0E31F8E050600F9CCDA /* LsWrittenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenTableViewCell.h; sourceTree = "<group>"; };
@@ -2388,6 +2397,7 @@
 		184CA1A81F271BB100ACB807 /* Third */ = {
 			isa = PBXGroup;
 			children = (
+				18C277F81FAC5A18001A9BE0 /* imageView */,
 				180BCA711F5D0762001EE331 /* Masonry */,
 				180BCA0B1F5CFF88001EE331 /* CC-Live */,
 				18FEF7AE1F52C5E400F74BB6 /* Pay */,
@@ -2573,6 +2583,8 @@
 			children = (
 				185296191F622896003D5D8A /* AVCaptureManager.h */,
 				1852961A1F622896003D5D8A /* AVCaptureManager.m */,
+				18C277F41FAC4F8F001A9BE0 /* LsProFormaModel.h */,
+				18C277F51FAC4F8F001A9BE0 /* LsProFormaModel.m */,
 			);
 			path = PumpingTestModel;
 			sourceTree = "<group>";
@@ -2801,6 +2813,17 @@
 				18AF1AE91F2731E800D05E4D /* IQKeyboardManager.bundle */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		18C277F81FAC5A18001A9BE0 /* imageView */ = {
+			isa = PBXGroup;
+			children = (
+				18C277F91FAC5A18001A9BE0 /* JZAlbumViewController.h */,
+				18C277FA1FAC5A18001A9BE0 /* JZAlbumViewController.m */,
+				18C277FB1FAC5A18001A9BE0 /* PhotoView.h */,
+				18C277FC1FAC5A18001A9BE0 /* PhotoView.m */,
+			);
+			path = imageView;
 			sourceTree = "<group>";
 		};
 		18E82D631F37FB9400D3154B /* Interview */ = {
@@ -4145,6 +4168,7 @@
 				180BCA5B1F5D051C001EE331 /* CustomTextField.m in Sources */,
 				18FEF8911F52C6F300F74BB6 /* BCPayReq.m in Sources */,
 				180BC98F1F5B9866001EE331 /* LsCommentTableViewCell.m in Sources */,
+				18C277FD1FAC5A18001A9BE0 /* JZAlbumViewController.m in Sources */,
 				184CA1F71F272FC800ACB807 /* LsMyViewController.m in Sources */,
 				182CDEDA1F43EB7800283EBA /* LsNoticeViewController.m in Sources */,
 				1854F4A21F36BC7C00E1F603 /* LsConfigureModel.m in Sources */,
@@ -4189,6 +4213,7 @@
 				1854F5311F37024A00E1F603 /* SDWebImageCompat.m in Sources */,
 				18FEF8B51F52C6F300F74BB6 /* NSString+IsValid.m in Sources */,
 				1854F53B1F37024A00E1F603 /* UIImageView+HighlightedWebCache.m in Sources */,
+				18C277F61FAC4F8F001A9BE0 /* LsProFormaModel.m in Sources */,
 				18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */,
 				18FEF88E1F52C6F300F74BB6 /* BCAuthReq.m in Sources */,
 				1854F53D1F37024A00E1F603 /* UIView+WebCacheOperation.m in Sources */,
@@ -4200,6 +4225,7 @@
 				18FEF89A1F52C6F300F74BB6 /* BCQueryBillsResp.m in Sources */,
 				18FEF8A11F52C6F300F74BB6 /* BCQueryRefundsCountReq.m in Sources */,
 				18E5D0E81F8E0E3F00F9CCDA /* LsDataTableViewCell.m in Sources */,
+				18C277FE1FAC5A18001A9BE0 /* PhotoView.m in Sources */,
 				180BCA611F5D051C001EE331 /* MySlider.m in Sources */,
 				18975FCB1F29C6BD00447721 /* LsLog.m in Sources */,
 				18FEF8BA1F52C6F300F74BB6 /* AliPayAdapter.m in Sources */,

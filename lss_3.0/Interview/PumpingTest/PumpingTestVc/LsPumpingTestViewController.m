@@ -19,6 +19,7 @@
     LsButton     *shuokeBtn;
     LsButton     *jigouhuaBtn;
     LsButton     *dabianBtn;
+    NSString     *ctag1;
 
 }
 @property (nonatomic,strong)  LsTestChooseView *chooseView;
@@ -142,15 +143,19 @@
     startBtn.layer.backgroundColor  =LSNavColor.CGColor;
     [self reSetImageAndTextColor];
     if (btn.tag==0) {
+        ctag1         =@"SJ";
         shijiangBtn.lsImageView.image =[UIImage imageNamed:@"sj_s"];
         shijiangBtn.lsLabel.textColor =LSNavColor;
     }else if (btn.tag==1){
+        ctag1         =@"SK";
         shuokeBtn.lsImageView.image =[UIImage imageNamed:@"sk_s"];
         shuokeBtn.lsLabel.textColor =LSNavColor;
     }else if (btn.tag==2){
+        ctag1         =@"JGH";
         jigouhuaBtn.lsImageView.image =[UIImage imageNamed:@"jgh_s"];
         jigouhuaBtn.lsLabel.textColor =LSNavColor;
     }else if (btn.tag==3){
+        ctag1         =@"DB";
         dabianBtn.lsImageView.image =[UIImage imageNamed:@"db_s"];
         dabianBtn.lsLabel.textColor =LSNavColor;
     }
@@ -172,6 +177,7 @@
 
 -(void)didClickStartBnt:(UIButton*)btn{
     LsProFormaViewController *vc =[[LsProFormaViewController alloc] init];
+    vc.ctag1                     =ctag1;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -207,9 +213,6 @@
     if (!_chooseView) {
         _chooseView            =[[LsTestChooseView alloc] init];
         _chooseView.dataArray  =@[@{@"title":@"录制视频",@"image":@"luzhi"},
-                                  @{@"title":@"上传视频",@"image":@"luzhi"},
-                                  @{@"title":@"上传视频",@"image":@"luzhi"},
-                                  @{@"title":@"上传视频",@"image":@"luzhi"},
                                   @{@"title":@"上传视频",@"image":@"luzhi"}];
         _chooseView.hidden     =YES;
         _chooseView.delegate   =self;

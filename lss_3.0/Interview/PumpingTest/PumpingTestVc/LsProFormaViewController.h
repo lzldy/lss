@@ -10,4 +10,6 @@
 
 @interface LsProFormaViewController : LsBaseViewController
 
+@property (nonatomic,strong) NSString *ctag1;
+
 @end

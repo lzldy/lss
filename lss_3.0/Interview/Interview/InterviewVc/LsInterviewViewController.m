@@ -43,7 +43,8 @@
 }
 
 -(void)getData{
-    [[LsAFNetWorkTool shareManger] LSPOST:@"homebannerjson.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+    NSDictionary *dict =@{@"page":@"HOME"};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"homebannerjson.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.banModel =[LsBannerModel yy_modelWithJSON:responseObject];
         [self loadBaseUI];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
@@ -303,7 +304,7 @@
     if (!_bannerArray) {
         NSMutableArray *dataArr =[NSMutableArray array];
         for (LsBannerModel *model in self.banModel.bannerArray) {
-            [dataArr addObject:model.url];
+            [dataArr addObject:model.picurl];
         }
         _bannerArray =dataArr;
     }

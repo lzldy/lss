@@ -14,7 +14,9 @@
 
 @property(nonatomic,strong) NSString *id_;
 @property(nonatomic,strong) NSString *tag;
-@property(nonatomic,strong) NSURL    *url;
+@property(nonatomic,strong) NSURL    *clickurl;
+@property(nonatomic,strong) NSURL    *picurl;
+
 @property(nonatomic,strong) NSArray  *bannerArray;
 
 @end

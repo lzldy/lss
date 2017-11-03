@@ -141,13 +141,13 @@
 -(UITableView *)tabView{
     if (!_tabView) {
         _tabView =[[UITableView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(uploadBtn.frame)+20*LSScale, LSMainScreenW-20*LSScale,45*LSScale*5)];
-        _tabView.delegate         =self;
-        _tabView.dataSource       =self;
-        _tabView.tableFooterView  =[[UIView alloc] init];
-        _tabView.showsVerticalScrollIndicator   =NO;
-        _tabView.backgroundColor  =[UIColor whiteColor];
-        _tabView.layer.cornerRadius =6*LSScale;
-        _tabView.scrollEnabled    =NO;
+        _tabView.delegate                      =self;
+        _tabView.dataSource                    =self;
+        _tabView.tableFooterView               =[[UIView alloc] init];
+        _tabView.showsVerticalScrollIndicator  =NO;
+        _tabView.backgroundColor               =[UIColor whiteColor];
+        _tabView.layer.cornerRadius            =6*LSScale;
+        _tabView.scrollEnabled                 =NO;
     }
     return _tabView;
 }

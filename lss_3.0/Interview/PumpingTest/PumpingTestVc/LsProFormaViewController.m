@@ -8,11 +8,16 @@
 
 #import "LsProFormaViewController.h"
 #import "LsVideotapeViewController.h"
+#import "LsProFormaModel.h"
+#import "JZAlbumViewController.h"
 
 @interface LsProFormaViewController ()
 {
     UIButton     *startBtn;
+    UILabel      *titleL;
 }
+@property (nonatomic,strong) LsProFormaModel *model;
+
 @end
 
 @implementation LsProFormaViewController
@@ -21,7 +26,23 @@
     [super viewDidLoad];
     self.navView.navTitle      =@"开始备考";
     superView.backgroundColor  =LSColor(251, 243, 245, 1);
+    
     [self loadBaseUI];
+    [self getData];
+}
+
+-(void)getData{
+    NSMutableDictionary *dict =[NSMutableDictionary dictionary];
+    [dict setObject:self.ctag1                               forKey:@"ctag1"];
+    [dict setObject:[LSUser_Default objectForKey:@"catgid"]  forKey:@"catgid"];
+    [dict setObject:[LSUser_Default objectForKey:@"scatgid"] forKey:@"scatgid"];
+
+    [[LsAFNetWorkTool shareManger] LSPOST:@"listcoursefilebyram.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.model   =[LsProFormaModel yy_modelWithJSON:responseObject];
+        titleL.text  =self.model.name;
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+        
+    }];
 }
 
 -(void)loadBaseUI{
@@ -43,15 +64,23 @@
     label.font                      =[UIFont systemFontOfSize:13*LSScale];
     [backGroudImageView addSubview:label];
     
-    UILabel   *titleL                =[[UILabel alloc] initWithFrame:CGRectMake(20*LSScale,CGRectGetHeight(backGroudImageView.frame)/2+20*LSScale-50*LSScale,CGRectGetWidth(backGroudImageView.frame) -40*LSScale, 100*LSScale)];
+    titleL                =[[UILabel alloc] initWithFrame:CGRectMake(20*LSScale,CGRectGetHeight(backGroudImageView.frame)/2+20*LSScale-50*LSScale,CGRectGetWidth(backGroudImageView.frame) -40*LSScale, 100*LSScale)];
     titleL.layer.cornerRadius        =8*LSScale;
     titleL.numberOfLines             =0;
-    titleL.text                      =@"你本次说课的题目是：打扫房间爱的开发卡登记反馈时代峰峻";
+    titleL.text                      =@"";
     titleL.textAlignment             =NSTextAlignmentCenter;
     titleL.textColor                 =[UIColor darkTextColor];
     titleL.font                      =[UIFont systemFontOfSize:18*LSScale];
     titleL.layer.backgroundColor     =LSColor(251, 243, 245, 1).CGColor;
     [backGroudImageView addSubview:titleL];
+    
+    UIButton    *imageBtn            =[[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(backGroudImageView.frame) +10*LSScale, LSMainScreenW, 30*LSScale)];
+    [imageBtn setTitle:@"查看完成题目" forState:0];
+    [imageBtn setTitleColor:LSNavColor forState:0];
+    imageBtn.titleLabel.font         =[UIFont systemFontOfSize:14.5*LSScale];
+    [imageBtn addTarget:self action:@selector(didClickStartBtn:) forControlEvents:UIControlEventTouchUpInside];
+    imageBtn.tag    =812;
+    [superView addSubview:imageBtn];
     
     startBtn         =[[UIButton alloc] initWithFrame:CGRectMake(15*LSScale, LSMainScreenH-38*LSScale-20*LSScale, LSMainScreenW-30*LSScale, 38*LSScale)];
     startBtn.layer.backgroundColor =LSNavColor.CGColor;
@@ -65,8 +94,30 @@
 }
 
 -(void)didClickStartBtn:(UIButton*)btn{
-    LsVideotapeViewController *vc =[[LsVideotapeViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (btn.tag==812) {
+        if (self.model.imageArray.count>0) {
+            JZAlbumViewController *c = [JZAlbumViewController new];
+            NSMutableArray *array = [NSMutableArray array];
+            for(LsProFormaModel *modelll in self.model.imageArray) {
+                [array addObject:modelll.imageUrl];
+            }
+            c.imgArr = array;
+            c.currentIndex = 0;
+            [self presentViewController:c animated:YES completion:nil];
+        }else{
+            [LsMethod alertMessage:@"暂无图片" WithTime:1.5];
+        }
+    }else{
+        LsVideotapeViewController *vc =[[LsVideotapeViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+-(LsProFormaModel *)model{
+    if (!_model) {
+        _model =[[LsProFormaModel alloc] init];
+    }
+    return _model;
 }
 
 - (void)didReceiveMemoryWarning {

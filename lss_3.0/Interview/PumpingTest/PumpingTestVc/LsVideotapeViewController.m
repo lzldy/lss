@@ -171,7 +171,6 @@
         [startBtn setTitle:@"开始录制" forState:UIControlStateNormal];
         [self.navigationController pushViewController:vc animated:YES];
     }
-
 }
 
 -(void)dealloc{

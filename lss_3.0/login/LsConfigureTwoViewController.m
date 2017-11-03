@@ -153,6 +153,10 @@ static NSString * headerReuseIdentifier = @"header";
 -(void)settingRequest{
     [[LsAFNetWorkTool shareManger] LSPOST:@"updateallsetting.html" parameters:self.dataDict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         [self settingSuccess];
+        [LSUser_Default setObject:self.dataDict[@"scatgid"] forKey:@"scatgid"];
+        [LSUser_Default setObject:self.dataDict[@"branchid"] forKey:@"branchid"];
+        [LSUser_Default setObject:self.dataDict[@"catgid"] forKey:@"catgid"];
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
