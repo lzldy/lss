@@ -15,11 +15,11 @@
 {
     CMTime defaultVideoMaxFrameDuration;
 }
-@property (nonatomic, strong) AVCaptureSession *captureSession;
-@property (nonatomic, strong) AVCaptureMovieFileOutput *fileOutput;
-@property (nonatomic, strong) AVCaptureDeviceFormat *defaultFormat;
-@property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
-@property (nonatomic, strong) NSString         *videoPath;
+@property (nonatomic, strong) AVCaptureSession            *captureSession;
+@property (nonatomic, strong) AVCaptureMovieFileOutput    *fileOutput;
+@property (nonatomic, strong) AVCaptureDeviceFormat       *defaultFormat;
+@property (nonatomic, strong) AVCaptureVideoPreviewLayer  *previewLayer;
+@property (nonatomic, strong) NSString                    *videoPath;
 @end
 
 
@@ -34,7 +34,7 @@
         NSError *error;
         
         self.captureSession = [[AVCaptureSession alloc] init];
-        self.captureSession.sessionPreset = AVCaptureSessionPresetMedium;
+        self.captureSession.sessionPreset = AVCaptureSessionPresetHigh;
         
         //AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         AVCaptureDevice *videoDevice = [self cameraWithPosition:AVCaptureDevicePositionFront];
@@ -64,6 +64,9 @@
         self.fileOutput = [[AVCaptureMovieFileOutput alloc] init];
         [self.captureSession addOutput:self.fileOutput];
         
+        //方向
+//        AVCaptureConnection * videoConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
+//        [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
         
         self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
         self.previewLayer.frame = previewView.bounds;

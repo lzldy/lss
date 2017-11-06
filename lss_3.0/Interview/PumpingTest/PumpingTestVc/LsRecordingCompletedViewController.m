@@ -203,15 +203,13 @@
     [dict setObject:videoId                 forKey:@"videoid"];
     [dict setObject:titleL.textField.text   forKey:@"name"];
     [dict setObject:selectedType            forKey:@"ctag1"];
-    [dict setObject:@"练课"                     forKey:@"desc"];
+    [dict setObject:@"练课"                  forKey:@"desc"];
 
     [[LsAFNetWorkTool shareManger] LSPOST:@"addnewvideo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         [LsMethod alertMessage:[responseObject objectForKey:@"message"] WithTime:1.5];
         [self uploadSuccess];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-    
     }];
-    
 }
 
 -(void)uploadSuccess{

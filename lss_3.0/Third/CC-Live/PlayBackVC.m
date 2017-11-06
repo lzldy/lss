@@ -820,6 +820,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self initUI];
     [self addObserver];
+    
     [self startHiddenTimer];
     _autoRotate = NO;
     _sliderValue = 0;

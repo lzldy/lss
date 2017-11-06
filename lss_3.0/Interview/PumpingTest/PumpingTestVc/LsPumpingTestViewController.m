@@ -10,6 +10,7 @@
 #import "LsButton.h"
 #import "LsTestChooseView.h"
 #import "LsProFormaViewController.h"
+#import "LsVideotapeViewController.h"
 
 @interface LsPumpingTestViewController ()<rightChooseViewDelegate>
 {
@@ -202,7 +203,12 @@
 
 - (void)rightChooseBtn:(LsButton*)button{
     [self hiddenTestChooseView];
-    [LsMethod alertMessage:[NSString stringWithFormat:@"%ld",(long)button.tag] WithTime:1.5];
+    if (button.tag ==0) {
+        LsVideotapeViewController *vc =[[LsVideotapeViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        [LsMethod alertMessage:@"暂未开放,敬请期待" WithTime:1.5];
+    }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

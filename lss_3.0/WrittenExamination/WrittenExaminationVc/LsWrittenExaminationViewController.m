@@ -228,6 +228,7 @@
         _scrView.showsVerticalScrollIndicator     =NO;
         _scrView.delegate                         =self;
         _scrView.bounces                          =NO;
+        _scrView.scrollEnabled =NO;
     }
     return _scrView;
 }
@@ -240,7 +241,7 @@
         _scrView1.showsHorizontalScrollIndicator   =NO;
         _scrView1.showsVerticalScrollIndicator     =NO;
         _scrView1.delegate                         =self;
-        _scrView1.bounces                          =NO;
+        _scrView1.bounces                          =YES;
     }
     return _scrView1;
 }

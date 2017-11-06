@@ -32,17 +32,20 @@
 }
 
 -(void)getData{
-    NSMutableDictionary *dict =[NSMutableDictionary dictionary];
-    [dict setObject:self.ctag1                               forKey:@"ctag1"];
-    [dict setObject:[LSUser_Default objectForKey:@"catgid"]  forKey:@"catgid"];
-    [dict setObject:[LSUser_Default objectForKey:@"scatgid"] forKey:@"scatgid"];
-
-    [[LsAFNetWorkTool shareManger] LSPOST:@"listcoursefilebyram.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        self.model   =[LsProFormaModel yy_modelWithJSON:responseObject];
-        titleL.text  =self.model.name;
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    if (self.ctag1) {
+        NSMutableDictionary *dict =[NSMutableDictionary dictionary];
+        [dict setObject:self.ctag1                               forKey:@"ctag1"];
+        [dict setObject:[LSUser_Default objectForKey:@"catgid"]  forKey:@"catgid"];
+        [dict setObject:[LSUser_Default objectForKey:@"scatgid"] forKey:@"scatgid"];
         
-    }];
+        [[LsAFNetWorkTool shareManger] LSPOST:@"listcoursefilebyram.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+            self.model   =[LsProFormaModel yy_modelWithJSON:responseObject];
+            titleL.text  =self.model.name;
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+        }];
+    }else{
+        LsLog(@"--------直接进入录制视频---------");
+    }
 }
 
 -(void)loadBaseUI{
