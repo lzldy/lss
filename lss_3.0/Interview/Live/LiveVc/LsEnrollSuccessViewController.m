@@ -63,8 +63,6 @@
     bottomL.textAlignment =NSTextAlignmentCenter;
     bottomL.font       =[UIFont systemFontOfSize:13*LSScale];
     [superView addSubview:bottomL];
-    
-        
         
 }
 

@@ -56,7 +56,7 @@
     self.navView.hidden =YES;
     superView.backgroundColor =[UIColor redColor];
     [self loadBaseUI];
-    [self getPlayUrl];
+//    [self getPlayUrl];
 }
 
 -(void)loadBaseUI{

@@ -17,6 +17,7 @@
 @interface LsPractiveDetailViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate>
 {
     UIView *blackGroudView;
+    UIButton *goodBtn;
 }
 @property (nonatomic,strong) UITableView *tabView;
 @property (nonatomic,strong) LsPracticeDetailModel *model;
@@ -34,7 +35,7 @@
     [self.navView.rightButton addTarget:self action:@selector(didClickNavViewRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navView.navTitle =self.authorType;
-    [self loadBaseUI];
+    [self addPlayCount];
     [self getData];
 }
 
@@ -42,7 +43,7 @@
     NSDictionary *dict =@{@"code":self.code_};
     [[LsAFNetWorkTool shareManger] LSPOST:@"getvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model  =[LsPracticeDetailModel yy_modelWithDictionary:[responseObject objectForKey:@"data"] ];
-        [self.tabView reloadData];
+        [self loadBaseUI];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
@@ -71,20 +72,21 @@
     [superView addSubview:headerView];
 
     UILabel  *titleL               =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 5*LSScale, LSMainScreenW/2+30*LSScale, 20*LSScale)];
-    titleL.text                    =@"教师资格证备考视频";
+    titleL.text                    =self.model.title;
     titleL.font                    =[UIFont systemFontOfSize:13*LSScale];
     titleL.textColor               =[UIColor darkTextColor];
     [headerView addSubview:titleL];
     
     UILabel  *uploadTimeL         =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, headerView.frame.size.height/2, LSMainScreenW, 20*LSScale)];
-    uploadTimeL.text              =@"共34人观看   2017年8月27日发布";
+    NSString  *uploadTimeStr      =[LsMethod toDateWithTimeStamp:self.model.startDate DateFormat:@"yyyy年MM月dd日"];
+    uploadTimeL.text              =[NSString stringWithFormat:@"共%@人观看   %@发布",self.model.viewtime,uploadTimeStr];
     uploadTimeL.font              =[UIFont systemFontOfSize:12*LSScale];
     uploadTimeL.textColor         =[UIColor darkGrayColor];
     [headerView addSubview:uploadTimeL];
     
     UIButton *comBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-10*LSScale-45*LSScale, 5*LSScale, 45*LSScale, 20*LSScale)];
     [comBtn setImage:[UIImage imageNamed:@"dx_icon"]    forState:UIControlStateNormal];
-    [comBtn setTitle:@"187" forState:UIControlStateNormal];
+    [comBtn setTitle:self.model.commentNum forState:UIControlStateNormal];
     comBtn.titleLabel.font   =[UIFont systemFontOfSize:12*LSScale];
     [comBtn setTitleColor:[UIColor darkTextColor]       forState:UIControlStateNormal];
     comBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -94,10 +96,10 @@
     comBtn.tag  =567;
     [headerView addSubview:comBtn];
     
-    UIButton *goodBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-55*LSScale-45*LSScale,5*LSScale, 45*LSScale, 20*LSScale)];
+    goodBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-55*LSScale-45*LSScale,5*LSScale, 45*LSScale, 20*LSScale)];
     [goodBtn setImage:[UIImage imageNamed:@"dz_icon"] forState:UIControlStateNormal];
     [goodBtn setImage:[UIImage imageNamed:@"dz_icon_xz"] forState:UIControlStateSelected];
-    [goodBtn setTitle:@"1232" forState:UIControlStateNormal];
+    [goodBtn setTitle:self.model.zannum forState:UIControlStateNormal];
     goodBtn.titleLabel.font   =[UIFont systemFontOfSize:12*LSScale];
     [goodBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [goodBtn setTitleColor:LSNavColor forState:UIControlStateSelected];
@@ -141,7 +143,7 @@
     [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
     [superView addSubview:_tabView];
     
-    if ([self.authorType isEqualToString:@"学生"]||[self.authorType isEqualToString:@"神秘人"]) {
+    if ([self.authorType isEqualToString:@"学生"]) {
         commentView.frame = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, 40*LSScale);
         _tabView.frame    = CGRectMake(0, CGRectGetMaxY(commentView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(commentView.frame));
     }else{
@@ -178,8 +180,8 @@
 -(void)clickBtn:(UIButton *)button{
     if (button.tag==765) {
         if (button.selected==NO) {
-            [LsMethod alertMessage:@"点赞" WithTime:1.5];
             button.selected=YES;
+            [self zanVideo];
         }
     }else if(button.tag ==555){
         
@@ -231,7 +233,29 @@
 }
 
 - (void)didClickCommitButton:(NSString*)text{
-    [LsMethod alertMessage:text WithTime:1.5];
+    [self commentVideoWithText:text];
+}
+
+-(void)addPlayCount{
+    NSDictionary *dict =@{@"code":self.code_};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"playvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
+
+-(void)zanVideo{
+    NSDictionary *dict =@{@"code":self.code_,@"zanflag":@"yes"};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"zanvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [goodBtn setTitle:[NSString stringWithFormat:@"%ld",[self.model.zannum integerValue] +1] forState:0];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
+
+-(void)commentVideoWithText:(NSString *)text{
+    NSDictionary *dict =@{@"code":self.code_,@"comment":text,@"commentid":@""};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"commentvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 #pragma - mark -  tabview 代理

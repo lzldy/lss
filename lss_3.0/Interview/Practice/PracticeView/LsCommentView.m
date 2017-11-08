@@ -61,7 +61,7 @@
 }
 
 -(void)didClickCommitBtn:(UIButton*)button{
-    if (![LsMethod haveValue:textView_.text]) {
+    if (![LsMethod haveValue:textView_.text]||[textView_.text isEqualToString:self.textPlaceholder]) {
         [LsMethod alertMessage:@"请写下你的想法之后再发送哦~" WithTime:1.5];
     }else{
         if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickCommitButton:)]) {

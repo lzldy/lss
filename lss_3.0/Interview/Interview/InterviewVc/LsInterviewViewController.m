@@ -18,6 +18,8 @@
 #import "LsDataViewController.h"
 #import "LsNoticeViewController.h"
 #import "LsPumpingTestViewController.h"
+#import "LsLiveDetailViewController.h"
+#import "LsPractiveDetailViewController.h"
 
 @interface LsInterviewViewController ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate,interCellHeaderViewDelegate,practiceTableViewCellDelegate>
 {
@@ -176,10 +178,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        
+        LsLiveDetailViewController *detailVc =[[LsLiveDetailViewController alloc] init];
+        detailVc.crcode                     =self.model.liveArray[indexPath.row].code;
+        [self.navigationController pushViewController:detailVc animated:YES];
     }else{
         if (indexPath.row==0&&self.model.practiceModel.personNum>0) {
             [self pushPracticeVc:0];
+        }else{
+            LsPractiveDetailViewController *praVc =[[LsPractiveDetailViewController alloc] init];
+//            praVc.authorType                      =self.model.practiceModel.practiceLists[indexPath.row-1].ctag2;
+            praVc.code_                       =self.model.practiceModel.practiceLists[indexPath.row-1].code;
+            [self.navigationController pushViewController:praVc animated:YES];
         }
     }
 }

@@ -104,10 +104,17 @@
 }
 
 - (void)didEnrollSuccess:(LsLiveDetailModel*)detailModel{
-    LsLog(@"---------------报名成功--------------");
-    LsEnrollSuccessViewController *vc =[[LsEnrollSuccessViewController alloc] init];
-    vc.model =detailModel;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self requestEnroll:detailModel];
+}
+
+-(void)requestEnroll:(LsLiveDetailModel*)detailModel{
+    NSDictionary *dict =@{@"code":self.crcode};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"buyqbcourse.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        LsEnrollSuccessViewController *vc =[[LsEnrollSuccessViewController alloc] init];
+        vc.model =detailModel;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 - (void)didClickPlayBtnWithID:(NSString*)videoid{

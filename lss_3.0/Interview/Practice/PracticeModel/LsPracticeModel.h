@@ -35,7 +35,7 @@
 @interface LsPracticeModel : NSObject
 
 @property (nonatomic,assign) NSInteger personNum;
-@property (nonatomic,strong) NSArray   *practiceLists;
+@property (nonatomic,strong) NSArray<LsPracticeListModel*>   *practiceLists;
 
 @property (nonatomic,strong) NSArray   *practiceDataArray;
 
