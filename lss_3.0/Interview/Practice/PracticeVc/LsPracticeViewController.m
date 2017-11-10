@@ -108,6 +108,8 @@
     praVc.authorType                      =modelll.ctag2;
     praVc.code_                           =modelll.code;
     praVc.videoID                         =modelll.videoId;
+    praVc.didZan                          =modelll.myzan;
+
     [self.navigationController pushViewController:praVc animated:YES];
 }
 

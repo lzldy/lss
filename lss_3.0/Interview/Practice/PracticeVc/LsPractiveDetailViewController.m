@@ -101,7 +101,7 @@
     goodBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-55*LSScale-45*LSScale,5*LSScale, 45*LSScale, 20*LSScale)];
     [goodBtn setImage:[UIImage imageNamed:@"dz_icon"] forState:UIControlStateNormal];
     [goodBtn setImage:[UIImage imageNamed:@"dz_icon_xz"] forState:UIControlStateSelected];
-    [goodBtn setTitle:self.model.zannum forState:UIControlStateNormal];
+    [goodBtn setTitle:[NSString stringWithFormat:@"%ld",(long)self.model.zannum] forState:UIControlStateNormal];
     goodBtn.titleLabel.font   =[UIFont systemFontOfSize:12*LSScale];
     [goodBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [goodBtn setTitleColor:LSNavColor forState:UIControlStateSelected];
@@ -110,6 +110,9 @@
     goodBtn.tag   =765;
     goodBtn.adjustsImageWhenHighlighted = NO;
     [goodBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    if (self.didZan) {
+        goodBtn.selected =YES;
+    }
     [headerView addSubview:goodBtn];
     
     UIView  *commentView           =[[UIView alloc] init];
@@ -162,9 +165,7 @@
 //        [headerView addSubview:introductionBtn];
         
         commentView.hidden  =YES;
-        _tabView.frame    = CGRectMake(0, CGRectGetMaxY(commentView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(commentView.frame));
-
-//        _tabView.frame    = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(headerView.frame));
+        _tabView.frame      = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(headerView.frame));
     }
     
     UIButton  *commentBtn        =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-50*LSScale, LSMainScreenH-30*LSScale-50*LSScale, 50*LSScale, 50*LSScale)];
@@ -183,7 +184,10 @@
     if (button.tag==765) {
         if (button.selected==NO) {
             button.selected=YES;
-            [self zanVideo];
+            [self zanVideo:@"yes"];
+        }else{
+            button.selected=NO;
+            [self zanVideo:@"no"];
         }
     }else if(button.tag ==555){
         
@@ -245,10 +249,16 @@
     }];
 }
 
--(void)zanVideo{
-    NSDictionary *dict =@{@"code":self.code_,@"zanflag":@"yes"};
+-(void)zanVideo:(NSString*)yesOrNo{
+    NSDictionary *dict =@{@"code":self.code_,@"zanflag":yesOrNo};
     [[LsAFNetWorkTool shareManger] LSPOST:@"zanvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        [goodBtn setTitle:[NSString stringWithFormat:@"%ld",[self.model.zannum integerValue] +1] forState:0];
+        if ([yesOrNo isEqualToString:@"yes"]) {
+            [goodBtn setTitle:[NSString stringWithFormat:@"%ld",self.model.zannum +1] forState:0];
+            self.model.zannum =self.model.zannum+1;
+        }else{
+            [goodBtn setTitle:[NSString stringWithFormat:@"%ld",self.model.zannum -1] forState:0];
+            self.model.zannum =self.model.zannum-1;
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }

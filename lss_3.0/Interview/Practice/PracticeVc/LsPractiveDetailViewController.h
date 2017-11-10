@@ -15,4 +15,6 @@
 
 @property (nonatomic,strong) NSString *videoID;
 
+@property (nonatomic,assign) BOOL  didZan;
+
 @end

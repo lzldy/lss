@@ -30,6 +30,7 @@
 
 @property (nonatomic,strong) NSString   *  code;
 @property (nonatomic,strong) NSString   *  videoId;
+@property (nonatomic,assign) BOOL          myzan;
 
 @end
 
