@@ -12,16 +12,16 @@
 
 @implementation LsShareModel
 
--(void)shareActionWithImage:(UIImage*)image{
+-(void)shareActionWithImage:(UIImage*)image OnVc:(UIViewController*)vc{
     //显示分享面板
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         // 根据获取的platformType确定所选平台进行下一步操作
-        [self shareImageToPlatformType:platformType Image:image];
+        [self shareImageToPlatformType:platformType Image:image OnVc:vc];
     }];
     
 }
 
-- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType Image:(UIImage*)image
+- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType Image:(UIImage*)image OnVc:(UIViewController*)vc
 {
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
@@ -34,7 +34,7 @@
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
     //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:vc completion:^(id data, NSError *error) {
         if (error) {
             LsLog(@"************Share fail with error %@*********",error);
         }else{
@@ -45,16 +45,16 @@
 }
 
 
--(void)shareActionWithUrl:(NSString*)url{
+-(void)shareActionWithUrl:(NSString*)url OnVc:(UIViewController*)vc{
     //显示分享面板
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         // 根据获取的platformType确定所选平台进行下一步操作
-        [self shareImageToPlatformType:platformType Url:url];
+        [self shareImageToPlatformType:platformType Url:url OnVc:vc];
     }];
 
 }
 
-- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType Url:(NSString*)url
+- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType Url:(NSString*)url OnVc:(UIViewController*)vc
 {
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
@@ -68,7 +68,7 @@
     messageObject.shareObject = shareObject;
     
     //调用分享接口
-    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:vc completion:^(id data, NSError *error) {
         if (error) {
             LsLog(@"************Share fail with error %@*********",error);
         }else{

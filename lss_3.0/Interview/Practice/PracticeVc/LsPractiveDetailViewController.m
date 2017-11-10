@@ -16,12 +16,13 @@
 
 @interface LsPractiveDetailViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate>
 {
-    UIView *blackGroudView;
+    UIView   *blackGroudView;
     UIButton *goodBtn;
 }
 @property (nonatomic,strong) UITableView *tabView;
 @property (nonatomic,strong) LsPracticeDetailModel *model;
 @property (nonatomic,strong) LsCustomPlayerViewController *childVC;
+
 @end
 
 @implementation LsPractiveDetailViewController
@@ -51,6 +52,7 @@
 -(void)loadBaseUI{
     self.childVC                   =[[LsCustomPlayerViewController alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenW*LSScaleW_H)];
     [self addChildViewController:self.childVC];
+    self.childVC.videoId           =self.videoID;
     [superView addSubview:self.childVC.view];
 
 //    UIButton *videoBtn             =[[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenW*LSScaleW_H)];
@@ -147,21 +149,22 @@
         commentView.frame = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, 40*LSScale);
         _tabView.frame    = CGRectMake(0, CGRectGetMaxY(commentView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(commentView.frame));
     }else{
-        UIButton *introductionBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-70*LSScale,CGRectGetMaxY(goodBtn.frame), 70*LSScale, 20*LSScale)];
-        [introductionBtn setImage:[UIImage imageNamed:@"jj_button"] forState:UIControlStateNormal];
-        [introductionBtn setTitle:@"查看简介" forState:UIControlStateNormal];
-        introductionBtn.titleLabel.font   =[UIFont systemFontOfSize:12.5*LSScale];
-        [introductionBtn setTitleColor:LSNavColor forState:UIControlStateNormal];
-        introductionBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        introductionBtn.imageEdgeInsets = UIEdgeInsetsMake(0, introductionBtn.frame.size.width - introductionBtn.imageView.frame.origin.x - introductionBtn.imageView.frame.size.width, 0, 0);
-        introductionBtn.titleEdgeInsets = UIEdgeInsetsMake(0,-13*LSScale, 0, 0);
-        introductionBtn.tag   =8008;
-        [introductionBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [headerView addSubview:introductionBtn];
+//        UIButton *introductionBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-70*LSScale,CGRectGetMaxY(goodBtn.frame), 70*LSScale, 20*LSScale)];
+//        [introductionBtn setImage:[UIImage imageNamed:@"jj_button"] forState:UIControlStateNormal];
+//        [introductionBtn setTitle:@"查看简介" forState:UIControlStateNormal];
+//        introductionBtn.titleLabel.font   =[UIFont systemFontOfSize:12.5*LSScale];
+//        [introductionBtn setTitleColor:LSNavColor forState:UIControlStateNormal];
+//        introductionBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//        introductionBtn.imageEdgeInsets = UIEdgeInsetsMake(0, introductionBtn.frame.size.width - introductionBtn.imageView.frame.origin.x - introductionBtn.imageView.frame.size.width, 0, 0);
+//        introductionBtn.titleEdgeInsets = UIEdgeInsetsMake(0,-13*LSScale, 0, 0);
+//        introductionBtn.tag   =8008;
+//        [introductionBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        [headerView addSubview:introductionBtn];
         
         commentView.hidden  =YES;
-        
-        _tabView.frame    = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(headerView.frame));
+        _tabView.frame    = CGRectMake(0, CGRectGetMaxY(commentView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(commentView.frame));
+
+//        _tabView.frame    = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(headerView.frame));
     }
     
     UIButton  *commentBtn        =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-50*LSScale, LSMainScreenH-30*LSScale-50*LSScale, 50*LSScale, 50*LSScale)];
@@ -169,7 +172,6 @@
     [commentBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     commentBtn.tag   =888;
     [superView addSubview:commentBtn];
-    
     [superView bringSubviewToFront:self.childVC.view];
 }
 

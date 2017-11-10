@@ -29,6 +29,7 @@
 @property (nonatomic,strong) NSString   *  startDate;
 
 @property (nonatomic,strong) NSString   *  code;
+@property (nonatomic,strong) NSString   *  videoId;
 
 @end
 

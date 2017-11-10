@@ -11,9 +11,9 @@
 #import "LsShareModel.h"
 
 @interface LsEnrollSuccessViewController ()
-{
-    LsShareModel *shareModel;
-}
+
+@property (nonatomic,strong)      LsShareModel *shareModel;
+
 @end
 
 @implementation LsEnrollSuccessViewController
@@ -68,11 +68,18 @@
 
 -(void)didClickShareBtn{
 //    [LsMethod alertMessage:@"分享" WithTime:2];
-    [shareModel shareActionWithUrl:nil];
+    [self.shareModel shareActionWithUrl:@"www.baidu.com" OnVc:self];
 }
 
 -(void)didClickIntoBtn{
     [LsMethod alertMessage:@"进入直播间" WithTime:2];
+}
+
+-(LsShareModel *)shareModel{
+    if (!_shareModel) {
+        _shareModel =[[LsShareModel alloc]init];
+    }
+    return _shareModel;
 }
 
 - (void)didReceiveMemoryWarning {

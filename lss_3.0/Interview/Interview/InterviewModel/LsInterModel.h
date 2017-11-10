@@ -17,7 +17,7 @@
 @property(nonatomic,strong) NSURL    *clickurl;
 @property(nonatomic,strong) NSURL    *picurl;
 
-@property(nonatomic,strong) NSArray  *bannerArray;
+@property(nonatomic,strong) NSArray<LsBannerModel*>  *bannerArray;
 
 @end
 

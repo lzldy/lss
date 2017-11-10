@@ -54,9 +54,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.hidden =YES;
-    superView.backgroundColor =[UIColor redColor];
-    [self loadBaseUI];
-//    [self getPlayUrl];
+    superView.backgroundColor =LSNavColor;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForegroundNotification) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground) name:UIApplicationWillResignActiveNotification object:nil];
 }
 
 -(void)loadBaseUI{
@@ -169,10 +170,11 @@
 
 # pragma - mark - 加载视频 method
 -(void)getPlayUrl{
-    self.playerView.videoId =@"2DBC15008476D84C9C33DC5901307461";
+//    self.playerView.videoId =@"2DBC15008476D84C9C33DC5901307461";
+    self.playerView.videoId =self.videoId;
     [self.playerView startRequestPlayInfo];
     [self.hud show:YES];
-    __weak __typeof(self)weakSelf = self;
+    WS(weakSelf)
     self.playerView.getPlayUrlsBlock = ^(NSDictionary *playUrls) {
         [weakSelf.hud hide:YES];
         NSNumber *status = [playUrls objectForKey:@"status"];
@@ -180,10 +182,13 @@
             [LsMethod alertMessage:@"视频正在审核中,请稍后再试" WithTime:1.5];
             return ;
         }
+        
+        [weakSelf loadBaseUI];
         weakSelf.model        =[LsVideoModel yy_modelWithDictionary:playUrls];
         LsVideoModel *modelll =weakSelf.model.videoModelArray[weakSelf.qualityIndex];
         [weakSelf.playerView setURL:modelll.playurl withCustomId:CHANNEL];
         [weakSelf.playerView play];
+        
     };
 }
 
@@ -338,18 +343,11 @@
     return _switchButton;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForegroundNotification) name:UIApplicationWillEnterForegroundNotification object:nil];
-    // app退到后台
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground) name:UIApplicationWillResignActiveNotification object:nil];
-}
-
 - (void)appDidEnterBackground{
     LsLog(@"----------进入后台------------");
-//    if (self.playerView.playing) {
-//        [self.playerView pause];
-//    }
+    if (self.playerView.playing) {
+        [self.playerView pause];
+    }
 }
 
 - (void)appWillEnterForegroundNotification{
@@ -375,6 +373,11 @@
 - (void)removeAllObserver{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self.playerView removeObserver:self forKeyPath:@"playing"];
+}
+
+-(void)setVideoId:(NSString *)videoId{
+    _videoId =videoId;
+    [self getPlayUrl];
 }
 
 -(void)dealloc{

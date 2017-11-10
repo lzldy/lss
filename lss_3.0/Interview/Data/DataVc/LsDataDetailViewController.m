@@ -8,10 +8,10 @@
 
 #import "LsDataDetailViewController.h"
 #import "LsDataModel.h"
+#import <WebKit/WebKit.h>
+@interface LsDataDetailViewController ()<WKNavigationDelegate,WKUIDelegate,UIGestureRecognizerDelegate>
 
-@interface LsDataDetailViewController ()<UIWebViewDelegate>
-
-@property (nonatomic,strong)  UIWebView         *webView_;
+@property (nonatomic,strong)  WKWebView         *webView_;
 @property (nonatomic,strong)  LsDataDetailModel *model;
 @property (nonatomic,strong)  MBProgressHUD     *hud;
 
@@ -32,8 +32,16 @@
     collectionBtn.tag            =110086;
     [collectionBtn addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.navView addSubview:collectionBtn];
+    [superView addSubview:self.webView_];
+    [superView bringSubviewToFront:self.navView];
 
-    [self getData];
+    if (self.isBanner) {
+        NSURLRequest *request =[NSURLRequest requestWithURL:self.bannerUrl];
+//        NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+        [self.webView_ loadRequest:request];
+    }else{
+        [self getData];
+    }
 }
 
 -(void)clickRightButton:(UIButton *)btn{
@@ -50,8 +58,6 @@
     [[LsAFNetWorkTool shareManger] LSPOST:@"getinfocontent.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         NSDictionary *dict =[responseObject objectForKey:@"data"];
         self.model =[LsDataDetailModel yy_modelWithDictionary:dict];
-        [superView addSubview:self.webView_];
-        [superView bringSubviewToFront:self.navView];
         NSURLRequest *request =[NSURLRequest requestWithURL:self.model.url];
         [self.webView_ loadRequest:request];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
@@ -59,7 +65,7 @@
     
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView{
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
     _hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
     _hud.mode = MBProgressHUDModeText;
     _hud.labelText =@"加载中···";
@@ -67,19 +73,21 @@
     _hud.removeFromSuperViewOnHide = YES;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     [_hud setHidden:YES];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
     [_hud setHidden:YES];
     [LsMethod alertMessage:@"加载熄火了" WithTime:1.5];
 }
 
--(UIWebView *)webView_{
+-(WKWebView *)webView_{
     if (!_webView_) {
-        _webView_ =[[UIWebView alloc] initWithFrame:CGRectMake(0,10, LSMainScreenW, LSMainScreenH-10)];
-        _webView_.delegate=self;
+        _webView_ =[[WKWebView alloc] initWithFrame:CGRectMake(0,10, LSMainScreenW, LSMainScreenH-10)];
+        _webView_.navigationDelegate = self;
+        _webView_.backgroundColor    = LSNavColor;
+        _webView_.UIDelegate         = self;
     }
     return _webView_;
 }

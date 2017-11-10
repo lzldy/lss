@@ -49,6 +49,9 @@
     captureManager = [[AVCaptureManager alloc] initWithPreviewView:superView];
     captureManager.delegate = self;
     [self loadBaseUI];
+    
+    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeRight] forKey:@"orientation"];//这里可以给个按钮 选择横屏录制或者竖屏录制
+
 }
 
 -(void)loadBaseUI{

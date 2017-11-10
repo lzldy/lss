@@ -119,7 +119,7 @@
     shareImage =Image;
     CGImageRelease(imageRefRect);
     
-    [shareModel shareActionWithImage:shareImage];
+    [shareModel shareActionWithImage:shareImage OnVc:self];
 }
 
 - (void)didReceiveMemoryWarning {

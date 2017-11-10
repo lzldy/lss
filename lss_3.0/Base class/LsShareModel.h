@@ -10,8 +10,8 @@
 
 @interface LsShareModel : NSObject
 
--(void)shareActionWithImage:(UIImage*)image;
+-(void)shareActionWithImage:(UIImage*)image OnVc:(UIViewController*)vc;
 
--(void)shareActionWithUrl:(NSString*)url;
+-(void)shareActionWithUrl:(NSString*)url OnVc:(UIViewController*)vc;
 
 @end

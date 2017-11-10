@@ -13,4 +13,7 @@
 @property (nonatomic,strong) NSString * title_;
 @property (nonatomic,strong) NSString * code;
 
+@property (nonatomic,assign) BOOL     isBanner;
+@property (nonatomic,strong) NSURL    *bannerUrl;
+
 @end

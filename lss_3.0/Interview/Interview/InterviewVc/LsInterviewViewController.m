@@ -20,6 +20,7 @@
 #import "LsPumpingTestViewController.h"
 #import "LsLiveDetailViewController.h"
 #import "LsPractiveDetailViewController.h"
+#import "LsDataDetailViewController.h"
 
 @interface LsInterviewViewController ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate,interCellHeaderViewDelegate,practiceTableViewCellDelegate>
 {
@@ -39,19 +40,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.navTitle =@"";
-    [self getData];
+    [self getBannerData];
     [self getUserInfo];
     [self initData];
 }
 
--(void)getData{
+-(void)getBannerData{
     NSDictionary *dict =@{@"page":@"HOME"};
     [[LsAFNetWorkTool shareManger] LSPOST:@"homebannerjson.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.banModel =[LsBannerModel yy_modelWithJSON:responseObject];
         [self loadBaseUI];
+        [self getData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-        
     }];
+}
+
+-(void)getData{
     [[LsAFNetWorkTool shareManger] LSPOST:@"homepagejson.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model =[LsInterModel yy_modelWithJSON:responseObject];
         [self.tabView reloadData];
@@ -87,14 +91,21 @@
 
 // 使用定时器初始化
 - (void)loadCarouselViewWithTimer {
-
+    WS(weakSelf)
     _carouselView  =[[UCCarouselView alloc] initWithFrame:CGRectMake(0, 20, LSMainScreenW, 140*LSScale)
                                                 dataArray:self.bannerArray
                                              timeInterval:2
                                        didSelectItemBlock:^(NSInteger didSelectItem){
-          LsLog(@"--------------%d",didSelectItem);
+           [weakSelf bannerDetailVc:self.banModel.bannerArray[didSelectItem].clickurl];
     }];
     [superView addSubview:_carouselView];
+}
+
+-(void)bannerDetailVc:(NSURL*)url{
+    LsDataDetailViewController *vc =[[LsDataDetailViewController alloc] init];
+    vc.bannerUrl                   =url;
+    vc.isBanner                    =YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma - mark -   UITableView 代理

@@ -58,7 +58,7 @@
 -(void)getDataOfKSB{
     NSDictionary *dict =@{@"ctag3":@"KSB"};
     [[LsAFNetWorkTool shareManger] LSPOST:@"listinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        self.model =[LsDataModel yy_modelWithJSON:responseObject];
+        self.model1 =[LsDataModel yy_modelWithJSON:responseObject];
         [self.tabView1 headerEndRefreshing];
         [self.tabView1 reloadData];
         if (self.model1.dataArray.count==0) {

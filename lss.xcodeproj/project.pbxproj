@@ -369,10 +369,6 @@
 		183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E7AFB1F28330100A69596 /* LsTabBarViewController.m */; };
 		184335231F333B4500A53585 /* LsLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335221F333B4500A53585 /* LsLoginViewController.m */; };
 		184335261F333C2300A53585 /* LsGuidePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335251F333C2300A53585 /* LsGuidePageViewController.m */; };
-		1843352B1F33437100A53585 /* 引导1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184335271F33437100A53585 /* 引导1@2x.png */; };
-		1843352C1F33437100A53585 /* 引导2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184335281F33437100A53585 /* 引导2@2x.png */; };
-		1843352D1F33437100A53585 /* 引导3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184335291F33437100A53585 /* 引导3@2x.png */; };
-		1843352E1F33437100A53585 /* 引导4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1843352A1F33437100A53585 /* 引导4@2x.png */; };
 		184335411F33536C00A53585 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184335401F33536C00A53585 /* SystemConfiguration.framework */; };
 		1843354D1F3355F100A53585 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1843354C1F3355F100A53585 /* Security.framework */; };
 		1843354F1F3355FE00A53585 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1843354E1F3355FE00A53585 /* CoreTelephony.framework */; };
@@ -501,11 +497,6 @@
 		18E82D771F37FDB800D3154B /* LsPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D751F37FDB800D3154B /* LsPracticeViewController.m */; };
 		18E82D821F37FE3300D3154B /* LsDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D801F37FE3300D3154B /* LsDynamicViewController.m */; };
 		18E82D851F37FFA700D3154B /* LsFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82D841F37FFA700D3154B /* LsFindViewController.m */; };
-		18E82DE31F381E1B00D3154B /* banner1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DDE1F381E1B00D3154B /* banner1.jpg */; };
-		18E82DE41F381E1B00D3154B /* banner2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DDF1F381E1B00D3154B /* banner2.jpg */; };
-		18E82DE51F381E1B00D3154B /* banner3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DE01F381E1B00D3154B /* banner3.jpg */; };
-		18E82DE61F381E1B00D3154B /* banner4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DE11F381E1B00D3154B /* banner4.jpg */; };
-		18E82DE71F381E1B00D3154B /* banner5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18E82DE21F381E1B00D3154B /* banner5.jpg */; };
 		18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */; };
 		18E82DEE1F3830C500D3154B /* UCCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82DEC1F3830C500D3154B /* UCCarouselView.m */; };
 		18E82E3C1F38A41F00D3154B /* LSLabel+TextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E82E3B1F38A41F00D3154B /* LSLabel+TextField.m */; };
@@ -1121,10 +1112,6 @@
 		184335221F333B4500A53585 /* LsLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLoginViewController.m; sourceTree = "<group>"; };
 		184335241F333C2300A53585 /* LsGuidePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsGuidePageViewController.h; sourceTree = "<group>"; };
 		184335251F333C2300A53585 /* LsGuidePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsGuidePageViewController.m; sourceTree = "<group>"; };
-		184335271F33437100A53585 /* 引导1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导1@2x.png"; sourceTree = "<group>"; };
-		184335281F33437100A53585 /* 引导2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导2@2x.png"; sourceTree = "<group>"; };
-		184335291F33437100A53585 /* 引导3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导3@2x.png"; sourceTree = "<group>"; };
-		1843352A1F33437100A53585 /* 引导4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "引导4@2x.png"; sourceTree = "<group>"; };
 		184335401F33536C00A53585 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		184335421F3353C000A53585 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		184335441F33549A00A53585 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
@@ -1375,11 +1362,6 @@
 		18E82D801F37FE3300D3154B /* LsDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsDynamicViewController.m; sourceTree = "<group>"; };
 		18E82D831F37FFA700D3154B /* LsFindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsFindViewController.h; sourceTree = "<group>"; };
 		18E82D841F37FFA700D3154B /* LsFindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsFindViewController.m; sourceTree = "<group>"; };
-		18E82DDE1F381E1B00D3154B /* banner1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner1.jpg; sourceTree = "<group>"; };
-		18E82DDF1F381E1B00D3154B /* banner2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner2.jpg; sourceTree = "<group>"; };
-		18E82DE01F381E1B00D3154B /* banner3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner3.jpg; sourceTree = "<group>"; };
-		18E82DE11F381E1B00D3154B /* banner4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner4.jpg; sourceTree = "<group>"; };
-		18E82DE21F381E1B00D3154B /* banner5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner5.jpg; sourceTree = "<group>"; };
 		18E82DE91F3830C500D3154B /* UCCarouselCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCCarouselCollectionViewCell.h; sourceTree = "<group>"; };
 		18E82DEA1F3830C500D3154B /* UCCarouselCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCCarouselCollectionViewCell.m; sourceTree = "<group>"; };
 		18E82DEB1F3830C500D3154B /* UCCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCCarouselView.h; sourceTree = "<group>"; };
@@ -2333,11 +2315,6 @@
 		184CA1681F27199F00ACB807 = {
 			isa = PBXGroup;
 			children = (
-				18E82DDD1F381E1B00D3154B /* banner */,
-				184335271F33437100A53585 /* 引导1@2x.png */,
-				184335281F33437100A53585 /* 引导2@2x.png */,
-				184335291F33437100A53585 /* 引导3@2x.png */,
-				1843352A1F33437100A53585 /* 引导4@2x.png */,
 				18E82D631F37FB9400D3154B /* Interview */,
 				18E82D6A1F37FCAE00D3154B /* WrittenExamination */,
 				18E82D781F37FE1000D3154B /* Find */,
@@ -3007,18 +2984,6 @@
 			path = DynamicView;
 			sourceTree = "<group>";
 		};
-		18E82DDD1F381E1B00D3154B /* banner */ = {
-			isa = PBXGroup;
-			children = (
-				18E82DDE1F381E1B00D3154B /* banner1.jpg */,
-				18E82DDF1F381E1B00D3154B /* banner2.jpg */,
-				18E82DE01F381E1B00D3154B /* banner3.jpg */,
-				18E82DE11F381E1B00D3154B /* banner4.jpg */,
-				18E82DE21F381E1B00D3154B /* banner5.jpg */,
-			);
-			path = banner;
-			sourceTree = "<group>";
-		};
 		18E82DE81F3830C500D3154B /* UCCarouselView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3675,7 +3640,6 @@
 				18F034CA1FA1C4FA001A305D /* upload-navigationbar-add.png in Resources */,
 				180BD0F51F5D4A1B001EE331 /* video_ic_lianmai_nor@2x.png in Resources */,
 				180BD1001F5D4A1B001EE331 /* video_ic_newsmsg_nor@3x.png in Resources */,
-				18E82DE41F381E1B00D3154B /* banner2.jpg in Resources */,
 				180BCFE91F5D3E53001EE331 /* playback_rate_hor@2x.png in Resources */,
 				180BD0E91F5D4A1B001EE331 /* video_btn_word_on@2x.png in Resources */,
 				180BD1011F5D4A1B001EE331 /* video_img_sound@2x.png in Resources */,
@@ -3693,7 +3657,6 @@
 				180BCF631F5D3E52001EE331 /* 002@2x.png in Resources */,
 				18F0348E1FA1C4FA001A305D /* download-status-down@2x.png in Resources */,
 				180BD0DE1F5D4A1B001EE331 /* question_bg_prompt@3x.png in Resources */,
-				18E82DE31F381E1B00D3154B /* banner1.jpg in Resources */,
 				18F034A31FA1C4FA001A305D /* player-back-button.png in Resources */,
 				180BD0191F5D4344001EE331 /* nav_msg_returnvideo@3x.png in Resources */,
 				180BCF641F5D3E52001EE331 /* 002@3x.png in Resources */,
@@ -3729,7 +3692,6 @@
 				180BCF8D1F5D3E53001EE331 /* chat_btn_facedel@2x.png in Resources */,
 				180BCFB01F5D3E53001EE331 /* chat_em_face1@3x.png in Resources */,
 				180BCFE61F5D3E53001EE331 /* nav_ic_cbb-nor@3x.png in Resources */,
-				1843352B1F33437100A53585 /* 引导1@2x.png in Resources */,
 				18F034C31FA1C4FA001A305D /* tabbar-upload@2x.png in Resources */,
 				180BCFBA1F5D3E53001EE331 /* chat_em_face5@3x.png in Resources */,
 				180BCFB51F5D3E53001EE331 /* chat_em_face3@2X.png in Resources */,
@@ -3824,7 +3786,6 @@
 				180BCF771F5D3E52001EE331 /* 012@2x.png in Resources */,
 				180BCFF31F5D3E53001EE331 /* set_btn_off@2x.png in Resources */,
 				180BD0EF1F5D4A1B001EE331 /* video_ic_barrage_nor@2x.png in Resources */,
-				18E82DE61F381E1B00D3154B /* banner4.jpg in Resources */,
 				18F034A71FA1C4FA001A305D /* player-bg-text2.png in Resources */,
 				180BD0281F5D4344001EE331 /* return_ic_playon@2x.png in Resources */,
 				18F034961FA1C4FA001A305D /* last-button.png in Resources */,
@@ -3875,7 +3836,6 @@
 				180BD0DB1F5D4A1B001EE331 /* qs_wrong_same@2x.png in Resources */,
 				18F034CC1FA1C4FA001A305D /* upload-status-finish.png in Resources */,
 				180BCFCD1F5D3E53001EE331 /* home_ic_beauty_ban@2x.png in Resources */,
-				1843352D1F33437100A53585 /* 引导3@2x.png in Resources */,
 				180BCF751F5D3E52001EE331 /* 011@2x.png in Resources */,
 				180BCFD81F5D3E53001EE331 /* home_ic_news_nor@3x.png in Resources */,
 				18F0348A1FA1C4FA001A305D /* download-play-button@2x.png in Resources */,
@@ -3920,7 +3880,6 @@
 				180BCF841F5D3E53001EE331 /* 018@3x.png in Resources */,
 				18F034821FA1C4FA001A305D /* big_stop_ic.png in Resources */,
 				180BCF9A1F5D3E53001EE331 /* chat_bubble_them_widehalf_height60px@3x.png in Resources */,
-				18E82DE71F381E1B00D3154B /* banner5.jpg in Resources */,
 				18F034B01FA1C4FA001A305D /* player-slider-active@2x.png in Resources */,
 				180BD0241F5D4344001EE331 /* return_ic_narrow_nor@2x.png in Resources */,
 				180BCFAE1F5D3E53001EE331 /* chat_em_face19@3x.png in Resources */,
@@ -3982,14 +3941,12 @@
 				180BCFBD1F5D3E53001EE331 /* chat_em_face7@2X.png in Resources */,
 				180BD0B51F5D4A1B001EE331 /* notice_ic_barrage_ban@2x.png in Resources */,
 				180BD01E1F5D4344001EE331 /* return_btn_playplan_hov@2x.png in Resources */,
-				18E82DE51F381E1B00D3154B /* banner3.jpg in Resources */,
 				180BCFEF1F5D3E53001EE331 /* Rectangle 221@2x.png in Resources */,
 				180BD0C91F5D4A1B001EE331 /* qs_choose@2x.png in Resources */,
 				180BCF811F5D3E53001EE331 /* 017@2x.png in Resources */,
 				180BD0F31F5D4A1B001EE331 /* video_ic_lianmai_hov@2x.png in Resources */,
 				180BCFEA1F5D3E53001EE331 /* playback_rate_hor@3x.png in Resources */,
 				180BD0DF1F5D4A1B001EE331 /* question_ic_lookoff@2x.png in Resources */,
-				1843352C1F33437100A53585 /* 引导2@2x.png in Resources */,
 				180BD0F41F5D4A1B001EE331 /* video_ic_lianmai_hov@3x.png in Resources */,
 				18F0348F1FA1C4FA001A305D /* download-status-fail.png in Resources */,
 				180BD0F21F5D4A1B001EE331 /* video_ic_full_nor@3x.png in Resources */,
@@ -3997,7 +3954,6 @@
 				180BCF7B1F5D3E53001EE331 /* 014@2x.png in Resources */,
 				180BCF971F5D3E53001EE331 /* chat_bubble_self_widehalf_height60px@2x.png in Resources */,
 				180BCFF81F5D3E53001EE331 /* set_btn_rate_hov@3x.png in Resources */,
-				1843352E1F33437100A53585 /* 引导4@2x.png in Resources */,
 				180BCFE21F5D3E53001EE331 /* nav_ic_back_nor@3x.png in Resources */,
 				180BD0BE1F5D4A1B001EE331 /* notice_ic_lianmai_nor@3x.png in Resources */,
 				180BCFFB1F5D3E53001EE331 /* set_btn_select_hov@2x.png in Resources */,

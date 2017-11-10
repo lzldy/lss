@@ -64,9 +64,9 @@
         self.fileOutput = [[AVCaptureMovieFileOutput alloc] init];
         [self.captureSession addOutput:self.fileOutput];
         
-        //方向
-//        AVCaptureConnection * videoConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
-//        [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
+//        方向
+        AVCaptureConnection * videoConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
+        [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
         
         self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
         self.previewLayer.frame = previewView.bounds;
@@ -113,9 +113,13 @@
             
             // Changes take effect once the outermost commitConfiguration is invoked.
             [self.captureSession commitConfiguration];
+            
+            
             break;
         }
-    } 
+    }
+    AVCaptureConnection * videoConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
+    [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
 }
 
 
