@@ -99,7 +99,7 @@
         [baseView addSubview:stausL];
         
         UIImage  *iamge        =[UIImage imageNamed:@"kym_icon"];
-        noDataImageView        =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW/2-iamge.size.width/2, 15*LSScale, iamge.size.width, image.size.height)];
+        noDataImageView        =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW/2-iamge.size.width/2, 15*LSScale, iamge.size.width, iamge.size.height)];
         [baseView addSubview:noDataImageView];
         
         noDataL                =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(noDataImageView.frame)+5, LSMainScreenW, 25*LSScale)];
