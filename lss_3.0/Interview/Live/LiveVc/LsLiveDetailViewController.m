@@ -178,11 +178,11 @@
     }
     cell.delegate=self;
     if (self.model.courseArrangement.count>0) {
-        if (self.model.isEnroll) {
-            cell.userInteractionEnabled=YES;
-        }else{
-            cell.userInteractionEnabled=NO;
-        }
+//        if (self.model.isEnroll) {
+//            cell.userInteractionEnabled=YES;
+//        }else{
+//            cell.userInteractionEnabled=NO;
+//        }
         LsCourseArrangementModel *modelll =[[LsCourseArrangementModel alloc] init];
         modelll  =self.model.courseArrangement[indexPath.row];
         [cell reloadCell:modelll];

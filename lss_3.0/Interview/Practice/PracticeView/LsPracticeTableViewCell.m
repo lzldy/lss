@@ -128,6 +128,12 @@
         baseView.frame           =CGRectMake(0, 0, LSMainScreenW, 35);
         line.frame               =CGRectMake(0, 35-0.5, LSMainScreenW, 0.5);
         personNum.text           =[NSString stringWithFormat:@"本周共有%ld位同学获得了名师点评,快去看看吧",(long)modelll.personNum];
+        NSString *string =personNum.text;
+        NSString *stringForColor = [NSString stringWithFormat:@"%ld",(long)modelll.personNum];
+        NSMutableAttributedString *mAttStri = [[NSMutableAttributedString alloc] initWithString:string];
+        NSRange range = [string rangeOfString:stringForColor];
+        [mAttStri addAttribute:NSForegroundColorAttributeName value:LSNavColor range:range];
+        personNum.attributedText =mAttStri;
         
         personNum.hidden         =NO;
         self.button.hidden       =NO;
@@ -168,11 +174,29 @@
         self.button.hidden            =YES;
         
         recommendImageV.hidden        =YES;
-        authorTypeL.hidden            =YES;
+//        authorTypeL.hidden            =YES;
         uploadDateL.hidden            =YES;
         
         if ([type isEqualToString:@"1"]) {
+            if ([LsMethod haveValue:modelll.classType]) {
+                if ([modelll.classType isEqualToString:@"SK"]) {
+                    modelll.ctag1 =@"说课";
+                }else if([modelll.classType isEqualToString:@"SJ"]){
+                    modelll.ctag1 =@"试讲";
+                }else if([modelll.classType isEqualToString:@"JGH"]){
+                    modelll.ctag1 =@"结构化";
+                }else if([modelll.classType isEqualToString:@"DB"]){
+                    modelll.ctag1 =@"答辩";
+                }
+            }else{
+                modelll.ctag1 =@"全部";
+            }
             
+            if ([LsMethod haveValue:modelll.authorType]) {
+                modelll.ctag2 =modelll.authorType;
+            }else{
+                modelll.ctag2 =@"神秘人";
+            }
         }else if ([type isEqualToString:@"2"]){
             recommendImageV.hidden   =YES;
             authorTypeL.hidden       =NO;
@@ -193,8 +217,7 @@
             CGSize size                   = [LsMethod sizeWithString:modelll.teacher font:authorL.font];
             authorL.frame                 = CGRectMake(authorL.frame.origin.x,authorL.frame.origin.y, size.width,35*LSScale);
             authorL.textColor             =LSNavColor;
-            typeL.frame                   =CGRectMake(CGRectGetMaxX(authorL.frame)+12, typeL.frame.origin.y, typeL.frame.size.width, typeL.frame.size.height);
-            authorTypeL.frame         =CGRectMake(CGRectGetMaxX(typeL.frame)+12, authorTypeL.frame.origin.y, authorTypeL.frame.size.width, authorTypeL.frame.size.height);
+          
             
             [imageV sd_setImageWithURL:modelll.videoHeadUrl placeholderImage:[UIImage imageNamed:@"banner"]];
             
@@ -225,10 +248,12 @@
             
             titleL.text                   =modelll.title;
             authorL.text                  =modelll.teacher;
-            typeL.text                    =modelll.ctag1;
-            authorTypeL.text              =modelll.ctag2;
             commentNumL.text              =[NSString stringWithFormat:@"%ld",(long)modelll.commnetNum];
             }
+        typeL.frame                   =CGRectMake(CGRectGetMaxX(authorL.frame)+12, typeL.frame.origin.y, typeL.frame.size.width, typeL.frame.size.height);
+        authorTypeL.frame         =CGRectMake(CGRectGetMaxX(typeL.frame)+12, authorTypeL.frame.origin.y, authorTypeL.frame.size.width, authorTypeL.frame.size.height);
+        typeL.text                    =modelll.ctag1;
+        authorTypeL.text              =modelll.ctag2;
     }
 }
 

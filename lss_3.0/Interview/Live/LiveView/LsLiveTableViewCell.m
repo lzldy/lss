@@ -192,7 +192,16 @@
 
         if ([type isEqualToString:@"1"])//首页
         {
-            
+            if ([model.livestatus isEqualToString:@"-1"]) {
+                stausL.text              =@"正在报名";
+                stausL.textColor       =LSColor(255, 90, 122, 1);
+            }else if ([model.livestatus isEqualToString:@"直播中"]){
+                stausL.text              =@"直播中";
+                stausL.textColor       =LSColor(255, 90, 122, 1);
+            }else{
+                stausL.text              =@"可回放";
+                stausL.textColor       =LSColor(38, 171, 255, 1);
+            }
            
         }else if ([type isEqualToString:@"2"])//直播页面
         {
@@ -204,8 +213,11 @@
             if (model.isRecommend) {
                 imageV.hidden =NO;
             }
-            if (model.enrollmentStatus) {
+            if ([model.livestatus isEqualToString:@"-1"]) {
                 stausL.text              =@"正在报名";
+                stausL.textColor       =LSColor(255, 90, 122, 1);
+            }else if ([model.livestatus isEqualToString:@"直播中"]){
+                stausL.text              =@"直播中";
                 stausL.textColor       =LSColor(255, 90, 122, 1);
             }else{
                 stausL.text              =@"可回放";

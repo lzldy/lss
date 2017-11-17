@@ -32,10 +32,13 @@
 @property (nonatomic,strong) NSString  *title;
 @property (nonatomic,strong) NSString  *endTime;
 @property (nonatomic,strong) NSString  *startTime;
+@property (nonatomic,strong) NSString  *livestatus;//-1 正在报名 0 直播中 1可回放
+
 @property (nonatomic,strong) NSString  *videoId;
+
 @property (nonatomic,assign) BOOL       isPackage;//套餐
 @property (nonatomic,assign) BOOL       isRecommend;//推荐
-@property (nonatomic,assign) BOOL       enrollmentStatus;//正在报名
+//@property (nonatomic,assign) BOOL       enrollmentStatus;//正在报名
 @property (nonatomic,assign) BOOL       isEvaluated;//已评价
 
 @property (nonatomic,strong) NSArray<LsTeacherModel*>  *teacherArray;

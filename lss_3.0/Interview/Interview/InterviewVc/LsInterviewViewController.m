@@ -176,9 +176,10 @@
             }else{
                 [cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row-1] Type:@"1"] ;
             }
-        }else{
-            [cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row] Type:@"1"] ;
         }
+//        }else{
+//            [cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row] Type:@"1"] ;
+//        }
         return cell;
     }
 }
@@ -189,9 +190,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        LsLiveDetailViewController *detailVc =[[LsLiveDetailViewController alloc] init];
-        detailVc.crcode                     =self.model.liveArray[indexPath.row].code;
-        [self.navigationController pushViewController:detailVc animated:YES];
+        if (self.model.liveArray.count>0) {
+            LsLiveDetailViewController *detailVc =[[LsLiveDetailViewController alloc] init];
+            detailVc.crcode                     =self.model.liveArray[indexPath.row].code;
+            [self.navigationController pushViewController:detailVc animated:YES];
+        }
     }else{
         if (indexPath.row==0&&self.model.practiceModel.personNum>0) {
             [self pushPracticeVc:0];
