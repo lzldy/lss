@@ -76,10 +76,13 @@
 //    }
     freeL.text= @"免费";
 
-    _model.isEnroll =NO;
-    if (_model.isEnroll) {
+//    _model.isEnroll =NO;
+    if (_model.mybuy) {
         [enrollBtn setTitle:@"已报名" forState:UIControlStateNormal];
         enrollBtn.userInteractionEnabled =NO;
+    }else{
+        [enrollBtn setTitle:@"免费报名" forState:UIControlStateNormal];
+        enrollBtn.userInteractionEnabled =YES;
     }
 }
 @end

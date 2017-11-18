@@ -85,12 +85,19 @@
         testTitleL.text     =@"语文备考系列考试密卷";
     }
     playBtn.videoID     =model.videoId;
+    playBtn.roomID      =model.roomId;
+    playBtn.isEnroll    =model.mybuy;
+
     testBtn.url         =model.testUrl;
 }
 
 -(void)clickPlayBtnBtn:(LsButton*)button{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(didClickPlayBtnWithID:)]) {
-        [self.delegate didClickPlayBtnWithID:button.videoID];
+    if (button.isEnroll) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didClickPlayBtnWithID:)]) {
+            [self.delegate didClickPlayBtnWithID:button];
+        }
+    }else{
+        [LsMethod alertMessage:@"请先报名" WithTime:1.5];
     }
 }
 

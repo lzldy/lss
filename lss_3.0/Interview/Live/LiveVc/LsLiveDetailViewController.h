@@ -12,5 +12,4 @@
 
 @property (nonatomic,strong) NSString *classId;
 @property (nonatomic,strong) NSString *crcode;
-
 @end

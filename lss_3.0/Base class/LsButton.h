@@ -12,10 +12,12 @@
 @interface LsButton : UIButton
 
 @property (nonatomic,strong) NSString *videoID;
+@property (nonatomic,strong) NSString *roomID;
+
 @property (nonatomic,strong) NSURL    *url;
 @property (nonatomic,assign) BOOL     isPackage;
 @property (nonatomic,strong) NSString *title;
-
+@property (nonatomic,assign) BOOL     isEnroll;
 @property (nonatomic,strong) LsLiveModel *model;
 
 @property (nonatomic,strong) UIImageView *lsImageView;

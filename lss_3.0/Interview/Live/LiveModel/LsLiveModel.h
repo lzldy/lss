@@ -40,6 +40,7 @@
 @property (nonatomic,assign) BOOL       isRecommend;//推荐
 //@property (nonatomic,assign) BOOL       enrollmentStatus;//正在报名
 @property (nonatomic,assign) BOOL       isEvaluated;//已评价
+@property (nonatomic,assign) BOOL       mybuy;
 
 @property (nonatomic,strong) NSArray<LsTeacherModel*>  *teacherArray;
 @property (nonatomic,strong) LsCourseIntroductionModel *courseIntroduction;

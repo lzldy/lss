@@ -84,6 +84,8 @@
             if ([[LsMethod remove:obj] isEqualToString:@""]) {
                 return NO;
             }
+        }else if ([obj isKindOfClass:[NSNull class]]){
+            return NO;
         }
     }
     return YES;

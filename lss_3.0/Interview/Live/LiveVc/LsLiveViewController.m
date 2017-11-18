@@ -129,6 +129,7 @@
     }
     LsLiveDetailViewController *detailVc =[[LsLiveDetailViewController alloc] init];
     detailVc.crcode                     =modelll.code;
+
     [self.navigationController pushViewController:detailVc animated:YES];
 }
 

@@ -11,7 +11,7 @@
 
 @protocol liveDetailTableViewCellDelegate <NSObject>
 
-- (void)didClickPlayBtnWithID:(NSString*)videoid;
+- (void)didClickPlayBtnWithID:(LsButton*)button;
 
 @end
 
