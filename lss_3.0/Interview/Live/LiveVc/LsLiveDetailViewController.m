@@ -111,10 +111,12 @@
 }
 
 -(void)requestEnroll:(LsLiveDetailModel*)detailModel{
-    NSDictionary *dict =@{@"code":self.crcode};
+    NSDictionary *dict =@{@"crcode":self.crcode};
     [[LsAFNetWorkTool shareManger] LSPOST:@"buyqbcourse.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         LsEnrollSuccessViewController *vc =[[LsEnrollSuccessViewController alloc] init];
         vc.model =detailModel;
+        self.model.mybuy =YES;
+        _bottomView.model=self.model;
         [self.navigationController pushViewController:vc animated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];

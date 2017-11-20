@@ -54,7 +54,7 @@
         titleL.textAlignment    =NSTextAlignmentLeft;
         [baseView addSubview:titleL];
 
-        UIImage      *image     =[UIImage imageNamed:@"time_icon"];
+//        UIImage      *image     =[UIImage imageNamed:@"time_icon"];
         timeIV    =[[UIImageView alloc] initWithFrame:CGRectMake(10*LSScale,CGRectGetMaxY(titleL.frame)+5*LSScale,15*LSScale, 15*LSScale)];
         [baseView addSubview:timeIV];
         

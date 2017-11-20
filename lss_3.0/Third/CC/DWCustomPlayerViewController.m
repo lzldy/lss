@@ -1488,7 +1488,7 @@ typedef NSInteger DWPLayerScreenSizeMode;
     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
     
     //此种方法组合可以实现Motion下的正确方向
-    BOOL haveMotion;
+    BOOL haveMotion =NO;
     if (_interative ==DWModeInteractiveMotion || _interative ==DWModeInteractiveMotionWithTouch) {
         
         haveMotion =YES;
