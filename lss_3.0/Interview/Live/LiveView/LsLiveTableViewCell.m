@@ -195,7 +195,7 @@
             if ([model.livestatus isEqualToString:@"-1"]) {
                 stausL.text              =@"正在报名";
                 stausL.textColor       =LSColor(255, 90, 122, 1);
-            }else if ([model.livestatus isEqualToString:@"直播中"]){
+            }else if ([model.livestatus isEqualToString:@"0"]){
                 stausL.text              =@"直播中";
                 stausL.textColor       =LSColor(255, 90, 122, 1);
             }else{
@@ -216,7 +216,7 @@
             if ([model.livestatus isEqualToString:@"-1"]) {
                 stausL.text              =@"正在报名";
                 stausL.textColor       =LSColor(255, 90, 122, 1);
-            }else if ([model.livestatus isEqualToString:@"直播中"]){
+            }else if ([model.livestatus isEqualToString:@"0"]){
                 stausL.text              =@"直播中";
                 stausL.textColor       =LSColor(255, 90, 122, 1);
             }else{

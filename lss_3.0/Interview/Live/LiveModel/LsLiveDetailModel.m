@@ -10,14 +10,13 @@
 
 @implementation LsCourseArrangementModel
 
-//+ (NSDictionary *)modelCustomPropertyMapper {
-//    return @{@"id_"          : @"id"};
-//}
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"id_"          : @"id"};
+}
 
-//+ (NSDictionary *)modelContainerPropertyGenericClass {
-//    return @{@"teacherArray"    : [LsTeacherModel class],
-//             @"liveArray"       : [LsLiveModel class]};
-//}
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"livevideos"    : [LsCourseArrangementModel class]};
+}
 
 @end
 

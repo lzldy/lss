@@ -10,6 +10,8 @@
 
 @interface LsLiveDetailViewController : LsBaseViewController
 
-@property (nonatomic,strong) NSString *classId;
-@property (nonatomic,strong) NSString *crcode;
+@property (nonatomic,strong)  NSString  *classId;
+@property (nonatomic,strong)  NSString  *crcode;
+@property (nonatomic,assign)  NSInteger  personNum;
+
 @end

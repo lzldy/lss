@@ -85,9 +85,9 @@
         testTitleL.text     =@"语文备考系列考试密卷";
     }
     playBtn.videoID     =model.videoId;
-    playBtn.roomID      =model.roomId;
+    playBtn.livevideos  =model.livevideos;
     playBtn.isEnroll    =model.mybuy;
-
+    playBtn.title       =model.title;
     testBtn.url         =model.testUrl;
 }
 

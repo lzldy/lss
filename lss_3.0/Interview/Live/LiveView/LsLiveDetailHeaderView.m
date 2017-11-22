@@ -110,8 +110,8 @@
 //    timeText.frame                      =CGRectMake(timeText.frame.origin.x, timeText.frame.origin.y, size3.width*LSScale, timeText.frame.size.height);
     
 //    model.isPackage  =NO;
-    if (model.isPackage) {
-        
+//    if (model.isPackage) {
+    
         UIView *line  =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(classHoursText.frame)+10, self.frame.size.width, 0.5)];
         line.backgroundColor  =LSLineColor;
         [self addSubview:line];
@@ -148,9 +148,9 @@
         [self addSubview:courseIntroductionBtn];
 
         self.frame  =CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, CGRectGetMaxY(midLine.frame));
-    }else{
-        self.frame  =CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, CGRectGetMaxY(classHoursText.frame)+10);
-    }
+//    }else{
+//        self.frame  =CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, CGRectGetMaxY(classHoursText.frame)+10);
+//    }
 }
 
 -(void)clickBtn:(UIButton *)button{

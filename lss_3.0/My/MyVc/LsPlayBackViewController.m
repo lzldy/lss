@@ -11,6 +11,7 @@
 #import "CCSDK/CCLiveUtil.h"
 #import "CCSDK/RequestDataPlayBack.h"
 #import "LsPlayBackTableViewCell.h"
+#import "LsLiveDetailModel.h"
 
 @interface LsPlayBackViewController ()<UITableViewDelegate,UITableViewDataSource,RequestDataPlayBackDelegate>
 
@@ -24,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.navTitle =_model.title;
+    self.navView.navTitle =self.navTitle;
     superView.backgroundColor =LSColor(243, 244, 245, 1);
     [self loadBaseUI];
 }
@@ -35,7 +36,7 @@
     [superView addSubview:_topView];
     
     UILabel  *label           =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, 0, LSMainScreenW-10*LSScale, CGRectGetHeight(_topView.frame))];
-    label.text                =@"回放列表(3节)";
+    label.text                =[NSString stringWithFormat:@"回放列表(%lu节)",(unsigned long)self.livevideos.count];
     label.font                =[UIFont systemFontOfSize:14*LSScale];
     label.textColor           =[UIColor darkGrayColor];
     label.textAlignment       =NSTextAlignmentLeft;
@@ -53,7 +54,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.livevideos.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,24 +65,27 @@
         cell = [[LsPlayBackTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell  reloadCellWithData:_model];
+    LsCourseArrangementModel *model =self.livevideos[indexPath.row];
+    model.title                     =self.navTitle;
+    [cell  reloadCellWithData:model];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self toPlayBack];
+    LsCourseArrangementModel *model =self.livevideos[indexPath.row];
+    [self toPlayBack:model];
 }
 
 
 #pragma - mark - 回放按钮
--(void)toPlayBack{
+-(void)toPlayBack:(LsCourseArrangementModel*)model{
     _hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
     _hud.removeFromSuperViewOnHide = YES;
 
     PlayParameter *parameter = [[PlayParameter alloc] init];
     parameter.userId = CCLIVE_USERID;
-    parameter.roomId =@"85339BECF4BA03FA9C33DC5901307461";
-    parameter.liveid = @"7E4226D46FD192E8";
+    parameter.roomId =model.recordVideoId;
+    parameter.liveid =model.liveId;
     parameter.viewerName = @"唐朝将军";
     parameter.token = @"shishuo";
     parameter.security = NO;

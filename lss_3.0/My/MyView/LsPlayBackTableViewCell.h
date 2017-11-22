@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LsLiveModel.h" 
+#import "LsLiveDetailModel.h" 
 
 @interface LsPlayBackTableViewCell : UITableViewCell
 
--(void)reloadCellWithData:(LsLiveModel*)model;
+-(void)reloadCellWithData:(LsCourseArrangementModel*)model;
 
 @end

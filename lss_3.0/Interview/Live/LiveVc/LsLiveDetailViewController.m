@@ -19,6 +19,7 @@
 #import "PlayForPCVC.h"
 #import "PlayBackVC.h"
 #import "CCSDK/RequestDataPlayBack.h"
+#import "LsPlayBackViewController.h"
 
 @interface LsLiveDetailViewController ()<liveDetailHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource,liveDetailBottomViewDelegate,liveDetailTableViewCellDelegate,RequestDataDelegate,RequestDataPlayBackDelegate>
 
@@ -80,13 +81,14 @@
     NSDictionary *dict =@{@"crcode":self.crcode};
     [[LsAFNetWorkTool shareManger] LSPOST:@"getcourseinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         _model  =[LsLiveDetailModel yy_modelWithDictionary:[responseObject objectForKey:@"data"]];
+        _model.personNum  =self.personNum;
         _headerView.model =_model;
-        _bottomView.model=_model;
+        _bottomView.model =_model;
         
-        if (_model.courseArrangement.count>0) {
+//        if (_model.courseArrangement.count>0) {
             [self initCourseIntroductionView];
             [superView addSubview:self.tabView];
-        }
+//        }
         [superView addSubview:_bottomView];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -117,6 +119,7 @@
         vc.model =detailModel;
         self.model.mybuy =YES;
         _bottomView.model=self.model;
+        [self.tabView reloadData];
         [self.navigationController pushViewController:vc animated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -134,17 +137,14 @@
     _hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
     _hud.removeFromSuperViewOnHide = YES;
 
-    if ([LsMethod haveValue:button.roomID]) {
+    if (button.livevideos.count>0) {
         //回放
-        PlayParameter *parameter = [[PlayParameter alloc] init];
-        parameter.userId = CCLIVE_USERID;
-        parameter.roomId =button.roomID;
-        parameter.liveid = button.videoID;
-        parameter.viewerName = @"唐朝将军";
-        parameter.token = @"shishuo";
-        parameter.security = NO;
-        RequestDataPlayBack *requestDataPlayBack = [[RequestDataPlayBack alloc] initLoginWithParameter:parameter];
-        requestDataPlayBack.delegate = self;
+        [_hud hide:YES];
+        LsPlayBackViewController *vc =[[LsPlayBackViewController alloc] init];
+        vc.navTitle                  =button.title;
+        vc.livevideos                =button.livevideos;
+        [self.navigationController pushViewController:vc animated:YES];
+
     }else{
         //直播
         PlayParameter *parameter = [[PlayParameter alloc] init];
@@ -157,13 +157,6 @@
         RequestData *requestData = [[RequestData alloc] initLoginWithParameter:parameter];
         requestData.delegate = self;
     }
-}
-
--(void)loginSucceedPlayBack {
-    [_hud hide:YES];
-    LSApplication.idleTimerDisabled=YES;
-    PlayBackVC *playBackVC = [[PlayBackVC alloc] init];
-    [self presentViewController:playBackVC animated:YES completion:nil];
 }
 
 #pragma mark - CCPushDelegate

@@ -15,4 +15,6 @@
 @property (nonatomic,strong)  NSString    *ID;
 @property (nonatomic,strong)  LsLiveModel *model;
 
+@property (nonatomic,strong)  NSArray    *livevideos;
+
 @end

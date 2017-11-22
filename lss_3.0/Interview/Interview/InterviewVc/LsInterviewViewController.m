@@ -192,7 +192,8 @@
     if (indexPath.section==0) {
         if (self.model.liveArray.count>0) {
             LsLiveDetailViewController *detailVc =[[LsLiveDetailViewController alloc] init];
-            detailVc.crcode                     =self.model.liveArray[indexPath.row].code;
+            detailVc.crcode                      =self.model.liveArray[indexPath.row].code;
+            detailVc.personNum                   =self.model.liveArray[indexPath.row].personNum;
             [self.navigationController pushViewController:detailVc animated:YES];
         }
     }else{

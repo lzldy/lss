@@ -32,6 +32,7 @@
         titleL.font             =[UIFont systemFontOfSize:14*LSScale];
         titleL.textColor        =[UIColor darkTextColor];
         titleL.textAlignment    =NSTextAlignmentLeft;
+        titleL.numberOfLines    =0;
         [baseView addSubview:titleL];
         
         timeL                   =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(titleL.frame), LSMainScreenW-60*LSScale, 20*LSScale)];
@@ -52,12 +53,9 @@
     return self;
 }
 
--(void)reloadCellWithData:(LsLiveModel*)model{
-    titleL.text          =model.title;
-    NSString *dateStr    =[LsMethod toDateWithTimeStamp:model.startDate DateFormat:@"MM月dd日"];
-    NSString *startTime  =[LsMethod toDateWithTimeStamp:model.startTime DateFormat:@"HH:mm"];
-    NSString *endTime    =[LsMethod toDateWithTimeStamp:model.endTime   DateFormat:@"HH:mm"];
-    timeL.text   =[NSString stringWithFormat:@"%@ %@-%@",dateStr,startTime,endTime];
+-(void)reloadCellWithData:(LsCourseArrangementModel*)model{
+    titleL.text  =model.title;
+    timeL.text   =[NSString stringWithFormat:@"%@-%@",model.startTime,model.stopTime];
 }
 
 

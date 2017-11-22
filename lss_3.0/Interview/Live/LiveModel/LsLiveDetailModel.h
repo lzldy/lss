@@ -20,9 +20,15 @@
 @property (nonatomic,strong)  NSURL     *testUrl;
 @property (nonatomic,strong)  NSString  *title;
 @property (nonatomic,strong)  NSString  *videoId;
-@property (nonatomic,strong)  NSString  *roomId;
 
 @property (nonatomic,assign)  BOOL      mybuy;
+@property (nonatomic,strong)  NSArray   *livevideos;
+
+@property (nonatomic,strong)  NSString  *id_;
+@property (nonatomic,strong)  NSString  *liveId;
+@property (nonatomic,strong)  NSString  *recordVideoId;
+@property (nonatomic,strong)  NSString  *stopTime;
+@property (nonatomic,strong)  NSURL     *replayUrl;
 
 @end
 
@@ -32,7 +38,8 @@
 @property (nonatomic,assign)  NSInteger personNum;
 @property (nonatomic,strong)  NSString  *id_;
 @property (nonatomic,strong)  NSString  *title;
-@property (nonatomic,strong)  NSString  *videoId;
+@property (nonatomic,strong)  NSString  *liveId;
+@property (nonatomic,strong)  NSString  *recordVideoId;
 
 @property (nonatomic,strong)  NSString  *endDate;
 @property (nonatomic,strong)  NSString  *startDate;

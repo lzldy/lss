@@ -128,8 +128,8 @@
         modelll =self.writtenModel.liveArray[indexPath.row];
     }
     LsLiveDetailViewController *detailVc =[[LsLiveDetailViewController alloc] init];
-    detailVc.crcode                     =modelll.code;
-
+    detailVc.crcode                      =modelll.code;
+    detailVc.personNum                   =modelll.personNum;
     [self.navigationController pushViewController:detailVc animated:YES];
 }
 
