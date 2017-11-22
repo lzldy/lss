@@ -18,6 +18,7 @@
     UILabel           *testTitleL;
     LsButton          *playBtn;
     LsButton          *testBtn;
+    UIView            *line;
 }
 @end
 
@@ -48,7 +49,7 @@
         titleL.textAlignment    =NSTextAlignmentLeft;
         [baseView addSubview:timeL];
         
-        UIView* line           =[[UIView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(timeL.frame)+10*LSScale, LSMainScreenW, 0.5)];
+        line           =[[UIView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(timeL.frame)+10*LSScale, LSMainScreenW, 0.5)];
         line.backgroundColor   =LSLineColor;
         [baseView addSubview:line];
         
@@ -74,7 +75,7 @@
     return self;
 }
 
--(void)reloadCell:(LsCourseArrangementModel*)model{
+-(void)reloadCell:(LsCourseArrangementModel*)model isMore:(BOOL)ismore{
     
     titleL.text         =model.title;
     NSString *startDate =[LsMethod toDateWithTimeStamp:model.startDate DateFormat:@"yyyy.MM.dd"];
@@ -89,6 +90,17 @@
     playBtn.isEnroll    =model.mybuy;
     playBtn.title       =model.title;
     testBtn.url         =model.testUrl;
+    
+    testTitleL.hidden =NO;
+    testBtn.hidden    =NO;
+    if (ismore) {
+        baseView.frame  =CGRectMake(0, 0, LSMainScreenW, CGRectGetMaxY(testBtn.frame));
+    }else{
+        baseView.frame  =CGRectMake(0, 0, LSMainScreenW, CGRectGetMaxY(line.frame));
+        testTitleL.hidden =YES;
+        testBtn.hidden    =YES;
+    }
+    self.frame          =CGRectMake(0, 0, LSMainScreenW, CGRectGetHeight(baseView.frame)+10*LSScale);
 }
 
 -(void)clickPlayBtnBtn:(LsButton*)button{

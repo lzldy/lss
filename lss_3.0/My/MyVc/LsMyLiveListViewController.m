@@ -56,6 +56,12 @@
 }
 
 -(void)getData{
+////    qbcoursebuylist.html
+//    [[LsAFNetWorkTool shareManger] LSPOST:@"qbcoursebuylist.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+//    }];
+    
     [[LsAFNetWorkTool shareManger] LSPOST:@"mycourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model      =[LsMyLiveModel yy_modelWithJSON:responseObject];
 //        [self.scrView   addSubview:self.todayLiveTabView];

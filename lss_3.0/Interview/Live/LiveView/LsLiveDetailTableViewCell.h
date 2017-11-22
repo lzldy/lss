@@ -19,6 +19,6 @@
 
 @property (nonatomic,  weak)  id<liveDetailTableViewCellDelegate> delegate;
 
--(void)reloadCell:(LsCourseArrangementModel*)model;
+-(void)reloadCell:(LsCourseArrangementModel*)model isMore:(BOOL)ismore;
 
 @end

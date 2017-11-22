@@ -27,7 +27,7 @@
 @property (nonatomic,strong) LsLiveDetailHeaderView *headerView;
 @property (nonatomic,strong) UITableView            *tabView;
 @property (nonatomic,strong) LsLiveDetailBottomView *bottomView;
-@property (nonatomic,strong) UIView                 *backgroundView;
+@property (nonatomic,strong) UIScrollView                 *backgroundView;
 @property (nonatomic,strong) MBProgressHUD          *hud;
 @end
 
@@ -57,7 +57,7 @@
 }
 
 -(void)initCourseIntroductionView{
-    _backgroundView =[[UIView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(_headerView.frame)+10*LSScale, LSMainScreenW,LSMainScreenH-50*LSScale-CGRectGetMaxY(_headerView.frame)-10*LSScale)];
+    _backgroundView =[[UIScrollView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(_headerView.frame)+10*LSScale, LSMainScreenW,LSMainScreenH-50*LSScale-CGRectGetMaxY(_headerView.frame)-10*LSScale)];
     _backgroundView.backgroundColor =[UIColor whiteColor];
     _backgroundView.hidden=YES;
     
@@ -72,8 +72,11 @@
     line.backgroundColor =LSLineColor;
     [_backgroundView addSubview:line];
     
-    UIImageView  *imageview  =[[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame), LSMainScreenW, LSMainScreenH-CGRectGetMaxY(line.frame)-50*LSScale)];
-    [imageview sd_setImageWithURL:_model.courseIntroduction.introduceUrl placeholderImage:[UIImage imageNamed:@"zhibo"]];
+    UIImageView  *imageview  =[[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame), LSMainScreenW, CGRectGetHeight(_backgroundView.frame)-CGRectGetMaxY(line.frame))];
+    [imageview sd_setImageWithURL:[NSURL URLWithString:_model.info_imglist[0]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [_backgroundView setContentSize:CGSizeMake(LSMainScreenW,image.size.height)];
+    }];
+    [_backgroundView addSubview:imageview];
     [superView addSubview:_backgroundView];
 }
 
@@ -180,7 +183,9 @@
 
 #pragma  - mark -  tabview 代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 120*LSScale;
+//    return 120*LSScale;
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -200,7 +205,11 @@
         LsCourseArrangementModel *modelll =[[LsCourseArrangementModel alloc] init];
         modelll  =self.model.courseArrangement[indexPath.row];
         modelll.mybuy =self.model.mybuy;
-        [cell reloadCell:modelll];
+        if (self.model.courseArrangement.count>1) {
+            [cell reloadCell:modelll isMore:YES];
+        }else{
+            [cell reloadCell:modelll isMore:NO];
+        }
     }
     return cell;
 }

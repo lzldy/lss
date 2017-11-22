@@ -52,6 +52,7 @@
 @property (nonatomic,assign)  BOOL       enrollmentStatus;//正在报名
 @property (nonatomic,assign)  BOOL       mybuy;//是否报名
 @property (nonatomic,assign)  BOOL       isFree;//是否免费
+@property (nonatomic,strong)  NSArray    *info_imglist;
 
 @property (nonatomic,strong)  NSArray  *courseArrangement;
 @property (nonatomic,strong)  LsCourseIntroductionModel *courseIntroduction;
