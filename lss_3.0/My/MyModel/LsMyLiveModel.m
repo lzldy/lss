@@ -28,7 +28,8 @@
     return @{@"id_"          : @"id",
              @"notBegin"     : @"data.notBegin",
              @"playBack"     : @"data.playBack",
-             @"todayLive"    : @"data.todayLive"
+             @"todayLive"    : @"data.todayLive",
+             @"dataList"     : @"data.list"
              };
 }
 

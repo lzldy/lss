@@ -23,4 +23,6 @@
 @property (nonatomic,strong)  NSArray          *playBack;
 @property (nonatomic,strong)  NSArray          *notBegin;
 
+@property (nonatomic,strong)  NSArray          *dataList;
+
 @end

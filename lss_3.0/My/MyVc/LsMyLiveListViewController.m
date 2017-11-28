@@ -56,20 +56,20 @@
 }
 
 -(void)getData{
-////    qbcoursebuylist.html
-//    [[LsAFNetWorkTool shareManger] LSPOST:@"qbcoursebuylist.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-//
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-//    }];
-    
-    [[LsAFNetWorkTool shareManger] LSPOST:@"mycourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+    NSDictionary *dict  =@{@"paging":@"500"};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"qbcoursebuylist.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model      =[LsMyLiveModel yy_modelWithJSON:responseObject];
-//        [self.scrView   addSubview:self.todayLiveTabView];
-//        [self.scrView   addSubview:self.notBeginTabView];
-//        [self.scrView   addSubview:self.playBackTabView];
-        [self.todayLiveTabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
+    
+//    [[LsAFNetWorkTool shareManger] LSPOST:@"mycourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+//        self.model      =[LsMyLiveModel yy_modelWithJSON:responseObject];
+////        [self.scrView   addSubview:self.todayLiveTabView];
+////        [self.scrView   addSubview:self.notBeginTabView];
+////        [self.scrView   addSubview:self.playBackTabView];
+//        [self.todayLiveTabView reloadData];
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+//    }];
 }
 
 #pragma  - mark -  tabview 代理

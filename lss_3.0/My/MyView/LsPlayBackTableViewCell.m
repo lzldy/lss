@@ -13,7 +13,7 @@
     UIView         *baseView;
     UILabel        *titleL;
     UILabel        *timeL;
-    UIButton       *playBtn;
+    UIView         *line;
 }
 @end
 
@@ -42,11 +42,11 @@
         [baseView addSubview:timeL];
         
         UIImage      *ima       =[UIImage imageNamed:@"hsh"];
-        playBtn                 =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-ima.size.width, CGRectGetHeight(baseView.frame)/2-ima.size.height/2, ima.size.width, ima.size.height)];
-        [playBtn setImage:ima forState:0];
-        [baseView addSubview:playBtn];
+        UIImageView  *playView  =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-ima.size.width, CGRectGetHeight(baseView.frame)/2-ima.size.height/2, ima.size.width, ima.size.height)];
+        playView.image          =ima;
+        [baseView addSubview:playView];
         
-        UIView * line                 =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(baseView.frame)-0.5*LSScale, LSMainScreenW, 0.5*LSScale)];
+        line                    =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(baseView.frame)-0.5*LSScale, LSMainScreenW, 0.5*LSScale)];
         line.backgroundColor =LSLineColor;
         [baseView addSubview:line];
     }
@@ -54,8 +54,21 @@
 }
 
 -(void)reloadCellWithData:(LsCourseArrangementModel*)model{
+    CGSize  size =[LsMethod sizeWithSize:CGSizeMake(CGRectGetWidth(titleL.frame), 8000) String:model.title font:titleL.font];
+    titleL.frame =CGRectMake(titleL.frame.origin.x, titleL.frame.origin.y, titleL.frame.size.width, size.height);
     titleL.text  =model.title;
-    timeL.text   =[NSString stringWithFormat:@"%@-%@",model.startTime,model.stopTime];
+    timeL.frame  =CGRectMake(timeL.frame.origin.x,CGRectGetMaxY(titleL.frame), timeL.frame.size.width, timeL.frame.size.height);
+    baseView.frame =CGRectMake(baseView.frame.origin.x,baseView.frame.origin.y, baseView.frame.size.width, CGRectGetMaxY(timeL.frame)+0.5*LSScale);
+    line.frame     =CGRectMake(0, CGRectGetHeight(baseView.frame)-0.5*LSScale, LSMainScreenW, 0.5*LSScale);
+    
+    
+    NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];//实例化一个NSDateFormatter对象
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];//设定时间格式,这里可以设置成自己需要的格式
+    NSDate *date =[dateFormat dateFromString:model.stopTime];
+    NSString  *stopStr = [LsMethod dateStrFromDate:date AndFormat:@"HH:mm:ss"];
+    timeL.text   =[NSString stringWithFormat:@"%@-%@",model.startTime,stopStr];
+    
+    self.frame    =CGRectMake(0, 0, LSMainScreenW, CGRectGetMaxY(baseView.frame));
 }
 
 
