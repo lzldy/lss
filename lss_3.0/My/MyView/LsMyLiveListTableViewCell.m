@@ -231,7 +231,6 @@
             intoBtn.layer.backgroundColor  =[UIColor whiteColor].CGColor;
             intoBtn.layer.borderWidth=1;
             intoBtn.layer.borderColor=[UIColor darkGrayColor].CGColor;
-            //            intoBtn.tag       =[model.id_ integerValue];
             intoBtn.videoID   = model.courseCode;
         }
     }

@@ -253,10 +253,10 @@
     NSDictionary *dict =@{@"code":self.code_,@"zanflag":yesOrNo};
     [[LsAFNetWorkTool shareManger] LSPOST:@"zanvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         if ([yesOrNo isEqualToString:@"yes"]) {
-            [goodBtn setTitle:[NSString stringWithFormat:@"%ld",self.model.zannum +1] forState:0];
+            [goodBtn setTitle:[NSString stringWithFormat:@"%d",self.model.zannum +1] forState:0];
             self.model.zannum =self.model.zannum+1;
         }else{
-            [goodBtn setTitle:[NSString stringWithFormat:@"%ld",self.model.zannum -1] forState:0];
+            [goodBtn setTitle:[NSString stringWithFormat:@"%d",self.model.zannum -1] forState:0];
             self.model.zannum =self.model.zannum-1;
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
