@@ -73,9 +73,12 @@
     [_backgroundView addSubview:line];
     
     UIImageView  *imageview  =[[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame), LSMainScreenW, CGRectGetHeight(_backgroundView.frame)-CGRectGetMaxY(line.frame))];
-    [imageview sd_setImageWithURL:[NSURL URLWithString:_model.info_imglist[0]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        [_backgroundView setContentSize:CGSizeMake(LSMainScreenW,image.size.height)];
-    }];
+    imageview.contentMode =UIViewContentModeScaleAspectFit;
+    if (_model.info_imglist.count>0) {
+        [imageview sd_setImageWithURL:[NSURL URLWithString:_model.info_imglist[0]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [_backgroundView setContentSize:CGSizeMake(LSMainScreenW,image.size.height)];
+        }];
+    }
     [_backgroundView addSubview:imageview];
     [superView addSubview:_backgroundView];
 }

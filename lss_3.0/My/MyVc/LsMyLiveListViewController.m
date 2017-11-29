@@ -7,7 +7,7 @@
 //
 
 #import "LsMyLiveListViewController.h"
-#import "LsLiveTableViewCell.h"
+#import "LsMyLiveListTableViewCell.h"
 #import "LsMyLiveModel.h"
 #import "LsMyLiveTabView.h"
 #import "LsLiveDetailViewController.h"
@@ -16,7 +16,7 @@
 #import "LsPlayBackViewController.h"
 #import "LsButton.h"
 
-@interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate,liveTableViewCellDelegate>
+@interface LsMyLiveListViewController ()<UITableViewDelegate,UITableViewDataSource,myLiveTabDelegate,myLiveListTableViewCellDelegate>
 {
     float      startY;
     BOOL       isScroll;
@@ -28,6 +28,11 @@
 @property (nonatomic,strong)  UITableView              *notBeginTabView;
 @property (nonatomic,strong)  UIScrollView             *scrView;
 @property (nonatomic,strong)  LsMyLiveTabView          *headerTabView;
+
+@property (nonatomic,strong)  NSMutableArray           *enrollArray;
+@property (nonatomic,strong)  NSMutableArray           *livingArray;
+@property (nonatomic,strong)  NSMutableArray           *playbackArray;
+
 @end
 
 @implementation LsMyLiveListViewController
@@ -55,21 +60,31 @@
     [self.scrView   addSubview:self.playBackTabView];
 }
 
+-(void)processingData{
+    
+    for (LsMyLiveModel *model in self.model.dataList) {
+        if ([model.livestatus isEqualToString:@"-1"]) {
+            //正在报名
+            [self.enrollArray addObject:model];
+        }else if ([model.livestatus isEqualToString:@"0"]){
+            //直播中
+            [self.livingArray addObject:model];
+        }else if ([model.livestatus isEqualToString:@"1"]){
+            //可回放
+            [self.playbackArray addObject:model];
+        }
+    }
+    [self.todayLiveTabView reloadData];
+}
+
+
 -(void)getData{
     NSDictionary *dict  =@{@"paging":@"500"};
     [[LsAFNetWorkTool shareManger] LSPOST:@"qbcoursebuylist.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model      =[LsMyLiveModel yy_modelWithJSON:responseObject];
+        [self processingData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
-    
-//    [[LsAFNetWorkTool shareManger] LSPOST:@"mycourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-//        self.model      =[LsMyLiveModel yy_modelWithJSON:responseObject];
-////        [self.scrView   addSubview:self.todayLiveTabView];
-////        [self.scrView   addSubview:self.notBeginTabView];
-////        [self.scrView   addSubview:self.playBackTabView];
-//        [self.todayLiveTabView reloadData];
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-//    }];
 }
 
 #pragma  - mark -  tabview 代理
@@ -80,42 +95,43 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (tableView.tag==20010) {
-        return self.model.todayLive.livingList.count+self.model.todayLive.todayLiveList.count;
+        return self.livingArray.count>0?self.livingArray.count:1;
     }else if(tableView.tag==20020){
-        return self.model.notBegin.count;
+        return self.enrollArray.count>0?self.enrollArray.count:1;
     }else{
-        return self.model.playBack.count;
+        return self.playbackArray.count>0?self.playbackArray.count:1;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
-    LsLiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    LsMyLiveListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[LsLiveTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LsMyLiveListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.delegate =self;
-    LsLiveModel *modelll =[[LsLiveModel alloc] init];
+    LsMyLiveModel *modelll =[[LsMyLiveModel alloc] init];
     if (tableView.tag==20010) {
-        if (indexPath.row+1<=self.model.todayLive.livingList.count) {
-            modelll =self.model.todayLive.livingList[indexPath.row];
-            [cell reloadCell:modelll Type:@"3"];
+        if (self.livingArray.count>0) {
+            modelll   =self.livingArray[indexPath.row];
+            [cell reloadCell:modelll Type:@"1"];
         }else{
-            if (self.model.todayLive.todayLiveList.count>0) {
-                modelll =self.model.todayLive.todayLiveList[indexPath.row-self.model.todayLive.livingList.count];
-                [cell reloadCell:modelll Type:@"4"];
-            }
+            [cell reloadCell:modelll Type:@"0"];
         }
     }else if(tableView.tag==20020){
-        if (self.model.notBegin.count>0) {
-            modelll  =self.model.notBegin[indexPath.row];
-            [cell reloadCell:modelll Type:@"5"];
+        if (self.enrollArray.count>0) {
+            modelll   =self.enrollArray[indexPath.row];
+            [cell reloadCell:modelll Type:@"2"];
+        }else{
+            [cell reloadCell:modelll Type:@"0"];
         }
     }else{
-        if (self.model.playBack.count>0) {
-            modelll  =self.model.playBack[indexPath.row];
-            [cell reloadCell:modelll Type:@"6"];
+        if (self.playbackArray.count>0) {
+            modelll   =self.playbackArray[indexPath.row];
+            [cell reloadCell:modelll Type:@"3"];
+        }else{
+            [cell reloadCell:modelll Type:@"0"];
         }
     }
     return cell;
@@ -134,19 +150,9 @@
 
 #pragma - mark -  LsLiveTableViewCell 代理
 - (void)didClickIntoBtn:(LsButton *)btn  isPackage:(BOOL)ispackage{
-    if (ispackage) {
-        LsLiveDetailViewController *vc =[[LsLiveDetailViewController alloc] init];
-        vc.classId                     =btn.videoID;
-        [self.navigationController pushViewController:vc animated:YES];
-    }else{
-//        LsCustomPlayerViewController *player = [[LsCustomPlayerViewController alloc] init];
-//        player.videoId = ID;
-//        [self.navigationController pushViewController:player animated:YES];
-        
-        LsPlayBackViewController *plVc=[[LsPlayBackViewController alloc] init];
-        plVc.model =btn.model;
-        [self.navigationController pushViewController:plVc animated:YES];
-    }
+    LsLiveDetailViewController *vc =[[LsLiveDetailViewController alloc] init];
+    vc.crcode                     =btn.videoID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didClickEvaluateBtnIndex:(LsButton *)btn{
@@ -266,6 +272,27 @@
         _headerTabView.delegate           =self;
     }
     return _headerTabView;
+}
+
+-(NSMutableArray *)enrollArray{
+    if (!_enrollArray) {
+        _enrollArray =[NSMutableArray array];
+    }
+    return _enrollArray;
+}
+
+-(NSMutableArray *)livingArray{
+    if (!_livingArray) {
+        _livingArray =[NSMutableArray array];
+    }
+    return _livingArray;
+}
+
+-(NSMutableArray *)playbackArray{
+    if (!_playbackArray) {
+        _playbackArray =[NSMutableArray array];
+    }
+    return _playbackArray;
 }
 
 - (void)didReceiveMemoryWarning {

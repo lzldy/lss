@@ -8,16 +8,16 @@
 
 #import "LsMyLiveModel.h"
 
-@implementation LsTodayLiveModel
+@implementation LsMyLiveOfTeachersModel
 
-+ (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"id_"          : @"id"};
-}
-
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"livingList"       : [LsLiveModel class],
-             @"todayLiveList"    : [LsLiveModel class]};
-}
+//+ (NSDictionary *)modelCustomPropertyMapper {
+//    return @{@"id_"          : @"id"};
+//}
+//
+//+ (NSDictionary *)modelContainerPropertyGenericClass {
+//    return @{@"livingList"       : [LsLiveModel class],
+//             @"todayLiveList"    : [LsLiveModel class]};
+//}
 
 @end
 
@@ -25,18 +25,12 @@
 @implementation LsMyLiveModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"id_"          : @"id",
-             @"notBegin"     : @"data.notBegin",
-             @"playBack"     : @"data.playBack",
-             @"todayLive"    : @"data.todayLive",
-             @"dataList"     : @"data.list"
-             };
+    return @{@"dataList"  :@"data.list"};
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"notBegin"    : [LsLiveModel class],
-             @"playBack"    : [LsLiveModel class]
-             };
+    return @{@"teachers"    : [LsMyLiveOfTeachersModel class],
+             @"dataList"    : [LsMyLiveModel           class]};
 }
 
 @end

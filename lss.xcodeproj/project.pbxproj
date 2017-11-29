@@ -448,6 +448,7 @@
 		1854F5661F37088C00E1F603 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F54B1F37088C00E1F603 /* AFURLSessionManager.m */; };
 		1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */; };
 		1877BD001F4D6646001F8EBD /* LsLiveDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */; };
+		1888C4B21FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888C4B11FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m */; };
 		188DB7DE1F5019F700852DD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188DB7DD1F5019F700852DD4 /* QuartzCore.framework */; };
 		18975FCB1F29C6BD00447721 /* LsLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FCA1F29C6BD00447721 /* LsLog.m */; };
 		18975FCE1F29D06800447721 /* LsSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FCD1F29D06800447721 /* LsSingleton.m */; };
@@ -1263,6 +1264,8 @@
 		1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsAFNetWorkTool.m; sourceTree = "<group>"; };
 		1877BCFE1F4D6646001F8EBD /* LsLiveDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailHeaderView.h; sourceTree = "<group>"; };
 		1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailHeaderView.m; sourceTree = "<group>"; };
+		1888C4B01FCE961D00B1A3EA /* LsMyLiveListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsMyLiveListTableViewCell.h; sourceTree = "<group>"; };
+		1888C4B11FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsMyLiveListTableViewCell.m; sourceTree = "<group>"; };
 		188DB7DD1F5019F700852DD4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		18975FC91F29C6BD00447721 /* LsLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLog.h; sourceTree = "<group>"; };
 		18975FCA1F29C6BD00447721 /* LsLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLog.m; sourceTree = "<group>"; };
@@ -2491,6 +2494,8 @@
 				18F034D21FA6FA07001A305D /* LsMyHeaderView.m */,
 				182C686D1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.h */,
 				182C686E1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m */,
+				1888C4B01FCE961D00B1A3EA /* LsMyLiveListTableViewCell.h */,
+				1888C4B11FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m */,
 				18F034D41FA70D13001A305D /* LsMyTableViewCell.h */,
 				18F034D51FA70D13001A305D /* LsMyTableViewCell.m */,
 			);
@@ -4134,6 +4139,7 @@
 				1854F4A91F36BE2600E1F603 /* NSObject+YYModel.m in Sources */,
 				180BCA691F5D051C001EE331 /* TextFieldUserInfo.m in Sources */,
 				185296031F6015D4003D5D8A /* LsInterModel.m in Sources */,
+				1888C4B21FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m in Sources */,
 				18FEF6871F52791200F74BB6 /* DWGestureButton.m in Sources */,
 				1843357E1F341F5900A53585 /* LsNavView.m in Sources */,
 				1854F5381F37024A00E1F603 /* UIImage+GIF.m in Sources */,
