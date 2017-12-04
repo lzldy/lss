@@ -90,7 +90,7 @@ CGFloat screen_width, screen_height;
     [self.view addSubview:self.sliderLabel];
 }
 
--(void)setPicCurrentIndex:(NSInteger)currentIndex{
+-(void)setPicCurrentIndex:(int)currentIndex{
     _currentIndex = currentIndex;
     self.scrollView.contentOffset = CGPointMake(screen_width*currentIndex, 0);
     [self loadPhote:_currentIndex];

@@ -36,6 +36,8 @@
 @property (nonatomic,strong)  NSString         *regNum;
 @property (nonatomic,strong)  NSString         *name;
 @property (nonatomic,strong)  NSArray          *teachers;
+@property (nonatomic,strong)  NSString         *crid;//业务ID
+
 
 
 @end

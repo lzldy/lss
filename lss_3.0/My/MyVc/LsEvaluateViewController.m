@@ -16,6 +16,8 @@
     UITextView           *textView_;
     UITextField          *textField_;
     UIView               *backView;
+    NSString             *billNum;
+    NSString             *totalFee;
 }
 
 @property (nonatomic,strong)    NSString             *starNum;
@@ -134,12 +136,13 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if ([LsMethod haveValue:textField.text]) {
-        ActionSheetView *sheetView =[[ActionSheetView alloc] initWithFrame:CGRectMake(30*LSScale,LSMainScreenH/2 -50*LSScale, LSMainScreenW-60*LSScale, 100*LSScale)];
-        sheetView.delegate=self;
-        [superView addSubview:sheetView];
+//        ActionSheetView *sheetView =[[ActionSheetView alloc] initWithFrame:CGRectMake(30*LSScale,LSMainScreenH/2 -50*LSScale, LSMainScreenW-60*LSScale, 100*LSScale)];
+//        sheetView.delegate=self;
+//        [superView addSubview:sheetView];
     }
 }
 
+#pragma  -mark- ActionSheetViewDelegate
 -(void)chooseBtn:(NSString *)type{
     if ([type isEqualToString:@"微信支付"]) {
         [self doPay:PayChannelWxApp];
@@ -149,19 +152,18 @@
 }
 
 - (void)doPay:(PayChannel)channel {
-    NSString *billno = [self genBillNo];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"ce",@"shi", nil];
-    
-    BCPayReq *payReq = [[BCPayReq alloc] init];
-    payReq.channel = channel; //支付渠道
-    payReq.title = _title_; //订单标题
-    payReq.totalFee = @"1"; //订单价格
-    payReq.billNo = billno; //商户自定义订单号
-    payReq.scheme = @"shishuo"; //URL Scheme,在Info.plist中配置;
-    payReq.billTimeOut = 300; //订单超时时间
-    payReq.optional = dict;//商户业务扩展参数，会在webhook回调时返回
-    payReq.cardType = 0; // 0 表示不区分卡类型；1 表示只支持借记卡；2 表示支持信用卡；默认为0
-    payReq.viewController = self.navigationController;
+    BCPayReq *payReq          = [[BCPayReq alloc] init];
+    payReq.channel            = channel; //支付渠道
+    payReq.title              = _title_; //订单标题
+//    payReq.totalFee           = totalFee; //订单价格
+    payReq.totalFee           = @"1"; //订单价格
+    payReq.billNo             = billNum; //商户自定义订单号
+    payReq.scheme             = @"shishuo"; //URL Scheme,在Info.plist中配置;
+    payReq.billTimeOut        = 300; //订单超时时间
+    payReq.optional           = dict;//商户业务扩展参数，会在webhook回调时返回
+    payReq.cardType           = 0; // 0 表示不区分卡类型；1 表示只支持借记卡；2 表示支持信用卡；默认为0
+    payReq.viewController     = self.navigationController;
     [BeeCloud sendBCReq:payReq];
 }
 
@@ -181,7 +183,9 @@
                     
                 } else {
                     //微信、支付宝、银联支付成功
-                    [self showAlertView:resp.resultMsg];
+//                    [self showAlertView:resp.resultMsg];
+                    [LsMethod alertMessage:resp.resultMsg WithTime:1.5];
+                    [self addrateData];
                 }
             } else {
                 //支付取消或者支付失败
@@ -228,15 +232,40 @@
     }
 }
 
+-(void)addrateData{
+    if (![textView_.text isEqualToString:@"写下您对这次直播的评价吧~~~"]&&![LsMethod haveValue:textView_.text]) {
+        textView_.text =@"";
+    }
+    NSDictionary *dict  =@{@"mainid":_classID,
+                           @"rtype":@"course",
+                           @"rate":_starNum,
+                           @"duprateallow":@"no",
+                           @"memo":textView_.text};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"addrate.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [self evaluateSuccess];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
+
 - (void)showAlertView:(NSString *)msg {
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alert show];
 }
 
-- (NSString *)genBillNo {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyyMMddHHmmssSSS"];
-    return [formatter stringFromDate:[NSDate date]];
+- (void)genBillNoWith:(NSString*)price {
+    NSDictionary *dict  =@{@"needpaymoney":price};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"newvirtualorder.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        billNum  =[responseObject objectForKey:@"data"];
+        totalFee =[NSString stringWithFormat:@"%d",[price intValue]*100];
+        [self showSheetView];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
+
+-(void)showSheetView{
+    ActionSheetView *sheetView =[[ActionSheetView alloc] initWithFrame:CGRectMake(30*LSScale,LSMainScreenH/2 -50*LSScale, LSMainScreenW-60*LSScale, 100*LSScale)];
+    sheetView.delegate=self;
+    [superView addSubview:sheetView];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
@@ -252,7 +281,13 @@
 
 -(void)didcClickSubmitBtn{
     if (_starNum||(![textView_.text isEqualToString:@"写下您对这次直播的评价吧~~~"]&&[LsMethod haveValue:textView_.text])) {
-        [self evaluateSuccess];
+//        [self evaluateSuccess];
+        if ([LsMethod haveValue:textField_.text]) {
+            [self genBillNoWith:textField_.text];
+        }else{
+            //直接评价
+            NSLog(@"==========直接评价=======");
+        }
     }else{
         [LsMethod alertMessage:@"赏几颗星星吧" WithTime:2];
     }

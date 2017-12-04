@@ -187,6 +187,8 @@
             intoBtn.frame     =CGRectMake(baseView.frame.size.width-10*LSScale-100*LSScale, CGRectGetMaxY(teacherLOne.frame)-25*LSScale, 100*LSScale, 25*LSScale);
             [intoBtn setTitle:@"进入直播间" forState:0];
             intoBtn.videoID   = model.courseCode;
+            intoBtn.num       = [model.baseNum intValue]+[model.regNum intValue];
+
             stausL.frame      =CGRectMake(CGRectGetMinX(intoBtn.frame)-10-80*LSScale, CGRectGetMinY(intoBtn.frame), 80*LSScale, 25*LSScale);
             stausL.layer.cornerRadius =12.5*LSScale;
             stausL.layer.backgroundColor =LSNavColor.CGColor;
@@ -202,6 +204,7 @@
             intoBtn.frame     =CGRectMake(baseView.frame.size.width-10*LSScale-100*LSScale, CGRectGetMaxY(teacherLOne.frame)-25*LSScale, 100*LSScale, 25*LSScale);
             [intoBtn setTitle:@"进入直播间" forState:0];
             intoBtn.videoID   = model.courseCode;
+            intoBtn.num       = [model.baseNum intValue]+[model.regNum intValue];
 
         }else if ([type isEqualToString:@"3"])//可回放
         {
@@ -217,7 +220,7 @@
             
             evaluateBtn.frame         =CGRectMake(baseView.frame.size.width-10*LSScale-70*LSScale, CGRectGetMinY(personNumL.frame)-30*LSScale, 70*LSScale, 25*LSScale);
             [evaluateBtn setTitle:@"去评价" forState:0];
-            evaluateBtn.videoID       =model.courseCode ;
+            evaluateBtn.videoID       =model.crid ;
             evaluateBtn.title         =model.name;
             evaluateBtn.layer.backgroundColor =LSNavColor.CGColor;
             
@@ -232,6 +235,7 @@
             intoBtn.layer.borderWidth=1;
             intoBtn.layer.borderColor=[UIColor darkGrayColor].CGColor;
             intoBtn.videoID   = model.courseCode;
+            intoBtn.num       = [model.baseNum intValue]+[model.regNum intValue];
         }
     }
 }

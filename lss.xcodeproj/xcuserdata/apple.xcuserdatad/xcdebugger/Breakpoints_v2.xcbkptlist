@@ -9,22 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lss_3.0/My/MyVc/LsEvaluateViewController.m"
-            timestampString = "525523464.824463"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-doPay:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "lss_3.0/Third/CC-Live/&#x89c2;&#x770b;&#x76f4;&#x64ad;/PlayForPCVC.m"
             timestampString = "531995105.660327"
             startingColumnNumber = "9223372036854775807"
@@ -115,13 +99,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lss_3.0/Third/AFNetworking/AFHTTPSessionManager.m"
-            timestampString = "531654790.438991"
+            filePath = "lss_3.0/Base class/LsShareModel.m"
+            timestampString = "533724665.282757"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306"
-            landmarkName = "-dataTaskWithHTTPMethod:URLString:parameters:uploadProgress:downloadProgress:success:failure:"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "-shareImageToPlatformType:Image:OnVc:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -131,46 +115,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lss_3.0/Interview/Live/LiveVc/LsLiveDetailViewController.m"
-            timestampString = "533636662.174275"
+            filePath = "lss_3.0/My/MyVc/LsMyLiveListViewController.m"
+            timestampString = "533725632.865599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "-requestEnroll:"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-getData"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[LsLiveDetailViewController requestEnroll:]"
-                  moduleName = "lss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Interview/Live/LiveVc/LsLiveDetailViewController.m"
-                  timestampString = "533637101.215559"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "123"
-                  endingLineNumber = "123"
-                  offsetFromSymbolStart = "224">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__44-[LsLiveDetailViewController requestEnroll:]_block_invoke"
-                  moduleName = "lss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Interview/Live/LiveVc/LsLiveDetailViewController.m"
-                  timestampString = "533637101.217731"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "123"
-                  endingLineNumber = "123"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

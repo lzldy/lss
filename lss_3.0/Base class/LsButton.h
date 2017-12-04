@@ -14,6 +14,7 @@
 @property (nonatomic,strong) NSString *videoID;
 @property (nonatomic,strong) NSString *roomID;
 @property (nonatomic,strong) NSArray  *livevideos;
+@property (nonatomic,assign) int       num;
 
 @property (nonatomic,strong) NSURL    *url;
 @property (nonatomic,assign) BOOL     isPackage;

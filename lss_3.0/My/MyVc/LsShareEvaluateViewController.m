@@ -15,8 +15,10 @@
 {
     UIImage      *shareImage;
     UIView       *backgroundView;
-    LsShareModel *shareModel;
 }
+
+@property (nonatomic,strong)     LsShareModel *shareModel;
+
 @end
 
 @implementation LsShareEvaluateViewController
@@ -119,8 +121,16 @@
     shareImage =Image;
     CGImageRelease(imageRefRect);
     
-    [shareModel shareActionWithImage:shareImage OnVc:self];
+    [self.shareModel shareActionWithImage:shareImage OnVc:self];
 }
+
+-(LsShareModel *)shareModel{
+    if (!_shareModel) {
+        _shareModel =[[LsShareModel alloc]init];
+    }
+    return _shareModel;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -16,7 +16,7 @@
 @property (nonatomic,strong)    NSString  * title;
 @property (nonatomic,strong)    NSString  * startDate;
 @property (nonatomic,strong)    NSString  * endDate;
-@property (nonatomic,assign)    NSInteger   zannum;
+@property (nonatomic,assign)    int         zannum;
 @property (nonatomic,strong)    NSString  * commentNum;
 @property (nonatomic,strong)    NSString  * viewtime;
 

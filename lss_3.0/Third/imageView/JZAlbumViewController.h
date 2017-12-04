@@ -25,7 +25,7 @@
 /**
  *  接收当前图片的序号,默认的是0
  */
-@property(nonatomic, assign) NSInteger currentIndex;
+@property(nonatomic, assign) int currentIndex;
 
 
 @end

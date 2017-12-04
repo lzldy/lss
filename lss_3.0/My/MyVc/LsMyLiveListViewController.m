@@ -151,7 +151,8 @@
 #pragma - mark -  LsLiveTableViewCell 代理
 - (void)didClickIntoBtn:(LsButton *)btn  isPackage:(BOOL)ispackage{
     LsLiveDetailViewController *vc =[[LsLiveDetailViewController alloc] init];
-    vc.crcode                     =btn.videoID;
+    vc.crcode                      =btn.videoID;
+    vc.personNum                   =btn.num;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

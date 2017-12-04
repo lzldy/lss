@@ -85,9 +85,10 @@
         [baseView addSubview:authorTypeL];
 
         
-        UIImage *image          =[UIImage imageNamed:@"note_button"];
-        commentImageView        =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW-80,CGRectGetMaxY(imageV.frame)+ 10*LSScale, 15*LSScale, 15*LSScale)];
+        UIImage *image          =[UIImage imageNamed:@"pinglun-icon"];
+        commentImageView        =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW-35*LSScale-15*LSScale,CGRectGetMaxY(imageV.frame)+ 12*LSScale, 15*LSScale, 15*LSScale)];
         commentImageView.image  =image;
+        commentImageView.contentMode=UIViewContentModeScaleAspectFit;
         [baseView addSubview:commentImageView];
 
         commentNumL   =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(commentImageView.frame)+5, CGRectGetMaxY(imageV.frame),50, 35*LSScale)];
