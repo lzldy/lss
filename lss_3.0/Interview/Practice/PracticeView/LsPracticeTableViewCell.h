@@ -9,17 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LsPracticeModel.h"
 
-@protocol practiceTableViewCellDelegate <NSObject>
-
-- (void)didClickRightButton;
-
-@end
-
 @interface LsPracticeTableViewCell : UITableViewCell
-
-
-@property(nonatomic,strong) UIButton *button;
-@property (nonatomic, weak) id<practiceTableViewCellDelegate> delegate;
 
 -(void)reloadCell:(id)model Type:(NSString*)type;
 

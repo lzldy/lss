@@ -351,4 +351,13 @@
     return thumbnailImage;
 }
 
++(NSMutableAttributedString*)changeColorWithStr:(NSString*)Str RangeStr:(NSString*)rangeStr{
+    NSString *string =Str;
+    NSString *stringForColor = [NSString stringWithFormat:@"%@",rangeStr];
+    NSMutableAttributedString *mAttStri = [[NSMutableAttributedString alloc] initWithString:string];
+    NSRange range = [string rangeOfString:stringForColor];
+    [mAttStri addAttribute:NSForegroundColorAttributeName value:LSNavColor range:range];
+    return  mAttStri;
+}
+
 @end

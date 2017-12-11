@@ -10,4 +10,6 @@
 
 @interface LsCommentViewController : LsBaseViewController
 
+@property (nonatomic,strong) NSString *code;
+
 @end

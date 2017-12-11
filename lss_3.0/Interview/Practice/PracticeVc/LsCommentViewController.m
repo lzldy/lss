@@ -9,10 +9,13 @@
 #import "LsCommentViewController.h"
 #import "LsCommentTableViewCell.h"
 #import "LsCommentView.h"
+#import "LsPracticeDetailModel.h"
 
 @interface LsCommentViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate,commentTableViewCellDelegate>
 
-@property (nonatomic,strong) UITableView *tabView;
+@property (nonatomic,strong) UITableView               *tabView;
+@property (nonatomic,strong) LsPracticeTTCommentModel  *commentModel;
+@property (nonatomic,strong) NSString                  *commentid;
 
 @end
 
@@ -27,13 +30,25 @@
     [self.navView.rightButton addTarget:self action:@selector(didClickNavViewRightBtn:) forControlEvents:UIControlEventTouchUpInside];
 
     [superView addSubview:self.tabView];
+    
+    [self getCommentData];
+}
+
+-(void)getCommentData{
+    NSDictionary *dict =@{@"commenttype":@"TT",@"code":self.code,@"commentchild":@"Y"};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"listtablecomment.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.commentModel  =[LsPracticeTTCommentModel yy_modelWithJSON:responseObject];
+        [_tabView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 -(void)didClickNavViewRightBtn:(UIButton*)button{
     [LsMethod alertMessage:@"分享" WithTime:1.5];
 }
 
-- (void)replyComment:(UIButton *)button{
+- (void)replyComment:(LsButton *)button{
+    self.commentid                 = button.ID;
     LsCommentView *commentView     =[[LsCommentView alloc] init];
     commentView.delegate           =self;
     commentView.textPlaceholder    =@"回复李老师的点评";
@@ -42,7 +57,19 @@
 }
 
 - (void)didClickCommitButton:(NSString*)text{
-    [LsMethod alertMessage:text WithTime:1.5];
+    [self commentVideoWithText:text];
+}
+
+-(void)commentVideoWithText:(NSString *)text{
+    NSDictionary *dict =@{@"code":self.code,
+                          @"comment":text,
+                          @"commentid":self.commentid,
+                          @"commenttype":@"TS"};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"commentvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [LsMethod alertMessage:@"评论成功" WithTime:1.5];
+        [self getCommentData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 #pragma - mark -  tabview 代理
@@ -102,6 +129,13 @@
         [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
     }
     return _tabView;
+}
+
+-(LsPracticeTTCommentModel *)commentModel{
+    if (!_commentModel) {
+        _commentModel =[[LsPracticeTTCommentModel alloc] init];
+    }
+    return _commentModel;
 }
 
 - (void)didReceiveMemoryWarning {

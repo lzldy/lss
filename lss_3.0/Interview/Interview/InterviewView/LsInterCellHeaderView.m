@@ -24,7 +24,7 @@
     if (self) {
         
         self.backgroundColor =[UIColor clearColor];
-        baseView       =[[UIView alloc] initWithFrame:CGRectMake(0, 10, frame.size.width, frame.size.height-10)];
+        baseView       =[[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         baseView.backgroundColor =[UIColor whiteColor];
         [self addSubview:baseView];
         
@@ -43,10 +43,10 @@
         imageView.image            =image;
         [baseView addSubview:imageView];
         
-        self.rightBtn              =[[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(imageView.frame)-35, 0, 35, baseView.frame.size.height)];
+        self.rightBtn              =[[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(imageView.frame)-50, 0, 50, baseView.frame.size.height)];
         self.rightBtn.backgroundColor =[UIColor clearColor];
-        self.rightBtn.titleLabel.font =[UIFont systemFontOfSize:16];
-        [self.rightBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        self.rightBtn.titleLabel.font =[UIFont systemFontOfSize:15.5];
+        [self.rightBtn setTitleColor:LSNavColor forState:UIControlStateNormal];
         [self.rightBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         [baseView addSubview:self.rightBtn];
         

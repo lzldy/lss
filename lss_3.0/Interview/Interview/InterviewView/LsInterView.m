@@ -15,9 +15,8 @@
     if (self) {
         UIView  *line         =[[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height-0.5, frame.size.width, 0.5)];
         line.backgroundColor  =LSLineColor;
+        self.backgroundColor  =[UIColor whiteColor];
         [self addSubview:line];
-        
-
     }
     return self;
 }
@@ -26,7 +25,7 @@
     _dataArray=dataArray;
     
     for (int i=0; i<dataArray.count; i++) {
-        UIView *view =[[UIView alloc] initWithFrame:CGRectMake(space+i*(self.frame.size.width-2*space)/dataArray.count, 0,(self.frame.size.width-2*space)/dataArray.count, self.frame.size.height)];
+        LsButton *view =[[LsButton alloc] initWithFrame:CGRectMake(space+i*(self.frame.size.width-2*space)/dataArray.count, 0,(self.frame.size.width-2*space)/dataArray.count, self.frame.size.height)];
         [self addSubview:view];
         
         NSString *imageName =[dataArray[i] objectForKey:@"imageName"];
@@ -34,19 +33,18 @@
         UIColor  *col       =[dataArray[i] objectForKey:@"color"];
         UIImage  *image     =[UIImage imageNamed:imageName];
         
-        UIButton *button    =[[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-image.size.width/2, 8, image.size.width, image.size.height)];
-        [button setImage:image forState:UIControlStateNormal];
-        button.tag          =i;
-        [button addTarget:self action:@selector(didClickBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:button];
         
-        UILabel  *label       =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(button.frame)+2, view.frame.size.width,20)];
-        label.text            =title;
-        label.textColor       =col;
-        label.textAlignment   =NSTextAlignmentCenter;
-        label.font            =[UIFont systemFontOfSize:14];
-        [view addSubview:label];
+        view.lsImageView.frame=CGRectMake(view.frame.size.width/2-image.size.width/2, 20, image.size.width, image.size.height);
+        view.lsImageView.image=image;
+        view.lsLabel.frame    =CGRectMake(0, CGRectGetMaxY(view.lsImageView.frame)+2, view.frame.size.width,20);
+        view.lsLabel.text            =title;
+        view.lsLabel.textColor       =col;
+        view.lsLabel.textAlignment   =NSTextAlignmentCenter;
+        view.lsLabel.font            =[UIFont systemFontOfSize:12];
         
+        view.tag              =i;
+        [view addTarget:self action:@selector(didClickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    
     }
 }
 

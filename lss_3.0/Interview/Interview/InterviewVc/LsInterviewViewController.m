@@ -21,8 +21,9 @@
 #import "LsLiveDetailViewController.h"
 #import "LsPractiveDetailViewController.h"
 #import "LsDataDetailViewController.h"
+#import "LsWrittenExaminationViewController.h"
 
-@interface LsInterviewViewController ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate,interCellHeaderViewDelegate,practiceTableViewCellDelegate>
+@interface LsInterviewViewController ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate,interCellHeaderViewDelegate>
 {
     NSArray  *cellHeaderArray;
 }
@@ -40,6 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.navTitle =@"";
+    superView.backgroundColor  =LSColor(243, 244, 245, 1);
     [self getBannerData];
     [self getUserInfo];
     [self initData];
@@ -70,18 +72,13 @@
 
 -(void)initData{
     cellHeaderArray =@[@{@"leftTitle":@"最新直播",@"rightTitle":@"更多"},
-                       @{@"leftTitle":@"最新练课",@"rightTitle":@"全部"}];
+                       @{@"leftTitle":@"最新练课",@"rightTitle":@"更多"}];
 }
 
 -(void)loadBaseUI{
     [self loadCarouselViewWithTimer];
     [superView addSubview:self.typeView];
     [superView addSubview:self.tabView];
-    UIImage   *image         =[UIImage imageNamed:@"ct_icon"];
-    UIButton  *suspensionBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-10-image.size.width, LSMainScreenH-49-10-image.size.height, image.size.width, image.size.height)];
-    [suspensionBtn setImage:image forState:UIControlStateNormal];
-    [suspensionBtn addTarget:self action:@selector(clickSuspensionBtn) forControlEvents:UIControlEventTouchUpInside];
-    [superView addSubview:suspensionBtn];
 }
 
 -(void)clickSuspensionBtn{
@@ -124,26 +121,14 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==0) {
-        return 125*LSScale;
-    }else{
-        if (self.model.practiceModel.personNum>0) {
-            if (indexPath.row==0) {
-                return 35;
-            }else{
-                return 210*LSScale;
-            }
-        }else{
-            return 210*LSScale;
-        }
-    }
+    return indexPath.section==0?100*LSScale:280*LSScale;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section==0) {
         return self.model.liveArray.count>0?self.model.liveArray.count:1;
     }else{
-        return self.model.practiceModel.personNum>0?self.model.practiceModel.practiceLists.count+1:self.model.practiceModel.practiceLists.count;
+        return self.model.practiceModel.practiceLists.count;
     }
 }
 
@@ -169,23 +154,11 @@
             cell = [[LsPracticeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sectionIDD];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        if (self.model.practiceModel.personNum>0) {
-            if (indexPath.row==0) {
-                [cell reloadCell:self.model.practiceModel Type:@"0"] ;
-                cell.delegate=self;
-            }else{
-                [cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row-1] Type:@"1"] ;
-            }
+        if (self.model.practiceModel.practiceLists>0) {
+            [cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row] Type:@"1"] ;
         }
-//        }else{
-//            [cell reloadCell:self.model.practiceModel.practiceLists[indexPath.row] Type:@"1"] ;
-//        }
         return cell;
     }
-}
-
-- (void)didClickRightButton{
-    [self pushPracticeVc:0];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -197,24 +170,23 @@
             [self.navigationController pushViewController:detailVc animated:YES];
         }
     }else{
-        if (indexPath.row==0&&self.model.practiceModel.personNum>0) {
-            [self pushPracticeVc:0];
-        }else{
             LsPractiveDetailViewController *praVc =[[LsPractiveDetailViewController alloc] init];
-//            praVc.authorType                      =self.model.practiceModel.practiceLists[indexPath.row-1].ctag2;
             praVc.code_                       =self.model.practiceModel.practiceLists[indexPath.row-1].code;
             [self.navigationController pushViewController:praVc animated:YES];
-        }
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50;
+    return 40;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 10*LSScale;
+}
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
-    LsInterCellHeaderView *cellHeaderView =[[LsInterCellHeaderView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 50)];
+    LsInterCellHeaderView *cellHeaderView =[[LsInterCellHeaderView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 40)];
     NSDictionary          *dict           =cellHeaderArray[section];
     cellHeaderView.delegate               =self;
     NSString              *leftTitle      =[dict objectForKey:@"leftTitle"];
@@ -248,13 +220,13 @@
             [self pushLiveVc:0];
             break;
         case 1:
-            [self pushPracticeVc:0];
+            [self clickSuspensionBtn];
             break;
         case 2:
-            [self pushDataVc:0];
+            [self pushPracticeVc:0];
             break;
         case 3:
-            [self pushNoticeVc:0];
+            [self pushBrushQuestion];
             break;
         default:
             break;
@@ -282,9 +254,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)pushBrushQuestion{
+    LsWrittenExaminationViewController *vc =[[LsWrittenExaminationViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 -(UITableView *)tabView{
     if (!_tabView) {
-        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.typeView.frame), LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.typeView.frame)-49)];
+        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.typeView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.typeView.frame)-49)];
         _tabView.delegate         =self;
         _tabView.dataSource       =self;
         _tabView.tableFooterView  =[[UIView alloc] init];
@@ -301,10 +278,10 @@
 -(LsInterView *)typeView{
     if (!_typeView) {
         _typeView =[[LsInterView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_carouselView.frame), LSMainScreenW, 80)];
-    _typeView.dataArray =@[@{@"title":@"直播",@"imageName":@"zhibo",@"color":LSColor(255,61,49,1)},
-                           @{@"title":@"练课",@"imageName":@"lianke",@"color":LSColor(255,72,130,1)},
-                           @{@"title":@"资料",@"imageName":@"ziliao",@"color":LSColor(133,106,255,1)},
-                           @{@"title":@"公告",@"imageName":@"gonggao",@"color":LSColor(87,160,255,1)}];
+    _typeView.dataArray =@[@{@"title":@"直播课堂",@"imageName":@"zhibo-icon",@"color":LSColor(127,127,127,1)},
+                           @{@"title":@"面试抽题",@"imageName":@"mianshi-icon",@"color":LSColor(127,127,127,1)},
+                           @{@"title":@"示范视频",@"imageName":@"shiping-icon",@"color":LSColor(127,127,127,1)},
+                           @{@"title":@"笔试刷题",@"imageName":@"bishi-icon",@"color":LSColor(127,127,127,1)}];
         _typeView.delegate=self;
     }
     return _typeView;

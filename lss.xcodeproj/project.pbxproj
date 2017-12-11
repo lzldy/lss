@@ -356,6 +356,7 @@
 		180BD10F1F5D7E5B001EE331 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180BD10D1F5D7E5B001EE331 /* loading@3x.gif */; };
 		181524861F64C7DC00E23257 /* LsVideotapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181524851F64C7DC00E23257 /* LsVideotapeViewController.m */; };
 		181524891F64E1AF00E23257 /* LsRecordingCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181524881F64E1AF00E23257 /* LsRecordingCompletedViewController.m */; };
+		182516B41FDE612400501DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182516B31FDE612400501DCE /* Assets.xcassets */; };
 		182C686C1F5F8A6800DD1511 /* LsPlayBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C686B1F5F8A6800DD1511 /* LsPlayBackViewController.m */; };
 		182C686F1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182C686E1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.m */; };
 		182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182CDEC51F42AA0600283EBA /* LsPracticeModel.m */; };
@@ -407,7 +408,6 @@
 		185296051F6015D4003D5D8A /* LsInterCellHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296001F6015D4003D5D8A /* LsInterCellHeaderView.m */; };
 		185296061F6015D4003D5D8A /* LsInterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296021F6015D4003D5D8A /* LsInterView.m */; };
 		1852960D1F601680003D5D8A /* LsPumpingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1852960C1F601680003D5D8A /* LsPumpingTestViewController.m */; };
-		1852960F1F601C02003D5D8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1852960E1F601C02003D5D8A /* Assets.xcassets */; };
 		185296121F60216D003D5D8A /* LsTestChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296111F60216D003D5D8A /* LsTestChooseView.m */; };
 		185296151F60EC5D003D5D8A /* LsProFormaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296141F60EC5D003D5D8A /* LsProFormaViewController.m */; };
 		1852961D1F622896003D5D8A /* AVCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1852961A1F622896003D5D8A /* AVCaptureManager.m */; };
@@ -1087,6 +1087,7 @@
 		181524851F64C7DC00E23257 /* LsVideotapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsVideotapeViewController.m; sourceTree = "<group>"; };
 		181524871F64E1AF00E23257 /* LsRecordingCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsRecordingCompletedViewController.h; sourceTree = "<group>"; };
 		181524881F64E1AF00E23257 /* LsRecordingCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsRecordingCompletedViewController.m; sourceTree = "<group>"; };
+		182516B31FDE612400501DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		182C686A1F5F8A6800DD1511 /* LsPlayBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPlayBackViewController.h; sourceTree = "<group>"; };
 		182C686B1F5F8A6800DD1511 /* LsPlayBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPlayBackViewController.m; sourceTree = "<group>"; };
 		182C686D1F5F8DDA00DD1511 /* LsPlayBackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPlayBackTableViewCell.h; sourceTree = "<group>"; };
@@ -1180,7 +1181,6 @@
 		185296021F6015D4003D5D8A /* LsInterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsInterView.m; sourceTree = "<group>"; };
 		1852960B1F601680003D5D8A /* LsPumpingTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsPumpingTestViewController.h; sourceTree = "<group>"; };
 		1852960C1F601680003D5D8A /* LsPumpingTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsPumpingTestViewController.m; sourceTree = "<group>"; };
-		1852960E1F601C02003D5D8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		185296101F60216D003D5D8A /* LsTestChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsTestChooseView.h; sourceTree = "<group>"; };
 		185296111F60216D003D5D8A /* LsTestChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsTestChooseView.m; sourceTree = "<group>"; };
 		185296131F60EC5D003D5D8A /* LsProFormaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsProFormaViewController.h; sourceTree = "<group>"; };
@@ -2348,10 +2348,10 @@
 		184CA1731F27199F00ACB807 /* lss_3.0 */ = {
 			isa = PBXGroup;
 			children = (
-				1852960E1F601C02003D5D8A /* Assets.xcassets */,
 				184CA1771F27199F00ACB807 /* LsAppDelegate.h */,
 				184CA1781F27199F00ACB807 /* LsAppDelegate.m */,
 				184CA17D1F27199F00ACB807 /* Main.storyboard */,
+				182516B31FDE612400501DCE /* Assets.xcassets */,
 			);
 			path = lss_3.0;
 			sourceTree = "<group>";
@@ -3652,7 +3652,6 @@
 				180BCFEB1F5D3E53001EE331 /* playback_rate_nor@2x.png in Resources */,
 				180BD0A01F5D4A1B001EE331 /* arrow@3x.png in Resources */,
 				18F034B31FA1C4FA001A305D /* player-slider-inactive.png in Resources */,
-				1852960F1F601C02003D5D8A /* Assets.xcassets in Resources */,
 				180BD0CC1F5D4A1B001EE331 /* qs_choose_right@3x.png in Resources */,
 				18F0349D1FA1C4FA001A305D /* navigation-bar-back@2x.png in Resources */,
 				180BD0C31F5D4A1B001EE331 /* notice_img_titlebig@2x.png in Resources */,
@@ -3782,6 +3781,7 @@
 				180BD0C71F5D4A1B001EE331 /* people@2x.png in Resources */,
 				180BCF871F5D3E53001EE331 /* 020@2x.png in Resources */,
 				180BCFE01F5D3E53001EE331 /* nav_bg_cbb@3x.png in Resources */,
+				182516B41FDE612400501DCE /* Assets.xcassets in Resources */,
 				180BCF861F5D3E53001EE331 /* 019@3x.png in Resources */,
 				180BD02B1F5D4344001EE331 /* scan_black@3x.png in Resources */,
 				180BD0FB1F5D4A1B001EE331 /* video_ic_live_nor@2x.png in Resources */,
@@ -4414,6 +4414,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = W3NR4RG464;
 				ENABLE_BITCODE = NO;
@@ -4447,7 +4449,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lss.shishuo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5234120b-10ef-4f72-88df-6fdb7853fbda";
+				PROVISIONING_PROFILE = "5aeb708f-38e0-40c0-af19-02a6ab1358b6";
 				PROVISIONING_PROFILE_SPECIFIER = liangshishuo_test;
 			};
 			name = Debug;
@@ -4457,6 +4459,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = W3NR4RG464;
 				ENABLE_BITCODE = NO;
@@ -4483,13 +4487,14 @@
 					"$(PROJECT_DIR)/lss_3.0/Third/CC/SDK",
 					"$(PROJECT_DIR)/lss_3.0/Third/Pay/Channel/WXPay",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lss.shishuo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5234120b-10ef-4f72-88df-6fdb7853fbda";
+				PROVISIONING_PROFILE = "5aeb708f-38e0-40c0-af19-02a6ab1358b6";
 				PROVISIONING_PROFILE_SPECIFIER = liangshishuo_test;
 			};
 			name = Release;

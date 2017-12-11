@@ -16,7 +16,7 @@
     UILabel     *commentL;
     UIView      *line;
     UIView      *baseView;
-    UIButton    *replyBtn;
+    LsButton    *replyBtn;
 }
 @end
 
@@ -59,7 +59,7 @@
         commentL.numberOfLines   =0;
         [baseView addSubview:commentL];
         
-        replyBtn             =[[UIButton alloc] init];
+        replyBtn             =[[LsButton alloc] init];
         [replyBtn setTitle:@"回复老师" forState:0];
         [replyBtn setTitleColor:LSNavColor forState:0];
         replyBtn.titleLabel.font =[UIFont systemFontOfSize:14.5*LSScale];
@@ -73,14 +73,14 @@
     return self;
 }
 
--(void)didClickReplyBtn:(UIButton *)button{
+-(void)didClickReplyBtn:(LsButton *)button{
     if (self.delegate && [self.delegate respondsToSelector:@selector(replyComment:)]) {
         [self.delegate replyComment:button];
     }
 }
 
 -(void)reloadCellWithData:(id)data type:(NSString*)type{
-    
+    LsPracticeTTCommentModel *model =data;
     nameL.text            =@"王二小";
     timeL.text            =@"2017-09-03";
     commentL.text         =@"卡夫卡方式啥地方卡上和嘎哈的骄傲和大家安静倒海翻江安徽的发件湿的还时间的话房间爱上对方和经适房时间的话副书记的好几个还是大家和我我我我我问我阿萨德家里卡登记反馈的数据发开落落大方卡上可视对讲方面只能沉默，v就发到松开立即福克斯地方开发经十东路风景老师的法律；问发到空间发；上岛咖啡技术的回放闪电发货大护法喝完酒二环附近卡萨丁 技术的后发酵闪电发货";
@@ -91,6 +91,7 @@
     if ([type isEqualToString:@"0"]) {
         self.frame        =baseView.frame;
     }else if ([type isEqualToString:@"1"]){
+        replyBtn.ID       =model.ID;
         replyBtn.frame    =CGRectMake(LSMainScreenW-10*LSScale-65*LSScale, CGRectGetMaxY(commentL.frame)+10*LSScale, 65*LSScale, 25*LSScale);
         line.frame        =CGRectMake(0, CGRectGetMaxY(replyBtn.frame)+10*LSScale, LSMainScreenW, 0.5);
         baseView.frame    =CGRectMake(0, 0,LSMainScreenW, CGRectGetMaxY(line.frame));

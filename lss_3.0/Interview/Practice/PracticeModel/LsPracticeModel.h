@@ -19,7 +19,7 @@
 @property (nonatomic,strong) NSString   *  uploadDate;
 @property (nonatomic,assign) BOOL          isRecommend;
 
-@property (nonatomic,strong) NSURL      *  videoHeadUrl;
+@property (nonatomic,strong) NSURL      *  videoHeadUrl2;
 @property (nonatomic,strong) NSString   *  teacher;
 @property (nonatomic,assign) BOOL          isRefered;
 @property (nonatomic,strong) NSString   *  ctag1;

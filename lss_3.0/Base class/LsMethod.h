@@ -93,6 +93,6 @@
 
 + (UIImage*) thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time ;
 
-
++(NSMutableAttributedString*)changeColorWithStr:(NSString*)Str RangeStr:(NSString*)rangeStr;
 
 @end

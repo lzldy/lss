@@ -23,8 +23,18 @@
     self.navView.navTitle         =@"专题活动";
     superView.backgroundColor     =LSColor(243, 244, 245, 1);
     [superView addSubview:self.tabView];
+    [self getData];
 
 }
+
+-(void)getData{
+    NSDictionary *dict =@{@"withcontent":@"Y"};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"findcampaign.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
+
 #pragma  - mark -  tabview 代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];

@@ -34,10 +34,10 @@
     
     /**** 添加子控制器 ****/
     LsInterviewViewController *lbVc          = [[LsInterviewViewController alloc] init];
-    [self addVcToTabVcWithViewController:lbVc title:@"面试" image:@"ms_button_before" selectedImage:@"ms_button_after"];
+    [self addVcToTabVcWithViewController:lbVc title:@"备考" image:@"ms_button_before" selectedImage:@"ms_button_after"];
 
-    LsWrittenExaminationViewController *pfVc = [[LsWrittenExaminationViewController alloc] init];
-    [self addVcToTabVcWithViewController:pfVc title:@"笔试" image:@"bs_button_before" selectedImage:@"bs_button_after"];
+//    LsWrittenExaminationViewController *pfVc = [[LsWrittenExaminationViewController alloc] init];
+//    [self addVcToTabVcWithViewController:pfVc title:@"笔试" image:@"bs_button_before" selectedImage:@"bs_button_after"];
 
     LsFindViewController      *prVc          = [[LsFindViewController alloc] init];
     [self addVcToTabVcWithViewController:prVc title:@"发现" image:@"fx_button_before" selectedImage:@"fx_button_after"];

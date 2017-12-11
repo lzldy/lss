@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LsPracticeDetailModel.h"
 @protocol commentTableViewCellDelegate <NSObject>
 
-- (void)replyComment:(UIButton *)button;
+- (void)replyComment:(LsButton *)button;
 
 @end
 

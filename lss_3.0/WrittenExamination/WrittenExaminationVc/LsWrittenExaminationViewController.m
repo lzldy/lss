@@ -12,18 +12,9 @@
 #import "LsWrittenTableViewCell.h"
 #import "LsLiveTableViewCell.h"
 
-@interface LsWrittenExaminationViewController ()<lsNavTabViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
-{
-    BOOL       isScroll;
-    float      startY;
-    
-}
-@property (nonatomic,strong) LsNavTabView *topTabView;
-@property (nonatomic,strong) UIScrollView *scrView;
-@property (nonatomic,strong) LsWrittenHeaderView *headerView;
-@property (nonatomic,strong) UITableView  *upTabView;
-@property (nonatomic,strong) UITableView  *downTabView;
-@property (nonatomic,strong) UIScrollView *scrView1;
+@interface LsWrittenExaminationViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic,strong) UITableView  *tabView;
 
 @end
 
@@ -32,106 +23,64 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navView.navTitle     =@"笔试";
+    self.navView.navTitle     =@"针对性刷题";
     superView.backgroundColor =LSColor(243, 244, 245, 1);
-    [self.navView addSubview:self.topTabView];
     [self loadBaseUI];
+    [self getData];
 }
 
 -(void)loadBaseUI{
-    UIImage     *topImage  =[UIImage imageNamed:@"top_background"];
-    UIImageView *topImageV =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, topImage.size.height)];
-    topImageV.image        =topImage;
-    [superView     addSubview:topImageV];
-    [superView     bringSubviewToFront:self.navView];
-    [superView     addSubview:self.headerView];
-    [superView     addSubview:self.scrView];
-    [self.scrView  addSubview:self.scrView1];
-    [self.scrView1 addSubview:self.upTabView];
-    [self.scrView1 addSubview:self.downTabView];
-    [self.scrView1 setContentSize:CGSizeMake(LSMainScreenW*2, CGRectGetMaxY(self.downTabView.frame)+80*LSScale)];
+    [superView addSubview:self.tabView];
 }
 
-#pragma  - mark -  NavTabView 代理
--(void)lsNavTabViewIndex:(NSInteger)index{
-    [self.scrView setContentOffset:CGPointMake(LSMainScreenW*index,0) animated:NO];
-    if (index==0) {
-        LsLog(@"11111111111111");
-    }else{
-        LsLog(@"22222222222");
-    }
-}
+-(void)getData{
+//    catgid：项目ID，建议必选
+//    scatgid：学科ID，建议必选
+//    prvn：指定省，名称中没有省，比如湖南/北京，可选
+//    city：指定城市，名称中没有市，比如长沙，可选
+//    needstatis：是否需要返回个人做题统计，在做题主页，需要设置此参数为Y，可选参数.
+    
+    NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
+    [dict setObject:[LSUser_Default objectForKey:@"catgid"]  forKey:@"catgid"];
+    [dict setObject:[LSUser_Default objectForKey:@"scatgid"] forKey:@"scatgid"];
+    [dict setObject:@"湖南" forKey:@"prvn"];
+    [dict setObject:@"长沙" forKey:@"city"];
+//    [dict setObject:@"Y" forKey:@"needstatis"];
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-        float currentPostion = scrollView.contentOffset.y;
-        BOOL  upDown = false;
-        if (currentPostion - startY > 35 ||startY - currentPostion > 35) {
-            startY = currentPostion;
-            upDown=YES;
-        }else{
-            float index =scrollView.contentOffset.x/LSMainScreenW;
-            if (isScroll&&!upDown) {
-                [self.topTabView tabIndex:index];
-                //            if (index==1&&!_writtenModel) {
-                //                [self.writtenTabView headerBeginRefreshing];
-                //            }
-            }
-        }
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-        isScroll =YES;
-        if (scrollView.contentOffset.y>0) {
-            isScroll =NO;
-        }
-}
-
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-        isScroll =NO;
+    [[LsAFNetWorkTool shareManger] LSGET:@"qbpaperlib.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+        
+    }];
+//    [[LsAFNetWorkTool shareManger] LSPOST:@"qbpaperlib.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+//
+//    }];
 }
 
 #pragma  - mark -  tabview 代理
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView.tag==100) {
-        return 55*LSScale;
-    }else if (tableView.tag==200){
-        return 125*LSScale;
-    }
-    return 0;
+    return 50*LSScale;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    return 3;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView.tag==100) {
-        static NSString *cellID = @"upCellID";
-        LsWrittenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!cell) {
-            cell = [[LsWrittenTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        
-        
-        
-        return cell;
-
-    }else if (tableView.tag==200){
-        static NSString *cellID = @"downCellID";
-        LsLiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!cell) {
-            cell = [[LsLiveTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        LsLiveModel *modelll =[[LsLiveModel alloc] init];
-                [cell reloadCell:modelll Type:@"1"];
-        
-        
-        return cell;
+    static NSString *cellID = @"upCellID";
+    LsWrittenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[LsWrittenTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-       return nil;
+
+    return cell;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -146,13 +95,8 @@
     line.backgroundColor =LSLineColor;
     [view addSubview:line];
     
-    if (tableView.tag==100) {
-        titleL.text         =@"针对性刷题";
+    titleL.text         =[NSString stringWithFormat:@"section==%ld",(long)section];
 
-    }else if(tableView.tag==200){
-        titleL.text         =@"做题+听直播";
-
-    }
     return view;
 }
 
@@ -172,86 +116,35 @@
     return view;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 30*LSScale;
+}
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    return 30*LSScale;
+//}
+
+-(UITableView *)tabView{
+    if (!_tabView) {
+        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navView.frame), LSMainScreenW,LSMainScreenH-CGRectGetMaxY(self.navView.frame))];
+        _tabView.delegate         =self;
+        _tabView.dataSource       =self;
+        _tabView.showsVerticalScrollIndicator   =NO;
+        _tabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
+        _tabView.backgroundColor  =[UIColor clearColor];
+    }
+    return _tabView;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    return 30*LSScale;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 30*LSScale;
-}
-
--(UITableView *)upTabView{
-    if (!_upTabView) {
-        _upTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,0, LSMainScreenW,55*LSScale*3+30*LSScale*2)];
-        _upTabView.delegate         =self;
-        _upTabView.dataSource       =self;
-        _upTabView.showsVerticalScrollIndicator   =NO;
-        _upTabView.scrollEnabled    =NO;
-        _upTabView.tag              =100;
-        _upTabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
-        _upTabView.backgroundColor  =[UIColor clearColor];
+    CGFloat sectionHeaderHeight = 50;
+    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
     }
-    return _upTabView;
-}
-
--(UITableView *)downTabView{
-    if (!_downTabView) {
-        _downTabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.upTabView.frame)+10*LSScale, LSMainScreenW,30*LSScale+125*LSScale*3)];
-        _downTabView.delegate         =self;
-        _downTabView.dataSource       =self;
-        _downTabView.showsVerticalScrollIndicator   =NO;
-        _downTabView.scrollEnabled    =NO;
-        _downTabView.tag              =200;
-        _downTabView.tableFooterView  =[[UIView alloc] init];
-        _downTabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
-        _downTabView.backgroundColor  =[UIColor clearColor];
+    else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
     }
-    return _downTabView;
-}
-
--(LsNavTabView *)topTabView{
-    if (!_topTabView) {
-        _topTabView =[[LsNavTabView alloc] initWithFrame:CGRectMake(LSMainScreenW/2-75, 20+7, 150, 30)];
-        _topTabView.dataArray =@[@"模考",@"考点"];
-        _topTabView.delegate=self;
-    }
-    return _topTabView;
-}
-
--(UIScrollView *)scrView{
-    if (!_scrView) {
-        _scrView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.headerView.frame)+10*LSScale,LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.headerView.frame)-10*LSScale)];
-        _scrView.pagingEnabled                    =YES;
-        _scrView.contentSize                      =CGSizeMake(LSMainScreenW*2, 0);
-        _scrView.showsHorizontalScrollIndicator   =NO;
-        _scrView.showsVerticalScrollIndicator     =NO;
-        _scrView.delegate                         =self;
-        _scrView.bounces                          =NO;
-        _scrView.scrollEnabled =NO;
-    }
-    return _scrView;
-}
-
--(UIScrollView *)scrView1{
-    if (!_scrView1) {
-        _scrView1=[[UIScrollView alloc]initWithFrame:CGRectMake(0,0,LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.headerView.frame)-10*LSScale)];
-        _scrView1.pagingEnabled                    =YES;
-        _scrView1.contentSize                      =CGSizeMake(LSMainScreenW, 0);
-        _scrView1.showsHorizontalScrollIndicator   =NO;
-        _scrView1.showsVerticalScrollIndicator     =NO;
-        _scrView1.delegate                         =self;
-        _scrView1.bounces                          =YES;
-    }
-    return _scrView1;
-}
-
--(LsWrittenHeaderView *)headerView{
-    if (!_headerView) {
-        _headerView =[[LsWrittenHeaderView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(self.navView.frame), LSMainScreenW-20*LSScale, 85*LSScale)];
-        _headerView.dataDcit  =@{@"testPaper":@"6套",@"testQuestions":@"50",@"correctRate":@"88%"};
-    }
-    return _headerView;
 }
 
 - (void)didReceiveMemoryWarning {

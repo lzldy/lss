@@ -8,6 +8,39 @@
 
 #import "LsPracticeDetailModel.h"
 
+@implementation LsPracticeTTCommentModel
+
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{ @"ID":@"id",
+              @"dataList":@"data.list"
+              };
+}
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{
+             @"dataList" : [LsPracticeTTCommentModel class]
+             };
+}
+
+@end
+
+@implementation LsPracticeTSCommentModel
+
+
+//+ (NSDictionary *)modelCustomPropertyMapper {
+//    return @{ @"self":@"data"};
+//}
+
+//+ (NSDictionary *)modelContainerPropertyGenericClass {
+//    return @{
+//             @"self" : [LsPracticeDetailModel class]
+//             };
+//}
+
+@end
+
+
 @implementation LsPracticeDetailModel
 
 

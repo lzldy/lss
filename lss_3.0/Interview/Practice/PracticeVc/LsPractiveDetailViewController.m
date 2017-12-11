@@ -21,6 +21,7 @@
 }
 @property (nonatomic,strong) UITableView *tabView;
 @property (nonatomic,strong) LsPracticeDetailModel *model;
+@property (nonatomic,strong) LsPracticeTSCommentModel  *commentModel;
 @property (nonatomic,strong) LsCustomPlayerViewController *childVC;
 
 @end
@@ -45,6 +46,16 @@
     [[LsAFNetWorkTool shareManger] LSPOST:@"getvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model  =[LsPracticeDetailModel yy_modelWithDictionary:[responseObject objectForKey:@"data"] ];
         [self loadBaseUI];
+        [self getCommentData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
+
+-(void)getCommentData{
+    NSDictionary *dict =@{@"commenttype":@"TS",@"code":self.code_};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"listtablecomment.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.commentModel  =[LsPracticeTSCommentModel yy_modelWithJSON:responseObject];
+        [_tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
@@ -120,9 +131,14 @@
     [superView addSubview:commentView];
     
     UILabel *reviewL               =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 0, LSMainScreenW/2+30*LSScale, 40*LSScale)];
-    reviewL.text              =@"该视频共有5位老师点评";
+    if (![LsMethod haveValue:self.model.commentNum2]) {
+        self.model.commentNum2 =@"0";
+    }
+    NSString *teacherComment =[NSString stringWithFormat:@"该视频共有%@位老师点评",self.model.commentNum2];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:teacherComment];
+    [str addAttribute:NSForegroundColorAttributeName value:LSNavColor range:NSMakeRange(5, self.model.commentNum2.length)];
+    reviewL.attributedText    =str;
     reviewL.font              =[UIFont systemFontOfSize:15*LSScale];
-    reviewL.textColor         =[UIColor darkTextColor];
     [commentView addSubview:reviewL];
     
     UIButton *seeCommentBtn =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-100*LSScale,0, 100*LSScale, 40*LSScale)];
@@ -190,8 +206,8 @@
             [self zanVideo:@"no"];
         }
     }else if(button.tag ==555){
-        
         LsCommentViewController *comVc =[[LsCommentViewController alloc] init];
+        comVc.code                     =self.code_;
         [self.navigationController  pushViewController:comVc animated:YES];
     }else if(button.tag== 888){
         LsCommentView *commentView     =[[LsCommentView alloc] init];
@@ -264,8 +280,9 @@
 }
 
 -(void)commentVideoWithText:(NSString *)text{
-    NSDictionary *dict =@{@"code":self.code_,@"comment":text,@"commentid":@""};
+    NSDictionary *dict =@{@"code":self.code_,@"comment":text,@"commentid":@"",@"commenttype":@"TS"};
     [[LsAFNetWorkTool shareManger] LSPOST:@"commentvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [LsMethod alertMessage:@"评论成功" WithTime:1.5];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
@@ -321,6 +338,13 @@
         _model =[[LsPracticeDetailModel alloc] init];
     }
     return _model;
+}
+
+-(LsPracticeTSCommentModel *)commentModel{
+    if (!_commentModel) {
+        _commentModel =[[LsPracticeTSCommentModel alloc] init];
+    }
+    return _commentModel;
 }
 
 - (void)didReceiveMemoryWarning {

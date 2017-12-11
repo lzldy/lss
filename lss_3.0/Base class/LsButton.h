@@ -25,4 +25,6 @@
 @property (nonatomic,strong) UIImageView *lsImageView;
 @property (nonatomic,strong) UILabel     *lsLabel;
 
+@property (nonatomic,strong) NSString *ID;
+
 @end
