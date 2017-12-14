@@ -10,11 +10,11 @@
 
 @interface LsPracticeListModel : NSObject
 
-@property (nonatomic,strong) NSURL      *  coverImage;
+@property (nonatomic,strong) NSURL      *  coverImage2;
 @property (nonatomic,strong) NSString   *  author;
 @property (nonatomic,strong) NSString   *  authorType;
 @property (nonatomic,strong) NSString   *  title;
-@property (nonatomic,assign) NSInteger     commnetNum;
+@property (nonatomic,assign) NSInteger     commentNum;
 @property (nonatomic,strong) NSString   *  classType;
 @property (nonatomic,strong) NSString   *  uploadDate;
 @property (nonatomic,assign) BOOL          isRecommend;

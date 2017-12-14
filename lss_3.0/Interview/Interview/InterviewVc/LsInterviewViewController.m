@@ -170,8 +170,15 @@
             [self.navigationController pushViewController:detailVc animated:YES];
         }
     }else{
+        LsPracticeListModel  *model =self.model.practiceModel.practiceLists[indexPath.row];
+        if (![LsMethod haveValue:model.authorType]) {
+            model.authorType =@"神秘人";
+        }
             LsPractiveDetailViewController *praVc =[[LsPractiveDetailViewController alloc] init];
-            praVc.code_                       =self.model.practiceModel.practiceLists[indexPath.row-1].code;
+            praVc.code_                           =model.code;
+            praVc.authorType                      =model.authorType;
+//            praVc.videoID                         =model.videoId;
+            praVc.didZan                          =model.myzan;
             [self.navigationController pushViewController:praVc animated:YES];
     }
 }

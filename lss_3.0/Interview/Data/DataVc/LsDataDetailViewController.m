@@ -36,6 +36,10 @@
     [superView bringSubviewToFront:self.navView];
 
     if (self.isBanner) {
+        self.navView.backgroundColor =LSNavColor;
+        self.navView.navTitle        =@"良师快讯";
+        self.webView_.frame=CGRectMake(0,CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.navView.frame));
+
         NSURLRequest *request =[NSURLRequest requestWithURL:self.bannerUrl];
 //        NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
         [self.webView_ loadRequest:request];

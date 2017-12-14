@@ -34,11 +34,10 @@
         iconView                        =[[UIImageView alloc] initWithFrame:CGRectMake(10*LSScale, 10*LSScale,50*LSScale,50*LSScale)];
         iconView.layer.cornerRadius     =25*LSScale;
         iconView.layer.masksToBounds    =YES;
-        iconView.layer.backgroundColor  =[UIColor redColor].CGColor;
         [baseView addSubview:iconView];
 
         
-        nameL                  =[[UILabel alloc] initWithFrame:CGRectMake(5*LSScale+CGRectGetMaxX(iconView.frame), CGRectGetMinY(iconView.frame),80*LSScale, 25*LSScale)];
+        nameL                  =[[UILabel alloc] initWithFrame:CGRectMake(5*LSScale+CGRectGetMaxX(iconView.frame), CGRectGetMinY(iconView.frame),150*LSScale, 25*LSScale)];
         nameL.font             =[UIFont systemFontOfSize:14*LSScale];
         nameL.textColor        =[UIColor darkTextColor];
         nameL.textAlignment    =NSTextAlignmentLeft;
@@ -79,23 +78,60 @@
     }
 }
 
--(void)reloadCellWithData:(id)data type:(NSString*)type{
-    LsPracticeTTCommentModel *model =data;
-    nameL.text            =@"王二小";
-    timeL.text            =@"2017-09-03";
-    commentL.text         =@"卡夫卡方式啥地方卡上和嘎哈的骄傲和大家安静倒海翻江安徽的发件湿的还时间的话房间爱上对方和经适房时间的话副书记的好几个还是大家和我我我我我问我阿萨德家里卡登记反馈的数据发开落落大方卡上可视对讲方面只能沉默，v就发到松开立即福克斯地方开发经十东路风景老师的法律；问发到空间发；上岛咖啡技术的回放闪电发货大护法喝完酒二环附近卡萨丁 技术的后发酵闪电发货";
+-(void)reloadCellWithData:(LsPracticeCommentModel*)data type:(NSString*)type{
+    LsPracticeCommentModel *model =data;
+    if ([LsMethod haveValue:model.fromUserName]) {
+        nameL.text            =[NSString stringWithFormat:@"%@的点评",model.fromUserName];
+    }else{
+        nameL.text            =@"唐僧的点评";
+    }
+    NSString *date        =[LsMethod toDateWithTimeStamp:model.createTimeInSec DateFormat:@"yyyy-MM-dd"];
+    timeL.text            =date;
+    commentL.text         =model.content;
+    [iconView sd_setImageWithURL:model.fromUserHeadUrl placeholderImage:LOADIMAGE(@"tx-icon")];
     CGSize  size          =[LsMethod sizeWithSize:CGSizeMake(commentL.frame.size.width, 8000) String:commentL.text font:commentL.font];
     commentL.frame        =CGRectMake(commentL.frame.origin.x, commentL.frame.origin.y, commentL.frame.size.width, size.height);
     line.frame            =CGRectMake(0, CGRectGetMaxY(commentL.frame)+10*LSScale, LSMainScreenW, 0.5);
     baseView.frame        =CGRectMake(0, 0,LSMainScreenW, CGRectGetMaxY(line.frame));
+    
+    replyBtn.hidden=YES;
+    
     if ([type isEqualToString:@"0"]) {
-        self.frame        =baseView.frame;
-    }else if ([type isEqualToString:@"1"]){
+        if (baseView.frame.size.height<70*LSScale) {
+            line.frame            =CGRectMake(0, CGRectGetMaxY(iconView.frame)+10*LSScale, LSMainScreenW, 0.5);
+            baseView.frame        =CGRectMake(0, 0,LSMainScreenW, CGRectGetMaxY(line.frame));
+        }
+        self.frame                =baseView.frame;
+    }else if ([type isEqualToString:@"T"]){
+        replyBtn.hidden   =NO;
         replyBtn.ID       =model.ID;
         replyBtn.frame    =CGRectMake(LSMainScreenW-10*LSScale-65*LSScale, CGRectGetMaxY(commentL.frame)+10*LSScale, 65*LSScale, 25*LSScale);
         line.frame        =CGRectMake(0, CGRectGetMaxY(replyBtn.frame)+10*LSScale, LSMainScreenW, 0.5);
         baseView.frame    =CGRectMake(0, 0,LSMainScreenW, CGRectGetMaxY(line.frame));
-        self.frame        =CGRectMake(0, 0, LSMainScreenW,  CGRectGetMaxY(line.frame)+10*LSScale);
+        self.frame        =CGRectMake(0, 0, LSMainScreenW,  CGRectGetMaxY(line.frame));
+    }else if ([type isEqualToString:@"U"]){
+//        replyBtn.ID       =model.ID;
+//        replyBtn.frame    =CGRectMake(LSMainScreenW-10*LSScale-65*LSScale, CGRectGetMaxY(commentL.frame)+10*LSScale, 65*LSScale, 25*LSScale);
+//        line.frame        =CGRectMake(0, CGRectGetMaxY(replyBtn.frame)+10*LSScale, LSMainScreenW, 0.5);
+//        baseView.frame    =CGRectMake(0, 0,LSMainScreenW, CGRectGetMaxY(line.frame));
+//        self.frame        =CGRectMake(0, 0, LSMainScreenW,  CGRectGetMaxY(line.frame));
+        
+        if (![LsMethod haveValue:model.fromUserName]) {
+            model.fromUserName =@"齐天大圣";
+        }
+        
+        if (![LsMethod haveValue:model.toUserName]) {
+            model.toUserName =@"唐僧";
+        }
+        
+        NSString  *nameStr    =[NSString stringWithFormat:@"%@回复%@",model.fromUserName,model.toUserName];
+        nameL.attributedText  =[LsMethod changeColorWithStr:nameStr RangeStr:@"回复"];
+        
+        if (baseView.frame.size.height<70*LSScale) {
+            line.frame            =CGRectMake(0, CGRectGetMaxY(iconView.frame)+10*LSScale, LSMainScreenW, 0.5);
+            baseView.frame        =CGRectMake(0, 0,LSMainScreenW, CGRectGetMaxY(line.frame));
+        }
+        self.frame                =baseView.frame;
     }
 }
 

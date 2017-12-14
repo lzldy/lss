@@ -8,10 +8,12 @@
 
 #import "LsOneToOneViewController.h"
 #import "LsOneToOneDetailViewController.h"
+#import "LsActivityModel.h"
 
 @interface LsOneToOneViewController ()
 
-@property (nonatomic,strong) UIScrollView *scrView;
+@property (nonatomic,strong) UIScrollView    *scrView;
+@property (nonatomic,strong) LsActivityModel *model;
 
 @end
 
@@ -23,7 +25,16 @@
 
     [superView addSubview:self.scrView];
     [self loadBaseUI];
+//    [self getData];
 }
+
+//-(void)getData{
+//    NSDictionary *dict =@{@"catg3":@"YDY"};
+//    [[LsAFNetWorkTool shareManger] LSPOST:@"findcampaign.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+//        self.model  =[LsActivityModel yy_modelWithJSON:responseObject];
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+//    }];
+//}
 
 -(void)loadBaseUI{
     UIImage     *bannerImage =[UIImage imageNamed:@"banner"];
@@ -95,6 +106,13 @@
         _scrView.backgroundColor                  =LSColor(243, 244, 245, 1);
     }
     return _scrView;
+}
+
+-(LsActivityModel *)model{
+    if (!_model) {
+        _model  =[[LsActivityModel alloc] init];
+    }
+    return _model;
 }
 
 - (void)didReceiveMemoryWarning {

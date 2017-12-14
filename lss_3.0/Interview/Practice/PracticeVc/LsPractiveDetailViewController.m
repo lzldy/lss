@@ -21,7 +21,7 @@
 }
 @property (nonatomic,strong) UITableView *tabView;
 @property (nonatomic,strong) LsPracticeDetailModel *model;
-@property (nonatomic,strong) LsPracticeTSCommentModel  *commentModel;
+@property (nonatomic,strong) LsPracticeCommentModel  *commentModel;
 @property (nonatomic,strong) LsCustomPlayerViewController *childVC;
 
 @end
@@ -54,7 +54,7 @@
 -(void)getCommentData{
     NSDictionary *dict =@{@"commenttype":@"TS",@"code":self.code_};
     [[LsAFNetWorkTool shareManger] LSPOST:@"listtablecomment.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        self.commentModel  =[LsPracticeTSCommentModel yy_modelWithJSON:responseObject];
+        self.commentModel  =[LsPracticeCommentModel yy_modelWithJSON:responseObject];
         [_tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -63,7 +63,11 @@
 -(void)loadBaseUI{
     self.childVC                   =[[LsCustomPlayerViewController alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenW*LSScaleW_H)];
     [self addChildViewController:self.childVC];
-    self.childVC.videoId           =self.videoID;
+    if ([LsMethod haveValue:self.model.videoId]) {
+        self.childVC.videoId           =self.model.videoId;
+    }
+    self.childVC.titleStr          =self.model.title;
+    self.childVC.videoImageUrl     =self.model.videoHeadUrl;
     [superView addSubview:self.childVC.view];
 
 //    UIButton *videoBtn             =[[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenW*LSScaleW_H)];
@@ -283,6 +287,7 @@
     NSDictionary *dict =@{@"code":self.code_,@"comment":text,@"commentid":@"",@"commenttype":@"TS"};
     [[LsAFNetWorkTool shareManger] LSPOST:@"commentvideotable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         [LsMethod alertMessage:@"评论成功" WithTime:1.5];
+        [self getCommentData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
@@ -300,12 +305,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;
+    return cell.frame.size.height>70*LSScale?cell.frame.size.height:70*LSScale;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
-    //    return self.model.practiceDataArray.count;
+    return self.commentModel.dataList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -316,17 +320,12 @@
         cell = [[LsCommentTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-//    LsPracticeListModel *model =self.model.practiceDataArray[indexPath.row];
-    [cell reloadCellWithData:nil type:@"0"];
+    LsPracticeCommentModel *model =self.commentModel.dataList[indexPath.row];
+    [cell reloadCellWithData:model type:@"0"];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    LsPracticeListModel *model            =self.model.practiceDataArray[indexPath.row];
-//    LsPractiveDetailViewController *praVc =[[LsPractiveDetailViewController alloc] init];
-//    //    praVc.authorType                      =model.authorType ;
-//    praVc.authorType                      =@"学生";
-//    [self.navigationController pushViewController:praVc animated:YES];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -340,9 +339,9 @@
     return _model;
 }
 
--(LsPracticeTSCommentModel *)commentModel{
+-(LsPracticeCommentModel *)commentModel{
     if (!_commentModel) {
-        _commentModel =[[LsPracticeTSCommentModel alloc] init];
+        _commentModel =[[LsPracticeCommentModel alloc] init];
     }
     return _commentModel;
 }

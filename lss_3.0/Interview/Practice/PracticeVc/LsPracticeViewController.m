@@ -43,6 +43,7 @@
     if ([LsMethod haveValue:ctag]) {
         [dict setObject:ctag forKey:@"ctag1"];
     }
+    [dict setObject:@"LK" forKey:@"ctag3"];
     [[LsAFNetWorkTool shareManger] LSPOST:@"listvideotables.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model  =[LsPracticeModel yy_modelWithJSON:responseObject];
         [self.tabView reloadData];
@@ -107,7 +108,7 @@
     LsPractiveDetailViewController *praVc =[[LsPractiveDetailViewController alloc] init];
     praVc.authorType                      =modelll.ctag2;
     praVc.code_                           =modelll.code;
-    praVc.videoID                         =modelll.videoId;
+//    praVc.videoID                         =modelll.videoId;
     praVc.didZan                          =modelll.myzan;
 
     [self.navigationController pushViewController:praVc animated:YES];

@@ -14,9 +14,9 @@
 @interface LsCommentViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate,commentTableViewCellDelegate>
 
 @property (nonatomic,strong) UITableView               *tabView;
-@property (nonatomic,strong) LsPracticeTTCommentModel  *commentModel;
+@property (nonatomic,strong) LsPracticeCommentModel    *commentModel;
 @property (nonatomic,strong) NSString                  *commentid;
-
+@property (nonatomic,strong) NSMutableArray            *dataArray;
 @end
 
 @implementation LsCommentViewController
@@ -37,7 +37,20 @@
 -(void)getCommentData{
     NSDictionary *dict =@{@"commenttype":@"TT",@"code":self.code,@"commentchild":@"Y"};
     [[LsAFNetWorkTool shareManger] LSPOST:@"listtablecomment.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        self.commentModel  =[LsPracticeTTCommentModel yy_modelWithJSON:responseObject];
+        self.commentModel  =[LsPracticeCommentModel yy_modelWithJSON:responseObject];
+        
+        self.dataArray =[NSMutableArray array];
+        for (LsPracticeCommentModel *model in self.commentModel.dataList) {
+            NSMutableArray *arr =[NSMutableArray array];
+            [arr addObject:model];
+            if (model.replys.count>0) {
+                for (LsPracticeCommentModel *model1 in model.replys) {
+                    model1.toUserName  =model.fromUserName;
+                    [arr addObject:model1];
+                }
+            }
+            [self.dataArray addObject:arr];
+        }
         [_tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -84,14 +97,21 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;
+    return cell.frame.size.height>70*LSScale?cell.frame.size.height:70*LSScale;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
-    //    return self.model.practiceDataArray.count;
+    NSArray *array  =self.dataArray[section];
+    return array.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 10*LSScale;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -103,7 +123,12 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.delegate    =self;
-    [cell reloadCellWithData:nil type:@"1"];
+    LsPracticeCommentModel *model  =self.dataArray[indexPath.section][indexPath.row];
+    if ([model.fromUserType isEqualToString:@"U"]) {
+        [cell reloadCellWithData:model type:@"U"];
+    }else{
+        [cell reloadCellWithData:model type:@"T"];
+    }
     return cell;
 }
 
@@ -117,7 +142,7 @@
 
 -(UITableView *)tabView{
     if (!_tabView) {
-        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navView.frame), LSMainScreenW,LSMainScreenH-CGRectGetMaxY(self.navView.frame))];
+        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navView.frame)+10*LSScale, LSMainScreenW,LSMainScreenH-CGRectGetMaxY(self.navView.frame)-10*LSScale)];
         _tabView.delegate         =self;
         _tabView.dataSource       =self;
         _tabView.tableFooterView  =[[UIView alloc] init];
@@ -131,9 +156,9 @@
     return _tabView;
 }
 
--(LsPracticeTTCommentModel *)commentModel{
+-(LsPracticeCommentModel *)commentModel{
     if (!_commentModel) {
-        _commentModel =[[LsPracticeTTCommentModel alloc] init];
+        _commentModel =[[LsPracticeCommentModel alloc] init];
     }
     return _commentModel;
 }

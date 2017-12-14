@@ -20,7 +20,7 @@
     if (self) {
         self.backgroundColor     =LSColor(243, 244, 245, 1);
         
-        imageView_               =[[UIImageView alloc] initWithFrame:CGRectMake(0,10*LSScale, LSMainScreenW, 150*LSScale)];
+        imageView_               =[[UIImageView alloc] initWithFrame:CGRectMake(0,10*LSScale, LSMainScreenW, 140*LSScale)];
         imageView_.contentMode =UIViewContentModeScaleAspectFit;
         [self addSubview:imageView_];
         
@@ -28,12 +28,12 @@
     return self;
 }
 
--(void)reloadCell:(id)model{
+-(void)reloadCell:(LsActivityModel*)model{
     UIImage *placeImage     =[UIImage imageNamed:@"banner"];
-    [imageView_ sd_setImageWithURL:nil placeholderImage:placeImage];
+    [imageView_ sd_setImageWithURL:model.headUrl placeholderImage:placeImage];
     
-    imageView_.frame        =CGRectMake(0, 10*LSScale, LSMainScreenW,  placeImage.size.height/placeImage.size.width*LSMainScreenW);
-    self.frame              =CGRectMake(0, 0, LSMainScreenW, CGRectGetMaxY(imageView_.frame));
+//    imageView_.frame        =CGRectMake(0, 10*LSScale, LSMainScreenW,  placeImage.size.height/placeImage.size.width*LSMainScreenW);
+//    self.frame              =CGRectMake(0, 0, LSMainScreenW, CGRectGetMaxY(imageView_.frame));
     
 }
 

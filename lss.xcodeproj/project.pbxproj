@@ -447,6 +447,7 @@
 		1854F5651F37088C00E1F603 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F5491F37088C00E1F603 /* AFURLResponseSerialization.m */; };
 		1854F5661F37088C00E1F603 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F54B1F37088C00E1F603 /* AFURLSessionManager.m */; };
 		1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */; };
+		18710D711FE26DC100F6BC96 /* LsActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18710D701FE26DC100F6BC96 /* LsActivityModel.m */; };
 		1877BD001F4D6646001F8EBD /* LsLiveDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */; };
 		1888C4B21FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888C4B11FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m */; };
 		188DB7DE1F5019F700852DD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188DB7DD1F5019F700852DD4 /* QuartzCore.framework */; };
@@ -1262,6 +1263,8 @@
 		1854F54B1F37088C00E1F603 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		1854F5701F3709DD00E1F603 /* LsAFNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsAFNetWorkTool.h; sourceTree = "<group>"; };
 		1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsAFNetWorkTool.m; sourceTree = "<group>"; };
+		18710D6F1FE26DC100F6BC96 /* LsActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsActivityModel.h; sourceTree = "<group>"; };
+		18710D701FE26DC100F6BC96 /* LsActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsActivityModel.m; sourceTree = "<group>"; };
 		1877BCFE1F4D6646001F8EBD /* LsLiveDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailHeaderView.h; sourceTree = "<group>"; };
 		1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailHeaderView.m; sourceTree = "<group>"; };
 		1888C4B01FCE961D00B1A3EA /* LsMyLiveListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsMyLiveListTableViewCell.h; sourceTree = "<group>"; };
@@ -2924,6 +2927,8 @@
 		18E82D791F37FE1000D3154B /* FindModel */ = {
 			isa = PBXGroup;
 			children = (
+				18710D6F1FE26DC100F6BC96 /* LsActivityModel.h */,
+				18710D701FE26DC100F6BC96 /* LsActivityModel.m */,
 			);
 			path = FindModel;
 			sourceTree = "<group>";
@@ -4234,6 +4239,7 @@
 				18FEF8A21F52C6F300F74BB6 /* BCQueryRefundsCountResp.m in Sources */,
 				180BCA591F5D051C001EE331 /* UIImage+Extension.m in Sources */,
 				18E5D1001F95A95B00F9CCDA /* LsDataDetailViewController.m in Sources */,
+				18710D711FE26DC100F6BC96 /* LsActivityModel.m in Sources */,
 				18FEF8AD1F52C6F300F74BB6 /* BCSecurityPolicy.m in Sources */,
 				18E5D0F41F90A43800F9CCDA /* LsTribeViewController.m in Sources */,
 				18FEF8B61F52C6F300F74BB6 /* BeeCloudAdapter.m in Sources */,

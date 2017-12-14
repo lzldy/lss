@@ -89,7 +89,13 @@
 
 #pragma  - mark -  tabview 代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 135*LSScale;
+    if (tableView.tag==20010) {
+        return 100*LSScale;
+    }else if(tableView.tag==20020){
+        return 100*LSScale;
+    }else{
+        return 100*LSScale;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -149,18 +155,18 @@
 }
 
 #pragma - mark -  LsLiveTableViewCell 代理
-- (void)didClickIntoBtn:(LsButton *)btn  isPackage:(BOOL)ispackage{
-    LsLiveDetailViewController *vc =[[LsLiveDetailViewController alloc] init];
-    vc.crcode                      =btn.videoID;
-    vc.personNum                   =btn.num;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)didClickEvaluateBtnIndex:(LsButton *)btn{
-    LsEvaluateViewController *vc =[[LsEvaluateViewController alloc] init];
-    vc.classID                   =btn.videoID;
-    vc.title_                    =btn.title;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (btn.isEvaluate) {
+        LsEvaluateViewController *vc =[[LsEvaluateViewController alloc] init];
+        vc.classID                   =btn.videoID;
+        vc.title_                    =btn.title;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        LsLiveDetailViewController *vc =[[LsLiveDetailViewController alloc] init];
+        vc.crcode                      =btn.videoID;
+        vc.personNum                   =btn.num;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma - mark -  LsMyLiveTabView 代理

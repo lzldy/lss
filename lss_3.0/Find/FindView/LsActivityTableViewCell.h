@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LsActivityModel.h"
 
 @interface LsActivityTableViewCell : UITableViewCell
 
 
--(void)reloadCell:(id)model;
+-(void)reloadCell:(LsActivityModel*)model;
 
 @end

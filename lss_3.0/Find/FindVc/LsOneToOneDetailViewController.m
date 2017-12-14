@@ -17,6 +17,12 @@
     UIButton *guangdong;
     UIButton *guizhou;
 
+    LSLabel_TextField  *nameL;
+    LSLabel_TextField  *phoneL;
+    LSLabel_TextField  *wxL;
+
+    NSString           *catg2;
+    NSString           *catg3;
 }
 @end
 
@@ -64,7 +70,7 @@
     backgroundView.backgroundColor  =[UIColor whiteColor];
     [superView addSubview:backgroundView];
     
-    LSLabel_TextField  *nameL       =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 45*LSScale)];
+    nameL       =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 45*LSScale)];
     nameL.dataArray                 = @[@"姓       名",@"请填写姓名"];
     nameL.textField.textAlignment   = NSTextAlignmentRight;
     nameL.textField.keyboardType    = UIKeyboardTypeDefault;
@@ -72,14 +78,14 @@
     nameL.haveLine                  =YES;
     [backgroundView addSubview:nameL];
     
-    LSLabel_TextField  *phoneL       =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(nameL.frame), LSMainScreenW, 45*LSScale)];
+    phoneL       =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(nameL.frame), LSMainScreenW, 45*LSScale)];
     phoneL.dataArray                 = @[@"电       话",@"请填写电话"];
     phoneL.textField.textAlignment   = NSTextAlignmentRight;
     phoneL.textField.font            = [UIFont systemFontOfSize:15];
     phoneL.haveLine                  =YES;
     [backgroundView addSubview:phoneL];
     
-    LSLabel_TextField  *wxL       =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(phoneL.frame), LSMainScreenW, 45*LSScale)];
+    wxL       =[[LSLabel_TextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(phoneL.frame), LSMainScreenW, 45*LSScale)];
     wxL.dataArray                 = @[@"微       信",@"请填写微信"];
     wxL.textField.textAlignment   = NSTextAlignmentRight;
     wxL.textField.keyboardType    = UIKeyboardTypeDefault;
@@ -176,14 +182,17 @@
 -(void)clickBerkeley:(UIButton*)btn{
     [self clearAll];
     if (btn.tag==1001) {
+        catg2                          =@"HN";
         hunan.backgroundColor          =LSNavColor;
         hunan.layer.borderWidth        =0;
         [hunan setTitleColor:[UIColor whiteColor] forState:0];
     }else if (btn.tag==1002){
-        guangdong.backgroundColor          =LSNavColor;
-        guangdong.layer.borderWidth        =0;
+        catg2                          =@"GD";
+        guangdong.backgroundColor      =LSNavColor;
+        guangdong.layer.borderWidth    =0;
         [guangdong setTitleColor:[UIColor whiteColor] forState:0];
     }else{
+        catg2                            =@"GZ";
         guizhou.backgroundColor          =LSNavColor;
         guizhou.layer.borderWidth        =0;
         [guizhou setTitleColor:[UIColor whiteColor] forState:0];
@@ -209,6 +218,7 @@
 
 -(void)clickModeBtn:(UIButton*)btn{
     if (btn.tag==1001) {
+        catg3                             =@"MSYDY";
         mianshou.backgroundColor          =LSNavColor;
         mianshou.layer.borderWidth        =0;
         [mianshou setTitleColor:[UIColor whiteColor] forState:0];
@@ -219,6 +229,7 @@
         [xianshang setTitleColor:[UIColor darkGrayColor] forState:0];
 
     }else{
+        catg3                             =@"ZXYDY";
         xianshang.backgroundColor          =LSNavColor;
         xianshang.layer.borderWidth        =0;
         [xianshang setTitleColor:[UIColor whiteColor] forState:0];
@@ -234,8 +245,58 @@
     if (button.tag ==8099) {
         [LSApplication openURL:LSCustomerService];
     }else{
-        [LsMethod alertMessage:@"预约一对一" WithTime:1.5];
+        [self submitOrder];
     }
+}
+
+-(void)submitOrder{
+    
+    NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
+    
+    if (!self.isActivity) {
+        [dict setObject:@"13" forKey:@"infoid"];
+    }else{
+        [dict setObject:self.ID forKey:@"infoid"];
+    }
+    
+    if (![LsMethod haveValue:nameL.textField.text]) {
+        [LsMethod alertMessage:@"请输入您的姓名" WithTime:1.5];
+        return;
+    }else{
+        [dict setObject:nameL.textField.text forKey:@"name"];
+    }
+    
+    if (![LsMethod haveValue:phoneL.textField.text]) {
+        [LsMethod alertMessage:@"请填写您的联系方式" WithTime:1.5];
+        return;
+    }else{
+        [dict setObject:phoneL.textField.text forKey:@"mobile"];
+    }
+    
+    if (![LsMethod haveValue:wxL.textField.text]) {
+        [LsMethod alertMessage:@"请填写您的联系方式" WithTime:1.5];
+        return;
+    }else{
+        [dict setObject:wxL.textField.text forKey:@"wechat"];
+    }
+    if (!self.isActivity) {
+        if ([LsMethod haveValue:catg3]) {
+            [dict setObject:catg3 forKey:@"catg3"];
+        }else{
+            [LsMethod alertMessage:@"请选择上课方式" WithTime:1.5];
+            return;
+        }
+        if ([LsMethod haveValue:catg2]) {
+            [dict setObject:catg2 forKey:@"catg2"];// ZXYDY  MSYDY
+        }else{
+            [LsMethod alertMessage:@"请选择上课分校" WithTime:1.5];
+            return;
+        }
+    }
+    [[LsAFNetWorkTool shareManger] LSPOST:@"signcampaign.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [LsMethod alertMessage:@"恭喜您,报名成功" WithTime:1.5];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

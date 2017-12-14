@@ -20,6 +20,8 @@
 @property (nonatomic,assign) BOOL     isPackage;
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,assign) BOOL     isEnroll;
+@property (nonatomic,assign) BOOL     isEvaluate;
+
 @property (nonatomic,strong) LsLiveModel *model;
 
 @property (nonatomic,strong) UIImageView *lsImageView;

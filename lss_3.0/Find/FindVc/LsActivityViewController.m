@@ -9,11 +9,12 @@
 #import "LsActivityViewController.h"
 #import "LsActivityTableViewCell.h"
 #import "LsActivityDetailViewController.h"
+#import "LsActivityModel.h"
 
 @interface LsActivityViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)  UITableView              *tabView;
-
+@property (nonatomic,strong)  LsActivityModel          *model;
 @end
 
 @implementation LsActivityViewController
@@ -28,21 +29,23 @@
 }
 
 -(void)getData{
-    NSDictionary *dict =@{@"withcontent":@"Y"};
+    NSDictionary *dict =@{@"catg3":@"INF"};
     [[LsAFNetWorkTool shareManger] LSPOST:@"findcampaign.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        
+        self.model  =[LsActivityModel yy_modelWithJSON:responseObject];
+        [self.tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
 
 #pragma  - mark -  tabview 代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;
+//    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    return cell.frame.size.height;
+    return 150*LSScale;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.model.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -52,16 +55,19 @@
         cell = [[LsActivityTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
-    [cell reloadCell:nil];
+    LsActivityModel  *model =self.model.dataArray[indexPath.row];
+    [cell reloadCell:model];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LsActivityModel  *model            =self.model.dataArray[indexPath.row];
     LsActivityDetailViewController *vc =[[LsActivityDetailViewController alloc] init];
-    vc.title_                          =@"广东教师招聘笔面试全程班";
-    vc.id_                             =@"123";
+    vc.title_                          =model.title;
+    vc.id_                             =model.ID;
+    vc.headUrl                         =model.headUrl;
+    vc.iconUrl                         =model.iconUrl;
     [self.navigationController   pushViewController:vc animated:YES];
 }
 
@@ -89,6 +95,13 @@
         [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
     }
     return _tabView;
+}
+
+-(LsActivityModel *)model{
+    if (!_model) {
+        _model  =[[LsActivityModel alloc] init];
+    }
+    return _model;
 }
 
 - (void)didReceiveMemoryWarning {

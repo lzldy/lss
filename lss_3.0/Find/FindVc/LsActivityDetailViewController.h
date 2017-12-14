@@ -12,5 +12,7 @@
 
 @property (nonatomic,strong) NSString *title_;
 @property (nonatomic,strong) NSString *id_;
+@property (nonatomic,strong) NSURL    *headUrl;
+@property (nonatomic,strong) NSURL    *iconUrl;
 
 @end

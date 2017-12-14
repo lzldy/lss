@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/Third/CC/DWCustomPlayerViewController.m"
-            timestampString = "532866200.023867"
+            timestampString = "534922054.958259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1347"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/Third/CC/DWCustomPlayerViewController.m"
-            timestampString = "532866200.02394"
+            timestampString = "534922054.958363"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1484"
@@ -115,28 +115,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lss_3.0/My/MyVc/LsMyLiveListViewController.m"
-            timestampString = "533725632.865599"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "-getData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "lss_3.0/Interview/Practice/PracticeVc/LsPractiveDetailViewController.m"
-            timestampString = "534687562.105365"
+            timestampString = "534938043.674146"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "-headerRefresh"
             landmarkType = "7">
          </BreakpointContent>
@@ -147,104 +131,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lss_3.0/Interview/Practice/PracticeVc/LsCommentViewController.m"
-            timestampString = "534687562.105457"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-getCommentData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lss_3.0/Interview/Practice/PracticeVc/LsPractiveDetailViewController.m"
-            timestampString = "534687562.105802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-getCommentData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lss_3.0/Interview/Practice/PracticeVc/LsPractiveDetailViewController.m"
-            timestampString = "534687562.105872"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "-getData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lss_3.0/Find/FindVc/LsActivityViewController.m"
-            timestampString = "534687562.105935"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-getData"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__35-[LsActivityViewController getData]_block_invoke"
-                  moduleName = "lss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Find/FindVc/LsActivityViewController.m"
-                  timestampString = "534687598.970907"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "80">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__35-[LsActivityViewController getData]_block_invoke_2"
-                  moduleName = "lss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Find/FindVc/LsActivityViewController.m"
-                  timestampString = "534687598.973122"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "88">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "lss_3.0/WrittenExamination/WrittenExaminationVc/LsWrittenExaminationViewController.m"
-            timestampString = "534687562.105993"
+            timestampString = "534758752.516673"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
@@ -260,7 +148,7 @@
                   moduleName = "lss"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/WrittenExamination/WrittenExaminationVc/LsWrittenExaminationViewController.m"
-                  timestampString = "534687598.977766"
+                  timestampString = "534938043.955729"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "52"
@@ -275,7 +163,7 @@
                   moduleName = "lss"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/WrittenExamination/WrittenExaminationVc/LsWrittenExaminationViewController.m"
-                  timestampString = "534687598.979528"
+                  timestampString = "534938043.959084"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "54"
@@ -288,65 +176,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lss_3.0/Interview/Practice/PracticeVc/LsPractiveDetailViewController.m"
-            timestampString = "534687562.106044"
+            filePath = "lss_3.0/Interview/Practice/PracticeVc/LsPracticeViewController.m"
+            timestampString = "534938043.674377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "-clickBtn:"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-getData:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lss_3.0/Interview/Practice/PracticeVc/LsPractiveDetailViewController.m"
-            timestampString = "534687562.106096"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-getCommentData"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[LsPractiveDetailViewController getCommentData]"
-                  moduleName = "lss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Interview/Practice/PracticeVc/LsPractiveDetailViewController.m"
-                  timestampString = "534687598.987914"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "224">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__48-[LsPractiveDetailViewController getCommentData]_block_invoke"
-                  moduleName = "lss"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Interview/Practice/PracticeVc/LsPractiveDetailViewController.m"
-                  timestampString = "534687598.989969"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

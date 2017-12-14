@@ -18,6 +18,6 @@
 
 @property (nonatomic, weak) id<commentTableViewCellDelegate> delegate;
 
--(void)reloadCellWithData:(id)data type:(NSString*)type;
+-(void)reloadCellWithData:(LsPracticeCommentModel*)data type:(NSString*)type;
 
 @end

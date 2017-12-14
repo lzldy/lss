@@ -13,7 +13,7 @@
 @property (nonatomic,strong) NSString *authorType;
 @property (nonatomic,strong) NSString *code_;
 
-@property (nonatomic,strong) NSString *videoID;
+//@property (nonatomic,strong) NSString *videoID;
 
 @property (nonatomic,assign) BOOL  didZan;
 

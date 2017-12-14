@@ -10,18 +10,8 @@
 #import "LsLiveModel.h"
 #import "LsButton.h"
 
-@protocol liveTableViewCellDelegate <NSObject>
-
-@optional
-
-- (void)didClickIntoBtn:(LsButton *)btn  isPackage:(BOOL)ispackage;
-- (void)didClickEvaluateBtnIndex:(LsButton*)btn;
-
-@end
 
 @interface LsLiveTableViewCell : UITableViewCell
-
-@property (nonatomic,weak) id<liveTableViewCellDelegate> delegate;
 
 -(void)reloadCell:(LsLiveModel*)model Type:(NSString*)type;
 

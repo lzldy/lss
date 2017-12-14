@@ -22,6 +22,7 @@
     UILabel           *noDataL;
     UIView            *baseView ;
     UIView            *line;
+    UIView            *midLine;
     UIImageView       *imageV;
 }
 
@@ -53,7 +54,7 @@
         titleL.textAlignment    =NSTextAlignmentLeft;
         [baseView addSubview:titleL];
         
-        UIView *midLine    =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(titleL.frame)+4.5*LSScale, LSMainScreenW, 0.5)];
+        midLine    =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(titleL.frame)+4.5*LSScale, LSMainScreenW, 0.5)];
         midLine.backgroundColor  =LSLineColor;
         [baseView addSubview:midLine];
         
@@ -82,10 +83,10 @@
         [baseView addSubview:line];
         
         UIImage  *iamge        =LOADIMAGE(@"kym_icon");
-        noDataImageView        =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW/2-iamge.size.width/2, 15*LSScale, iamge.size.width, iamge.size.height)];
+        noDataImageView        =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW/2-iamge.size.width/2, 5*LSScale, iamge.size.width, iamge.size.height)];
         [baseView addSubview:noDataImageView];
         
-        noDataL                =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(noDataImageView.frame)+5, LSMainScreenW, 25*LSScale)];
+        noDataL                =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(noDataImageView.frame)+5, LSMainScreenW, 20*LSScale)];
         noDataL.textAlignment  =NSTextAlignmentCenter;
         noDataL.font           =[UIFont systemFontOfSize:15];
         noDataL.textColor      =[UIColor darkTextColor];
@@ -94,20 +95,10 @@
         imageV               =[[UIImageView alloc] init];
         imageV.hidden        =YES;
         [baseView addSubview:imageV];
+        
+        
     }
     return self;
-}
-
--(void)clickEvaluateBtn:(LsButton *)button{
-    if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickEvaluateBtnIndex:)]) {
-        [self.delegate didClickEvaluateBtnIndex:button];
-    }
-}
-
--(void)clickIntoBtn:(LsButton*)button{
-    if (self.delegate&&[self.delegate respondsToSelector:@selector(didClickIntoBtn:isPackage:)]) {
-        [self.delegate didClickIntoBtn:button isPackage:button.isPackage];
-    }
 }
 
 -(void)reloadCell:(LsLiveModel*)model Type:(NSString*)type{
@@ -116,12 +107,14 @@
     {
         noDataImageView.hidden   =NO;
         noDataL.hidden           =NO;
+        midLine.hidden           =YES;
         UIImage  *iamge          =LOADIMAGE(@"kym_icon");
         noDataImageView.image    =iamge;
         noDataL.text             =@"暂时没有直播,快去看看回放吧~";
     }else{
         noDataImageView.hidden  =YES;
         noDataL.hidden          =YES;
+        midLine.hidden          =NO;
         imageV.hidden           =YES;
         titleL.text             =model.title;
         UIImage      *image     =LOADIMAGE(@"time_icon");

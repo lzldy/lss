@@ -22,6 +22,8 @@
 @interface LsCustomPlayerViewController : LsBaseViewController
 
 @property (nonatomic ,strong) NSString  *videoId;
+@property (nonatomic ,strong) NSURL     *videoImageUrl;
+@property (nonatomic ,strong) NSString  *titleStr;
 
 - (id)initWithFrame:(CGRect)frame;
 

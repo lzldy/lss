@@ -13,7 +13,6 @@
 
 @optional
 
-- (void)didClickIntoBtn:(LsButton *)btn  isPackage:(BOOL)ispackage;
 - (void)didClickEvaluateBtnIndex:(LsButton*)btn;
 
 @end

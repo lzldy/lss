@@ -34,44 +34,56 @@
     selectedImageArray  =@[@"zb_button_after",@"wks_button_after",@"hf_button_after"];
     viewArray           =[NSMutableArray array];
     for (int i=0; i<titleArray.count; i++) {
-        UIView *view =[[UIView alloc] initWithFrame:CGRectMake(i*self.frame.size.width/titleArray.count, 0,self.frame.size.width/titleArray.count, self.frame.size.height)];
+        LsButton *view =[[LsButton alloc] initWithFrame:CGRectMake(i*self.frame.size.width/titleArray.count, 0,self.frame.size.width/titleArray.count, self.frame.size.height)];
         [self addSubview:view];
         
         UIImage  *image     =[UIImage imageNamed:imageArray[i]];
         UIImage  *imaged    =[UIImage imageNamed:selectedImageArray[i]];
 
-        UIButton *button    =[[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-image.size.width/2, 15, image.size.width, image.size.height)];
-        [button setImage:image  forState:UIControlStateNormal];
-        [button setImage:imaged forState:UIControlStateSelected];
-        button.tag          =i;
-        [button addTarget:self action:@selector(didClickBtn:isScrollSwitch:) forControlEvents:UIControlEventTouchUpInside];
-        [view addSubview:button];
+        view.lsImageView.frame =CGRectMake(view.frame.size.width/2-image.size.width/2, 15, image.size.width, image.size.height);
+        view.lsImageView.image =image;
+        view.tag               =i;
+        [view addTarget:self action:@selector(didClickBtn:isScrollSwitch:) forControlEvents:UIControlEventTouchUpInside];
+
+        view.lsLabel.frame     =CGRectMake(0, CGRectGetMaxY(view.lsImageView.frame)+10, view.frame.size.width,20);
+        view.lsLabel.text            =titleArray[i];
+        view.lsLabel.textColor       =[UIColor darkTextColor];
+        view.lsLabel.textAlignment   =NSTextAlignmentCenter;
+        view.lsLabel.font            =[UIFont systemFontOfSize:14];
+//        UIButton *button    =[[UIButton alloc] initWithFrame:CGRectMake(view.frame.size.width/2-image.size.width/2, 15, image.size.width, image.size.height)];
+//        [button setImage:image  forState:UIControlStateNormal];
+//        [button setImage:imaged forState:UIControlStateSelected];
+//        button.tag          =i;
+//        [view addTarget:self action:@selector(didClickBtn:isScrollSwitch:) forControlEvents:UIControlEventTouchUpInside];
         
-        UILabel  *label       =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(button.frame)+10, view.frame.size.width,20)];
-        label.text            =titleArray[i];
-        label.textColor       =[UIColor darkTextColor];
-        label.textAlignment   =NSTextAlignmentCenter;
-        label.font            =[UIFont systemFontOfSize:14];
-        [view addSubview:label];
-        NSDictionary *dict =@{@"btn":button,@"lab":label};
+//        UILabel  *label       =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(button.frame)+10, view.frame.size.width,20)];
+//        label.text            =titleArray[i];
+//        label.textColor       =[UIColor darkTextColor];
+//        label.textAlignment   =NSTextAlignmentCenter;
+//        label.font            =[UIFont systemFontOfSize:14];
+//        [view addSubview:label];
+        NSDictionary *dict =@{@"btn":view.lsImageView,@"lab":view.lsLabel};
         [viewArray addObject:dict];
         if (i==0) {
-            button.selected=YES;
-            label.textColor=LSNavColor;
+            view.lsImageView.image=imaged;
+            view.lsLabel.textColor=LSNavColor;
         }
     }
 }
 
--(void)didClickBtn:(UIButton*)button isScrollSwitch:(BOOL)isOrNo{
+-(void)didClickBtn:(LsButton*)button isScrollSwitch:(BOOL)isOrNo{
     for (int i=0; i<viewArray.count; i++) {
-        NSDictionary *dict =viewArray[i];
-        UIButton *btn      =[dict objectForKey:@"btn"];
-        UILabel  *lab      =[dict objectForKey:@"lab"];
+        UIImage  *image     =[UIImage imageNamed:imageArray[i]];
+        UIImage  *imaged    =[UIImage imageNamed:selectedImageArray[i]];
+        
+        NSDictionary *dict       =viewArray[i];
+        UIImageView *imageV      =[dict objectForKey:@"btn"];
+        UILabel     *lab         =[dict objectForKey:@"lab"];
         if (button.tag==i) {
-            btn.selected   =YES;
+            imageV.image   =imaged;
             lab.textColor  =LSNavColor;
         }else{
-            btn.selected   =NO;
+            imageV.image   =image;
             lab.textColor  =[UIColor darkTextColor];
         }
     }
@@ -81,7 +93,7 @@
 }
 
 -(void)switchMyLiveTab:(NSInteger)index {
-    UIButton *btn =[[UIButton alloc] init];
+    LsButton *btn =[[LsButton alloc] init];
     btn.tag=index;
     [self didClickBtn:btn isScrollSwitch:YES];
 }

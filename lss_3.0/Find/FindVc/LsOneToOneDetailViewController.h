@@ -11,5 +11,6 @@
 @interface LsOneToOneDetailViewController : LsBaseViewController
 
 @property (nonatomic,assign) BOOL  isActivity;
+@property (nonatomic,strong) NSString  *ID;
 
 @end

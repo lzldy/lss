@@ -94,8 +94,8 @@
 -(void)reloadCell:(id)model Type:(NSString*)type{
     LsPracticeListModel *modelll  =model;
     imageV.image                  =LOADIMAGE(@"tu-icon");
-    if ([LsMethod haveValue:modelll.coverImage]) {
-        [imageV sd_setImageWithURL:modelll.coverImage placeholderImage:LOADIMAGE(@"tu-icon")];
+    if ([LsMethod haveValue:modelll.coverImage2]) {
+        [imageV sd_setImageWithURL:modelll.coverImage2 placeholderImage:LOADIMAGE(@"tu-icon")];
     }else if([LsMethod haveValue:modelll.videoHeadUrl2]){
         [imageV sd_setImageWithURL:modelll.videoHeadUrl2 placeholderImage:LOADIMAGE(@"tu-icon")];
     }
@@ -155,7 +155,7 @@
     authorTypeL.frame            =CGRectMake(CGRectGetMaxX(typeL.frame)+12, authorTypeL.frame.origin.y, authorTypeSize.width*1.5, authorTypeL.frame.size.height);
     authorTypeL.text             =modelll.ctag2;
     
-    commentNumL.text             =[NSString stringWithFormat:@"%ld",(long)modelll.commnetNum];
+    commentNumL.text             =[NSString stringWithFormat:@"%ld",(long)modelll.commentNum];
 }
 
 - (void)awakeFromNib {

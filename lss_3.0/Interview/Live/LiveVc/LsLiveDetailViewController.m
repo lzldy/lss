@@ -37,7 +37,6 @@
     [super viewDidLoad];
     self.view.backgroundColor   =LSColor(243, 244, 245, 1);
     self.navView.navTitle       =@"课程详情";
-    [self loadBaseUI];
     [self getData];
 }
 
@@ -86,6 +85,9 @@
 -(void)getData{
     NSDictionary *dict =@{@"crcode":self.crcode};
     [[LsAFNetWorkTool shareManger] LSPOST:@"getcourseinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        
+        [self loadBaseUI];
+
         _model  =[LsLiveDetailModel yy_modelWithDictionary:[responseObject objectForKey:@"data"]];
         _model.personNum  =self.personNum;
         _headerView.model =_model;
@@ -96,6 +98,7 @@
             [superView addSubview:self.tabView];
 //        }
         [superView addSubview:_bottomView];
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
