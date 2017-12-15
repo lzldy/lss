@@ -9,6 +9,7 @@
 #import "LsMyViewController.h"
 #import "LsMyHeaderView.h"
 #import "LsMyTableViewCell.h"
+#import "LsFeedBackViewController.h"
 
 @interface LsMyViewController ()<myHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -123,9 +124,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row==0) {
+    if (indexPath.row==4) {
+        LsFeedBackViewController *vc =[[LsFeedBackViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    [LsMethod alertMessage:_dataArray[indexPath.row][@"title"] WithTime:1];
+    
+//    [LsMethod alertMessage:_dataArray[indexPath.row][@"title"] WithTime:1];
 
 }
 

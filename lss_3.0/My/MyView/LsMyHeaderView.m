@@ -15,12 +15,11 @@
     if (self) {
         
         self.layer.cornerRadius               =5*LSScale;
-        UIImage   *image                      =[UIImage imageNamed:@"jrxyj_icon"];
+        UIImage   *image                      =LOADIMAGE(@"jrxyj_icon");
         
         self.headerIcon                       =[[UIImageView alloc] initWithFrame:CGRectMake(10*LSScale, 10*LSScale, 60*LSScale, 60*LSScale)];
         self.headerIcon.layer.cornerRadius    =30*LSScale;
-        self.headerIcon.layer.backgroundColor =[UIColor redColor].CGColor;
-        self.headerIcon.image                 =[UIImage imageNamed:@"AppIcon"];
+        self.headerIcon.image                 =LOADIMAGE(@"tx-icon");
         self.headerIcon.layer.masksToBounds   =YES;
         [self addSubview:self.headerIcon];
         

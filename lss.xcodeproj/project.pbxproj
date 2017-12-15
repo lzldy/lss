@@ -411,6 +411,7 @@
 		185296121F60216D003D5D8A /* LsTestChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296111F60216D003D5D8A /* LsTestChooseView.m */; };
 		185296151F60EC5D003D5D8A /* LsProFormaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185296141F60EC5D003D5D8A /* LsProFormaViewController.m */; };
 		1852961D1F622896003D5D8A /* AVCaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1852961A1F622896003D5D8A /* AVCaptureManager.m */; };
+		1852F6951FE3B3780070EF3C /* LsFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1852F6941FE3B3780070EF3C /* LsFeedBackViewController.m */; };
 		1854F4A21F36BC7C00E1F603 /* LsConfigureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */; };
 		1854F4A91F36BE2600E1F603 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A51F36BE2600E1F603 /* NSObject+YYModel.m */; };
 		1854F4AA1F36BE2600E1F603 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F4A71F36BE2600E1F603 /* YYClassInfo.m */; };
@@ -1188,6 +1189,8 @@
 		185296141F60EC5D003D5D8A /* LsProFormaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsProFormaViewController.m; sourceTree = "<group>"; };
 		185296191F622896003D5D8A /* AVCaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVCaptureManager.h; sourceTree = "<group>"; };
 		1852961A1F622896003D5D8A /* AVCaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVCaptureManager.m; sourceTree = "<group>"; };
+		1852F6931FE3B3780070EF3C /* LsFeedBackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsFeedBackViewController.h; sourceTree = "<group>"; };
+		1852F6941FE3B3780070EF3C /* LsFeedBackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsFeedBackViewController.m; sourceTree = "<group>"; };
 		1854F4A01F36BC7C00E1F603 /* LsConfigureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsConfigureModel.h; sourceTree = "<group>"; };
 		1854F4A11F36BC7C00E1F603 /* LsConfigureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsConfigureModel.m; sourceTree = "<group>"; };
 		1854F4A41F36BE2600E1F603 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
@@ -2484,6 +2487,8 @@
 				18F32C5E1F4EC91E0081629E /* LsEvaluateViewController.m */,
 				18F32C641F4F09750081629E /* LsShareEvaluateViewController.h */,
 				18F32C651F4F09750081629E /* LsShareEvaluateViewController.m */,
+				1852F6931FE3B3780070EF3C /* LsFeedBackViewController.h */,
+				1852F6941FE3B3780070EF3C /* LsFeedBackViewController.m */,
 			);
 			path = MyVc;
 			sourceTree = "<group>";
@@ -4208,6 +4213,7 @@
 				183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */,
 				189D948F1F2EBF270033C828 /* NSDictionary+Extension.m in Sources */,
 				180BC9921F5BA63D001EE331 /* LsCommentViewController.m in Sources */,
+				1852F6951FE3B3780070EF3C /* LsFeedBackViewController.m in Sources */,
 				1854F52D1F37024A00E1F603 /* UIView+MJExtension.m in Sources */,
 				181524891F64E1AF00E23257 /* LsRecordingCompletedViewController.m in Sources */,
 				184CA1FC1F272FC800ACB807 /* LsAppDelegate.m in Sources */,
