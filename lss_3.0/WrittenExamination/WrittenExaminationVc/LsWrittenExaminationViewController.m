@@ -11,11 +11,13 @@
 #import "LsWrittenHeaderView.h"
 #import "LsWrittenTableViewCell.h"
 #import "LsLiveTableViewCell.h"
+#import "LsQuestionsModel.h"
+#import "LsDataDetailViewController.h"
 
 @interface LsWrittenExaminationViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong) UITableView  *tabView;
-
+@property (nonatomic,strong) UITableView      *tabView;
+@property (nonatomic,strong) LsQuestionsModel *model;
 @end
 
 @implementation LsWrittenExaminationViewController
@@ -41,35 +43,38 @@
 //    needstatis：是否需要返回个人做题统计，在做题主页，需要设置此参数为Y，可选参数.
     
     NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
-    [dict setObject:[LSUser_Default objectForKey:@"catgid"]  forKey:@"catgid"];
-    [dict setObject:[LSUser_Default objectForKey:@"scatgid"] forKey:@"scatgid"];
-    [dict setObject:@"湖南" forKey:@"prvn"];
-    [dict setObject:@"长沙" forKey:@"city"];
+    if ([LsMethod haveValue:[LSUser_Default objectForKey:@"catgid"]]) {
+        [dict setObject:[LSUser_Default objectForKey:@"catgid"]  forKey:@"catgid"];
+    }
+    if ([LsMethod haveValue:[LSUser_Default objectForKey:@"scatgid"]]) {
+        [dict setObject:[LSUser_Default objectForKey:@"scatgid"] forKey:@"scatgid"];
+    }
+    if ([LsMethod haveValue:[[LSUser_Default objectForKey:@"配置"] objectForKey:@"分校"]]) {
+        [dict setObject:[[LSUser_Default objectForKey:@"配置"] objectForKey:@"分校"] forKey:@"prvn"];
+    }
+//    [dict setObject:@"长沙" forKey:@"city"];
 //    [dict setObject:@"Y" forKey:@"needstatis"];
 
-    [[LsAFNetWorkTool shareManger] LSGET:@"qbpaperlib.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        
+    [[LsAFNetWorkTool shareManger] LSPOST:@"qbpaperlib.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.model  =[LsQuestionsModel yy_modelWithJSON:responseObject];
+        [self.tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-        
+
     }];
-//    [[LsAFNetWorkTool shareManger] LSPOST:@"qbpaperlib.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-//
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-//
-//    }];
 }
 
 #pragma  - mark -  tabview 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return self.model.dataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50*LSScale;
+    return 65*LSScale;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    LsQuestionsModel *model =self.model.dataArray[section];
+    return model.list.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -79,50 +84,58 @@
         cell = [[LsWrittenTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    LsQuestionsModel        *model        =self.model.dataArray[indexPath.section];
+    LsQuestionsDetailModel  *detailModel  =model.list[indexPath.row];
+    
+    [cell reloadCellWithData:detailModel];
 
     return cell;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView  *view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 30*LSScale)];
-    view.backgroundColor =[UIColor whiteColor];
-    UILabel *titleL     =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 0, 200, 30*LSScale)];
-    titleL.font         =[UIFont systemFontOfSize:13.5*LSScale];
-    titleL.textAlignment=NSTextAlignmentLeft;
-    [view addSubview:titleL];
-    
-    UIView  *line =[[UIView alloc] initWithFrame:CGRectMake(0, 30*LSScale-0.5*LSScale, LSMainScreenW, 0.5*LSScale)];
-    line.backgroundColor =LSLineColor;
-    [view addSubview:line];
-    
-    titleL.text         =[NSString stringWithFormat:@"section==%ld",(long)section];
-
-    return view;
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    UIView *view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 30*LSScale)];
-    UILabel *titleL     =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 0, 200, 30*LSScale)];
-    titleL.font         =[UIFont systemFontOfSize:12*LSScale];
-    titleL.textAlignment=NSTextAlignmentLeft;
-    titleL.textColor    =LSNavColor;
-    view.backgroundColor =[UIColor whiteColor];
-    [view addSubview:titleL];
-
-    if (tableView.tag==100) {
-        titleL.text         =@"查看所有试卷";
-        
-    }
-    return view;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LsQuestionsModel *model        =self.model.dataArray[indexPath.section];
+    LsQuestionsDetailModel *model1 =model.list[indexPath.row];
+    LsDataDetailViewController *vc =[[LsDataDetailViewController alloc] init];
+    vc.doExeUrl                    =model1.doExeUrl;
+    vc.isDoExe                     =YES;
+//    vc.code                        =model1.code;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30*LSScale;
+    return 40*LSScale;
 }
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    return 30*LSScale;
-//}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView  *view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, 40*LSScale)];
+    view.backgroundColor =LSColor(243, 244, 245, 1);
+   
+    UILabel *titleL     =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, 0, 200, 40*LSScale)];
+    titleL.font         =[UIFont systemFontOfSize:14.5*LSScale];
+    titleL.textAlignment=NSTextAlignmentCenter;
+    [view addSubview:titleL];
+    
+    UIView  *line =[[UIView alloc] initWithFrame:CGRectMake(0, 40*LSScale-0.5*LSScale, LSMainScreenW, 0.5*LSScale)];
+    line.backgroundColor =LSLineColor;
+    [view addSubview:line];
+    
+    LsQuestionsModel  *mdeolll  =self.model.dataArray[section];
+    titleL.text         =[NSString stringWithFormat:@"%@",mdeolll.scatgName];
+    CGSize  size        =[LsMethod sizeWithString:titleL.text font:titleL.font];
+    titleL.frame        =CGRectMake(titleL.frame.origin.x, titleL.frame.origin.y, size.width, 40*LSScale);
+    
+    
+    UILabel *detailL     =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(titleL.frame)+10*LSScale, 0, 120*LSScale, 40*LSScale)];
+    detailL.font         =[UIFont systemFontOfSize:12*LSScale];
+    detailL.textAlignment=NSTextAlignmentLeft;
+    detailL.textColor    =LSColor(153, 153, 153, 1);
+    [view addSubview:detailL];
+    detailL.text         =[NSString stringWithFormat:@"共%@套试卷",mdeolll.total];
+
+    return view;
+}
 
 -(UITableView *)tabView{
     if (!_tabView) {
@@ -134,6 +147,13 @@
         _tabView.backgroundColor  =[UIColor clearColor];
     }
     return _tabView;
+}
+
+-(LsQuestionsModel *)model{
+    if (!_model) {
+        _model  =[[LsQuestionsModel alloc] init];
+    }
+    return _model;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

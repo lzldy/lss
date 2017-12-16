@@ -64,9 +64,9 @@
         self.fileOutput = [[AVCaptureMovieFileOutput alloc] init];
         [self.captureSession addOutput:self.fileOutput];
         
-//        方向
-        AVCaptureConnection * videoConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
-        [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
+//        横屏录制方向
+//        AVCaptureConnection * videoConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
+//        [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
         
         self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.captureSession];
         self.previewLayer.frame = previewView.bounds;

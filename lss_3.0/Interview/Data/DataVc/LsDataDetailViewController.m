@@ -43,6 +43,10 @@
         NSURLRequest *request =[NSURLRequest requestWithURL:self.bannerUrl];
 //        NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
         [self.webView_ loadRequest:request];
+    }else if (self.isDoExe){
+        NSURLRequest *request =[NSURLRequest requestWithURL:self.doExeUrl];
+        [self.webView_ loadRequest:request];
+        [self.navView.leftButton setImage:LOADIMAGE(@"") forState:0];
     }else{
         [self getData];
     }

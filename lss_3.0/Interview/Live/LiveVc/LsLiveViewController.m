@@ -97,9 +97,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
     if (tableView.tag==10010) {
-        return _interviewModel.liveArray.count;
+        return _interviewModel.liveArray.count>0?_interviewModel.liveArray.count:1;
     }else{
-        return _writtenModel.liveArray.count;
+        return _writtenModel.liveArray.count>0?_writtenModel.liveArray.count:1;
     }
 }
 
@@ -112,11 +112,21 @@
     }
     LsLiveModel *modelll =[[LsLiveModel alloc] init];
     if (tableView.tag==10010){
-        modelll =self.interviewModel.liveArray[indexPath.row];
+        if (self.interviewModel.liveArray.count>0) {
+            modelll =self.interviewModel.liveArray[indexPath.row];
+            [cell reloadCell:modelll Type:@"2"];
+        }else{
+            [cell reloadCell:nil Type:@"0"];
+        }
     }else{
-        modelll =self.writtenModel.liveArray[indexPath.row];
+        if (self.writtenModel.liveArray.count>0) {
+            modelll =self.writtenModel.liveArray[indexPath.row];
+            [cell reloadCell:modelll Type:@"2"];
+        }else{
+            [cell reloadCell:nil Type:@"0"];
+        }
     }
-    [cell reloadCell:modelll Type:@"2"];
+
     return cell;
 }
 

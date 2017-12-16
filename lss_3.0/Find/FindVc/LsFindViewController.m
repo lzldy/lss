@@ -165,8 +165,9 @@
 
 -(void)clickTribeBtn{
     LsLog(@"----------click部落----------");
-    LsTribeViewController *vc =[[LsTribeViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
+//    LsTribeViewController *vc =[[LsTribeViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)showNoOpendBtn{

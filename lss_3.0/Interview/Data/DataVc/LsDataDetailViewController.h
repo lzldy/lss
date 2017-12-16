@@ -16,4 +16,7 @@
 @property (nonatomic,assign) BOOL     isBanner;
 @property (nonatomic,strong) NSURL    *bannerUrl;
 
+@property (nonatomic,assign) BOOL     isDoExe;
+@property (nonatomic,strong) NSURL    *doExeUrl;
+
 @end

@@ -13,4 +13,6 @@
 @property (nonatomic,strong)  NSMutableDictionary *dataDict;
 @property (nonatomic,strong)  NSArray             *brachsArray;
 
+@property (nonatomic,strong)  NSMutableDictionary *saveDict;
+
 @end

@@ -93,7 +93,9 @@
                                                 dataArray:self.bannerArray
                                              timeInterval:2
                                        didSelectItemBlock:^(NSInteger didSelectItem){
+       if (didSelectItem>=0) {
            [weakSelf bannerDetailVc:self.banModel.bannerArray[didSelectItem].clickurl];
+       }
     }];
     [superView addSubview:_carouselView];
 }

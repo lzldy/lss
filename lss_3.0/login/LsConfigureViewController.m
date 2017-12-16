@@ -28,6 +28,7 @@ static NSString * headerReuseIdentifier = @"header";
 }
 @property (nonatomic,strong)  LsConfigureModel     *model;
 @property (nonatomic,strong)  NSMutableDictionary  *dataDict;
+@property (nonatomic,strong)  NSMutableDictionary  *saveDict;
 
 @end
 
@@ -147,6 +148,7 @@ static NSString * headerReuseIdentifier = @"header";
 //    [LsMethod alertMessage:sadas AndTitle:fffff];
     LsConfigureTwoViewController *vc =[[LsConfigureTwoViewController alloc] init];
     vc.dataDict                      =self.dataDict;
+    vc.saveDict                      =self.saveDict;
     vc.brachsArray                   =self.model.branchs;
     vc.modalPresentationStyle        =UIModalPresentationCustom;
     vc.modalTransitionStyle          =UIModalTransitionStyleCrossDissolve;
@@ -207,12 +209,14 @@ static NSString * headerReuseIdentifier = @"header";
         modelll                       =self.model.catgs[indexPath.row];
         indexCatgCollectView          =indexPath.row;
         indexLevelCollectView         =0;
-        LsLog(@"---------------------indexCatgCollectView--%d",indexCatgCollectView);
         [self.dataDict setObject:modelll.id_  forKey:@"catgid"];
         [myCollectionView2 reloadData];
         [myCollectionView3 reloadData];
         [myCollectionView2 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
         [myCollectionView3 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+        
+        [self.saveDict setObject:modelll.name forKey:@"项目"];
+
     }else if (collectionView.tag==22222){
         LsLevelConfigureModel *modelll =[[LsLevelConfigureModel alloc] init];
         modelll                        =[self.model.catgs[indexCatgCollectView] levels][indexPath.row];
@@ -222,10 +226,15 @@ static NSString * headerReuseIdentifier = @"header";
         if ([[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects] count]>0) {
             LsSubjectConfigureModel *amodel =modelll.subjects[0];
             [self.dataDict setObject:amodel.id_ forKey:@"scatgid"];
+            [self.saveDict setObject:amodel.name  forKey:@"科目"];
         }
+        [self.saveDict setObject:modelll.name forKey:@"学段"];
+
     }else{
         LsSubjectConfigureModel *modelll =[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects][indexPath.row];
         [self.dataDict setObject:modelll.id_ forKey:@"scatgid"];
+        
+        [self.saveDict setObject:modelll.name  forKey:@"科目"];
     }
     [self resetFrame];
 }
@@ -270,6 +279,27 @@ static NSString * headerReuseIdentifier = @"header";
         [_dataDict setObject:model1.id_  forKey:@"catgid"];
     }
     return _dataDict;
+}
+
+-(NSMutableDictionary *)saveDict{
+    if (!_saveDict) {
+        _saveDict  =[NSMutableDictionary dictionary];
+        if ([self.model.catgs count]>0) {
+            LsCatgConfigureModel *model1 =self.model.catgs[0];
+            [_saveDict setObject:model1.name forKey:@"项目"];
+        }
+        
+        if ([[self.model.catgs[0] levels] count]>0) {
+            LsLevelConfigureModel *model2 =[self.model.catgs[0] levels][0];
+            [_saveDict setObject:model2.name forKey:@"学段"];
+        }
+
+        if ([[[self.model.catgs[0] levels][0] subjects] count]>0) {
+            LsSubjectConfigureModel *model3 =[[self.model.catgs[0] levels][0] subjects][0];
+            [_saveDict setObject:model3.name  forKey:@"科目"];
+        }
+    }
+    return _saveDict;
 }
 
 - (void)didReceiveMemoryWarning {

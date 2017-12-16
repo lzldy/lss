@@ -10,6 +10,11 @@
 #import "LsMyHeaderView.h"
 #import "LsMyTableViewCell.h"
 #import "LsFeedBackViewController.h"
+#import "LsMessageCenterViewController.h"
+#import "LsMyLiveListViewController.h"
+#import "LsMyOrderViewController.h"
+#import "LsMyVideosViewController.h"
+#import "LsConfigureViewController.h"
 
 @interface LsMyViewController ()<myHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -84,11 +89,14 @@
 
 -(void)clickBtn:(LsButton*)button{
     if (button.tag ==123) {
-        [LsMethod alertMessage:@"已上传" WithTime:1];
+        [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
+//        LsMyVideosViewController *vc =[[LsMyVideosViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
     }else if (button.tag ==124){
-        [LsMethod alertMessage:@"我的直播" WithTime:1];
+        LsMyLiveListViewController *vc =[[LsMyLiveListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
-        [LsMethod alertMessage:@"我的收藏" WithTime:1];
+        [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
     }
 }
 
@@ -97,7 +105,9 @@
     if (index==0) {
         [LsMethod alertMessage:@"个人修改" WithTime:1];
     }else{
-        [LsMethod alertMessage:@"考试目标" WithTime:1];
+//        [LsMethod alertMessage:@"考试目标" WithTime:1];
+        LsConfigureViewController *vc =[[LsConfigureViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -125,8 +135,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row==4) {
-        LsFeedBackViewController *vc =[[LsFeedBackViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        LsFeedBackViewController *vc      =[[LsFeedBackViewController alloc] init];
+        [self.navigationController         pushViewController:vc animated:YES];
+    }else if (indexPath.row==3){
+        LsMessageCenterViewController *vc =[[LsMessageCenterViewController alloc] init];
+        [self.navigationController         pushViewController:vc animated:YES];
+    }else if (indexPath.row==2){
+        [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
+//        LsMyOrderViewController *vc       =[[LsMyOrderViewController alloc] init];
+//        [self.navigationController          pushViewController:vc animated:YES];
+    }else{
+        [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
     }
     
 //    [LsMethod alertMessage:_dataArray[indexPath.row][@"title"] WithTime:1];

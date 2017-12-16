@@ -88,7 +88,8 @@ static NSString * headerReuseIdentifier = @"header";
     saveBtn =[[UIButton alloc] init];
     [saveBtn setTitle:@"保存我的梦想" forState:UIControlStateNormal];
     saveBtn.layer.cornerRadius            =5;
-    saveBtn.layer.backgroundColor         =LSNavColor.CGColor;
+    saveBtn.layer.backgroundColor         =LSLineColor.CGColor;
+    saveBtn.userInteractionEnabled        =NO;
     [saveBtn addTarget:self action:@selector(settingRequest) forControlEvents:UIControlEventTouchUpInside];
     [scrollView addSubview:saveBtn];
     
@@ -145,8 +146,12 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    saveBtn.userInteractionEnabled        =YES;
+    saveBtn.layer.backgroundColor         =LSNavColor.CGColor;
+
     self.model    =allDataArray[indexPath.section][indexPath.row];
     [self.dataDict setObject:self.model.id_ forKey:@"branchid"];
+    [self.saveDict setObject:self.model.prvnName forKey:@"分校"];
     LsLog(@"==========================%@",self.dataDict);
 }
 
@@ -156,6 +161,7 @@ static NSString * headerReuseIdentifier = @"header";
         [LSUser_Default setObject:self.dataDict[@"scatgid"] forKey:@"scatgid"];
         [LSUser_Default setObject:self.dataDict[@"branchid"] forKey:@"branchid"];
         [LSUser_Default setObject:self.dataDict[@"catgid"] forKey:@"catgid"];
+        [LSUser_Default setObject:self.saveDict forKey:@"配置"];
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];

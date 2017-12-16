@@ -50,7 +50,7 @@
     captureManager.delegate = self;
     [self loadBaseUI];
     
-    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeRight] forKey:@"orientation"];//这里可以给个按钮 选择横屏录制或者竖屏录制
+//    [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeRight] forKey:@"orientation"];//这里可以给个按钮 选择横屏录制或者竖屏录制
 
 }
 
@@ -82,8 +82,7 @@
     [self setData];
 }
 
-- (void)startButtonTapped:(UIButton *)button
-{
+- (void)startButtonTapped:(UIButton *)button{
     if (!captureManager) {
         return;
     }

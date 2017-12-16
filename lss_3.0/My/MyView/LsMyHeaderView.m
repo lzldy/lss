@@ -41,7 +41,8 @@
         [self addSubview:label];
         
         self.target                           =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), CGRectGetMinY(label.frame), self.frame.size.width-20*LSScale-label.frame.size.width, CGRectGetHeight(label.frame))];
-        self.target.text                      =@"教师招聘|高中|语文|湖南";
+        NSMutableDictionary *dict             =[LSUser_Default objectForKey:@"配置"];
+        self.target.text                      =[NSString stringWithFormat:@"%@|%@|%@|%@",[dict objectForKey:@"项目"],[dict objectForKey:@"学段"],[dict objectForKey:@"科目"],[dict objectForKey:@"分校"]];
         self.target.textAlignment             =NSTextAlignmentLeft;
         self.target.font                      =[UIFont systemFontOfSize:12*LSScale];
         [self addSubview:self.target];
