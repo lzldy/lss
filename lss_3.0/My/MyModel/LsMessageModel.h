@@ -15,6 +15,6 @@
 @property (nonatomic,strong)  NSString *createTime;
 @property (nonatomic,strong)  NSString *frmUserName;
 
-@property (nonatomic,strong)  NSArray  *dataArray;
+@property (nonatomic,strong)  NSArray  *list;
 
 @end

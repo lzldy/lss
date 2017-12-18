@@ -25,7 +25,8 @@
 
 @interface LsInterviewViewController ()<UITableViewDelegate,UITableViewDataSource,headerViewDelegate,interCellHeaderViewDelegate>
 {
-    NSArray  *cellHeaderArray;
+    NSArray      *cellHeaderArray;
+//    NSInteger    page;
 }
 @property (nonatomic,strong)  NSArray                  *bannerArray;
 @property (nonatomic,strong)  UITableView              *tabView;

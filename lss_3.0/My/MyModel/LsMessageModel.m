@@ -12,12 +12,12 @@
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"ID"          : @"id",
-             @"dataArray"   : @"data.list"
+             @"list"   : @"data.list"
              };
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"dataArray"       : [LsMessageModel class]};
+    return @{@"list"       : [LsMessageModel class]};
 }
 
 @end

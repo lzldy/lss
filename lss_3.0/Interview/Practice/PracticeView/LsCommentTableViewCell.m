@@ -88,7 +88,7 @@
     NSString *date        =[LsMethod toDateWithTimeStamp:model.createTimeInSec DateFormat:@"yyyy-MM-dd"];
     timeL.text            =date;
     commentL.text         =model.content;
-    [iconView sd_setImageWithURL:model.fromUserHeadUrl placeholderImage:LOADIMAGE(@"tx-icon")];
+    [iconView sd_setImageWithURL:model.fromUserHeadUrl placeholderImage:LOADIMAGE(@"touxiang_icon")];
     CGSize  size          =[LsMethod sizeWithSize:CGSizeMake(commentL.frame.size.width, 8000) String:commentL.text font:commentL.font];
     commentL.frame        =CGRectMake(commentL.frame.origin.x, commentL.frame.origin.y, commentL.frame.size.width, size.height);
     line.frame            =CGRectMake(0, CGRectGetMaxY(commentL.frame)+10*LSScale, LSMainScreenW, 0.5);

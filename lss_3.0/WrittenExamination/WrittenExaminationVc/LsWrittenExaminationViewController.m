@@ -52,6 +52,8 @@
     if ([LsMethod haveValue:[[LSUser_Default objectForKey:@"配置"] objectForKey:@"分校"]]) {
         [dict setObject:[[LSUser_Default objectForKey:@"配置"] objectForKey:@"分校"] forKey:@"prvn"];
     }
+    
+    [dict setObject:@"activity" forKey:@"mode"];
 //    [dict setObject:@"长沙" forKey:@"city"];
 //    [dict setObject:@"Y" forKey:@"needstatis"];
 

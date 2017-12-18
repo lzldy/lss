@@ -44,6 +44,6 @@
 
 @property (nonatomic,strong) NSArray<LsTeacherModel*>  *teacherArray;
 @property (nonatomic,strong) LsCourseIntroductionModel *courseIntroduction;
-@property (nonatomic,strong) NSArray<LsLiveModel*>     *liveArray;
+@property (nonatomic,strong) NSArray<LsLiveModel*>     *list;
 
 @end

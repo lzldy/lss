@@ -37,6 +37,23 @@
 //}
 
 -(void)loadBaseUI{
+    
+    UIView *bottomView       =[[UIView alloc] initWithFrame:CGRectMake(0, LSMainScreenH-110*LSScale, LSMainScreenW, 110*LSScale)];
+    bottomView.backgroundColor  =LSNavColor;
+    [superView addSubview:bottomView];
+    
+    UILabel  *label          =[[UILabel alloc] initWithFrame:CGRectMake(0, 25*LSScale, LSMainScreenW, 30*LSScale)];
+    label.text               =@"良师承诺:一对一招考职位全国范围1:1等额招生";
+    label.textColor          =[UIColor whiteColor];
+    label.font               =[UIFont systemFontOfSize:13*LSScale];
+    label.textAlignment      =NSTextAlignmentCenter;
+    [bottomView addSubview:label];
+    
+    UIButton *yuyueBtn       =[[UIButton alloc] initWithFrame:CGRectMake(80*LSScale,CGRectGetMaxY(label.frame), LSMainScreenW-160*LSScale, 40*LSScale)];
+    [yuyueBtn setImage:[UIImage imageNamed:@"yyue"] forState:0];
+    [yuyueBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [bottomView addSubview:yuyueBtn];
+    
     UIImage     *bannerImage =[UIImage imageNamed:@"banner"];
     UIImageView *bannerView  =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, bannerImage.size.height/bannerImage.size.width*LSMainScreenW)];
     bannerView.image         =bannerImage;
@@ -61,22 +78,6 @@
     UIImageView *imageView4  =[[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView3.frame), LSMainScreenW, image4.size.height/image4.size.width*LSMainScreenW)];
     imageView4.image         =image4;
     [self.scrView addSubview:imageView4];
-
-    UIView *bottomView       =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(imageView4.frame)+30*LSScale, LSMainScreenW, 110*LSScale)];
-    bottomView.backgroundColor  =LSNavColor;
-    [self.scrView addSubview:bottomView];
-    
-    UILabel  *label          =[[UILabel alloc] initWithFrame:CGRectMake(0, 25*LSScale, LSMainScreenW, 30*LSScale)];
-    label.text               =@"良师承诺:一对一招考职位全国范围1:1等额招生";
-    label.textColor          =[UIColor whiteColor];
-    label.font               =[UIFont systemFontOfSize:13*LSScale];
-    label.textAlignment      =NSTextAlignmentCenter;
-    [bottomView addSubview:label];
-    
-    UIButton *yuyueBtn       =[[UIButton alloc] initWithFrame:CGRectMake(80*LSScale,CGRectGetMaxY(label.frame), LSMainScreenW-160*LSScale, 40*LSScale)];
-    [yuyueBtn setImage:[UIImage imageNamed:@"yyue"] forState:0];
-    [yuyueBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [bottomView addSubview:yuyueBtn];
     
     UIButton  *kefuBtn       =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-60*LSScale-15*LSScale, LSMainScreenH-140*LSScale, 60*LSScale, 60*LSScale)];
     [kefuBtn setImage:[UIImage imageNamed:@"find_kf"] forState:0];
@@ -85,7 +86,7 @@
     [superView addSubview:kefuBtn];
     
     
-    [self.scrView setContentSize:CGSizeMake(LSMainScreenW, CGRectGetMaxY(bottomView.frame))];
+    [self.scrView setContentSize:CGSizeMake(LSMainScreenW, CGRectGetMaxY(imageView4.frame))];
     
 }
 
@@ -100,7 +101,7 @@
 
 -(UIScrollView *)scrView{
     if (!_scrView) {
-        _scrView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame),LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.navView.frame))];
+        _scrView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame),LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.navView.frame)-110*LSScale)];
         _scrView.showsHorizontalScrollIndicator   =NO;
         _scrView.showsVerticalScrollIndicator     =NO;
         _scrView.backgroundColor                  =LSColor(243, 244, 245, 1);

@@ -141,9 +141,9 @@
         LsMessageCenterViewController *vc =[[LsMessageCenterViewController alloc] init];
         [self.navigationController         pushViewController:vc animated:YES];
     }else if (indexPath.row==2){
-        [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
-//        LsMyOrderViewController *vc       =[[LsMyOrderViewController alloc] init];
-//        [self.navigationController          pushViewController:vc animated:YES];
+//        [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
+        LsMyOrderViewController *vc       =[[LsMyOrderViewController alloc] init];
+        [self.navigationController          pushViewController:vc animated:YES];
     }else{
         [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
     }

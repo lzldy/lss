@@ -59,9 +59,13 @@
 -(void)reloadCellWithData:(LsMyOrderModel*)data{
 //    title_.text         =data.title;
 //    detailTitle_.text   =data.createTime;
-    title_.text         =@"2018年长沙面试考试直播";
-    detailTitle_.text   =@"2018/01/01  王老师";
-    NSString   *str     =@"23";
+    if ([LsMethod haveValue:data.prodname]) {
+        title_.text         =data.prodname;
+    }else{
+        title_.text         =[NSString stringWithFormat:@"订单号:%@",data.ordersn];
+    }
+    detailTitle_.text   =[NSString stringWithFormat:@"%@  %@",data.createtime,data.nickname];
+    NSString   *str     =data.paymoney;
     NSString   *allStr  =[NSString stringWithFormat:@"消费%@元",str];
     
     CGSize      size    =[LsMethod sizeWithString:allStr font:consumptionL_.font];

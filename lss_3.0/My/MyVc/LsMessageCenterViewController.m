@@ -11,9 +11,12 @@
 #import "LsMessageTableViewCell.h"
 
 @interface LsMessageCenterViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    NSInteger    page;
+}
 @property (nonatomic,strong)   LsMessageModel *model;
 @property (nonatomic,strong)   UITableView    *tabView;
+@property (nonatomic,strong)   NSMutableArray *dataArray;
 
 @end
 
@@ -25,13 +28,19 @@
     superView.backgroundColor  =LSColor(243, 244, 245, 1);
     [superView addSubview:self.tabView];
     [self getData];
-    // Do any additional setup after loading the view.
 }
 
 -(void)getData{
-//    NSDictionary  *dict  =@{@"viewflag":@""};
+//    viewflag：消息查看标志，空/Y/D,分别对应全部/已查看/删除
+    NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
+    [dict setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [[LsAFNetWorkTool shareManger] LSPOST:@"listcommmsg.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model   =[LsMessageModel yy_modelWithJSON:responseObject];
+        if (page>0) {
+            [self.dataArray addObjectsFromArray:self.model.list];
+        }else{
+            self.dataArray =[NSMutableArray arrayWithArray:self.model.list];
+        }
         [self.tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -43,7 +52,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.model.dataArray.count;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -53,10 +62,24 @@
         cell = [[LsMessageTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    LsMessageModel  *model       =self.model.dataArray[indexPath.row];
+    LsMessageModel  *model       =self.dataArray[indexPath.row];
     [cell reloadCellWithData:model];
     
     return cell;
+}
+
+-(void)headerRefresh{
+    page =0;
+    
+    [self getData];
+    [self.tabView headerEndRefreshing];
+}
+
+-(void)footerRefresh{
+    page ++;
+    NSLog(@"-----------------------------------------%ld",(long)page);
+    [self getData];
+    [self.tabView footerEndRefreshing];
 }
 
 -(UITableView *)tabView{
@@ -67,6 +90,9 @@
         _tabView.showsVerticalScrollIndicator   =NO;
         _tabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
         _tabView.backgroundColor  =[UIColor clearColor];
+        //增加上拉下拉刷新事件
+        [_tabView addHeaderWithTarget:self action:@selector(headerRefresh)];
+        [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
     }
     return _tabView;
 }
@@ -76,6 +102,13 @@
         _model  =[[LsMessageModel alloc] init];
     }
     return _model;
+}
+
+-(NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray =[NSMutableArray array];
+    }
+    return _dataArray;
 }
 
 - (void)didReceiveMemoryWarning {

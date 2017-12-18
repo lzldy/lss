@@ -19,7 +19,7 @@
         
         self.headerIcon                       =[[UIImageView alloc] initWithFrame:CGRectMake(10*LSScale, 10*LSScale, 60*LSScale, 60*LSScale)];
         self.headerIcon.layer.cornerRadius    =30*LSScale;
-        self.headerIcon.image                 =LOADIMAGE(@"tx-icon");
+        self.headerIcon.image                 =LOADIMAGE(@"touxiang_icon");
         self.headerIcon.layer.masksToBounds   =YES;
         [self addSubview:self.headerIcon];
         

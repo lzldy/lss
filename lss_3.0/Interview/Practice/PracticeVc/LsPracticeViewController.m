@@ -13,10 +13,14 @@
 #import "LsPracticeModel.h"
 
 @interface LsPracticeViewController ()<chooseViewDelegate,UITableViewDelegate,UITableViewDataSource>
-
+{
+    NSInteger     page;
+    NSString     *type;
+}
 @property (nonatomic,strong)  LsChooseView             *chooseView;
 @property (nonatomic,strong)  UITableView              *tabView;
 @property (nonatomic,strong)  LsPracticeModel          *model;
+@property (nonatomic,strong)  NSMutableArray           *dataArray;
 
 @end
 
@@ -34,18 +38,23 @@
     [superView addSubview:self.tabView];
     [superView addSubview:self.chooseView];
     
-    [self getData:nil];
+    [self getData];
 }
 
--(void)getData:(NSString*)ctag{
-//    listvideotables.html
+-(void)getData{
     NSMutableDictionary *dict =[NSMutableDictionary dictionary];
-    if ([LsMethod haveValue:ctag]) {
-        [dict setObject:ctag forKey:@"ctag1"];
+    if ([LsMethod haveValue:type]) {
+        [dict setObject:type forKey:@"ctag1"];
     }
     [dict setObject:@"LK" forKey:@"ctag3"];
+    [dict setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [[LsAFNetWorkTool shareManger] LSPOST:@"listvideotables.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model  =[LsPracticeModel yy_modelWithJSON:responseObject];
+        if (page>0) {
+            [self.dataArray addObjectsFromArray:self.model.practiceDataArray];
+        }else{
+            self.dataArray =[NSMutableArray arrayWithArray:self.model.practiceDataArray];
+        }
         [self.tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -63,12 +72,14 @@
 
 #pragma - mark -   UITableView 代理
 -(void)headerRefresh{
-    [self.tabView reloadData];
+    page =0;
+    [self getData];
     [self.tabView headerEndRefreshing];
 }
 
 -(void)footerRefresh{
-    [self.tabView reloadData];
+    page ++;
+    [self getData];
     [self.tabView footerEndRefreshing];
 }
 
@@ -78,7 +89,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.model.practiceDataArray.count;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -89,7 +100,7 @@
         cell = [[LsPracticeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sectionIDD];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    LsPracticeListModel *model =self.model.practiceDataArray[indexPath.row];
+    LsPracticeListModel *model =self.dataArray[indexPath.row];
     [cell reloadCell:model Type:@"2"];
     return cell;
 }
@@ -116,8 +127,9 @@
 
 
 - (void)chooseBtn:(LsButton*)button{
-//    [LsMethod alertMessage:button.videoID WithTime:1.5];
-    [self getData:button.videoID];
+    page   =0;
+    type   =button.videoID;
+    [self  getData];
     [self performSelector:@selector(hiddenChooseView) withObject:nil afterDelay:0.25];
 }
 
@@ -156,6 +168,13 @@
         _model =[[LsPracticeModel alloc] init];
     }
     return _model;
+}
+
+-(NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray =[NSMutableArray array];
+    }
+    return _dataArray;
 }
 
 -(void)hiddenChooseView{

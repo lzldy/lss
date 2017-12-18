@@ -11,13 +11,13 @@
 @implementation LsMyOrderModel
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"ID"          : @"id",
-             @"dataArray"   : @"data.list"
+    return @{
+             @"list"   : @"data.list"
              };
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"dataArray"       : [LsMyOrderModel class]};
+    return @{@"list"       : [LsMyOrderModel class]};
 }
 
 @end

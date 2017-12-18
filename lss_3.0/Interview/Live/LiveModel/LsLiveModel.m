@@ -23,13 +23,13 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"id_"          : @"id",
              @"teacherArray" : @"teachers",
-             @"liveArray"    : @"data"
+             @"list"    : @"data"
              };
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"teacherArray"    : [LsTeacherModel class],
-             @"liveArray"       : [LsLiveModel class]};
+             @"list"       : [LsLiveModel class]};
 }
 
 @end

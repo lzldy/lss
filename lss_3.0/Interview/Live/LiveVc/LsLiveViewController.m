@@ -19,6 +19,8 @@
     BOOL       isScroll;
     float      startY;
     UIView     *myLive;
+    NSInteger  interviewPage;
+    NSInteger  writtenPage;
 }
 @property (nonatomic,strong) LsNavTabView *topTabView;
 @property (nonatomic,strong) UIScrollView *scrView;
@@ -26,6 +28,9 @@
 @property (nonatomic,strong) UITableView  *writtenTabView;//笔试
 @property (nonatomic,strong) LsLiveModel  *interviewModel;
 @property (nonatomic,strong) LsLiveModel  *writtenModel;
+
+@property (nonatomic,strong) NSMutableArray *interviewDataArray;
+@property (nonatomic,strong) NSMutableArray *writtenDataArray;
 
 @end
 
@@ -40,18 +45,32 @@
 }
 
 -(void)getInterviewData{
-    [[LsAFNetWorkTool shareManger] LSPOST:@"listinterviewcourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+    NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
+    [dict setObject:[NSNumber numberWithInteger:interviewPage] forKey:@"page"];
+    
+    [[LsAFNetWorkTool shareManger] LSPOST:@"listinterviewcourse.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         _interviewModel =[LsLiveModel yy_modelWithJSON:responseObject];
-        [self.interviewTabView headerEndRefreshing];
+        if (interviewPage>0) {
+            [self.interviewDataArray addObjectsFromArray:self.interviewModel.list];
+        }else{
+            self.interviewDataArray =[NSMutableArray arrayWithArray:self.interviewModel.list];
+        }
         [self.interviewTabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
 
 -(void)getWrittenData{
-    [[LsAFNetWorkTool shareManger] LSPOST:@"listwrittencourse.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+    NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
+    [dict setObject:[NSNumber numberWithInteger:writtenPage] forKey:@"page"];
+    
+    [[LsAFNetWorkTool shareManger] LSPOST:@"listwrittencourse.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         _writtenModel =[LsLiveModel yy_modelWithJSON:responseObject];
-        [self.writtenTabView headerEndRefreshing];
+        if (writtenPage>0) {
+            [self.writtenDataArray addObjectsFromArray:self.writtenModel.list];
+        }else{
+            self.writtenDataArray =[NSMutableArray arrayWithArray:self.writtenModel.list];
+        }
         [self.writtenTabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -97,9 +116,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
     if (tableView.tag==10010) {
-        return _interviewModel.liveArray.count>0?_interviewModel.liveArray.count:1;
+        return self.interviewDataArray.count>0?self.interviewDataArray.count:1;
     }else{
-        return _writtenModel.liveArray.count>0?_writtenModel.liveArray.count:1;
+        return self.writtenDataArray.count>0?self.writtenDataArray.count:1;
     }
 }
 
@@ -112,15 +131,15 @@
     }
     LsLiveModel *modelll =[[LsLiveModel alloc] init];
     if (tableView.tag==10010){
-        if (self.interviewModel.liveArray.count>0) {
-            modelll =self.interviewModel.liveArray[indexPath.row];
+        if (self.interviewDataArray.count>0) {
+            modelll =self.interviewDataArray[indexPath.row];
             [cell reloadCell:modelll Type:@"2"];
         }else{
             [cell reloadCell:nil Type:@"0"];
         }
     }else{
-        if (self.writtenModel.liveArray.count>0) {
-            modelll =self.writtenModel.liveArray[indexPath.row];
+        if (self.writtenDataArray.count>0) {
+            modelll =self.writtenDataArray[indexPath.row];
             [cell reloadCell:modelll Type:@"2"];
         }else{
             [cell reloadCell:nil Type:@"0"];
@@ -133,9 +152,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     LsLiveModel *modelll =[[LsLiveModel alloc] init];
     if (tableView.tag==10010) {
-        modelll =self.interviewModel.liveArray[indexPath.row];
+        modelll =self.interviewDataArray[indexPath.row];
     }else{
-        modelll =self.writtenModel.liveArray[indexPath.row];
+        modelll =self.writtenDataArray[indexPath.row];
     }
     LsLiveDetailViewController *detailVc =[[LsLiveDetailViewController alloc] init];
     detailVc.crcode                      =modelll.code;
@@ -146,25 +165,29 @@
 #pragma - mark -    上下拉刷新
 -(void)writtenTabViewHeaderRefresh{
     isScroll=NO;
+    writtenPage =0;
     [self getWrittenData];
+    [self.writtenTabView headerEndRefreshing];
 }
 
 -(void)writtenTabViewFooterRefresh{
     isScroll=NO;
-
-//    [self.writtenTabView reloadData];
+    writtenPage ++;
+    [self getWrittenData];
     [self.writtenTabView footerEndRefreshing];
 }
 
 -(void)interviewTabViewHeaderRefresh{
     isScroll=NO;
+    interviewPage =0;
     [self getInterviewData];
+    [self.interviewTabView headerEndRefreshing];
 }
 
 -(void)interviewTabViewFooterRefresh{
     isScroll=NO;
-
-//    [self.interviewTabView reloadData];
+    interviewPage ++;
+    [self getInterviewData];
     [self.interviewTabView footerEndRefreshing];
 }
 
@@ -261,6 +284,20 @@
         _scrView.bounces                          =NO;
     }
     return _scrView;
+}
+
+-(NSMutableArray *)interviewDataArray{
+    if (!_interviewDataArray) {
+        _interviewDataArray =[NSMutableArray array];
+    }
+    return _interviewDataArray;
+}
+
+-(NSMutableArray *)writtenDataArray{
+    if (!_writtenDataArray) {
+        _writtenDataArray  =[NSMutableArray array];
+    }
+    return _writtenDataArray;
 }
 
 - (void)didReceiveMemoryWarning {
