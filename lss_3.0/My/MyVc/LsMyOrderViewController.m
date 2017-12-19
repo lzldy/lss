@@ -50,12 +50,12 @@
 
 -(void)loadBaseUI{
     [superView addSubview:self.tabView];
-    totalL  =[[UILabel alloc]  initWithFrame:CGRectMake(0, LSMainScreenH-45*LSScale, LSMainScreenW, 45*LSScale)];
-    totalL.backgroundColor    =LSNavColor;
-    totalL.textAlignment      =NSTextAlignmentCenter;
-    totalL.textColor          =[UIColor whiteColor];
-    totalL.text               =@"共支出：60元";
-    [superView addSubview:totalL];
+//    totalL  =[[UILabel alloc]  initWithFrame:CGRectMake(0, LSMainScreenH-45*LSScale, LSMainScreenW, 45*LSScale)];
+//    totalL.backgroundColor    =LSNavColor;
+//    totalL.textAlignment      =NSTextAlignmentCenter;
+//    totalL.textColor          =[UIColor whiteColor];
+//    totalL.text               =@"共支出：60元";
+//    [superView addSubview:totalL];
 }
 
 #pragma  - mark -  tabview 代理
@@ -99,7 +99,7 @@
 
 -(UITableView *)tabView{
     if (!_tabView) {
-        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navView.frame)+10*LSScale, LSMainScreenW,LSMainScreenH-CGRectGetMaxY(self.navView.frame)-20*LSScale-45*LSScale)];
+        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navView.frame)+10*LSScale, LSMainScreenW,LSMainScreenH-CGRectGetMaxY(self.navView.frame)-20*LSScale)];
         _tabView.delegate         =self;
         _tabView.dataSource       =self;
         _tabView.showsVerticalScrollIndicator   =NO;

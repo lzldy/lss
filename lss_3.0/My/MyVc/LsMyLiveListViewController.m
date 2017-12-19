@@ -150,7 +150,11 @@
     }else if(tableView.tag==20020){
         
     }else{
-        
+        LsMyLiveModel *modelll        =self.playbackArray[indexPath.row];
+        LsLiveDetailViewController *vc =[[LsLiveDetailViewController alloc] init];
+        vc.crcode                      =modelll.courseCode;
+        vc.personNum                   =[modelll.baseNum intValue]+[modelll.regNum intValue];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

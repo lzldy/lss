@@ -15,6 +15,7 @@
 #import "LsMyOrderViewController.h"
 #import "LsMyVideosViewController.h"
 #import "LsConfigureViewController.h"
+#import "LsReviseUserInfoViewController.h"
 
 @interface LsMyViewController ()<myHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -103,7 +104,8 @@
 - (void)clickMyHeaderViewIndex:(NSInteger)index{
     
     if (index==0) {
-        [LsMethod alertMessage:@"个人修改" WithTime:1];
+        LsReviseUserInfoViewController *vc =[[LsReviseUserInfoViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
 //        [LsMethod alertMessage:@"考试目标" WithTime:1];
         LsConfigureViewController *vc =[[LsConfigureViewController alloc] init];

@@ -403,6 +403,7 @@
 		184335841F349CBF00A53585 /* LsCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335831F349CBF00A53585 /* LsCollectionHeaderView.m */; };
 		184335871F34A84D00A53585 /* LsBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184335861F34A84D00A53585 /* LsBaseCollectionViewCell.m */; };
 		1849ECEB1F55460900B2B9B1 /* LsChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1849ECEA1F55460900B2B9B1 /* LsChooseView.m */; };
+		184C935E1FE7985C00A3EBF2 /* LsReviseUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C935D1FE7985C00A3EBF2 /* LsReviseUserInfoViewController.m */; };
 		184CA18F1F27199F00ACB807 /* lss_3_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA18E1F27199F00ACB807 /* lss_3_0Tests.m */; };
 		184CA19A1F27199F00ACB807 /* lss_3_0UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1991F27199F00ACB807 /* lss_3_0UITests.m */; };
 		184CA1F41F272FC800ACB807 /* LsBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 184CA1BE1F27248A00ACB807 /* LsBaseViewController.m */; };
@@ -1177,6 +1178,8 @@
 		184335861F34A84D00A53585 /* LsBaseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsBaseCollectionViewCell.m; sourceTree = "<group>"; };
 		1849ECE91F55460900B2B9B1 /* LsChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsChooseView.h; sourceTree = "<group>"; };
 		1849ECEA1F55460900B2B9B1 /* LsChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsChooseView.m; sourceTree = "<group>"; };
+		184C935C1FE7985C00A3EBF2 /* LsReviseUserInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsReviseUserInfoViewController.h; sourceTree = "<group>"; };
+		184C935D1FE7985C00A3EBF2 /* LsReviseUserInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsReviseUserInfoViewController.m; sourceTree = "<group>"; };
 		184CA1711F27199F00ACB807 /* lss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		184CA1771F27199F00ACB807 /* LsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsAppDelegate.h; sourceTree = "<group>"; };
 		184CA1781F27199F00ACB807 /* LsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsAppDelegate.m; sourceTree = "<group>"; };
@@ -2507,6 +2510,8 @@
 			children = (
 				184CA1D41F2726F600ACB807 /* LsMyViewController.h */,
 				184CA1D51F2726F600ACB807 /* LsMyViewController.m */,
+				184C935C1FE7985C00A3EBF2 /* LsReviseUserInfoViewController.h */,
+				184C935D1FE7985C00A3EBF2 /* LsReviseUserInfoViewController.m */,
 				189840A11F4BD8D400C6A8A0 /* LsMyLiveListViewController.h */,
 				189840A21F4BD8D400C6A8A0 /* LsMyLiveListViewController.m */,
 				182C686A1F5F8A6800DD1511 /* LsPlayBackViewController.h */,
@@ -4295,6 +4300,7 @@
 				18710D711FE26DC100F6BC96 /* LsActivityModel.m in Sources */,
 				18FEF8AD1F52C6F300F74BB6 /* BCSecurityPolicy.m in Sources */,
 				18E5D0F41F90A43800F9CCDA /* LsTribeViewController.m in Sources */,
+				184C935E1FE7985C00A3EBF2 /* LsReviseUserInfoViewController.m in Sources */,
 				18FEF8B61F52C6F300F74BB6 /* BeeCloudAdapter.m in Sources */,
 				18E5D0E21F8DAF6700F9CCDA /* LsWrittenHeaderView.m in Sources */,
 				18975FDF1F29D86900447721 /* GCDTimer.m in Sources */,
@@ -4509,7 +4515,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lss.shishuo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5aeb708f-38e0-40c0-af19-02a6ab1358b6";
+				PROVISIONING_PROFILE = "ce2c4bef-be93-4dfa-9f52-9e62a938907b";
 				PROVISIONING_PROFILE_SPECIFIER = liangshishuo_test;
 			};
 			name = Debug;

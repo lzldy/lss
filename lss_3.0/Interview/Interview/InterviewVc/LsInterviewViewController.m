@@ -109,15 +109,15 @@
 }
 
 #pragma - mark -   UITableView 代理
--(void)headerRefresh{
-    [self.tabView reloadData];
-    [self.tabView headerEndRefreshing];
-}
-
--(void)footerRefresh{
-    [self.tabView reloadData];
-    [self.tabView footerEndRefreshing];
-}
+//-(void)headerRefresh{
+//    [self.tabView reloadData];
+//    [self.tabView headerEndRefreshing];
+//}
+//
+//-(void)footerRefresh{
+//    [self.tabView reloadData];
+//    [self.tabView footerEndRefreshing];
+//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
@@ -279,8 +279,8 @@
         _tabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
         _tabView.backgroundColor  =LSColor(243, 244, 245, 1);
         //增加上拉下拉刷新事件
-        [_tabView addHeaderWithTarget:self action:@selector(headerRefresh)];
-        [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
+//        [_tabView addHeaderWithTarget:self action:@selector(headerRefresh)];
+//        [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
     }
     return _tabView;
 }

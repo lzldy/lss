@@ -46,7 +46,7 @@
     rightBtn.lsLabel.text      =@"视频";
     rightBtn.lsLabel.textColor =[UIColor whiteColor];
     rightBtn.lsLabel.textAlignment =NSTextAlignmentRight;
-    rightBtn.lsLabel.font      =[UIFont systemFontOfSize:17];
+    rightBtn.lsLabel.font      =[UIFont systemFontOfSize:16];
     [rightBtn addTarget:self action:@selector(videoRecordingBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.navView addSubview:rightBtn];
     
@@ -104,7 +104,7 @@
     dabianBtn.lsImageView.frame  =CGRectMake(CGRectGetWidth(dabianBtn.frame)/2-dabianImage.size.width/2, 0, dabianImage.size.width, dabianImage.size.height);
     dabianBtn.lsImageView.image  =dabianImage;
     dabianBtn.lsLabel.frame      =CGRectMake(0, CGRectGetHeight(dabianBtn.frame)-25*LSScale, CGRectGetWidth(dabianBtn.frame), 25*LSScale);
-    dabianBtn.lsLabel.text       =@"试课/试讲";
+    dabianBtn.lsLabel.text       =@"答辩";
     dabianBtn.lsLabel.font       =[UIFont systemFontOfSize:12*LSScale];
     dabianBtn.lsLabel.textAlignment =NSTextAlignmentCenter;
     dabianBtn.tag                =3;
