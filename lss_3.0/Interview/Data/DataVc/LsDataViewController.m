@@ -106,7 +106,7 @@
     }
     LsDataDetailViewController *dataVc =[[LsDataDetailViewController alloc] init];
     dataVc.title_                      =model_.title;
-    dataVc.code                        =model_.code;
+    dataVc.ID                          =model_.id_;
     [self.navigationController pushViewController:dataVc animated:YES];
 }
 

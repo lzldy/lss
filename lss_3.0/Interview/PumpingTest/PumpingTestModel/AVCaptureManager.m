@@ -118,8 +118,10 @@
             break;
         }
     }
-    AVCaptureConnection * videoConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
-    [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
+    
+    //横屏录制
+//    AVCaptureConnection * videoConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
+//    [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
 }
 
 

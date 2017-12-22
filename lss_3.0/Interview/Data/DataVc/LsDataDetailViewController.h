@@ -11,7 +11,7 @@
 @interface LsDataDetailViewController : LsBaseViewController
 
 @property (nonatomic,strong) NSString * title_;
-@property (nonatomic,strong) NSString * code;
+@property (nonatomic,strong) NSString * ID;
 
 @property (nonatomic,assign) BOOL     isBanner;
 @property (nonatomic,strong) NSURL    *bannerUrl;

@@ -9,11 +9,14 @@
 #import "LsDataDetailViewController.h"
 #import "LsDataModel.h"
 #import <WebKit/WebKit.h>
+#import "LsShareModel.h"
+
 @interface LsDataDetailViewController ()<WKNavigationDelegate,WKUIDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic,strong)  WKWebView         *webView_;
 @property (nonatomic,strong)  LsDataDetailModel *model;
 @property (nonatomic,strong)  MBProgressHUD     *hud;
+@property (nonatomic,strong)  LsShareModel      *shareModel;
 
 @end
 
@@ -22,31 +25,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     superView.backgroundColor    =LSNavColor;
-    self.navView.backgroundColor =[UIColor clearColor];
+    self.navView.navTitle        =@"良师说";
+
     [self.navView.rightButton setImage:[UIImage imageNamed:@"data_fx"] forState:0];
     [self.navView.rightButton addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *collectionBtn      =[[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.navView.rightButton.frame)-35, 24, 36, 35 )];
-    [collectionBtn setImage:[UIImage imageNamed:@"data_sc"] forState:0];
-    [collectionBtn setImage:[UIImage imageNamed:@"data_sc_dl"] forState:UIControlStateSelected];
-    collectionBtn.tag            =110086;
-    [collectionBtn addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.navView addSubview:collectionBtn];
+    self.navView.rightButton.tag            =110086;
+
+//    UIButton *collectionBtn      =[[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.navView.rightButton.frame)-35, 24, 36, 35 )];
+//    [collectionBtn setImage:[UIImage imageNamed:@"data_sc"] forState:0];
+//    [collectionBtn setImage:[UIImage imageNamed:@"data_sc_dl"] forState:UIControlStateSelected];
+//    collectionBtn.tag            =110086;
+//    [collectionBtn addTarget:self action:@selector(clickRightButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.navView addSubview:collectionBtn];
     [superView addSubview:self.webView_];
-    [superView bringSubviewToFront:self.navView];
+//    [superView bringSubviewToFront:self.navView];
 
     if (self.isBanner) {
-        self.navView.backgroundColor =LSNavColor;
-        self.navView.navTitle        =@"良师快讯";
-        self.webView_.frame=CGRectMake(0,CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.navView.frame));
-
         NSURLRequest *request =[NSURLRequest requestWithURL:self.bannerUrl];
-//        NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]];
         [self.webView_ loadRequest:request];
     }else if (self.isDoExe){
         NSURLRequest *request =[NSURLRequest requestWithURL:self.doExeUrl];
         [self.webView_ loadRequest:request];
-        [self.navView.leftButton setImage:LOADIMAGE(@"") forState:0];
     }else{
         [self getData];
     }
@@ -54,15 +53,21 @@
 
 -(void)clickRightButton:(UIButton *)btn{
     if (btn.tag==110086) {
+        if (self.isBanner) {
+            [self.shareModel shareActionWithUrl:[self.bannerUrl absoluteString] OnVc:self];
+        }else if (self.isDoExe){
+            [self.shareModel shareActionWithUrl:[self.doExeUrl absoluteString] OnVc:self];
+        }else{
+            [self.shareModel shareActionWithUrl:[self.model.url absoluteString] OnVc:self];
+        }
+    }else{
         btn.selected  =YES;
         [LsMethod alertMessage:@"收藏" WithTime:1.5];
-    }else{
-        [LsMethod alertMessage:@"分享" WithTime:1.5];
     }
 }
 
 -(void)getData{
-    NSDictionary *dict =@{@"infoid":self.code};
+    NSDictionary *dict =@{@"infoid":self.ID};
     [[LsAFNetWorkTool shareManger] LSPOST:@"getinfocontent.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         NSDictionary *dict =[responseObject objectForKey:@"data"];
         self.model =[LsDataDetailModel yy_modelWithDictionary:dict];
@@ -92,12 +97,19 @@
 
 -(WKWebView *)webView_{
     if (!_webView_) {
-        _webView_ =[[WKWebView alloc] initWithFrame:CGRectMake(0,10, LSMainScreenW, LSMainScreenH-10)];
+        _webView_ =[[WKWebView alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.navView.frame))];
         _webView_.navigationDelegate = self;
         _webView_.backgroundColor    = LSNavColor;
         _webView_.UIDelegate         = self;
     }
     return _webView_;
+}
+
+-(LsShareModel *)shareModel{
+    if (!_shareModel) {
+        _shareModel =[[LsShareModel alloc] init];
+    }
+    return _shareModel;
 }
 
 - (void)didReceiveMemoryWarning {

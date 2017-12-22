@@ -106,7 +106,7 @@
     [backgourdView addSubview:jiegouhuaBtn];
     
     UILabel  *xiangmuL              =[[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(shijiangBtn.frame)+10*LSScale, 72*LSScale, 18*LSScale)];
-    xiangmuL.text                   =@"教师招聘";
+    xiangmuL.text                   =[[LSUser_Default objectForKey:@"配置"] objectForKey:@"项目"];
     xiangmuL.layer.cornerRadius     =6*LSScale;
     xiangmuL.layer.backgroundColor  =LSColor(101, 102, 103, 1).CGColor;
     xiangmuL.textColor              =[UIColor whiteColor];
@@ -115,7 +115,7 @@
     [backgourdView addSubview:xiangmuL];
     
     UILabel  *xueduanL              =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale+CGRectGetMaxX(xiangmuL.frame), CGRectGetMaxY(shijiangBtn.frame)+10*LSScale, 50*LSScale, 18*LSScale)];
-    xueduanL.text                   =@"高中";
+    xueduanL.text                   =[[LSUser_Default objectForKey:@"配置"] objectForKey:@"学段"];
     xueduanL.layer.cornerRadius     =6*LSScale;
     xueduanL.layer.backgroundColor  =LSColor(101, 102, 103, 1).CGColor;
     xueduanL.textColor              =[UIColor whiteColor];
@@ -124,7 +124,7 @@
     [backgourdView addSubview:xueduanL];
     
     UILabel  *kemuL                 =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale+CGRectGetMaxX(xueduanL.frame), CGRectGetMaxY(shijiangBtn.frame)+10*LSScale, 50*LSScale, 18*LSScale)];
-    kemuL.text                     =@"语文";
+    kemuL.text                     =[[LSUser_Default objectForKey:@"配置"] objectForKey:@"科目"];
     kemuL.layer.cornerRadius       =6*LSScale;
     kemuL.layer.backgroundColor    =LSColor(101, 102, 103, 1).CGColor;
     kemuL.textColor                =[UIColor whiteColor];
@@ -203,6 +203,7 @@
     [dict setObject:videoId                 forKey:@"videoid"];
     [dict setObject:titleL.textField.text   forKey:@"name"];
     [dict setObject:selectedType            forKey:@"ctag1"];
+    [dict setObject:@"STUD"                 forKey:@"ctag2"];
     [dict setObject:@"练课"                  forKey:@"desc"];
 
     [[LsAFNetWorkTool shareManger] LSPOST:@"addnewvideo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {

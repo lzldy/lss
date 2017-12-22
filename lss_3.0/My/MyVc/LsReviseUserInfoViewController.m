@@ -199,11 +199,11 @@
 
 -(void)clickGenderBtn:(UIButton *)btn{
     if ([btn.titleLabel.text isEqualToString:@"男"]) {
-        gender    =@"男";
+        gender    =@"M";
         [manBtn   setTitleColor:LSNavColor forState:0];
         [womanBtn setTitleColor:[UIColor darkGrayColor] forState:0];
     }else{
-        gender    =@"女";
+        gender    =@"F";
         [manBtn   setTitleColor:[UIColor darkGrayColor] forState:0];
         [womanBtn setTitleColor:LSNavColor forState:0];
     }
@@ -262,21 +262,16 @@
     }];
 }
 
--(void)handleSingleTapFrom
-{
+-(void)handleSingleTapFrom{
     UIActionSheet *sheet;
     sheet.actionSheetStyle=UIActionSheetStyleDefault;
     // 判断是否支持相机
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        //        NSLog(@"支持相机......");
         sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
         sheet.tag = 119;
-        
     }else{
-        //        NSLog(@"不支持相机...");
         sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
         sheet.tag = 120;
-        
     }
     sheet.delegate=self;
     [sheet showInView:self.view];
@@ -323,16 +318,10 @@
     
     UIImage *image        = [info objectForKey:UIImagePickerControllerEditedImage];
     NSData *data          = UIImageJPEGRepresentation(image, 1.0f);
-//    headerImageV.image    = image;
-//    NSString *path        = [[HJMethod pictureFounderPath] stringByAppendingString:[NSString stringWithFormat:@"%ld.jpg",(long)[[NSDate date] timeIntervalSince1970]]];
-//    [data writeToFile:path atomically:YES];
-    
-   
     [self uploadHeaderIcon:data];
   
     [UIApplication sharedApplication].statusBarStyle =UIStatusBarStyleLightContent;
     [picker dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 -(void)reviseUserInfoBtn{
@@ -351,7 +340,7 @@
         [dict setObject:nickname forKey:@"nickname"];
     }
     if ([LsMethod haveValue:gender]) {
-        [dict setObject:gender forKey:@"gender"];
+        [dict setObject:gender forKey:@"sex"];
     }
     if ([LsMethod haveValue:memo]) {
         [dict setObject:memo forKey:@"memo"];
@@ -360,10 +349,12 @@
         [dict setObject:face forKey:@"face"];
     }
     
-    [[LsAFNetWorkTool shareManger]  LSPOST:@"updateuser.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        [LsMethod alertMessage:@"更新成功" WithTime:1.5];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-    }];
+    if (dict.count==0) {
+        [[LsAFNetWorkTool shareManger]  LSPOST:@"updateuser.html" parameters:dict success:^(NSURLSessionDataTask * task, id responseObject) {
+            [LsMethod alertMessage:@"更新成功" WithTime:1.5];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+        }];
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{

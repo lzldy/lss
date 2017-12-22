@@ -94,7 +94,7 @@
                                                 dataArray:self.bannerArray
                                              timeInterval:2
                                        didSelectItemBlock:^(NSInteger didSelectItem){
-       if (didSelectItem>=0) {
+       if (didSelectItem>=0&&self.banModel.bannerArray.count>0) {
            [weakSelf bannerDetailVc:self.banModel.bannerArray[didSelectItem].clickurl];
        }
     }];
@@ -314,8 +314,13 @@
 -(NSArray *)bannerArray{
     if (!_bannerArray) {
         NSMutableArray *dataArr =[NSMutableArray array];
-        for (LsBannerModel *model in self.banModel.bannerArray) {
-            [dataArr addObject:model.picurl];
+        if (self.banModel.bannerArray.count>0) {
+            for (LsBannerModel *model in self.banModel.bannerArray) {
+                [dataArr addObject:model.picurl];
+            }
+        }else{
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"banner.jpg" ofType:nil];
+            [dataArr addObject:[NSURL fileURLWithPath:path]];
         }
         _bannerArray =dataArr;
     }

@@ -14,4 +14,5 @@
 @property (nonatomic,strong)  NSString  *crcode;
 @property (nonatomic,assign)  NSInteger  personNum;
 
+- (void)didClickPlayBtnWithID:(LsButton*)button;
 @end

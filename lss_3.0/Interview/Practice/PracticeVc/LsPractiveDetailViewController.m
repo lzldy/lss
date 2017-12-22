@@ -32,9 +32,9 @@
     [super viewDidLoad];
     superView.backgroundColor  =LSColor(243, 244, 245, 1);
     
-    [self.navView.rightButton setImage:[UIImage imageNamed:@"fx"] forState:UIControlStateNormal];
-    [self.navView.rightButton setImage:[UIImage imageNamed:@"fx"] forState:UIControlStateSelected];
-    [self.navView.rightButton addTarget:self action:@selector(didClickNavViewRightBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.navView.rightButton setImage:[UIImage imageNamed:@"fx"] forState:UIControlStateNormal];
+//    [self.navView.rightButton setImage:[UIImage imageNamed:@"fx"] forState:UIControlStateSelected];
+//    [self.navView.rightButton addTarget:self action:@selector(didClickNavViewRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navView.navTitle =self.authorType;
     [self addPlayCount];
@@ -210,9 +210,13 @@
             [self zanVideo:@"no"];
         }
     }else if(button.tag ==555){
-        LsCommentViewController *comVc =[[LsCommentViewController alloc] init];
-        comVc.code                     =self.code_;
-        [self.navigationController  pushViewController:comVc animated:YES];
+        if (![self.model.commentNum2 isEqualToString:@"0"]) {
+            LsCommentViewController *comVc =[[LsCommentViewController alloc] init];
+            comVc.code                     =self.code_;
+            [self.navigationController  pushViewController:comVc animated:YES];
+        }else{
+            [LsMethod alertMessage:@"暂无老师点评" WithTime:1.5];
+        }
     }else if(button.tag== 888){
         LsCommentView *commentView     =[[LsCommentView alloc] init];
         commentView.delegate           =self;

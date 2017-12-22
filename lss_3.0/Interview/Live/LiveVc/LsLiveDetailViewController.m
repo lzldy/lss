@@ -27,7 +27,7 @@
 @property (nonatomic,strong) LsLiveDetailHeaderView *headerView;
 @property (nonatomic,strong) UITableView            *tabView;
 @property (nonatomic,strong) LsLiveDetailBottomView *bottomView;
-@property (nonatomic,strong) UIScrollView                 *backgroundView;
+@property (nonatomic,strong) UIScrollView           *backgroundView;
 @property (nonatomic,strong) MBProgressHUD          *hud;
 @end
 

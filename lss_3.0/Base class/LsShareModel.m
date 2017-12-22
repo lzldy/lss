@@ -60,7 +60,7 @@
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
     //创建网页内容对象
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"分享标题" descr:@"分享内容描述" thumImage:[UIImage imageNamed:@"play"]];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"良师说" descr:@"跟随良师 方为良师" thumImage:[UIImage imageNamed:@"icon.jpg"]];
     //设置网页地址
     shareObject.webpageUrl =url;
     

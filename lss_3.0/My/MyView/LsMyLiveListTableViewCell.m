@@ -50,8 +50,8 @@
         titleL.textAlignment    =NSTextAlignmentLeft;
         [baseView addSubview:timeL];
         
-        titleL        =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(timeL.frame)+5*LSScale, LSMainScreenW-40, 20*LSScale)];
-        titleL.font             =[UIFont systemFontOfSize:15];
+        titleL        =[[UILabel alloc] initWithFrame:CGRectMake(8*LSScale, CGRectGetMaxY(timeL.frame)+5*LSScale, LSMainScreenW-80*LSScale, 20*LSScale)];
+        titleL.font             =[UIFont systemFontOfSize:14.5];
         titleL.textColor        =LSColor(86, 85, 85, 1);
         titleL.textAlignment    =NSTextAlignmentLeft;
         [baseView addSubview:titleL];

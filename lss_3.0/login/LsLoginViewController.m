@@ -317,7 +317,20 @@
 
 -(void)thirdLoginRequest:(NSDictionary*)data{
     [[LsAFNetWorkTool shareManger] LSPOST:@"umquicklogin.html" parameters:data success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        [self loginSuccess];
+        NSDictionary  *usertokenDict =[responseObject objectForKey:@"usertoken"];
+        NSString      *uid           =[usertokenDict  objectForKey:@"uid"];
+        NSString      *token         =[usertokenDict  objectForKey:@"token"];
+        [LSUser_Default setObject:uid   forKey:@"uid"];
+        [LSUser_Default setObject:token forKey:@"token"];
+        
+        if (![LSUser_Default objectForKey:@"didConfig"]) {
+            LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
+            conVc.modalPresentationStyle =UIModalPresentationCustom;
+            conVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:conVc animated:YES completion:nil];
+        }else{
+            [self loginSuccess];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }

@@ -84,6 +84,7 @@
         self.model      =[LsMyLiveModel yy_modelWithJSON:responseObject];
         [self processingData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+        
     }];
 }
 

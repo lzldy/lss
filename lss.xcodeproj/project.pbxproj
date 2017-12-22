@@ -474,6 +474,7 @@
 		189840AC1F4C375E00C6A8A0 /* LsMyLiveTabView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189840AB1F4C375E00C6A8A0 /* LsMyLiveTabView.m */; };
 		189D948E1F2EBF270033C828 /* NSArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D948B1F2EBF270033C828 /* NSArray+Extension.m */; };
 		189D948F1F2EBF270033C828 /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D948D1F2EBF270033C828 /* NSDictionary+Extension.m */; };
+		18A8062F1FEA4F1C00F06521 /* banner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18A8062E1FEA4F1C00F06521 /* banner.jpg */; };
 		18AF1AEA1F2731E800D05E4D /* IQNSArray+Sort.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1AC81F2731E800D05E4D /* IQNSArray+Sort.m */; };
 		18AF1AEB1F2731E800D05E4D /* IQUIScrollView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1ACA1F2731E800D05E4D /* IQUIScrollView+Additions.m */; };
 		18AF1AEC1F2731E800D05E4D /* IQUITextFieldView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AF1ACC1F2731E800D05E4D /* IQUITextFieldView+Additions.m */; };
@@ -494,6 +495,7 @@
 		18C277F61FAC4F8F001A9BE0 /* LsProFormaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C277F51FAC4F8F001A9BE0 /* LsProFormaModel.m */; };
 		18C277FD1FAC5A18001A9BE0 /* JZAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C277FA1FAC5A18001A9BE0 /* JZAlbumViewController.m */; };
 		18C277FE1FAC5A18001A9BE0 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C277FC1FAC5A18001A9BE0 /* PhotoView.m */; };
+		18C7A8991FEBA6C400164CDA /* icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18C7A8981FEBA6C300164CDA /* icon.jpg */; };
 		18E5D0E21F8DAF6700F9CCDA /* LsWrittenHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */; };
 		18E5D0E51F8E050600F9CCDA /* LsWrittenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E41F8E050600F9CCDA /* LsWrittenTableViewCell.m */; };
 		18E5D0E81F8E0E3F00F9CCDA /* LsDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E5D0E71F8E0E3F00F9CCDA /* LsDataTableViewCell.m */; };
@@ -1327,6 +1329,7 @@
 		189D948B1F2EBF270033C828 /* NSArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Extension.m"; sourceTree = "<group>"; };
 		189D948C1F2EBF270033C828 /* NSDictionary+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Extension.h"; sourceTree = "<group>"; };
 		189D948D1F2EBF270033C828 /* NSDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extension.m"; sourceTree = "<group>"; };
+		18A8062E1FEA4F1C00F06521 /* banner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner.jpg; sourceTree = "<group>"; };
 		18AF1AC71F2731E800D05E4D /* IQNSArray+Sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQNSArray+Sort.h"; sourceTree = "<group>"; };
 		18AF1AC81F2731E800D05E4D /* IQNSArray+Sort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQNSArray+Sort.m"; sourceTree = "<group>"; };
 		18AF1AC91F2731E800D05E4D /* IQUIScrollView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIScrollView+Additions.h"; sourceTree = "<group>"; };
@@ -1368,6 +1371,7 @@
 		18C277FA1FAC5A18001A9BE0 /* JZAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAlbumViewController.m; sourceTree = "<group>"; };
 		18C277FB1FAC5A18001A9BE0 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
 		18C277FC1FAC5A18001A9BE0 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
+		18C7A8981FEBA6C300164CDA /* icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = icon.jpg; sourceTree = "<group>"; };
 		18E5D0E01F8DAF6600F9CCDA /* LsWrittenHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenHeaderView.h; sourceTree = "<group>"; };
 		18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsWrittenHeaderView.m; sourceTree = "<group>"; };
 		18E5D0E31F8E050600F9CCDA /* LsWrittenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsWrittenTableViewCell.h; sourceTree = "<group>"; };
@@ -2351,6 +2355,8 @@
 		184CA1681F27199F00ACB807 = {
 			isa = PBXGroup;
 			children = (
+				18C7A8981FEBA6C300164CDA /* icon.jpg */,
+				18A8062E1FEA4F1C00F06521 /* banner.jpg */,
 				18E82D631F37FB9400D3154B /* Interview */,
 				18E82D6A1F37FCAE00D3154B /* WrittenExamination */,
 				18E82D781F37FE1000D3154B /* Find */,
@@ -3788,6 +3794,7 @@
 				180BCFAA1F5D3E53001EE331 /* chat_em_face17@3x.png in Resources */,
 				180BCFAC1F5D3E53001EE331 /* chat_em_face18@3x.png in Resources */,
 				180BD0291F5D4344001EE331 /* return_ic_playon@3x.png in Resources */,
+				18C7A8991FEBA6C400164CDA /* icon.jpg in Resources */,
 				180BCFC11F5D3E53001EE331 /* chat_em_face9@2X.png in Resources */,
 				180BD0AB1F5D4A1B001EE331 /* gift_pic@2x.png in Resources */,
 				180BCFD01F5D3E53001EE331 /* home_ic_beauty_nor@3x.png in Resources */,
@@ -3858,6 +3865,7 @@
 				180BCFCC1F5D3E53001EE331 /* default_ic_go_nor@3x.png in Resources */,
 				180BCF8A1F5D3E53001EE331 /* chat_bg_photo_nor@3x.png in Resources */,
 				180BCF9E1F5D3E53001EE331 /* chat_em_face11@3x.png in Resources */,
+				18A8062F1FEA4F1C00F06521 /* banner.jpg in Resources */,
 				180BCFC91F5D3E53001EE331 /* chat_img_photo_nor@2x.png in Resources */,
 				180BD0231F5D4344001EE331 /* return_ic_full_nor@3x.png in Resources */,
 				180BCFA81F5D3E53001EE331 /* chat_em_face16@3x.png in Resources */,

@@ -28,9 +28,9 @@
         baseView.backgroundColor =[UIColor whiteColor];
         [self addSubview:baseView];
         
-        UIView *leftView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 2.5, baseView.frame.size.height)];
-        leftView.backgroundColor =LSNavColor;
-        [baseView addSubview:leftView];
+//        UIView *leftView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 2.5, baseView.frame.size.height)];
+//        leftView.backgroundColor =LSNavColor;
+//        [baseView addSubview:leftView];
         
         self.leftLabel                      = [[UILabel alloc] init];
         self.leftLabel.numberOfLines        = 0;

@@ -52,7 +52,7 @@ static NSString* BeeCloudSecret = @"811671b6-34d6-4db5-b020-484dcc8bf844";
 -(void)initPay{
    [BeeCloud initWithAppID:BeeCloudID andAppSecret:BeeCloudSecret];
    [BeeCloud initWeChatPay:WXAppid];
- [BeeCloud initPayPal:@"AVT1Ch18aTIlUJIeeCxvC7ZKQYHczGwiWm8jOwhrREc4a5FnbdwlqEB4evlHPXXUA67RAAZqZM0H8TCR"
+   [BeeCloud initPayPal:@"AVT1Ch18aTIlUJIeeCxvC7ZKQYHczGwiWm8jOwhrREc4a5FnbdwlqEB4evlHPXXUA67RAAZqZM0H8TCR"
                   secret:@"EL-fkjkEUyxrwZAmrfn46awFXlX-h2nRkyCVhhpeVdlSRuhPJKXx3ZvUTTJqPQuAeomXA8PZ2MkX24vF"
                  sandbox:YES];
 }
@@ -89,8 +89,7 @@ static NSString* BeeCloudSecret = @"811671b6-34d6-4db5-b020-484dcc8bf844";
     
 }
 
-- (void)configUSharePlatforms
-{
+- (void)configUSharePlatforms{
     //WX
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:WXAppid appSecret:WXSecret redirectURL:nil];
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatTimeLine appKey:WXAppid appSecret:WXSecret redirectURL:nil];
@@ -178,7 +177,13 @@ static NSString* BeeCloudSecret = @"811671b6-34d6-4db5-b020-484dcc8bf844";
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
     if (![BeeCloud handleOpenUrl:url]) {
         //handle其他类型的url
+        BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+        if (!result) {
+            // 其他如支付等SDK的回调
+        }
+        return result;
     }
+
     return YES;
 }
 
