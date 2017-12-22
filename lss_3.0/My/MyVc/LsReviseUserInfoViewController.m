@@ -10,6 +10,7 @@
 #import "LsConfigureViewController.h"
 #import "LsLoginViewController.h"
 #import "LSLabel+TextField.h"
+#import "LsChangePassWordViewController.h"
 
 @interface LsReviseUserInfoViewController ()<UITextFieldDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
@@ -185,15 +186,16 @@
         [logoutBtn addTarget:self action:@selector(clickLogoutBtn) forControlEvents:UIControlEventTouchUpInside];
         [superView addSubview:logoutBtn];
         
-        UIButton  *passwordBtn  =[[UIButton alloc] initWithFrame:CGRectMake(50*LSScale, CGRectGetMinY(logoutBtn.frame)-50*LSScale,LSMainScreenW-100*LSScale, 32*LSScale)];
-        passwordBtn.titleLabel.font  =[UIFont systemFontOfSize:14*LSScale];
-        [passwordBtn setTitle:@"修改密码" forState:0];
-        [passwordBtn setTitleColor:[UIColor whiteColor] forState:0];
-        passwordBtn.layer.cornerRadius   =10*LSScale;
-        passwordBtn.layer.backgroundColor =LSNavColor.CGColor;
-        [passwordBtn addTarget:self action:@selector(clickpasswordBtn) forControlEvents:UIControlEventTouchUpInside];
-        [superView addSubview:passwordBtn];
-        
+        if (![[LSUser_Default objectForKey:@"thirdLogin"] isEqualToString:@"yes"]) {
+            UIButton  *passwordBtn  =[[UIButton alloc] initWithFrame:CGRectMake(50*LSScale, CGRectGetMinY(logoutBtn.frame)-50*LSScale,LSMainScreenW-100*LSScale, 32*LSScale)];
+            passwordBtn.titleLabel.font  =[UIFont systemFontOfSize:14*LSScale];
+            [passwordBtn setTitle:@"修改密码" forState:0];
+            [passwordBtn setTitleColor:[UIColor whiteColor] forState:0];
+            passwordBtn.layer.cornerRadius   =10*LSScale;
+            passwordBtn.layer.backgroundColor =LSNavColor.CGColor;
+            [passwordBtn addTarget:self action:@selector(clickpasswordBtn) forControlEvents:UIControlEventTouchUpInside];
+            [superView addSubview:passwordBtn];
+        }
     }
 }
 
@@ -227,7 +229,8 @@
 }
 
 -(void)clickpasswordBtn{
-    [LsMethod alertMessage:@"修改密码" WithTime:1.5];
+    LsChangePassWordViewController *vc =[[LsChangePassWordViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)clickChangeBtn{
@@ -349,7 +352,7 @@
         [dict setObject:face forKey:@"face"];
     }
     
-    if (dict.count==0) {
+    if (dict.count!=0) {
         [[LsAFNetWorkTool shareManger]  LSPOST:@"updateuser.html" parameters:dict success:^(NSURLSessionDataTask * task, id responseObject) {
             [LsMethod alertMessage:@"更新成功" WithTime:1.5];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {

@@ -38,7 +38,7 @@ static NSString * headerReuseIdentifier = @"header";
 }
 
 -(void)initData{
-    headerArray               =@[@"已开通线下分校省份",@"其他省份 (暂时没有线下分校,但是学习内容依然完善)"];
+    headerArray               =@[@"热门省份",@"其他省份"];
     allDataArray              =[NSMutableArray array];
     NSMutableArray *openedArr =[NSMutableArray array];
     NSMutableArray *closedArr =[NSMutableArray array];
@@ -188,17 +188,17 @@ static NSString * headerReuseIdentifier = @"header";
         headerView.label.text      =headerArray[indexPath.section];
         headerView.label.textColor =[UIColor darkTextColor];
         headerView.label.font      =[UIFont systemFontOfSize:13];
-        if (indexPath.section==1) {
-            NSString *str=headerArray[indexPath.section];
-            NSMutableAttributedString *attributedString=[[NSMutableAttributedString alloc]initWithString:str];
-            [attributedString addAttribute:NSForegroundColorAttributeName
-                                     value:LSColor(102, 102, 102, 1)
-                                     range:NSMakeRange(5,str.length-5)];
-            [attributedString addAttribute:NSFontAttributeName
-                                     value:[UIFont systemFontOfSize:11]
-                                     range:NSMakeRange(5,str.length-5)];
-            headerView.label.attributedText=attributedString;
-        }
+//        if (indexPath.section==1) {
+//            NSString *str=headerArray[indexPath.section];
+//            NSMutableAttributedString *attributedString=[[NSMutableAttributedString alloc]initWithString:str];
+//            [attributedString addAttribute:NSForegroundColorAttributeName
+//                                     value:LSColor(102, 102, 102, 1)
+//                                     range:NSMakeRange(5,str.length-5)];
+//            [attributedString addAttribute:NSFontAttributeName
+//                                     value:[UIFont systemFontOfSize:11]
+//                                     range:NSMakeRange(5,str.length-5)];
+//            headerView.label.attributedText=attributedString;
+//        }
         reusableview = headerView;
     }
     return reusableview;

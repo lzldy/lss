@@ -356,6 +356,7 @@
 		180BD10F1F5D7E5B001EE331 /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 180BD10D1F5D7E5B001EE331 /* loading@3x.gif */; };
 		181524861F64C7DC00E23257 /* LsVideotapeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181524851F64C7DC00E23257 /* LsVideotapeViewController.m */; };
 		181524891F64E1AF00E23257 /* LsRecordingCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181524881F64E1AF00E23257 /* LsRecordingCompletedViewController.m */; };
+		181B31111FEC966E0048AFC5 /* LsChangePassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181B31101FEC966E0048AFC5 /* LsChangePassWordViewController.m */; };
 		181EBA341FE4C29300A70202 /* LsMessageCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EBA331FE4C29300A70202 /* LsMessageCenterViewController.m */; };
 		181EBA371FE4C41E00A70202 /* LsMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EBA361FE4C41E00A70202 /* LsMessageModel.m */; };
 		181EBA3A1FE4CD6900A70202 /* LsMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 181EBA391FE4CD6900A70202 /* LsMessageTableViewCell.m */; };
@@ -1100,6 +1101,8 @@
 		181524851F64C7DC00E23257 /* LsVideotapeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsVideotapeViewController.m; sourceTree = "<group>"; };
 		181524871F64E1AF00E23257 /* LsRecordingCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsRecordingCompletedViewController.h; sourceTree = "<group>"; };
 		181524881F64E1AF00E23257 /* LsRecordingCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsRecordingCompletedViewController.m; sourceTree = "<group>"; };
+		181B310F1FEC966E0048AFC5 /* LsChangePassWordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsChangePassWordViewController.h; sourceTree = "<group>"; };
+		181B31101FEC966E0048AFC5 /* LsChangePassWordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsChangePassWordViewController.m; sourceTree = "<group>"; };
 		181EBA321FE4C29300A70202 /* LsMessageCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsMessageCenterViewController.h; sourceTree = "<group>"; };
 		181EBA331FE4C29300A70202 /* LsMessageCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsMessageCenterViewController.m; sourceTree = "<group>"; };
 		181EBA351FE4C41E00A70202 /* LsMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsMessageModel.h; sourceTree = "<group>"; };
@@ -2236,6 +2239,8 @@
 			children = (
 				184335211F333B4500A53585 /* LsLoginViewController.h */,
 				184335221F333B4500A53585 /* LsLoginViewController.m */,
+				181B310F1FEC966E0048AFC5 /* LsChangePassWordViewController.h */,
+				181B31101FEC966E0048AFC5 /* LsChangePassWordViewController.m */,
 				184335241F333C2300A53585 /* LsGuidePageViewController.h */,
 				184335251F333C2300A53585 /* LsGuidePageViewController.m */,
 				184335791F3419D300A53585 /* LsConfigureViewController.h */,
@@ -4190,6 +4195,7 @@
 				1854F5331F37024A00E1F603 /* SDWebImageDownloader.m in Sources */,
 				1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */,
 				180BCA641F5D051C001EE331 /* QuestionTextField.m in Sources */,
+				181B31111FEC966E0048AFC5 /* LsChangePassWordViewController.m in Sources */,
 				184335871F34A84D00A53585 /* LsBaseCollectionViewCell.m in Sources */,
 				180BCA5B1F5D051C001EE331 /* CustomTextField.m in Sources */,
 				18FEF8911F52C6F300F74BB6 /* BCPayReq.m in Sources */,

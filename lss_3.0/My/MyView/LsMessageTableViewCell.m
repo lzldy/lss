@@ -46,13 +46,20 @@
     return self;
 }
 
-
 -(void)reloadCellWithData:(LsMessageModel*)data{
     title_.text         =data.title;
-    detailTitle_.text   =data.createTime;
-    CGSize  size        =[LsMethod sizeWithString:data.createTime font:detailTitle_.font];
-    detailTitle_.frame  =CGRectMake(LSMainScreenW-10*LSScale-size.width, 10*LSScale, size.width, 30*LSScale);
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];//解决8小时时间差问题
+    NSDate *birthdayDate = [dateFormatter dateFromString:data.createTime];
+    
+    NSString *time      =[LsMethod dateStrFromDate:birthdayDate AndFormat:@"yyyy-MM-dd"];
+    CGSize  size        =[LsMethod sizeWithString:time font:detailTitle_.font];
+    detailTitle_.frame  =CGRectMake(LSMainScreenW-10*LSScale-size.width, 10*LSScale,size.width, 30*LSScale);
+    detailTitle_.text   =time;
+    
+    title_.frame        =CGRectMake(title_.frame.origin.x, title_.frame.origin.y, CGRectGetMinX(detailTitle_.frame)-20*LSScale, title_.frame.size.height);
 }
 
 - (void)awakeFromNib {
@@ -62,8 +69,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

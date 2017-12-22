@@ -125,7 +125,7 @@
     goodBtn.tag   =765;
     goodBtn.adjustsImageWhenHighlighted = NO;
     [goodBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-    if (self.didZan) {
+    if (self.model.myzan) {
         goodBtn.selected =YES;
     }
     [headerView addSubview:goodBtn];

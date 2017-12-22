@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.navTitle      =@"我的钱包";
+    self.navView.navTitle      =@"我的订单";
     superView.backgroundColor  =LSColor(243, 244, 245, 1);
     [self loadBaseUI];
     [self getData];

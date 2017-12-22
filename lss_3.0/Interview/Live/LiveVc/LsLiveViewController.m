@@ -152,14 +152,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     LsLiveModel *modelll =[[LsLiveModel alloc] init];
     if (tableView.tag==10010) {
-        modelll =self.interviewDataArray[indexPath.row];
+        if (self.interviewDataArray.count>0) {
+            modelll =self.interviewDataArray[indexPath.row];
+        }else{
+            modelll =nil;
+        }
     }else{
-        modelll =self.writtenDataArray[indexPath.row];
+        if (self.writtenDataArray.count>0) {
+            modelll =self.writtenDataArray[indexPath.row];
+        }else{
+            modelll =nil;
+        }
     }
-    LsLiveDetailViewController *detailVc =[[LsLiveDetailViewController alloc] init];
-    detailVc.crcode                      =modelll.code;
-    detailVc.personNum                   =modelll.personNum;
-    [self.navigationController pushViewController:detailVc animated:YES];
+    if (modelll) {
+        LsLiveDetailViewController *detailVc =[[LsLiveDetailViewController alloc] init];
+        detailVc.crcode                      =modelll.code;
+        detailVc.personNum                   =modelll.personNum;
+        [self.navigationController pushViewController:detailVc animated:YES];
+    }
 }
 
 #pragma - mark -    上下拉刷新

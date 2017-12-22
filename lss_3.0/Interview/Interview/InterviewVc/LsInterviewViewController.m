@@ -181,7 +181,7 @@
             praVc.code_                           =model.code;
             praVc.authorType                      =model.authorType;
 //            praVc.videoID                         =model.videoId;
-            praVc.didZan                          =model.myzan;
+//            praVc.didZan                          =model.myzan;
             [self.navigationController pushViewController:praVc animated:YES];
     }
 }

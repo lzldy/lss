@@ -12,6 +12,7 @@
 #import "LsConfigureViewController.h"
 #import "LsWebViewController.h"
 #import "LSLabel+TextField.h" 
+#import "LsChangePassWordViewController.h"
 
 @interface LsLoginViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
@@ -168,6 +169,11 @@
 
 -(void)didClickForgotBtn{
     LsLog(@"---------didClickForgotBtn--------");
+    LsChangePassWordViewController *vc =[[LsChangePassWordViewController alloc] init];
+    vc.modalPresentationStyle =UIModalPresentationCustom;
+    vc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;
+    vc.isForgot               =YES;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)sigleTappedPickerView:(UIGestureRecognizer *)sender{
@@ -322,7 +328,9 @@
         NSString      *token         =[usertokenDict  objectForKey:@"token"];
         [LSUser_Default setObject:uid   forKey:@"uid"];
         [LSUser_Default setObject:token forKey:@"token"];
-        
+        [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
+        [LSUser_Default setObject:@"yes" forKey:@"thirdLogin"];
+
         if (![LSUser_Default objectForKey:@"didConfig"]) {
             LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
             conVc.modalPresentationStyle =UIModalPresentationCustom;
