@@ -70,14 +70,12 @@
 
 -(void)headerRefresh{
     page =0;
-    
     [self getData];
     [self.tabView headerEndRefreshing];
 }
 
 -(void)footerRefresh{
     page ++;
-    NSLog(@"-----------------------------------------%ld",(long)page);
     [self getData];
     [self.tabView footerEndRefreshing];
 }

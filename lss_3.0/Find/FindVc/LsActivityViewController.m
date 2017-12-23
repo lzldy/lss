@@ -12,9 +12,12 @@
 #import "LsActivityModel.h"
 
 @interface LsActivityViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+{
+    NSInteger    page;
+}
 @property (nonatomic,strong)  UITableView              *tabView;
 @property (nonatomic,strong)  LsActivityModel          *model;
+@property (nonatomic,strong)  NSMutableArray           *dataArray;
 @end
 
 @implementation LsActivityViewController
@@ -29,9 +32,16 @@
 }
 
 -(void)getData{
-    NSDictionary *dict =@{@"catg3":@"INF"};
+    NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
+    [dict setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [dict setObject:@"INF" forKey:@"ctag3"];
     [[LsAFNetWorkTool shareManger] LSPOST:@"findcampaign.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model  =[LsActivityModel yy_modelWithJSON:responseObject];
+        if (page>0) {
+            [self.dataArray addObjectsFromArray:self.model.dataArray];
+        }else{
+            self.dataArray =[NSMutableArray arrayWithArray:self.model.dataArray];
+        }
         [self.tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -45,7 +55,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.model.dataArray.count;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -55,7 +65,7 @@
         cell = [[LsActivityTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    LsActivityModel  *model =self.model.dataArray[indexPath.row];
+    LsActivityModel  *model =self.dataArray[indexPath.row];
     [cell reloadCell:model];
     
     return cell;
@@ -72,12 +82,14 @@
 }
 
 -(void)headerRefresh{
-    [self.tabView reloadData];
+    page =0;
+    [self getData];
     [self.tabView headerEndRefreshing];
 }
 
 -(void)footerRefresh{
-    [self.tabView reloadData];
+    page ++;
+    [self getData];
     [self.tabView footerEndRefreshing];
 }
 
@@ -102,6 +114,13 @@
         _model  =[[LsActivityModel alloc] init];
     }
     return _model;
+}
+
+-(NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray  =[NSMutableArray array];
+    }
+    return _dataArray;
 }
 
 - (void)didReceiveMemoryWarning {

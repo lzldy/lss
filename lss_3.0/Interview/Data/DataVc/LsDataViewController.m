@@ -16,7 +16,8 @@
 {
     BOOL       isScroll;
     float      startY;
-
+    NSInteger  bkPage;
+    NSInteger  ksbPage;
 }
 @property (nonatomic,strong)  LsNavTabView             *topTabView;
 @property (nonatomic,strong)  UIScrollView             *scrView;
@@ -25,6 +26,9 @@
 
 @property (nonatomic,strong)  LsDataModel              *model;
 @property (nonatomic,strong)  LsDataModel              *model1;
+
+@property (nonatomic,strong)  NSMutableArray           *bkDataArray;
+@property (nonatomic,strong)  NSMutableArray           *ksbDataArray;
 
 @end
 
@@ -43,26 +47,42 @@
 }
 
 -(void)getDataOfBK{
-    NSDictionary *dict =@{@"ctag3":@"BK"};
+    NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
+    [dict setObject:[NSNumber numberWithInteger:bkPage] forKey:@"page"];
+    [dict setValue:@"BK" forKey:@"ctag3"];
+    
     [[LsAFNetWorkTool shareManger] LSPOST:@"listinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model =[LsDataModel yy_modelWithJSON:responseObject];
-        [self.tabView headerEndRefreshing];
-        [self.tabView reloadData];
         if (self.model.dataArray.count==0) {
             [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
+        }else{
+            if (bkPage>0) {
+                [self.bkDataArray addObjectsFromArray:self.model.dataArray];
+            }else{
+                self.bkDataArray =[NSMutableArray arrayWithArray:self.model.dataArray];
+            }
+            [self.tabView reloadData];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
 
 -(void)getDataOfKSB{
-    NSDictionary *dict =@{@"ctag3":@"KSB"};
+    NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
+    [dict setObject:[NSNumber numberWithInteger:ksbPage] forKey:@"page"];
+    [dict setValue:@"KSB" forKey:@"ctag3"];
+    
     [[LsAFNetWorkTool shareManger] LSPOST:@"listinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model1 =[LsDataModel yy_modelWithJSON:responseObject];
-        [self.tabView1 headerEndRefreshing];
-        [self.tabView1 reloadData];
         if (self.model1.dataArray.count==0) {
             [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
+        }else{
+            if (ksbPage>0) {
+                [self.ksbDataArray addObjectsFromArray:self.model1.dataArray];
+            }else{
+                self.ksbDataArray =[NSMutableArray arrayWithArray:self.model1.dataArray];
+            }
+            [self.tabView1 reloadData];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -76,9 +96,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView.tag==110) {
-        return self.model.dataArray.count;
+        return self.bkDataArray.count;
     }else{
-        return self.model1.dataArray.count;
+        return self.ksbDataArray.count;
     }
 }
 
@@ -90,9 +110,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     if (tableView.tag==110) {
-        [cell reloadCell:self.model.dataArray[indexPath.row]];
+        [cell reloadCell:self.bkDataArray[indexPath.row]];
     }else{
-        [cell reloadCell:self.model1.dataArray[indexPath.row]];
+        [cell reloadCell:self.ksbDataArray[indexPath.row]];
     }
     return cell;
 }
@@ -100,9 +120,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     LsDataDetailModel *model_          =[[LsDataDetailModel alloc] init];
     if (tableView.tag==110) {
-        model_ =self.model.dataArray[indexPath.row];
+        model_ =self.bkDataArray[indexPath.row];
     }else{
-        model_=self.model1.dataArray[indexPath.row];
+        model_=self.ksbDataArray[indexPath.row];
     }
     LsDataDetailViewController *dataVc =[[LsDataDetailViewController alloc] init];
     dataVc.title_                      =model_.title;
@@ -113,25 +133,30 @@
 #pragma - mark -    上下拉刷新
 -(void)headerRefresh{
     isScroll=NO;
+    bkPage  =0;
     [self getDataOfBK];
+    [self.tabView headerEndRefreshing];
 }
 
 -(void)footerRefresh{
     isScroll=NO;
     
-    [self.tabView reloadData];
+    bkPage ++;
+    [self getDataOfBK];
     [self.tabView footerEndRefreshing];
 }
 
 -(void)headerRefresh1{
-    isScroll=NO;
+    isScroll =NO;
+    ksbPage  =0;
     [self getDataOfKSB];
+    [self.tabView1 headerEndRefreshing];
 }
 
 -(void)footerRefresh1{
     isScroll=NO;
-    
-    [self.tabView1 reloadData];
+    ksbPage ++;
+    [self getDataOfKSB];
     [self.tabView1 footerEndRefreshing];
 }
 
@@ -140,10 +165,10 @@
     [self.scrView setContentOffset:CGPointMake(LSMainScreenW*index,0) animated:NO];
     if (index==0) {
         [self.tabView headerBeginRefreshing];
-        [self getDataOfBK];
+        [self headerRefresh];
     }else{
         [self.tabView1 headerBeginRefreshing];
-        [self getDataOfKSB];
+        [self headerRefresh1];
     }
 }
 
@@ -242,6 +267,20 @@
         _model1 =[[LsDataModel alloc] init];
     }
     return _model1;
+}
+
+-(NSMutableArray *)bkDataArray{
+    if (!_bkDataArray) {
+        _bkDataArray =[NSMutableArray array];
+    }
+    return _bkDataArray;
+}
+
+-(NSMutableArray *)ksbDataArray{
+    if (!_ksbDataArray) {
+        _ksbDataArray =[NSMutableArray array];
+    }
+    return _ksbDataArray;
 }
 
 - (void)didReceiveMemoryWarning {

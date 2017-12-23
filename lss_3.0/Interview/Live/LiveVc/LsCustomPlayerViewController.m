@@ -583,17 +583,27 @@
 }
 
 -(void)switchDefinition{
-    self.definitionButton.selected =!self.definitionButton.selected;
-    if (self.definitionButton.selected) {
-        [_definitionButton setTitle:@"高清" forState:UIControlStateNormal];
-        [_definitionButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-        self.qualityIndex =1;
+    if (self.model.videoModelArray.count>1) {
+        self.definitionButton.selected =!self.definitionButton.selected;
+        if (self.definitionButton.selected) {
+            [_definitionButton setTitle:@"高清" forState:UIControlStateNormal];
+            [_definitionButton setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+            self.qualityIndex =1;
+        }else{
+            [_definitionButton setTitle:@"清晰" forState:UIControlStateNormal];
+            [_definitionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            self.qualityIndex =0;
+        }
+        [self switchQuality:self.qualityIndex];
     }else{
-        [_definitionButton setTitle:@"清晰" forState:UIControlStateNormal];
-        [_definitionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        self.qualityIndex =0;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText =@"没有更高的清晰度";
+        hud.margin = 20.f;
+        hud.removeFromSuperViewOnHide = YES;
+        hud.transform=CGAffineTransformMakeRotation(M_PI/2);
+        [hud hide:YES afterDelay:1.5];
     }
-    [self switchQuality:self.qualityIndex];
 }
 
 //切换清晰度

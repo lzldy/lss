@@ -206,8 +206,10 @@
     [self.scrView setContentOffset:CGPointMake(LSMainScreenW*index,0) animated:NO];
     if (index==0) {
         [self.interviewTabView headerBeginRefreshing];
+        [self interviewTabViewHeaderRefresh];
     }else{
         [self.writtenTabView headerBeginRefreshing];
+        [self writtenTabViewHeaderRefresh];
     }
 }
 

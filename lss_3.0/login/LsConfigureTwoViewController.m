@@ -116,7 +116,7 @@ static NSString * headerReuseIdentifier = @"header";
             rowNum =1+rowNum;
         }
     }
-    myCollectionView.frame =CGRectMake(20,myCollectionView.frame.origin.y, LSMainScreenW-40,30*2+30+35*rowNum+20);
+    myCollectionView.frame =CGRectMake(20,myCollectionView.frame.origin.y, LSMainScreenW-40,30*2+30+35*rowNum+28*LSScale);
     saveBtn.frame =CGRectMake(35, CGRectGetMaxY(myCollectionView.frame)+ 30, LSMainScreenW-70, 35*LSScale);
     bottomL.frame =CGRectMake(35, CGRectGetMaxY(saveBtn.frame)+10, LSMainScreenW-70, 20*LSScale);
     [scrollView setContentSize:CGSizeMake(LSMainScreenW, CGRectGetMaxY(bottomL.frame)+65)];

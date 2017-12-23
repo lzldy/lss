@@ -15,7 +15,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         mageer = [[LsAFNetWorkTool alloc] init];
-        mageer.requestSerializer.timeoutInterval=60;
+        mageer.requestSerializer.timeoutInterval=120;
         mageer.securityPolicy =[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     });
     return mageer;

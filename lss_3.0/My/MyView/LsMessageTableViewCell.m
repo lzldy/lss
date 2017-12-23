@@ -41,7 +41,6 @@
         UIView  *line          =[[UIView alloc] initWithFrame:CGRectMake(0, baseView.frame.size.height-0.5*LSScale, LSMainScreenW, 0.5*LSScale)];
         line.backgroundColor  =LSLineColor;
         [baseView addSubview:line];
-        
     }
     return self;
 }

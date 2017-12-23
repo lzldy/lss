@@ -79,7 +79,10 @@
     introduceImageView.contentMode   =UIViewContentModeScaleAspectFit;
     [introduceImageView sd_setImageWithURL:self.iconUrl placeholderImage:bannerImage options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize){
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
-        [self.scrView setContentSize:CGSizeMake(LSMainScreenW, image.size.height)];
+        introduceImageView.contentMode   =UIViewContentModeScaleAspectFill;
+        CGFloat  height                  =image.size.height*LSMainScreenW/image.size.width;
+        introduceImageView.frame         =CGRectMake(0, 0, self.scrView.frame.size.width, height);
+        [self.scrView setContentSize:CGSizeMake(LSMainScreenW, introduceImageView.frame.size.height)];
     }];
     [self.scrView addSubview:introduceImageView];
 //

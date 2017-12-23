@@ -75,7 +75,9 @@
     imageview.contentMode =UIViewContentModeScaleAspectFit;
     if (_model.info_imglist.count>0) {
         [imageview sd_setImageWithURL:[NSURL URLWithString:_model.info_imglist[0]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            [_backgroundView setContentSize:CGSizeMake(LSMainScreenW,image.size.height)];
+            CGFloat  height  =image.size.height*LSMainScreenW/image.size.width;
+            imageview.frame  =CGRectMake(0, CGRectGetMaxY(line.frame), LSMainScreenW, height);
+            [_backgroundView setContentSize:CGSizeMake(LSMainScreenW,imageview.frame.size.height)];
         }];
     }
     [_backgroundView addSubview:imageview];
