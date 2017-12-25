@@ -61,8 +61,7 @@
 -(void)fromDict:(NSDictionary *)dict{
     NSMutableArray *dataArray =[NSMutableArray array];
     for (int i = 0; i<self.catgs.count; i++) {
-        LsCatgConfigureModel *model =[[LsCatgConfigureModel alloc] init];
-        model          = self.catgs[i];
+        LsCatgConfigureModel *model = self.catgs[i];
         NSString *ID   = model.id_;
         NSString *key  = [NSString stringWithFormat:@"scatgs-%@",ID];
         NSArray  *arr  = [[dict objectForKey:@"data"] objectForKey:key];

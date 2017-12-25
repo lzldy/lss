@@ -41,7 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.navTitle =@"";
+    self.navView.navTitle =@"备考";
     superView.backgroundColor  =LSColor(243, 244, 245, 1);
     [self getBannerData];
     [self getUserInfo];
@@ -68,7 +68,10 @@
 }
 
 -(void)getUserInfo{
-
+    [[LsAFNetWorkTool shareManger]  LSPOST:@"getusersetting.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [[LsSingleton sharedInstance]  yy_modelSetWithJSON:responseObject];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 -(void)initData{

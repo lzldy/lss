@@ -118,7 +118,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LsDataDetailModel *model_          =[[LsDataDetailModel alloc] init];
+    LsDataDetailModel *model_;
     if (tableView.tag==110) {
         model_ =self.bkDataArray[indexPath.row];
     }else{
@@ -177,7 +177,7 @@
     BOOL  upDown = false;
     if (currentPostion - startY > 0 ||startY - currentPostion > 0) {
         startY = currentPostion;
-        upDown=YES;
+        upDown = YES;
     }else{
         float index =scrollView.contentOffset.x/LSMainScreenW;
         if (isScroll&&!upDown) {

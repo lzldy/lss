@@ -352,6 +352,7 @@ typedef NSInteger DWPLayerScreenSizeMode;
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:YES];
     LsLog(@"stop movie");
     [self.playerView cancelRequestPlayInfo];
     if (!_adPlay) {

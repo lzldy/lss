@@ -458,6 +458,8 @@
 		1854F5651F37088C00E1F603 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F5491F37088C00E1F603 /* AFURLResponseSerialization.m */; };
 		1854F5661F37088C00E1F603 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F54B1F37088C00E1F603 /* AFURLSessionManager.m */; };
 		1854F5721F3709DD00E1F603 /* LsAFNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */; };
+		1861DC1F1FF0892300C6A015 /* LsPlaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861DC1E1FF0892300C6A015 /* LsPlaceView.m */; };
+		1861DC221FF0C01C00C6A015 /* LsPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861DC211FF0C01C00C6A015 /* LsPlaceModel.m */; };
 		18710D711FE26DC100F6BC96 /* LsActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18710D701FE26DC100F6BC96 /* LsActivityModel.m */; };
 		1877BD001F4D6646001F8EBD /* LsLiveDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */; };
 		1888C4B21FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888C4B11FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m */; };
@@ -1298,6 +1300,10 @@
 		1854F54B1F37088C00E1F603 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		1854F5701F3709DD00E1F603 /* LsAFNetWorkTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsAFNetWorkTool.h; sourceTree = "<group>"; };
 		1854F5711F3709DD00E1F603 /* LsAFNetWorkTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsAFNetWorkTool.m; sourceTree = "<group>"; };
+		1861DC1D1FF0892300C6A015 /* LsPlaceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsPlaceView.h; sourceTree = "<group>"; };
+		1861DC1E1FF0892300C6A015 /* LsPlaceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsPlaceView.m; sourceTree = "<group>"; };
+		1861DC201FF0C01C00C6A015 /* LsPlaceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsPlaceModel.h; sourceTree = "<group>"; };
+		1861DC211FF0C01C00C6A015 /* LsPlaceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsPlaceModel.m; sourceTree = "<group>"; };
 		18710D6F1FE26DC100F6BC96 /* LsActivityModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsActivityModel.h; sourceTree = "<group>"; };
 		18710D701FE26DC100F6BC96 /* LsActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsActivityModel.m; sourceTree = "<group>"; };
 		1877BCFE1F4D6646001F8EBD /* LsLiveDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailHeaderView.h; sourceTree = "<group>"; };
@@ -2900,6 +2906,8 @@
 			children = (
 				181EBA471FE4F74300A70202 /* LsQuestionsModel.h */,
 				181EBA481FE4F74300A70202 /* LsQuestionsModel.m */,
+				1861DC201FF0C01C00C6A015 /* LsPlaceModel.h */,
+				1861DC211FF0C01C00C6A015 /* LsPlaceModel.m */,
 			);
 			path = WrittenExaminationModel;
 			sourceTree = "<group>";
@@ -2916,6 +2924,8 @@
 		18E82D6F1F37FCAE00D3154B /* WrittenExaminationView */ = {
 			isa = PBXGroup;
 			children = (
+				1861DC1D1FF0892300C6A015 /* LsPlaceView.h */,
+				1861DC1E1FF0892300C6A015 /* LsPlaceView.m */,
 				18E5D0E01F8DAF6600F9CCDA /* LsWrittenHeaderView.h */,
 				18E5D0E11F8DAF6600F9CCDA /* LsWrittenHeaderView.m */,
 				18E5D0E31F8E050600F9CCDA /* LsWrittenTableViewCell.h */,
@@ -4247,6 +4257,7 @@
 				1854F5311F37024A00E1F603 /* SDWebImageCompat.m in Sources */,
 				18FEF8B51F52C6F300F74BB6 /* NSString+IsValid.m in Sources */,
 				1854F53B1F37024A00E1F603 /* UIImageView+HighlightedWebCache.m in Sources */,
+				1861DC1F1FF0892300C6A015 /* LsPlaceView.m in Sources */,
 				18C277F61FAC4F8F001A9BE0 /* LsProFormaModel.m in Sources */,
 				181EBA491FE4F74300A70202 /* LsQuestionsModel.m in Sources */,
 				18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */,
@@ -4260,6 +4271,7 @@
 				180BD0301F5D44D1001EE331 /* PlayBackVC.m in Sources */,
 				18FEF89A1F52C6F300F74BB6 /* BCQueryBillsResp.m in Sources */,
 				18FEF8A11F52C6F300F74BB6 /* BCQueryRefundsCountReq.m in Sources */,
+				1861DC221FF0C01C00C6A015 /* LsPlaceModel.m in Sources */,
 				18E5D0E81F8E0E3F00F9CCDA /* LsDataTableViewCell.m in Sources */,
 				18C277FE1FAC5A18001A9BE0 /* PhotoView.m in Sources */,
 				180BCA611F5D051C001EE331 /* MySlider.m in Sources */,

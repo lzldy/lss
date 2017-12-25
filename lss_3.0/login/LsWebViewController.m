@@ -19,6 +19,7 @@
 @implementation LsWebViewController
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
     self.navView.leftButton.hidden=NO;
 }
 

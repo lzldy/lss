@@ -24,6 +24,9 @@
     NSString          *face;//头像
 
     UIImageView       *headerImageV;
+    UIImage           *headerImage;
+    UILabel           *phoneL;
+    UILabel           *nameLabel;
 }
 
 @property (nonatomic,strong) UIImagePickerController *imagePickerController;
@@ -31,6 +34,23 @@
 @end
 
 @implementation LsReviseUserInfoViewController
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    headerImage        =LOADIMAGE(@"touxiang_icon");
+    [headerImageV sd_setImageWithURL:[LsSingleton sharedInstance].user.face placeholderImage:headerImage];
+    if ([LsSingleton sharedInstance].user.mobile) {
+        phoneL.text           =[LsSingleton sharedInstance].user.mobile;
+    }else{
+        phoneL.text           =@"手机号";
+    }
+    
+    if ([LsSingleton sharedInstance].user.nickName) {
+        nameLabel.text           =[LsSingleton sharedInstance].user.nickName;
+    }else{
+        nameLabel.text           =@"姓名";
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,10 +73,11 @@
     backImageV.image        =image;
     [superView addSubview:backImageV];
     
-    UIImage     *headerImage        =LOADIMAGE(@"touxiang_icon");
     headerImageV       =[[UIImageView alloc] initWithFrame:CGRectMake(LSMainScreenW/2-75*LSScale, CGRectGetMaxY(self.navView.frame)+20*LSScale, 70*LSScale,70*LSScale)];
     headerImageV.layer.cornerRadius =35*LSScale;
     headerImageV.layer.masksToBounds=YES;
+    [headerImageV sd_setImageWithURL:[LsSingleton sharedInstance].user.face placeholderImage:headerImage];
+
     [superView addSubview:headerImageV];
     
     UILabel  *label      =[[UILabel alloc] initWithFrame:CGRectMake(15*LSScale, CGRectGetMaxY(backImageV.frame)+10*LSScale, LSMainScreenW-30*LSScale, 30*LSScale)];
@@ -66,8 +87,6 @@
     
     if (self.isDetailRevise) {
         headerImageV.frame      =CGRectMake(LSMainScreenW/2-35*LSScale,CGRectGetMaxY(self.navView.frame)+20*LSScale, 70*LSScale, 70*LSScale);
-        [headerImageV sd_setImageWithURL:nil placeholderImage:headerImage];
-        
         UIButton   *headerBtn   =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW/2-80*LSScale, CGRectGetMaxY(headerImageV.frame)+5*LSScale, 160*LSScale, 30*LSScale)];
         [headerBtn setTitle:@"点击上传头像" forState:0];
         [headerBtn setTitleColor:[UIColor whiteColor] forState:0];
@@ -123,19 +142,26 @@
         [superView addSubview:textView_];
         
     }else{
-        [headerImageV sd_setImageWithURL:nil placeholderImage:headerImage];
         
-        UILabel  *phoneL      =[[UILabel alloc] initWithFrame:CGRectMake(LSMainScreenW/2+5*LSScale, CGRectGetMidY(headerImageV.frame)-20*LSScale, LSMainScreenW/2, 20*LSScale)];
+        phoneL      =[[UILabel alloc] initWithFrame:CGRectMake(LSMainScreenW/2+5*LSScale, CGRectGetMidY(headerImageV.frame)-20*LSScale, LSMainScreenW/2, 20*LSScale)];
         phoneL.textAlignment  =NSTextAlignmentLeft;
-        phoneL.text           =@"18010138169";
+        if ([LsSingleton sharedInstance].user.mobile) {
+            phoneL.text           =[LsSingleton sharedInstance].user.mobile;
+        }else{
+            phoneL.text           =@"手机号";
+        }
         phoneL.textColor      =[UIColor whiteColor];
         [superView addSubview:phoneL];
         
-        UILabel  *nameL      =[[UILabel alloc] initWithFrame:CGRectMake(LSMainScreenW/2+5*LSScale, CGRectGetMidY(headerImageV.frame), LSMainScreenW/2, 20*LSScale)];
-        nameL.textAlignment  =NSTextAlignmentLeft;
-        nameL.text           =@"小波";
-        nameL.textColor      =[UIColor whiteColor];
-        [superView addSubview:nameL];
+        nameLabel      =[[UILabel alloc] initWithFrame:CGRectMake(LSMainScreenW/2+5*LSScale, CGRectGetMidY(headerImageV.frame), LSMainScreenW/2, 20*LSScale)];
+        nameLabel.textAlignment  =NSTextAlignmentLeft;
+        if ([LsSingleton sharedInstance].user.nickName) {
+            nameLabel.text           =[LsSingleton sharedInstance].user.nickName;
+        }else{
+            nameLabel.text           =@"姓名";
+        }
+        nameLabel.textColor      =[UIColor whiteColor];
+        [superView addSubview:nameLabel];
         
         label.text           =@"我的属性配置";
         
@@ -148,6 +174,8 @@
         }
         if ([LsMethod haveValue:[[LSUser_Default objectForKey:@"配置"] objectForKey:@"科目"]]) {
             [array addObject:[[LSUser_Default objectForKey:@"配置"] objectForKey:@"科目"]];
+        }else{
+            
         }
         if ([LsMethod haveValue:[[LSUser_Default objectForKey:@"配置"] objectForKey:@"分校"]]) {
             [array addObject:[[LSUser_Default objectForKey:@"配置"] objectForKey:@"分校"]];
@@ -355,9 +383,17 @@
     if (dict.count!=0) {
         [[LsAFNetWorkTool shareManger]  LSPOST:@"updateuser.html" parameters:dict success:^(NSURLSessionDataTask * task, id responseObject) {
             [LsMethod alertMessage:@"更新成功" WithTime:1.5];
+            [self getUserInfo];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
         }];
     }
+}
+
+-(void)getUserInfo{
+    [[LsAFNetWorkTool shareManger]  LSPOST:@"getusersetting.html" parameters:nil success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [[LsSingleton sharedInstance]  yy_modelSetWithJSON:responseObject];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
@@ -370,7 +406,7 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     if (![LsMethod haveValue:textView.text]||[textView.text isEqualToString:@" 留下属于自己的签名~~~"]) {
-        textView.text        =@"  ";
+        textView.text        =@"";
     }
     textView.textColor   =[UIColor darkGrayColor];
 }

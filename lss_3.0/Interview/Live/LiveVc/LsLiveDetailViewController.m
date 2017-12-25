@@ -210,8 +210,7 @@
     }
     cell.delegate=self;
     if (self.model.courseArrangement.count>0) {
-        LsCourseArrangementModel *modelll =[[LsCourseArrangementModel alloc] init];
-        modelll  =self.model.courseArrangement[indexPath.row];
+        LsCourseArrangementModel *modelll =self.model.courseArrangement[indexPath.row];
         modelll.mybuy =self.model.mybuy;
         if (self.model.courseArrangement.count>1) {
             [cell reloadCell:modelll isMore:YES];

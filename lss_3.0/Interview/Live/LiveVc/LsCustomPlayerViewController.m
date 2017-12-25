@@ -689,6 +689,7 @@
     [self showAllView];
 }
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
     LsLog(@"----------------stop movie-----------------");
     if (self.playerView.playing) {
         [self playVideoButton:self.playButton];

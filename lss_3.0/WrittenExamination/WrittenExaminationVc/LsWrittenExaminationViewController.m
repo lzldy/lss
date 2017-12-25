@@ -13,11 +13,18 @@
 #import "LsLiveTableViewCell.h"
 #import "LsQuestionsModel.h"
 #import "LsDataDetailViewController.h"
+#import "LsPlaceView.h"
+#import "LsPlaceModel.h"
 
-@interface LsWrittenExaminationViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+@interface LsWrittenExaminationViewController ()<UITableViewDelegate,UITableViewDataSource,placeViewDelegate>
+{
+    NSString  *cityName;
+}
 @property (nonatomic,strong) UITableView      *tabView;
 @property (nonatomic,strong) LsQuestionsModel *model;
+@property (nonatomic,strong) LsPlaceView      *placeView;
+@property (nonatomic,strong) LsPlaceModel     *placeModel;
+
 @end
 
 @implementation LsWrittenExaminationViewController
@@ -28,11 +35,46 @@
     self.navView.navTitle     =@"针对性刷题";
     superView.backgroundColor =LSColor(243, 244, 245, 1);
     [self loadBaseUI];
+    [self getPlace];
     [self getData];
 }
 
 -(void)loadBaseUI{
+    self.navView.rightButton.frame  =CGRectMake(LSMainScreenW -80*LSScale, 20, 75*LSScale, 44);
+    [self.navView.rightButton setTitle:[LsSingleton sharedInstance].user.branchName forState:0];
+    [self.navView.rightButton addTarget:self action:@selector(clickRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     [superView addSubview:self.tabView];
+    [superView addSubview:self.placeView];
+}
+
+-(void)clickRightBtn:(UIButton*)btn{
+    btn.selected =!btn.selected;
+    if (btn.selected) {
+        self.placeView.hidden  = NO ;
+    }else{
+        self.placeView.hidden  = YES;
+    }
+}
+
+- (void)didClickBtnIndex:(NSInteger)index{
+    
+    LsPlaceModel *modelll             =self.placeModel.dataArray[index];
+    self.placeView.hidden             =YES;
+    self.navView.rightButton.selected =NO;
+    cityName                          =modelll.name;
+    [self.navView.rightButton setTitle:modelll.name forState:0];
+
+    [self getData];
+}
+
+-(void)getPlace{
+    NSString     *regionid =[LsSingleton sharedInstance].user.branchId;
+    NSDictionary *dict     =@{@"regionid":regionid};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"listregion.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.placeModel            =[LsPlaceModel yy_modelWithJSON:responseObject];
+        self.placeView.dataArray   =self.placeModel.dataArray;
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 -(void)getData{
@@ -54,7 +96,9 @@
     }
     
     [dict setObject:@"activity" forKey:@"mode"];
-//    [dict setObject:@"长沙" forKey:@"city"];
+    if ([LsMethod haveValue:cityName]) {
+        [dict setObject:cityName forKey:@"city"];
+    }
 //    [dict setObject:@"Y" forKey:@"needstatis"];
 
     [[LsAFNetWorkTool shareManger] LSPOST:@"qbpaperlib.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
@@ -156,6 +200,22 @@
         _model  =[[LsQuestionsModel alloc] init];
     }
     return _model;
+}
+
+-(LsPlaceView *)placeView{
+    if (!_placeView) {
+        _placeView  =[[LsPlaceView alloc]  initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 10*LSScale)];
+        _placeView.hidden    =YES;
+        _placeView.delegate  =self;
+    }
+    return _placeView;
+}
+
+-(LsPlaceModel *)placeModel{
+    if (!_placeModel) {
+        _placeModel   =[[LsPlaceModel alloc] init];
+    }
+    return _placeModel;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

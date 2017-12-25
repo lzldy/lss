@@ -190,7 +190,7 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     float currentPostion = scrollView.contentOffset.y;
-    BOOL  upDown = false;
+    BOOL  upDown =NO;
     if (currentPostion - startY > 0 ||startY - currentPostion > 0) {
         startY = currentPostion;
         upDown=YES;

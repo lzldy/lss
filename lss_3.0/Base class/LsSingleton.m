@@ -8,6 +8,15 @@
 
 #import "LsSingleton.h"
 
+@implementation Setting
+
+@end
+
+
+@implementation User
+
+@end
+
 @implementation LsSingleton
 
 +(LsSingleton *)sharedInstance{
@@ -19,6 +28,19 @@
         SharedInstance = [[LsSingleton alloc] init];
     });
     return SharedInstance;
+}
+
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"user"          : @"data.user",
+             @"setting"       : @"data.setting"
+             };
+}
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"user"          : [User      class],
+             @"setting"       : [Setting   class]
+             };
 }
 
 @end

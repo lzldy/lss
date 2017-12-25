@@ -19,7 +19,6 @@
         
         self.headerIcon                       =[[UIImageView alloc] initWithFrame:CGRectMake(10*LSScale, 10*LSScale, 60*LSScale, 60*LSScale)];
         self.headerIcon.layer.cornerRadius    =30*LSScale;
-        self.headerIcon.image                 =LOADIMAGE(@"touxiang_icon");
         self.headerIcon.layer.masksToBounds   =YES;
         [self addSubview:self.headerIcon];
         
@@ -54,7 +53,6 @@
         self.name                             =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale+CGRectGetMaxX(self.headerIcon.frame), CGRectGetMidY(self.headerIcon.frame)-20*LSScale, 80*LSScale, 20*LSScale)];
         self.name.textAlignment               = NSTextAlignmentLeft;
         self.name.font                        = [UIFont systemFontOfSize:14.5*LSScale];
-        self.name.text                        = @"齐天大圣";
         [self addSubview:self.name];
         
         self.autograph                        =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.name.frame), CGRectGetMaxY(self.name.frame), self.frame.size.width -CGRectGetMinX(self.name.frame)-20*LSScale, 30*LSScale)];
@@ -62,7 +60,11 @@
         self.autograph.font                   =[UIFont systemFontOfSize:12*LSScale];
         self.autograph.textAlignment          =NSTextAlignmentLeft;
         self.autograph.textColor              =[UIColor darkGrayColor];
-        self.autograph.text                   =@"我是花果山水帘洞美猴王齐天大圣孙悟空是也";
+        if ([LsSingleton sharedInstance].user.memo) {
+            self.autograph.text               =[LsSingleton sharedInstance].user.memo;
+        }else{
+            self.autograph.text               =@"快点来介绍下自己吧";
+        }
         [self addSubview:self.autograph];
         
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(sigleTappedView:)];
@@ -70,6 +72,23 @@
         [self addGestureRecognizer:singleTap];
     }
     return self;
+}
+
+-(void)setUesr:(User *)uesr{
+    _uesr  =uesr;
+    [self.headerIcon sd_setImageWithURL:_uesr.face placeholderImage:LOADIMAGE(@"touxiang_icon")];
+    
+    if ([LsMethod haveValue:_uesr.nickName]) {
+        self.name.text                   =_uesr.nickName;
+    }else{
+        self.name.text                   =@"姓名";
+    }
+
+    if ([LsMethod haveValue:_uesr.memo]) {
+        self.autograph.text               =_uesr.memo;
+    }else{
+        self.autograph.text               =@"快点来介绍下自己吧";
+    }
 }
 
 - (void)sigleTappedView:(UIGestureRecognizer *)sender{

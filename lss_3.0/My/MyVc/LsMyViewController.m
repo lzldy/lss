@@ -29,6 +29,12 @@
 
 @implementation LsMyViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.headerView.uesr            =[LsSingleton sharedInstance].user;
+    self.navView.leftButton.hidden  =YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.navTitle      =@"我的";
@@ -90,9 +96,8 @@
 
 -(void)clickBtn:(LsButton*)button{
     if (button.tag ==123) {
-        [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
-//        LsMyVideosViewController *vc =[[LsMyVideosViewController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
+        LsMyVideosViewController   *vc =[[LsMyVideosViewController   alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }else if (button.tag ==124){
         LsMyLiveListViewController *vc =[[LsMyLiveListViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -159,6 +164,7 @@
         _headerView =[[LsMyHeaderView alloc] initWithFrame:CGRectMake(10*LSScale, 15*LSScale+CGRectGetMaxY(self.navView.frame), LSMainScreenW-20*LSScale, 110*LSScale)];
         _headerView.backgroundColor  =[UIColor whiteColor];
         _headerView.delegate=self;
+        _headerView.uesr    =[LsSingleton sharedInstance].user;
     }
     return _headerView;
 }

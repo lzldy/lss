@@ -150,7 +150,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LsLiveModel *modelll =[[LsLiveModel alloc] init];
+    LsLiveModel *modelll ;
     if (tableView.tag==10010) {
         if (self.interviewDataArray.count>0) {
             modelll =self.interviewDataArray[indexPath.row];
@@ -215,7 +215,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;{
     float currentPostion = scrollView.contentOffset.y;
-    BOOL  upDown = false;
+    BOOL  upDown =NO;
     if (currentPostion - startY > 0 ||startY - currentPostion > 0) {
         startY = currentPostion;
         upDown=YES;

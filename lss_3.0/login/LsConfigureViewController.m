@@ -185,17 +185,14 @@ static NSString * headerReuseIdentifier = @"header";
     [cell sizeToFit];
     if (cell) {
         if (collectionView.tag==11111){
-            LsCatgConfigureModel *modelll =[[LsCatgConfigureModel alloc] init];
-            modelll =self.model.catgs[indexPath.row];
+            LsCatgConfigureModel *modelll  =self.model.catgs[indexPath.row];
             cell.label.text =modelll.name;
         }else if (collectionView.tag==22222){
-            LsLevelConfigureModel *modelll =[[LsLevelConfigureModel alloc] init];
-            modelll =[self.model.catgs[indexCatgCollectView] levels][indexPath.row];
+            LsLevelConfigureModel *modelll =[self.model.catgs[indexCatgCollectView] levels][indexPath.row];
             cell.label.text =modelll.name;
 
         }else{
-            LsSubjectConfigureModel *modelll =[[LsSubjectConfigureModel alloc] init];
-            modelll =[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects][indexPath.row];
+            LsSubjectConfigureModel *modelll =[[self.model.catgs[indexCatgCollectView] levels][indexLevelCollectView] subjects][indexPath.row];
             cell.label.text =modelll.name;
         }
     }
@@ -205,8 +202,7 @@ static NSString * headerReuseIdentifier = @"header";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (collectionView.tag==11111) {
         
-        LsCatgConfigureModel *modelll =[[LsCatgConfigureModel alloc] init];
-        modelll                       =self.model.catgs[indexPath.row];
+        LsCatgConfigureModel *modelll =self.model.catgs[indexPath.row];
         indexCatgCollectView          =indexPath.row;
         indexLevelCollectView         =0;
         [self.dataDict setObject:modelll.id_  forKey:@"catgid"];
@@ -218,8 +214,7 @@ static NSString * headerReuseIdentifier = @"header";
         [self.saveDict setObject:modelll.name forKey:@"项目"];
 
     }else if (collectionView.tag==22222){
-        LsLevelConfigureModel *modelll =[[LsLevelConfigureModel alloc] init];
-        modelll                        =[self.model.catgs[indexCatgCollectView] levels][indexPath.row];
+        LsLevelConfigureModel *modelll =[self.model.catgs[indexCatgCollectView] levels][indexPath.row];
         indexLevelCollectView          =indexPath.row;
         [myCollectionView3        reloadData];
         [myCollectionView3 selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];

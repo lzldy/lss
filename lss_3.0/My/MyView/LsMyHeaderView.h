@@ -23,4 +23,6 @@
 
 @property (nonatomic, weak)   id<myHeaderViewDelegate> delegate;
 
+@property (nonatomic,strong)  User        *uesr;
+
 @end

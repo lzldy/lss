@@ -155,6 +155,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
     [UIApplication sharedApplication].statusBarStyle = statusStyle;
     BCPayResp *resp = (BCPayResp *)[BCPayCache sharedInstance].bcResp;
     resp.resultCode = resultCode;

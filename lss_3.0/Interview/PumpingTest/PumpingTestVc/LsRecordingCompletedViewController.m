@@ -10,6 +10,7 @@
 #import "LSLabel+TextField.h"
 #import "LsVideoUploadSuccessViewController.h"
 #import "DWUploader.h"
+#import "LsPumpingTestViewController.h"
 
 @interface LsRecordingCompletedViewController ()<UITextFieldDelegate>
 {
@@ -199,7 +200,6 @@
 
     NSString *videoId = [_videoContext objectForKey:@"videoid"];
     NSMutableDictionary *dict =[NSMutableDictionary dictionary];
-    [dict setObject:@"2"                    forKey:@"setid"];
     [dict setObject:videoId                 forKey:@"videoid"];
     [dict setObject:titleL.textField.text   forKey:@"name"];
     [dict setObject:selectedType            forKey:@"ctag1"];
@@ -208,9 +208,16 @@
 
     [[LsAFNetWorkTool shareManger] LSPOST:@"addnewvideo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         [LsMethod alertMessage:[responseObject objectForKey:@"message"] WithTime:1.5];
-        [self uploadSuccess];
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if ([controller isKindOfClass:[LsPumpingTestViewController class]]) {
+                LsPumpingTestViewController *vc =(LsPumpingTestViewController *)controller;
+                [self.navigationController popToViewController:vc animated:YES];
+            }
+        }
+//        [self uploadSuccess];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
+    
 }
 
 -(void)uploadSuccess{
