@@ -23,18 +23,16 @@
         imageView_               =[[UIImageView alloc] initWithFrame:CGRectMake(0,10*LSScale, LSMainScreenW, 140*LSScale)];
         imageView_.contentMode =UIViewContentModeScaleAspectFit;
         [self addSubview:imageView_];
-        
     }
     return self;
 }
 
 -(void)reloadCell:(LsActivityModel*)model{
-    UIImage *placeImage     =[UIImage imageNamed:@"banner"];
+    UIImage *placeImage     =[UIImage imageNamed:@"组-3"];
     [imageView_ sd_setImageWithURL:model.headUrl placeholderImage:placeImage];
     
 //    imageView_.frame        =CGRectMake(0, 10*LSScale, LSMainScreenW,  placeImage.size.height/placeImage.size.width*LSMainScreenW);
 //    self.frame              =CGRectMake(0, 0, LSMainScreenW, CGRectGetMaxY(imageView_.frame));
-    
 }
 
 @end

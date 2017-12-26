@@ -46,18 +46,25 @@
     headIcon.layer.cornerRadius =20*LSScale;
     headIcon.layer.masksToBounds=YES;
     headIcon.backgroundColor    =[UIColor cyanColor];
-    [headIcon sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"AppIcon"]];
+    [headIcon sd_setImageWithURL:[LsSingleton sharedInstance].user.face placeholderImage:LOADIMAGE(@"touxiang_icon")];
     [backgroundView addSubview:headIcon];
     
     UILabel *typeL          =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headIcon.frame)+5*LSScale, 3*LSScale+headIcon.frame.origin.y, 150*LSScale, 17*LSScale)];
-    typeL.text              =@"吕宁";
+    if ([LsMethod haveValue:[LsSingleton sharedInstance].user.nickName]) {
+        typeL.text          =[LsSingleton sharedInstance].user.nickName;
+    }else{
+        typeL.text          =@"良师老友";
+    }
     typeL.font              =[UIFont systemFontOfSize:13.5*LSScale];
     typeL.textColor         =[UIColor darkTextColor];
     typeL.textAlignment     =NSTextAlignmentLeft;
     [backgroundView addSubview:typeL];
     
     UILabel *timeL          =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(headIcon.frame)+5*LSScale,CGRectGetMaxY(headIcon.frame)-20*LSScale, 150*LSScale, 17*LSScale)];
-    timeL.text              =@"8月8 我在良师说";
+    NSDate   *senddate      = [NSDate date];
+    NSString *date2         = [NSString stringWithFormat:@"%ld", (long)[senddate timeIntervalSince1970]];
+    NSString *time          = [LsMethod toDateWithTimeStamp:date2 DateFormat:@"MM月dd"];
+    timeL.text              =[NSString stringWithFormat:@"%@ 我在良师说",time];
     timeL.font              =[UIFont systemFontOfSize:13*LSScale];
     timeL.textColor         =[UIColor darkTextColor];
     timeL.textAlignment     =NSTextAlignmentLeft;

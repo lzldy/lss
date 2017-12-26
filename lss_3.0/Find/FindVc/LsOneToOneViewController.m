@@ -54,7 +54,7 @@
     [yuyueBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:yuyueBtn];
     
-    UIImage     *bannerImage =[UIImage imageNamed:@"banner"];
+    UIImage     *bannerImage =[UIImage imageNamed:@"组-3"];
     UIImageView *bannerView  =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, bannerImage.size.height/bannerImage.size.width*LSMainScreenW)];
     bannerView.image         =bannerImage;
     [self.scrView addSubview:bannerView];
