@@ -87,9 +87,18 @@
     parameter.userId = CCLIVE_USERID;
     parameter.roomId =model.recordVideoId;
     parameter.liveid =model.liveId;
-    parameter.viewerName = @"唐朝将军";
+    parameter.viewerName = [LsSingleton sharedInstance].user.nickName;
     parameter.token = @"shishuo";
     parameter.security = NO;
+    if (![LsMethod haveValue:parameter.viewerName]) {
+        parameter.viewerName =@"ios";
+    }
+    SaveToUserDefaults(PLAYBACK_USERID,CCLIVE_USERID);
+    SaveToUserDefaults(PLAYBACK_ROOMID,model.recordVideoId);
+    SaveToUserDefaults(PLAYBACK_LIVEID,model.liveId);
+    SaveToUserDefaults(PLAYBACK_USERNAME,parameter.viewerName);
+    SaveToUserDefaults(PLAYBACK_PASSWORD,@"shishuo");
+    
     RequestDataPlayBack *requestDataPlayBack = [[RequestDataPlayBack alloc] initLoginWithParameter:parameter];
     requestDataPlayBack.delegate = self;
 }

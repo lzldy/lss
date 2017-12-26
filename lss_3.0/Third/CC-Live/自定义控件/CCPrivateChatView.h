@@ -10,11 +10,11 @@
 #import "PrivateChatViewForOne.h"
 #import "Dialogue.h"
 
-typedef void(^CloseBtnClicked)(void);
+typedef void(^CloseBtnClicked)();
 
 typedef void(^IsResponseBlock)(CGFloat y);
 
-typedef void(^IsNotResponseBlock)(void);
+typedef void(^IsNotResponseBlock)();
 
 typedef void(^CheckDotBlock)(BOOL flag);
 

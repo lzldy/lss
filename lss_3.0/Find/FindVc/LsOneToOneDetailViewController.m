@@ -57,7 +57,7 @@
     NSString  *testString         =@"";
     [paragraphStyle  setLineSpacing:10*LSScale];
     if (self.isActivity) {
-        testString = @"免费预约\n广东教师招聘笔面试全程班";
+        testString = [NSString stringWithFormat:@"免费预约\n%@",self.title_];
     }else{
         testString = @"免费预约\n良师智胜教师招聘一对一辅导";
     }

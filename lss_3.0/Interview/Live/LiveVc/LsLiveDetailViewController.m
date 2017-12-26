@@ -14,14 +14,15 @@
 #import "LsEnrollSuccessViewController.h"
 #import "LsCustomPlayerViewController.h"
 #import "DWCustomPlayerViewController.h"
+
 #import "CCSDK/CCLiveUtil.h"
 #import "CCSDK/RequestData.h"
 #import "PlayForPCVC.h"
 #import "PlayBackVC.h"
-#import "CCSDK/RequestDataPlayBack.h"
 #import "LsPlayBackViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface LsLiveDetailViewController ()<liveDetailHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource,liveDetailBottomViewDelegate,liveDetailTableViewCellDelegate,RequestDataDelegate,RequestDataPlayBackDelegate>
+@interface LsLiveDetailViewController ()<liveDetailHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource,liveDetailBottomViewDelegate,liveDetailTableViewCellDelegate,RequestDataDelegate>
 
 @property (nonatomic,strong) LsLiveDetailModel      *model;
 @property (nonatomic,strong) LsLiveDetailHeaderView *headerView;
@@ -148,7 +149,7 @@
     _hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
     _hud.removeFromSuperViewOnHide = YES;
 
-    if (button.livevideos.count>0) {
+    if ([button.livestatus isEqualToString:@"1"]) {
         //回放
         [_hud hide:YES];
         LsPlayBackViewController *vc =[[LsPlayBackViewController alloc] init];
@@ -156,17 +157,29 @@
         vc.livevideos                =button.livevideos;
         [self.navigationController pushViewController:vc animated:YES];
 
-    }else{
+    }else if([button.livestatus isEqualToString:@"0"]){
         //直播
         PlayParameter *parameter = [[PlayParameter alloc] init];
-        parameter.userId = CCLIVE_USERID;
-        parameter.roomId = button.videoID;
-        parameter.viewerName = @"唐朝将军";
-        parameter.token =@"shishuo";
-        parameter.security = NO;
+        parameter.userId         = CCLIVE_USERID;
+        parameter.roomId         = button.videoID;
+        parameter.viewerName     = [LsSingleton sharedInstance].user.nickName;
+        parameter.token          = @"shishuo";
+        parameter.security       = NO;
         parameter.viewercustomua = @"viewercustomua";
+        if (![LsMethod haveValue:parameter.viewerName]) {
+            parameter.viewerName =@"ios";
+        }
+        SaveToUserDefaults(WATCH_USERID,CCLIVE_USERID);
+        SaveToUserDefaults(WATCH_ROOMID,button.videoID);
+        SaveToUserDefaults(WATCH_USERNAME,parameter.viewerName);
+        SaveToUserDefaults(WATCH_PASSWORD,@"shishuo");
+        
         RequestData *requestData = [[RequestData alloc] initLoginWithParameter:parameter];
         requestData.delegate = self;
+    }else{
+        //
+        [_hud hide:YES];
+        [LsMethod alertMessage:@"暂未开始" WithTime:1.5];
     }
 }
 
@@ -212,11 +225,11 @@
     if (self.model.courseArrangement.count>0) {
         LsCourseArrangementModel *modelll =self.model.courseArrangement[indexPath.row];
         modelll.mybuy =self.model.mybuy;
-        if (self.model.courseArrangement.count>1) {
-            [cell reloadCell:modelll isMore:YES];
-        }else{
+//        if (self.model.courseArrangement.count>1) {
+//            [cell reloadCell:modelll isMore:YES];
+//        }else{
             [cell reloadCell:modelll isMore:NO];
-        }
+//        }
     }
     return cell;
 }

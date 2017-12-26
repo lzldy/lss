@@ -23,6 +23,7 @@
 
 @property (nonatomic,assign)  BOOL      mybuy;
 @property (nonatomic,strong)  NSArray   *livevideos;
+@property (nonatomic,strong)  NSString  *livestatus;
 
 @property (nonatomic,strong)  NSString  *id_;
 @property (nonatomic,strong)  NSString  *liveId;

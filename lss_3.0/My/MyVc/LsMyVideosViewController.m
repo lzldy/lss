@@ -8,15 +8,15 @@
 
 #import "LsMyVideosViewController.h"
 #import "LsNavTabView.h"
-#import "LsDataModel.h"
-#import "LsDataTableViewCell.h"
+#import "LsMyVideoTableViewCell.h"
+#import "LsMyVideoModel.h"
+#import "LsRecordingCompletedViewController.h"
 
-@interface LsMyVideosViewController ()<lsNavTabViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface LsMyVideosViewController ()<lsNavTabViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,MyVideoTableViewCellDelegate>
 {
     BOOL       isScroll;
     float      startY;
-    NSInteger  bkPage;
-    NSInteger  ksbPage;
+    NSInteger  index ;
 }
 
 @property (nonatomic,strong)  LsNavTabView             *topTabView;
@@ -24,11 +24,10 @@
 @property (nonatomic,strong)  UITableView              *tabView;
 @property (nonatomic,strong)  UITableView              *tabView1;
 
-@property (nonatomic,strong)  LsDataModel              *model;
-@property (nonatomic,strong)  LsDataModel              *model1;
+@property (nonatomic,strong)  LsMyVideoModel           *model;
 
-@property (nonatomic,strong)  NSMutableArray           *bkDataArray;
-@property (nonatomic,strong)  NSMutableArray           *ksbDataArray;
+@property (nonatomic,strong)  NSMutableArray           *didDataArray;
+@property (nonatomic,strong)  NSMutableArray           *unDidDataArray;
 
 @end
 
@@ -43,49 +42,43 @@
     [self.scrView addSubview:self.tabView];
     [self.scrView addSubview:self.tabView1];
     
-    [self getDataOfBK];
+    [self getDataOfDidUpload];
 }
 
--(void)getDataOfBK{
+-(void)getDataOfDidUpload{
     NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithInteger:bkPage] forKey:@"page"];
-    [dict setValue:@"BK" forKey:@"ctag3"];
-    
-    [[LsAFNetWorkTool shareManger] LSPOST:@"listinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        self.model =[LsDataModel yy_modelWithJSON:responseObject];
-        if (self.model.dataArray.count==0) {
-            [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
+    [dict setObject:@"y"           forKey:@"mytableonly"];
+    [dict setObject:@"LK"          forKey:@"ctag3"];
+    [dict setObject:@"500"         forKey:@"paging"];
+    [[LsAFNetWorkTool shareManger] LSPOST:@"listvideotables.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        self.model  =[LsMyVideoModel yy_modelWithJSON:responseObject];
+        if (self.model.list.count>0) {
+            self.didDataArray     =[NSMutableArray arrayWithArray:self.model.list];
         }else{
-            if (bkPage>0) {
-                [self.bkDataArray addObjectsFromArray:self.model.dataArray];
-            }else{
-                self.bkDataArray =[NSMutableArray arrayWithArray:self.model.dataArray];
-            }
-            [self.tabView reloadData];
+            self.didDataArray     =[NSMutableArray array];
+            [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
         }
+        [self.tabView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
 
--(void)getDataOfKSB{
-    NSMutableDictionary *dict  =[NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithInteger:ksbPage] forKey:@"page"];
-    [dict setValue:@"KSB" forKey:@"ctag3"];
-    
-    [[LsAFNetWorkTool shareManger] LSPOST:@"listinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        self.model1 =[LsDataModel yy_modelWithJSON:responseObject];
-        if (self.model1.dataArray.count==0) {
-            [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
-        }else{
-            if (ksbPage>0) {
-                [self.ksbDataArray addObjectsFromArray:self.model1.dataArray];
-            }else{
-                self.ksbDataArray =[NSMutableArray arrayWithArray:self.model1.dataArray];
-            }
-            [self.tabView1 reloadData];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-    }];
+-(void)getDataOfNoUpload{
+    NSMutableArray *array     =[NSMutableArray arrayWithArray:[LSUser_Default objectForKey:@"videos"]];
+    self.unDidDataArray      =[NSMutableArray array];
+    for (int i=0; i<array.count; i++) {
+        LsMyVideoModel *modelll =[[LsMyVideoModel alloc] init];
+        modelll.startTime       =array[i];
+        modelll.title           =array[i];
+        NSArray*paths           =      NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString*path           =[paths objectAtIndex:0];
+        NSString*urlPath        =[NSString stringWithFormat:@"file://%@/%@.mov",path,array[i]];
+        modelll.image           =[LsMethod thumbnailImageForVideo:[NSURL URLWithString:urlPath] atTime:1];
+        [self.unDidDataArray addObject:modelll];
+    }
+    if (self.unDidDataArray.count<1) {
+        [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
+    }
 }
 
 #pragma  - mark -  tabview 代理
@@ -96,33 +89,34 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView.tag==110) {
-        return self.bkDataArray.count;
+        return self.didDataArray.count;
     }else{
-        return self.ksbDataArray.count;
+        return self.unDidDataArray.count;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cellID";
-    LsDataTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    LsMyVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[LsDataTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LsMyVideoTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate       =self;
     }
     if (tableView.tag==110) {
-        [cell reloadCell:self.bkDataArray[indexPath.row]];
+        [cell reloadCell:self.didDataArray[indexPath.row] type:@"1"];
     }else{
-        [cell reloadCell:self.ksbDataArray[indexPath.row]];
+        [cell reloadCell:self.unDidDataArray[indexPath.row] type:@"0"];
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    LsDataDetailModel *model_;
+    LsMyVideoModel *model_;
     if (tableView.tag==110) {
-        model_ =self.bkDataArray[indexPath.row];
+        model_ =self.didDataArray[indexPath.row];
     }else{
-        model_=self.ksbDataArray[indexPath.row];
+        model_=self.unDidDataArray[indexPath.row];
     }
 //    LsDataDetailViewController *dataVc =[[LsDataDetailViewController alloc] init];
 //    dataVc.title_                      =model_.title;
@@ -130,45 +124,14 @@
 //    [self.navigationController pushViewController:dataVc animated:YES];
 }
 
-#pragma - mark -    上下拉刷新
--(void)headerRefresh{
-    isScroll=NO;
-    bkPage  =0;
-    [self getDataOfBK];
-    [self.tabView headerEndRefreshing];
-}
-
--(void)footerRefresh{
-    isScroll=NO;
-    
-    bkPage ++;
-    [self getDataOfBK];
-    [self.tabView footerEndRefreshing];
-}
-
--(void)headerRefresh1{
-    isScroll =NO;
-    ksbPage  =0;
-    [self getDataOfKSB];
-    [self.tabView1 headerEndRefreshing];
-}
-
--(void)footerRefresh1{
-    isScroll=NO;
-    ksbPage ++;
-    [self getDataOfKSB];
-    [self.tabView1 footerEndRefreshing];
-}
-
 #pragma  - mark -  NavTabView 代理
 -(void)lsNavTabViewIndex:(NSInteger)index{
     [self.scrView setContentOffset:CGPointMake(LSMainScreenW*index,0) animated:NO];
     if (index==0) {
-        [self.tabView headerBeginRefreshing];
-        [self headerRefresh];
+        [self.tabView reloadData];
     }else{
-        [self.tabView1 headerBeginRefreshing];
-        [self headerRefresh1];
+        [self getDataOfNoUpload];
+        [self.tabView1 reloadData];
     }
 }
 
@@ -182,9 +145,6 @@
         float index =scrollView.contentOffset.x/LSMainScreenW;
         if (isScroll&&!upDown) {
             [self.topTabView tabIndex:index];
-            //            if (index==1&&!_writtenModel) {
-            //                [self.writtenTabView headerBeginRefreshing];
-            //            }
         }
     }
 }
@@ -198,6 +158,46 @@
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     isScroll =NO;
+}
+
+- (void)didClickBtnIndex:(LsButton*)btn{
+    if (btn.tag ==0) {
+        //删除
+        if ([LsMethod haveValue:btn.ID]) {
+            [self deleteData:btn.ID];
+        }else{
+            [self deleteLoacalVideo:btn.videoID];
+        }
+    }else{
+        //重传
+        [self reUploadVideo:btn.videoID];
+    }
+}
+
+-(void)reUploadVideo:(NSString*)videoID{
+    NSArray*paths           =      NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString*path           =[paths objectAtIndex:0];
+    NSString*urlPath        =[NSString stringWithFormat:@"file://%@/%@.mov",path,videoID];
+    
+    LsRecordingCompletedViewController *vc =[[LsRecordingCompletedViewController alloc] init];
+    vc.videoPath                           =videoID;
+    vc.videoURL                            =[NSURL URLWithString:urlPath];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)deleteLoacalVideo:(NSString*)videoID{
+    NSMutableArray *array     =[NSMutableArray arrayWithArray:[LSUser_Default objectForKey:@"videos"]];
+    [array removeObject:videoID];
+    SaveToUserDefaults(@"videos", array);
+    [self getDataOfNoUpload];
+}
+
+-(void)deleteData:(NSString*)code{
+    NSDictionary  *dict  =@{@"code":code};
+    [[LsAFNetWorkTool shareManger] LSPOST:@"delmytable.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        [self getDataOfDidUpload];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
 }
 
 -(LsNavTabView *)topTabView{
@@ -231,9 +231,6 @@
         _tabView.showsVerticalScrollIndicator   =NO;
         _tabView.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
         _tabView.tag              =110;
-        //增加上拉下拉刷新事件
-        [_tabView addHeaderWithTarget:self action:@selector(headerRefresh)];
-        [_tabView addFooterWithTarget:self action:@selector(footerRefresh)];
     }
     return _tabView;
 }
@@ -247,40 +244,29 @@
         _tabView1.showsVerticalScrollIndicator   =NO;
         _tabView1.separatorStyle   =UITableViewCellSeparatorStyleNone;//去线
         _tabView1.tag              =210;
-        
-        //增加上拉下拉刷新事件
-        [_tabView1 addHeaderWithTarget:self action:@selector(headerRefresh1)];
-        [_tabView1 addFooterWithTarget:self action:@selector(footerRefresh1)];
     }
     return _tabView1;
 }
 
--(LsDataModel *)model{
+-(LsMyVideoModel *)model{
     if (!_model) {
-        _model =[[LsDataModel alloc] init];
+        _model =[[LsMyVideoModel alloc] init];
     }
     return _model;
 }
 
--(LsDataModel *)model1{
-    if (!_model1) {
-        _model1 =[[LsDataModel alloc] init];
+-(NSMutableArray *)didDataArray{
+    if (!_didDataArray) {
+        _didDataArray =[NSMutableArray array];
     }
-    return _model1;
+    return _didDataArray;
 }
 
--(NSMutableArray *)bkDataArray{
-    if (!_bkDataArray) {
-        _bkDataArray =[NSMutableArray array];
+-(NSMutableArray *)unDidDataArray{
+    if (!_unDidDataArray) {
+        _unDidDataArray =[NSMutableArray array];
     }
-    return _bkDataArray;
-}
-
--(NSMutableArray *)ksbDataArray{
-    if (!_ksbDataArray) {
-        _ksbDataArray =[NSMutableArray array];
-    }
-    return _ksbDataArray;
+    return _unDidDataArray;
 }
 
 - (void)didReceiveMemoryWarning {

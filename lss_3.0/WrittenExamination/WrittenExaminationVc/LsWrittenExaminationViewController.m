@@ -68,13 +68,17 @@
 }
 
 -(void)getPlace{
-    NSString     *regionid =[LsSingleton sharedInstance].user.branchId;
-    NSDictionary *dict     =@{@"regionid":regionid};
-    [[LsAFNetWorkTool shareManger] LSPOST:@"listregion.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        self.placeModel            =[LsPlaceModel yy_modelWithJSON:responseObject];
-        self.placeView.dataArray   =self.placeModel.dataArray;
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-    }];
+    NSString     *regionid =[LsSingleton sharedInstance].user.branchPrvnId;
+    if ([LsMethod haveValue:regionid]) {
+        NSDictionary *dict     =@{@"regionid":regionid};
+        [[LsAFNetWorkTool shareManger] LSPOST:@"listregion.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+            self.placeModel            =[LsPlaceModel yy_modelWithJSON:responseObject];
+            self.placeView.dataArray   =self.placeModel.dataArray;
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+        }];
+    }else{
+        [LsMethod alertMessage:@"未知省份" WithTime:1.5];
+    }
 }
 
 -(void)getData{

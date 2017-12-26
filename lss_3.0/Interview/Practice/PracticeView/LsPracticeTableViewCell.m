@@ -49,6 +49,7 @@
         authorL.font            =[UIFont systemFontOfSize:14*LSScale];
         authorL.textColor       =LSColor(115, 114, 114, 1);
         authorL.textAlignment   =NSTextAlignmentLeft;
+//        authorL.backgroundColor =[UIColor redColor];
         [baseView addSubview:authorL];
         
         typeL                    =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(authorL.frame),CGRectGetMaxY(titleL.frame)+10*LSScale, 60, 15*LSScale)];
@@ -106,6 +107,8 @@
     }else if ([LsMethod haveValue:modelll.teacher]){
         authorL.text                  =modelll.teacher;
     }
+    authorL.text                 =[LsMethod numberSuitScanf:authorL.text];
+
     CGSize authorSize             = [LsMethod sizeWithString:authorL.text font:authorL.font];
     authorL.frame                 = CGRectMake(authorL.frame.origin.x,authorL.frame.origin.y, authorSize.width,15*LSScale);
    

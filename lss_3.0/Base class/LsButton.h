@@ -11,9 +11,13 @@
 
 @interface LsButton : UIButton
 
+@property (nonatomic,strong) NSString *ID;
+
 @property (nonatomic,strong) NSString *videoID;
 @property (nonatomic,strong) NSString *roomID;
 @property (nonatomic,strong) NSArray  *livevideos;
+@property (nonatomic,strong) NSString *livestatus;
+
 @property (nonatomic,assign) int       num;
 
 @property (nonatomic,strong) NSURL    *url;
@@ -26,7 +30,5 @@
 
 @property (nonatomic,strong) UIImageView *lsImageView;
 @property (nonatomic,strong) UILabel     *lsLabel;
-
-@property (nonatomic,strong) NSString *ID;
 
 @end

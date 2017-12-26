@@ -199,7 +199,7 @@
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     _keyboardRect = [aValue CGRectValue];
     CGFloat y = _keyboardRect.size.height;
-//    CGFloat x = _keyboardRect.size.width;
+    CGFloat x = _keyboardRect.size.width;
     //NSLog(@"键盘高度是  %d",(int)y);
     //NSLog(@"键盘宽度是  %d",(int)x);
     if ([self.chatTextField isFirstResponder]) {
@@ -391,7 +391,7 @@
         _emojiView = [[UIView alloc] initWithFrame:_keyboardRect];
         _emojiView.backgroundColor = CCRGBColor(242,239,237);
         
-        UIImage *image = [UIImage imageNamed:@"001"];
+        UIImage *image = [UIImage imageNamed:@"01"];
 //        CGFloat faceIconSize = CCGetRealFromPt(60);
         CGFloat faceIconSize = image.size.width;
         CGFloat xspace = (_keyboardRect.size.width - FACE_COUNT_CLU * faceIconSize) / (FACE_COUNT_CLU + 1);
@@ -408,7 +408,7 @@
             
             faceButton.frame = CGRectMake(x, y, faceIconSize, faceIconSize);
             faceButton.backgroundColor = CCClearColor;
-            [faceButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%03d", i+1]]
+            [faceButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%02d", i+1]]
                         forState:UIControlStateNormal];
             faceButton.contentMode = UIViewContentModeScaleAspectFit;
             [_emojiView addSubview:faceButton];

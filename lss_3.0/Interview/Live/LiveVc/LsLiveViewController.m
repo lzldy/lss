@@ -81,19 +81,19 @@
     myLive.backgroundColor  =[UIColor whiteColor];
     [superView addSubview:myLive];
     
-    UILabel *myL            =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale,0, LSMainScreenW-80*LSScale, 35*LSScale)];
-    myL.text                =@"我报名的直播课";
-    myL.textColor           =LSNavColor;
-    myL.textAlignment       =NSTextAlignmentLeft;
-    myL.font                =[UIFont systemFontOfSize:15.5*LSScale];
-    [myLive addSubview:myL];
+    LsButton  *myBtn        =[[LsButton alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(myLive.frame), CGRectGetHeight(myLive.frame)-0.5*LSScale)];
+    myBtn.lsLabel.frame=CGRectMake(10*LSScale,0, LSMainScreenW-80*LSScale, 35*LSScale);
+    myBtn.lsLabel.text                =@"我报名的直播课";
+    myBtn.lsLabel.textColor           =LSNavColor;
+    myBtn.lsLabel.textAlignment       =NSTextAlignmentLeft;
+    myBtn.lsLabel.font                =[UIFont systemFontOfSize:15.5*LSScale];
     
     UIImage *myImsge        =[UIImage imageNamed:@"hsh"];
-    UIButton *myLiveBtn     =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-10*LSScale-35*LSScale, 0, 35*LSScale, 35*LSScale)];
-    [myLiveBtn setImage:myImsge forState:0];
-    [myLiveBtn addTarget:self action:@selector(clickMyLiveBtn) forControlEvents:UIControlEventTouchUpInside];
-    [myLive addSubview:myLiveBtn];
-    
+    myBtn.lsImageView.frame =CGRectMake(LSMainScreenW-10*LSScale- myImsge.size.width, CGRectGetMidY(myBtn.frame)-myImsge.size.height/2, myImsge.size.width, myImsge.size.height);
+    myBtn.lsImageView.image =myImsge;
+    [myBtn addTarget:self action:@selector(clickMyLiveBtn) forControlEvents:UIControlEventTouchUpInside];
+    [myLive addSubview:myBtn];
+
     UIView *line            =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(myLive.frame)-0.5*LSScale, LSMainScreenW, 0.5*LSScale)];
     line.backgroundColor    =LSLineColor;
     [myLive addSubview:line];

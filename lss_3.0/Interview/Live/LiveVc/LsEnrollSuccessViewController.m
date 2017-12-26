@@ -87,16 +87,28 @@
 
 -(void)didClickIntoBtn{
     LsCourseArrangementModel *modelll = self.model.courseArrangement[0];
-    //直播
-    PlayParameter *parameter = [[PlayParameter alloc] init];
-    parameter.userId = CCLIVE_USERID;
-    parameter.roomId = modelll.videoId;
-    parameter.viewerName = @"唐朝将军";
-    parameter.token =@"shishuo";
-    parameter.security = NO;
-    parameter.viewercustomua = @"viewercustomua";
-    RequestData *requestData = [[RequestData alloc] initLoginWithParameter:parameter];
-    requestData.delegate = self;
+    if ([modelll.livestatus isEqualToString:@"0"]) {
+        //直播
+        PlayParameter *parameter = [[PlayParameter alloc] init];
+        parameter.userId = CCLIVE_USERID;
+        parameter.roomId = modelll.videoId;
+        parameter.viewerName = [LsSingleton sharedInstance].user.nickName;
+        parameter.token  =@"shishuo";
+        parameter.security = NO;
+        parameter.viewercustomua = @"viewercustomua";
+        if (![LsMethod haveValue:parameter.viewerName]) {
+            parameter.viewerName =@"ios";
+        }
+        SaveToUserDefaults(WATCH_USERID,CCLIVE_USERID);
+        SaveToUserDefaults(WATCH_ROOMID,modelll.videoId);
+        SaveToUserDefaults(WATCH_USERNAME,parameter.viewerName);
+        SaveToUserDefaults(WATCH_PASSWORD,@"shishuo");
+        
+        RequestData *requestData = [[RequestData alloc] initLoginWithParameter:parameter];
+        requestData.delegate = self;
+    }else{
+        [LsMethod alertMessage:@"暂未开始" WithTime:1.5];
+    }
 }
 
 #pragma mark - CCPushDelegate

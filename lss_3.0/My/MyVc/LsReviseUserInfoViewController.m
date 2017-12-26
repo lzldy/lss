@@ -185,7 +185,7 @@
         for (int i=0; i<array.count; i++) {
             CGSize  size  =[LsMethod sizeWithString:array[i] font:[UIFont systemFontOfSize:13*LSScale]];
             UILabel  *labelL  =[[UILabel alloc] init];
-            labelL.frame =CGRectMake(10*LSScale+CGRectGetMaxX(btn.frame), CGRectGetMaxY(label.frame)+5*LSScale, size.width+30*LSScale, 25*LSScale);
+            labelL.frame =CGRectMake(7*LSScale+CGRectGetMaxX(btn.frame), CGRectGetMaxY(label.frame)+5*LSScale, size.width+25*LSScale, 25*LSScale);
             labelL.text  =array[i];
             labelL.textAlignment  =NSTextAlignmentCenter;
             labelL.font  =[UIFont systemFontOfSize:13*LSScale];

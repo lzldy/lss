@@ -81,16 +81,9 @@
 
 //////////////////////////////////////
 
-#define CONTROLLER_INDEX @"index"
-
-
-#define SET_SCREEN_LANDSCAPE @"SetScreenLandscape"
-#define SET_BEAUTIFUL @"SetBeautiful"
-#define SET_CAMERA_DIRECTION @"SetCameraDirection"
-#define SET_SIZE @"SetSize"
-#define SET_BITRATE @"SetBitRate"
-#define SET_IFRAME @"SetIFrame"
-#define SET_SERVER_INDEX @"SetServerIndex"
+#import "PlayBackViewController.h"
+#import "PlayViewController.h"
+#import "LiveViewController.h"
 
 //[em2_01]
 #define FACE_NAME_HEAD  @"[em2_"
@@ -100,6 +93,34 @@
 #define FACE_COUNT_ROW  3
 #define FACE_COUNT_CLU  7
 #define IMGWIDTH        28.0f
+
+#define CONTROLLER_INDEX @"index"
+
+#define LIVE_USERID @"Live_UserId"
+#define LIVE_ROOMID @"Live_RoomId"
+#define LIVE_USERNAME @"Live_UserName"
+#define LIVE_PASSWORD @"Live_Password"
+
+#define WATCH_USERID @"Watch_UserId"
+#define WATCH_ROOMID @"Watch_RoomId"
+#define WATCH_USERNAME @"Watch_UserName"
+#define WATCH_PASSWORD @"Watch_Password"
+
+#define PLAYBACK_USERID @"PlayBack_UserId"
+#define PLAYBACK_ROOMID @"PlayBack_RoomId"
+#define PLAYBACK_LIVEID @"PlayBack_LiveId"
+#define PLAYBACK_USERNAME @"PlayBack_UserName"
+#define PLAYBACK_PASSWORD @"PlayBack_Password"
+
+#define SET_SCREEN_LANDSCAPE @"SetScreenLandscape"
+#define SET_BEAUTIFUL @"SetBeautiful"
+#define SET_CAMERA_DIRECTION @"SetCameraDirection"
+#define SET_SIZE @"SetSize"
+#define SET_BITRATE @"SetBitRate"
+#define SET_IFRAME @"SetIFrame"
+#define SET_SERVER_INDEX @"SetServerIndex"
+
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
 
 //1.获取屏幕宽度与高度
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width

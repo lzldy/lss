@@ -12,5 +12,6 @@
 
 @property (nonatomic,assign) BOOL  isActivity;
 @property (nonatomic,strong) NSString  *ID;
+@property (nonatomic,strong) NSString *title_;
 
 @end

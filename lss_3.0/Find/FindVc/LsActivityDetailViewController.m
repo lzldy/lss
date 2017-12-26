@@ -105,6 +105,7 @@
         LsOneToOneDetailViewController *vc =[[LsOneToOneDetailViewController alloc] init];
         vc.isActivity                      =YES;
         vc.ID                              =self.id_;
+        vc.title_                          =self.title_;
         [self.navigationController pushViewController:vc animated:YES];
     }else{
 //        if (btn.tag==123) {

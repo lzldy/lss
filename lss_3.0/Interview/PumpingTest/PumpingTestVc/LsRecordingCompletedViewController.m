@@ -11,6 +11,7 @@
 #import "LsVideoUploadSuccessViewController.h"
 #import "DWUploader.h"
 #import "LsPumpingTestViewController.h"
+#import "LsMyVideoModel.h"
 
 @interface LsRecordingCompletedViewController ()<UITextFieldDelegate>
 {
@@ -24,17 +25,31 @@
     DWUploader  *_uploader;
     NSString    *selectedType;
     UIImageView *videoImgView;
+    
+    NSString        *ctag2;
+    BOOL            isUploadSuccess;
+    NSMutableArray  *uploadFailureVideos;
+
 }
 
 @end
 
 @implementation LsRecordingCompletedViewController
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:YES];
+    if (!isUploadSuccess&&![uploadFailureVideos containsObject:_videoPath]) {
+        [uploadFailureVideos addObject:_videoPath];
+        SaveToUserDefaults(@"videos", uploadFailureVideos);
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.navTitle  =@"视频上传";
+    self.navView.navTitle       =@"视频上传";
     self.view.backgroundColor   =LSColor(243, 244, 245, 1);
 
+    uploadFailureVideos         =[NSMutableArray arrayWithArray:[LSUser_Default objectForKey:@"videos"]];
     [self loadBaseUI];
 
 }
@@ -106,7 +121,7 @@
     [jiegouhuaBtn addTarget:self action:@selector(didClickTypeBtn:) forControlEvents:UIControlEventTouchUpInside];
     [backgourdView addSubview:jiegouhuaBtn];
     
-    UILabel  *xiangmuL              =[[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(shijiangBtn.frame)+10*LSScale, 72*LSScale, 18*LSScale)];
+    UILabel  *xiangmuL              =[[UILabel alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(shijiangBtn.frame)+10*LSScale, 80*LSScale, 18*LSScale)];
     xiangmuL.text                   =[[LSUser_Default objectForKey:@"配置"] objectForKey:@"项目"];
     xiangmuL.layer.cornerRadius     =6*LSScale;
     xiangmuL.layer.backgroundColor  =LSColor(101, 102, 103, 1).CGColor;
@@ -180,6 +195,9 @@
     uploader.finishBlock = ^() {
         [hud hide:YES];
         [self uploadToServer];
+        if ([uploadFailureVideos containsObject:_videoPath]) {
+            [uploadFailureVideos removeObject:_videoPath];
+        }
     };
     uploader.failBlock = ^(NSError *error){
         [hud hide:YES];
@@ -203,11 +221,18 @@
     [dict setObject:videoId                 forKey:@"videoid"];
     [dict setObject:titleL.textField.text   forKey:@"name"];
     [dict setObject:selectedType            forKey:@"ctag1"];
-    [dict setObject:@"STUD"                 forKey:@"ctag2"];
+    if ([LsMethod haveValue:ctag2]) {
+        [dict setObject:ctag2               forKey:@"ctag2"];
+    }
     [dict setObject:@"练课"                  forKey:@"desc"];
 
     [[LsAFNetWorkTool shareManger] LSPOST:@"addnewvideo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         [LsMethod alertMessage:[responseObject objectForKey:@"message"] WithTime:1.5];
+        isUploadSuccess =YES;
+        if ([uploadFailureVideos containsObject:_videoPath]) {
+            [uploadFailureVideos removeObject:_videoPath];
+        }
+        SaveToUserDefaults(@"videos", uploadFailureVideos);
         for (UIViewController *controller in self.navigationController.viewControllers) {
             if ([controller isKindOfClass:[LsPumpingTestViewController class]]) {
                 LsPumpingTestViewController *vc =(LsPumpingTestViewController *)controller;
@@ -282,11 +307,13 @@
         case 115:
         {
             if (btn.selected) {
+                ctag2                          =@"STU2TH";
                 UIImage  *image                =[UIImage imageNamed:@"xuan"];
                 [chooseImageBtn setImage:image forState:0];
                 chooseImageBtn.selected=NO;
                 
             }else{
+                ctag2                          =@"";
                 UIImage  *image                =[UIImage imageNamed:@"xuanz"];
                 [chooseImageBtn setImage:image forState:0];
                 chooseImageBtn.selected=YES;

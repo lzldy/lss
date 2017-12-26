@@ -46,11 +46,12 @@
     if ([LsMethod haveValue:type]) {
         [dict setObject:type forKey:@"ctag1"];
     }
+    [dict setObject:@"STUD" forKey:@"ctag2"];//仅推荐给老师参数TEACH
     [dict setObject:@"LK" forKey:@"ctag3"];
     [dict setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [[LsAFNetWorkTool shareManger] LSPOST:@"listvideotables.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model  =[LsPracticeModel yy_modelWithJSON:responseObject];
-        if (page>0) {
+        if (page>0){
             [self.dataArray addObjectsFromArray:self.model.practiceDataArray];
         }else{
             self.dataArray =[NSMutableArray arrayWithArray:self.model.practiceDataArray];

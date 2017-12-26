@@ -12,13 +12,21 @@
 #import "CCPrivateChatView.h"
 #import "ModelView.h"
 #import "CCSDK/RequestData.h"
+#import "LoadingView.h"
 #import "InformationShowView.h"
 #import "Utility.h"
+#import "GongGaoView.h"
 #import "ChatView.h"
 #import "QuestionView.h"
 #import "Dialogue.h"
 #import "LianmaiView.h"
 #import <AVFoundation/AVFoundation.h>
+#import "LotteryView.h"
+#import "RollcallView.h"
+#import "VoteView.h"
+#import "VoteViewResult.h"
+#import "QuestionnaireSurvey.h"
+#import "QuestionnaireSurveyPopUp.h"
 
 @interface PlayForPCVC ()<UITextFieldDelegate,RequestDataDelegate,UIScrollViewDelegate,LianMaiDelegate,UIAlertViewDelegate>
 /*
@@ -33,6 +41,8 @@
 @property(nonatomic,strong)UIImageView              *userCountLogo;
 @property(nonatomic,copy)  NSString                 *userCount;
 @property(nonatomic,strong)UILabel                  *userCountLabel;
+@property(nonatomic,strong)UIButton                 *gongGaoBtn;
+@property(nonatomic,strong)UIImageView              *gongGaoDot;
 
 @property(nonatomic,strong)UIImageView              *soundBg;
 @property(nonatomic,strong)UILabel                  *soundLabel;
@@ -67,6 +77,7 @@
 @property(nonatomic,assign)NSTimeInterval           hiddenTime;
 
 @property(nonatomic,strong)RequestData              *requestData;
+@property(nonatomic,strong)LoadingView              *loadingView;
 @property(nonatomic,strong)UIView                   *informationView;
 
 @property(nonatomic,assign)NSInteger                currentRoadNum;
@@ -84,6 +95,8 @@
 @property(assign,nonatomic)NSInteger                lineLimit;
 @property(assign,nonatomic)BOOL                     isKeyBoardShow;
 
+@property(nonatomic,strong)GongGaoView              *gongGaoView;
+@property(nonatomic,copy)  NSString                 *gongGaoStr;
 @property(nonatomic,strong)UIView                   *videoView;
 @property(nonatomic,strong)UIImageView              *barImageView;
 @property(nonatomic,strong)UIButton                 *lianmaiBtn;
@@ -114,10 +127,14 @@
 @property(copy,nonatomic)  NSString                 *videosizeStr;
 @property(assign,nonatomic)BOOL                     isAllow;
 @property(assign,nonatomic)BOOL                     needReloadLianMainView;
+@property(nonatomic,strong)LotteryView              *lotteryView;
 @property(nonatomic,strong)NSMutableArray           *lotteryViewTags;
+@property(nonatomic,strong)RollcallView             *rollcallView;
 
 @property(nonatomic,assign)NSInteger                duration;
 
+@property(nonatomic,strong)VoteView                 *voteView;
+@property(nonatomic,strong)VoteViewResult           *voteViewResult;
 @property(nonatomic,assign)NSInteger                mySelectIndex;
 @property(nonatomic,strong)NSMutableArray           *mySelectIndexArray;
 @property(nonatomic,assign)NSInteger                templateType;
@@ -126,9 +143,10 @@
 @property(nonatomic,strong)UITapGestureRecognizer   *hideTextBoardTap1;
 @property (strong, nonatomic) NSMutableArray        *publishIdArray;
 @property(nonatomic,assign)BOOL                     lianMaiHidden;
+@property(nonatomic,strong)QuestionnaireSurvey      *questionnaireSurvey;
+@property(nonatomic,strong)QuestionnaireSurveyPopUp *questionnaireSurveyPopUp;
 @property(nonatomic,copy  )NSString                 *roomUserCount;
 
-@property (nonatomic,strong)  MBProgressHUD        *hud;
 @end
 
 @implementation PlayForPCVC
@@ -165,15 +183,25 @@
  *	@brief  主讲开始推流
  */
 - (void)onLiveStatusChangeStart {
+    [_loadingView removeFromSuperview];
+    _loadingView = nil;
+    [_informationView removeFromSuperview];
+    _informationView = nil;
     
-    _hud = [MBProgressHUD showHUDAddedTo:self.videoView animated:YES];
-    _hud.mode = MBProgressHUDModeText;
-    _hud.labelText = @"视频加载中";
-//    _hud.removeFromSuperViewOnHide = YES;
+    _loadingView = [[LoadingView alloc] initWithLabel:@"视频加载中" centerY:YES];
+    [self.videoView addSubview:_loadingView];
+    UITapGestureRecognizer *hideTextBoardTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dealSingleInformationTap)];
+    [_loadingView addGestureRecognizer:hideTextBoardTap];
+    [_loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(50, 0, 0, 0));
+    }];
+    [_loadingView layoutIfNeeded];
 }
 -(void)loadInformationView:(NSString *)informationStr {
-
-    _hud.hidden=YES;
+    [_loadingView removeFromSuperview];
+    _loadingView = nil;
+    [_informationView removeFromSuperview];
+    _informationView = nil;
     
     [self showAll];
     
@@ -209,6 +237,219 @@
 - (void)onLiveStatusChangeEnd:(BOOL)endNormal {
     [self loadInformationView:@"直播已停止"];
 }
+/*
+ *  开始答题
+ */
+- (void)start_vote:(NSInteger)count singleSelection:(BOOL)single {
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [ws.voteViewResult removeFromSuperview];
+        ws.voteViewResult = nil;
+        [ws.voteView removeFromSuperview];
+        ws.voteView = nil;
+        ws.mySelectIndex = -1;
+        [ws.mySelectIndexArray removeAllObjects];
+        
+        ws.voteView = [[VoteView alloc] initWithCount:count singleSelection:single closeblock:^{
+            [ws.voteView removeFromSuperview];
+            ws.voteView = nil;
+        } voteSingleBlock:^(NSInteger index) {
+            [ws.requestData reply_vote_single:index];
+            ws.mySelectIndex = index;
+            NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:NO block:^(NSTimer * _Nonnull timer) {
+                [ws.voteView removeFromSuperview];
+                ws.voteView = nil;
+            }];
+            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+            [[NSRunLoop currentRunLoop] run];
+        } voteMultipleBlock:^(NSMutableArray *indexArray) {
+            [ws.requestData reply_vote_multiple:indexArray];
+            ws.mySelectIndexArray = [indexArray mutableCopy];
+            NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:NO block:^(NSTimer * _Nonnull timer) {
+                [ws.voteView removeFromSuperview];
+                ws.voteView = nil;
+            }];
+            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+            [[NSRunLoop currentRunLoop] run];
+        } singleNOSubmit:^(NSInteger index) {
+            ws.mySelectIndex = index;
+        } multipleNOSubmit:^(NSMutableArray *indexArray) {
+            ws.mySelectIndexArray = [indexArray mutableCopy];
+        } isScreenLandScape:self.isScreenLandScape];
+        
+        [APPDelegate.window addSubview:ws.voteView];
+        [ws.voteView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(ws.view);
+        }];
+        
+        if(ws.rollcallView) {
+            [APPDelegate.window bringSubviewToFront:ws.rollcallView];
+        }
+        
+        [ws.voteView layoutIfNeeded];
+    });
+}
+/*
+ *  结束答题
+ */
+- (void)stop_vote {
+    if(_voteView) {
+        [_voteView removeFromSuperview];
+        _voteView = nil;
+    }
+}
+/*
+ *  答题结果
+ */
+- (void)vote_result:(NSDictionary *)resultDic {
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [ws.voteViewResult removeFromSuperview];
+        ws.voteViewResult = nil;
+        [ws.voteView removeFromSuperview];
+        ws.voteView = nil;
+        ws.voteViewResult = [[VoteViewResult alloc] initWithResultDic:resultDic mySelectIndex:ws.mySelectIndex mySelectIndexArray:ws.mySelectIndexArray closeblock:^{
+            [ws.voteViewResult removeFromSuperview];
+            ws.voteViewResult = nil;
+        } isScreenLandScape:ws.isScreenLandScape];
+        
+        [APPDelegate.window addSubview:ws.voteViewResult];
+        [ws.voteViewResult mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(ws.view);
+        }];
+        
+        if(ws.rollcallView) {
+            [APPDelegate.window bringSubviewToFront:ws.rollcallView];
+        }
+        
+        [ws.voteViewResult layoutIfNeeded];
+    });
+}
+
+/*
+ *  开始抽奖
+ */
+- (void)start_lottery {
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [ws.lotteryView removeFromSuperview];
+        ws.lotteryView = nil;
+        
+        ws.lotteryView = [[LotteryView alloc] initIsScreenLandScape:ws.isScreenLandScape clearColor:NO];
+        ws.lotteryView.tag = -1 + 1000;
+        [ws.lotteryViewTags removeAllObjects];
+        [ws.lotteryViewTags addObject:[NSString stringWithFormat:@"%d",ws.lotteryView.tag]];
+        
+        [APPDelegate.window addSubview:ws.lotteryView];
+        [ws.lotteryView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(ws.view);
+        }];
+        
+        if(ws.rollcallView) {
+            [APPDelegate.window bringSubviewToFront:ws.rollcallView];
+        }
+        
+        [ws.lotteryView layoutIfNeeded];
+    });
+}
+/*
+ *  抽奖结果
+ */
+- (void)lottery_resultWithCode:(NSString *)code myself:(BOOL)myself winnerName:(NSString *)winnerName remainNum:(NSInteger)remainNum {
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(ws.lotteryView == nil) {
+            return;
+        }
+        
+        LotteryView *lotteryView = [[LotteryView alloc] initIsScreenLandScape:ws.isScreenLandScape clearColor:remainNum == 0 ? NO : YES];
+        lotteryView.tag = 1000 + remainNum;
+        [ws.lotteryViewTags addObject:[NSString stringWithFormat:@"%d",lotteryView.tag]];
+        
+        [APPDelegate.window insertSubview:lotteryView aboveSubview:ws.lotteryView];
+        [lotteryView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(ws.view);
+        }];
+        [lotteryView layoutIfNeeded];
+        if(myself) {
+            [lotteryView myselfWin:code];
+        } else {
+            [lotteryView otherWin:winnerName];
+        }
+        
+        if(remainNum == 0) {
+            [ws.lotteryView removeFromSuperview];
+            ws.lotteryView = nil;
+        }
+        
+        if(!myself) {
+            [NSTimer scheduledTimerWithTimeInterval:3.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
+                NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+                dic[@"tag"] = [NSString stringWithFormat:@"%d",lotteryView.tag];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"remove_lotteryView" object:dic];
+            }];
+        }
+        
+        if(ws.rollcallView) {
+            [APPDelegate.window bringSubviewToFront:ws.rollcallView];
+        }
+    });
+}
+/*
+ *  退出抽奖
+ */
+- (void)stop_lottery {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(closeLotteryView) userInfo:nil repeats:NO];
+    });
+}
+
+-(void)closeLotteryView {
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for(int i = 0;i < [ws.lotteryViewTags count];i++) {
+            NSInteger tag = [ws.lotteryViewTags[i] integerValue];
+            LotteryView *lotteryView = [APPDelegate.window viewWithTag:tag];
+            if(lotteryView && lotteryView.type != 2) {
+                [lotteryView removeFromSuperview];
+                lotteryView = nil;
+            }
+        }
+        [ws.lotteryViewTags removeAllObjects];
+    });
+}
+
+-(RollcallView *)rollcallView {
+    WS(ws)
+    if(!_rollcallView) {
+        _rollcallView = [[RollcallView alloc] initWithDuration:self.duration closeblock:^{
+            NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0 repeats:NO block:^(NSTimer * _Nonnull timer) {
+                [ws.rollcallView removeFromSuperview];
+                ws.rollcallView = nil;
+            }];
+            [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+            [[NSRunLoop currentRunLoop] run];
+        } lotteryblock:^{
+            [ws.requestData answer_rollcall];
+        } isScreenLandScape:self.isScreenLandScape];
+    }
+    return _rollcallView;
+}
+
+- (void)commitQuestionnaireResult:(BOOL)success {
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [ws.questionnaireSurvey commitSuccess:success];
+        if(success) {
+            [NSTimer scheduledTimerWithTimeInterval:3.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
+                [ws.questionnaireSurvey removeFromSuperview];
+                ws.questionnaireSurvey = nil;
+                [ws.questionnaireSurveyPopUp removeFromSuperview];
+                ws.questionnaireSurveyPopUp = nil;
+            }];
+        }
+    });
+}
 
 -(NSMutableArray *)publishIdArray {
     if(_publishIdArray==nil || [_publishIdArray count] == 0) {
@@ -222,6 +463,21 @@
         [self.publishIdArray addObject:publishId];
     }
     [self.questionChatView reloadQADic:self.QADic keysArrAll:self.publishIdArray];
+}
+
+- (void)start_rollcall:(NSInteger)duration {
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [ws.rollcallView removeFromSuperview];
+        ws.rollcallView = nil;
+        self.duration = duration;
+        [APPDelegate.window addSubview:self.rollcallView];
+        [ws.rollcallView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(ws.view);
+        }];
+        [APPDelegate.window bringSubviewToFront:ws.rollcallView];
+        [ws.rollcallView layoutIfNeeded];
+    });
 }
 
 -(UIView *)remoteView {
@@ -402,6 +658,75 @@
     return _QADic;
 }
 
+/*
+ *  发布问卷
+ */
+- (void)questionnaire_publish {
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [ws.questionnaireSurvey removeFromSuperview];
+        ws.questionnaireSurvey = nil;
+        [ws.questionnaireSurveyPopUp removeFromSuperview];
+        ws.questionnaireSurveyPopUp = nil;
+    });
+}
+/*
+ *  结束发布问卷
+ */
+- (void)questionnaire_publish_stop{
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [ws.questionnaireSurveyPopUp removeFromSuperview];
+        ws.questionnaireSurveyPopUp = nil;
+        
+        if(ws.questionnaireSurvey == nil) return;
+        
+        ws.questionnaireSurveyPopUp = [[QuestionnaireSurveyPopUp alloc] initIsScreenLandScape:self.isScreenLandScape SureBtnBlock:^{
+            [ws.questionnaireSurvey removeFromSuperview];
+            ws.questionnaireSurvey = nil;
+            [ws.questionnaireSurveyPopUp removeFromSuperview];
+            ws.questionnaireSurveyPopUp = nil;
+        }];
+        
+        [APPDelegate.window addSubview:ws.questionnaireSurveyPopUp];
+        [ws.questionnaireSurveyPopUp mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(ws.view);
+        }];
+        [ws.questionnaireSurveyPopUp layoutIfNeeded];
+        
+        if(ws.rollcallView) {
+            [APPDelegate.window bringSubviewToFront:ws.rollcallView];
+        }
+    });
+}
+
+/*
+ *  获取问卷详细内容
+ */
+- (void)questionnaireDetailInformation:(NSDictionary *)detailDic {
+    WS(ws)
+    dispatch_async(dispatch_get_main_queue(), ^{
+        ws.questionnaireSurvey = [[QuestionnaireSurvey alloc] initWithCloseBlock:^{
+            [ws.questionnaireSurvey removeFromSuperview];
+            ws.questionnaireSurvey = nil;
+            [ws.questionnaireSurveyPopUp removeFromSuperview];
+            ws.questionnaireSurveyPopUp = nil;
+        } CommitBlock:^(NSDictionary *dic) {
+            [ws.requestData commitQuestionnaire:dic];
+        } questionnaireDic:detailDic isScreenLandScape:ws.isScreenLandScape];
+        [APPDelegate.window addSubview:ws.questionnaireSurvey];
+        [ws.questionnaireSurvey mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(ws.view);
+        }];
+        
+        [ws.questionnaireSurvey layoutIfNeeded];
+        
+        if(ws.rollcallView) {
+            [APPDelegate.window bringSubviewToFront:ws.rollcallView];
+        }
+    });
+}
+
 -(NSMutableArray *)publicChatArray {
     if(!_publicChatArray) {
         _publicChatArray = [[NSMutableArray alloc] init];
@@ -548,7 +873,7 @@
 }
 
 -(void)hiddenAll {
-    if((_isScreenLandScape == YES && _isKeyBoardShow == YES) || _yuanHuaBtn.hidden == NO || self.mainRoad.hidden == NO || (_lianMaiView && _lianMaiView.hidden == NO) || _hud || _informationView) {
+    if((_isScreenLandScape == YES && _isKeyBoardShow == YES) || _yuanHuaBtn.hidden == NO || self.mainRoad.hidden == NO || (_lianMaiView && _lianMaiView.hidden == NO) || _loadingView || _informationView) {
         _hiddenTime = 5.0f;
         return;
     }
@@ -590,6 +915,8 @@
         _hiddenTime = 5.0f;
         return;
     }
+    _gongGaoDot.hidden = !_newGongGao;
+    
     _daohangView.hidden = YES;
     _barImageView.hidden = YES;
     _lianmaiBtn.hidden = YES;
@@ -712,18 +1039,13 @@
 }
 
 -(void)quanPingBtnClicked {
-    
     self.hiddenTime = 5.0f;
     if([self hasViewOnTheScreen:YES]) return;
     WS(ws)
     [self.view endEditing:YES];
-    [LsMethod begainFullScreen];
-
     if (!self.isScreenLandScape) {
         self.isScreenLandScape = YES;
         self.autoRotate = YES;
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];//保证入口是在竖屏方向
-
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeLeft] forKey:@"orientation"];
         [UIApplication sharedApplication].statusBarHidden = YES;
         [_requestData setPlayerFrame:self.view.frame];
@@ -751,10 +1073,16 @@
             make.centerY.mas_equalTo(ws.leftButton).offset(8);
             make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(115), CCGetRealFromPt(52)));
         }];
-
-        [_qingXiDuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(ws.daohangView).offset(-CCGetRealFromPt(52));
-            make.bottom.mas_equalTo(ws.leftLabel.mas_bottom);
+        
+        [_gongGaoBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(ws.daohangView).offset(-CCGetRealFromPt(43));
+            make.bottom.mas_equalTo(ws.leftLabel.mas_bottom).offset(2);
+            make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(67), CCGetRealFromPt(38)));
+        }];
+        
+        [_qingXiDuBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(ws.gongGaoBtn.mas_left).offset(-CCGetRealFromPt(52));
+            make.bottom.mas_equalTo(ws.gongGaoBtn).offset(-3);
             make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(86), CCGetRealFromPt(28)));
         }];
         
@@ -868,10 +1196,16 @@
             make.centerY.mas_equalTo(ws.leftButton);
             make.size.mas_equalTo(CGSizeMake(ws.view.frame.size.width * 0.5, CCGetRealFromPt(30)));
         }];
-        
-        [_qingXiDuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(ws.daohangView).offset(-CCGetRealFromPt(52));
+
+        [_gongGaoBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(ws.daohangView).offset(-CCGetRealFromPt(35));
             make.bottom.mas_equalTo(ws.leftLabel.mas_bottom);
+            make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(67), CCGetRealFromPt(38)));
+        }];
+        
+        [_qingXiDuBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(ws.gongGaoBtn.mas_left).offset(-CCGetRealFromPt(52));
+            make.bottom.mas_equalTo(ws.gongGaoBtn);
             make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(86), CCGetRealFromPt(28)));
         }];
         
@@ -972,16 +1306,6 @@
         } completion:^(BOOL finished) {
         }];
     }
-//#ifdef LIANMAI_WEBRTC
-    if(_remoteView) {
-//        [_remoteView mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.edges.mas_equalTo(ws.videoView);
-//        }];
-        self.remoteView.frame = [self calculateRemoteVIdeoRect:self.videoView.frame];
-        [_requestData setRemoteVideoFrameA:self.remoteView.frame];
-    }
-//#endif
-    [LsMethod endFullScreen];
     self.autoRotate = NO;
 }
 
@@ -1082,10 +1406,17 @@
             make.size.mas_equalTo(CGSizeMake(ws.view.frame.size.width * 0.5, CCGetRealFromPt(30)));
         }];
         
+        [self.daohangView addSubview:self.gongGaoBtn];
+        [_gongGaoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(ws.daohangView).offset(-CCGetRealFromPt(35));
+            make.bottom.mas_equalTo(ws.leftLabel.mas_bottom);
+            make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(67), CCGetRealFromPt(38)));
+        }];
+        
         [self.daohangView addSubview:self.qingXiDuBtn];
         [_qingXiDuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(ws.daohangView).offset(-CCGetRealFromPt(52));
-            make.bottom.mas_equalTo(ws.leftLabel.mas_bottom);
+            make.right.mas_equalTo(ws.gongGaoBtn.mas_left).offset(-CCGetRealFromPt(52));
+            make.bottom.mas_equalTo(ws.gongGaoBtn);
             make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(86), CCGetRealFromPt(28)));
         }];
         self.qingXiDuBtn.hidden = YES;
@@ -1230,6 +1561,16 @@
         }];
         self.soundBg.hidden = YES;
         self.soundLabel.hidden = YES;
+        
+        [self.daohangView addSubview:self.gongGaoDot];
+        [_gongGaoDot mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(ws.gongGaoBtn.mas_right);
+            make.top.mas_equalTo(ws.gongGaoBtn);
+            make.size.mas_equalTo(CGSizeMake(CCGetRealFromPt(12), CCGetRealFromPt(12)));
+        }];
+        self.newGongGao = NO;
+        _gongGaoDot.hidden = !self.newGongGao;
+        
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dealSingleTap:)];
         [self.videoView addGestureRecognizer:singleTap];
         
@@ -1417,12 +1758,24 @@
         _requestData = nil;
         [_modelView removeFromSuperview];
         _modelView = nil;
+        [_voteViewResult removeFromSuperview];
+        _voteViewResult = nil;
+        [_voteView removeFromSuperview];
+        _voteView = nil;
+        [_lotteryView removeFromSuperview];
+        _lotteryView = nil;
+        [_questionnaireSurvey removeFromSuperview];
+        _questionnaireSurvey = nil;
+    [_questionnaireSurveyPopUp removeFromSuperview];
+    _questionnaireSurveyPopUp = nil;
+        [_rollcallView removeFromSuperview];
+        _rollcallView = nil;
         [self dismissViewControllerAnimated:YES completion:^ {
         }];
 //    });
 }
 
--(void)stopTimer {
+-(void) stopTimer {
     if([_timer isValid]) {
         [_timer invalidate];
         _timer = nil;
@@ -1472,8 +1825,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [IQKeyboardManager sharedManager].enable = NO;
-
     [UIApplication sharedApplication].idleTimerDisabled=YES;
 }
 
@@ -1505,10 +1856,10 @@
     }
 
     PlayParameter *parameter = [[PlayParameter alloc] init];
-    parameter.userId = CCLIVE_USERID;
-    parameter.roomId = @"0D6DAFFEADD16F749C33DC5901307461";
-    parameter.viewerName = @"唐朝将军";
-    parameter.token = @"shishuo";
+    parameter.userId = GetFromUserDefaults(WATCH_USERID);
+    parameter.roomId = GetFromUserDefaults(WATCH_ROOMID);
+    parameter.viewerName = GetFromUserDefaults(WATCH_USERNAME);
+    parameter.token = GetFromUserDefaults(WATCH_PASSWORD);
     parameter.docParent = self.pptView;
     parameter.docFrame = self.pptView.frame;
     parameter.playerParent = self.videoView;
@@ -1522,9 +1873,14 @@
     _requestData = [[RequestData alloc] initWithParameter:parameter];
     _requestData.delegate = self;
     
-    _hud = [MBProgressHUD showHUDAddedTo:self.videoView animated:YES];
-    _hud.mode = MBProgressHUDModeText;
-    _hud.labelText = @"视频加载中";
+    _loadingView = [[LoadingView alloc] initWithLabel:@"视频加载中" centerY:YES];
+    [self.videoView addSubview:_loadingView];
+    UITapGestureRecognizer *hideTextBoardTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dealSingleInformationTap)];
+    [_loadingView addGestureRecognizer:hideTextBoardTap];
+    [_loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(50, 0, 0, 0));
+    }];
+    [_loadingView layoutIfNeeded];
 }
 
 - (void)dealSingleTap:(UITapGestureRecognizer *)tap {
@@ -1537,6 +1893,8 @@
             if (_barImageView.hidden == NO && CGRectContainsPoint(_barImageView.frame, point)) {
             return;
         } else if (_lianMaiView && _lianMaiView.hidden == NO && CGRectContainsPoint(_lianMaiView.frame, point)) {
+            return;
+        } else if(_gongGaoView) {
             return;
         } else if([self hasViewOnTheScreen:YES]) {
             return;
@@ -1555,7 +1913,9 @@
 //        } else
             if (_lianMaiView && _lianMaiView.hidden == NO && CGRectContainsPoint(_lianMaiView.frame, point)) {
             return;
-        }  else if([self hasViewOnTheScreen:YES]) {
+        } else if(_gongGaoView) {
+            return;
+        } else if([self hasViewOnTheScreen:YES]) {
             return;
         }
         
@@ -1644,6 +2004,30 @@
     return _userCountLogo;
 }
 
+-(UIButton *)gongGaoBtn {
+    if(!_gongGaoBtn) {
+        _gongGaoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        if(self.isScreenLandScape) {
+            _gongGaoBtn.layer.backgroundColor = [CCRGBAColor(0, 0, 0, 0.3) CGColor];
+        } else {
+            [_gongGaoBtn setTitle:@"公告" forState:UIControlStateNormal];
+            [_gongGaoBtn.titleLabel setFont:[UIFont systemFontOfSize:FontSize_28]];
+            [_gongGaoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [_gongGaoBtn setBackgroundColor:CCClearColor];
+        }
+        [_gongGaoBtn addTarget:self action:@selector(gongGaoAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _gongGaoBtn;
+}
+
+-(UIImageView *)gongGaoDot {
+    if(!_gongGaoDot) {
+        _gongGaoDot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chat_btn_msg"]];
+        _gongGaoDot.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _gongGaoDot;
+}
+
 -(UILabel *)soundLabel {
     if(!_soundLabel) {
         _soundLabel = [UILabel new];
@@ -1680,6 +2064,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForegroundNotification) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(movieNaturalSizeAvailableNotification:) name:IJKMPMovieNaturalSizeAvailableNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(removeLotteryView:)
+                                                 name:@"remove_lotteryView"
+                                               object:nil];
+}
+
+- (void)removeLotteryView:(NSNotification*) notification
+{
+    NSDictionary *dic = [notification object];
+    NSInteger tag = [dic[@"tag"] integerValue];
+    LotteryView *lotteryView = [APPDelegate.window viewWithTag:tag];
+    [lotteryView removeFromSuperview];
+    lotteryView = nil;
 }
 
 -(void)movieNaturalSizeAvailableNotification:(NSNotification *)notification {
@@ -1707,7 +2105,8 @@
         }
         case IJKMPMoviePlaybackStatePlaying:
         case IJKMPMoviePlaybackStatePaused:{
-            [_hud hide:YES];
+            [_loadingView removeFromSuperview];
+            _loadingView = nil;
             [_informationView removeFromSuperview];
             _informationView = nil;
             break;
@@ -1836,6 +2235,10 @@
                                                     name:IJKMPMoviePlayerLoadStateDidChangeNotification
                                                   object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:IJKMPMovieNaturalSizeAvailableNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"remove_lotteryView"
                                                   object:nil];
 }
 
@@ -2106,7 +2509,8 @@
     } else {
         message = reason;
     }
-    [_hud hide:YES];
+    [_loadingView removeFromSuperview];
+    _loadingView = nil;
     InformationShowView *informationView = [[InformationShowView alloc] initWithLabel:message];
     [self.view addSubview:informationView];
     [informationView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -2175,9 +2579,14 @@
     
     [_informationView removeFromSuperview];
     _informationView = nil;
-    _hud = [MBProgressHUD showHUDAddedTo:self.videoView animated:YES];
-    _hud.mode = MBProgressHUDModeText;
-    _hud.labelText = @"视频加载中";
+    _loadingView = [[LoadingView alloc] initWithLabel:@"视频加载中" centerY:YES];
+    [self.videoView addSubview:_loadingView];
+    UITapGestureRecognizer *hideTextBoardTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dealSingleInformationTap)];
+    [_loadingView addGestureRecognizer:hideTextBoardTap];
+    [_loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(50, 0, 0, 0));
+    }];
+    [_loadingView layoutIfNeeded];
 }
 
 -(void)secondRoadBtnClicked {
@@ -2204,9 +2613,48 @@
     
     [_informationView removeFromSuperview];
     _informationView = nil;
-    _hud = [MBProgressHUD showHUDAddedTo:self.videoView animated:YES];
-    _hud.mode = MBProgressHUDModeText;
-    _hud.labelText = @"视频加载中";
+    _loadingView = [[LoadingView alloc] initWithLabel:@"视频加载中" centerY:YES];
+    [self.videoView addSubview:_loadingView];
+    UITapGestureRecognizer *hideTextBoardTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dealSingleInformationTap)];
+    [_loadingView addGestureRecognizer:hideTextBoardTap];
+    [_loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(UIEdgeInsetsMake(50, 0, 0, 0));
+    }];
+    [_loadingView layoutIfNeeded];
+}
+
+-(void)gongGaoAction {
+    
+    self.hiddenTime = 5;
+    
+    if([self hasViewOnTheScreen:NO] || _loadingView) return;
+    
+    self.newGongGao = NO;
+    [self hiddenAllBtns];
+    WS(ws)
+    [self.videoView addSubview:self.gongGaoView];
+    if(self.isScreenLandScape) {
+        [_gongGaoView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(ws.videoView);
+        }];
+    } else {
+        [_gongGaoView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(ws.videoView);
+        }];
+    }
+}
+
+-(UIView *)gongGaoView {
+    if(!_gongGaoView) {
+        WS(ws)
+        _gongGaoView = [[GongGaoView alloc] initWithLeftLabelText:_gongGaoStr isScreenLandScape:self.isScreenLandScape forPC:YES block:^{
+            [ws.gongGaoView removeFromSuperview];
+            ws.gongGaoView = nil;
+            [ws showAll];
+        }];
+        _gongGaoView.userInteractionEnabled = YES;
+    }
+    return _gongGaoView;
 }
 
 -(void)selectRoadBtnClicked {
@@ -2243,11 +2691,13 @@
 }
 
 -(void)onSelectVC {
+//    dispatch_async(dispatch_get_main_queue(), ^{
         if(self.isScreenLandScape) {
             [self quanPingBtnClicked];
         } else {
             [self closeBtnClicked];
         }
+//    });
 }
 
 /*
@@ -2327,8 +2777,9 @@
 }
 
 - (void)makeTheRightAction {
-    if([_requestData isPlaying] && _hud) {
-        [_hud hide:YES];
+    if([_requestData isPlaying] && _loadingView) {
+        [_loadingView removeFromSuperview];
+        _loadingView = nil;
     }
     
     for(int i = 0;i < _lineLimit;i++){
@@ -2388,6 +2839,36 @@
     } completion:^(BOOL finished) {
         [view removeFromSuperview];
     }];
+}
+
+-(void)announcement:(NSString *)str {
+//    NSLog(@"公告str = %@",str);
+    if(StrNotEmpty(str)) {
+        _gongGaoStr = str;
+        self.newGongGao = YES;
+        self.gongGaoDot.hidden = !self.newGongGao;
+    } else {
+        _gongGaoStr = @"";
+        self.newGongGao = NO;
+        self.gongGaoDot.hidden = !self.newGongGao;
+    }
+}
+
+- (void)on_announcement:(NSDictionary *)dict {
+    if([dict[@"action"] isEqualToString:@"release"]) {
+        if(!_gongGaoView) {
+            self.newGongGao = YES;
+            self.gongGaoDot.hidden = !self.newGongGao;
+        }
+        _gongGaoStr = dict[@"announcement"];
+    } else if([dict[@"action"] isEqualToString:@"remove"]) {
+        self.newGongGao = NO;
+        self.gongGaoDot.hidden = !self.newGongGao;
+        _gongGaoStr = @"";
+    }
+    if(_gongGaoView) {
+        [_gongGaoView updateViews:self.gongGaoStr];
+    }
 }
 
 - (void)onQuestionDic:(NSDictionary *)questionDic
@@ -2571,6 +3052,19 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    [_voteViewResult removeFromSuperview];
+    _voteViewResult = nil;
+    [_voteView removeFromSuperview];
+    _voteView = nil;
+    [_lotteryView removeFromSuperview];
+    _lotteryView = nil;
+    [_questionnaireSurvey removeFromSuperview];
+    _questionnaireSurvey = nil;
+    [_questionnaireSurveyPopUp removeFromSuperview];
+    _questionnaireSurveyPopUp = nil;
+    [_rollcallView removeFromSuperview];
+    _rollcallView = nil;
     
     [self hiddenAllBtns];
     [self removeObserver];
@@ -2909,124 +3403,6 @@
     
     [self.chatView reloadPublicChatArray:self.publicChatArray];
 }
-
-//#ifdef LIANMAI_WEBRTC
--(void)requestLianmaiBtnClicked {
-    if(!_isAllow) {
-        InformationShowView *informationView = [[InformationShowView alloc] initWithLabel:@"主播未开启连麦功能"];
-        [self.view addSubview:informationView];
-        [informationView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(UIEdgeInsetsMake(0, 0, 0, 0));
-        }];
-        
-        [NSTimer scheduledTimerWithTimeInterval:2.0f repeats:NO block:^(NSTimer * _Nonnull timer) {
-            [informationView removeFromSuperview];
-        }];
-    } else {
-        [_requestData gotoConnectWebRTC];
-    }
-}
-
--(void)cancelLianmainBtnClicked {
-    [_requestData disConnectSpeak];
-    [self disconnectWithUI];
-}
-
--(void)hungupLianmainiBtnClicked {
-    [_requestData disConnectSpeak];
-    [self disconnectWithUI];
-}
-
--(void)disconnectWithUI {
-    _lianmaiBtn.selected = NO;
-    
-    if(_lianMaiView && _lianMaiView.requestLianmaiBtn.hidden == YES && (_lianMaiView.cancelLianmainBtn.hidden == NO || _lianMaiView.hungupLianmainBtn.hidden == NO)) {
-        [_lianMaiView initialState];
-    } else if(_lianMaiView.requestLianmaiBtn.hidden != NO) {
-        [_lianMaiView removeFromSuperview];
-        _lianMaiView = nil;
-    }
-    [_remoteView removeFromSuperview];
-    _remoteView = nil;
-    
-    if(_soundVideoBtn.selected) {
-        self.soundBg.hidden = NO;
-        self.soundLabel.hidden = NO;
-    }
-}
-/*
- *  @brief WebRTC连接成功，在此代理方法中主要做一些界面的更改
- */
-- (void)connectWebRTCSuccess {
-    [_lianMaiView connectWebRTCSuccess];
-    self.soundBg.hidden = YES;
-    self.soundLabel.hidden = YES;
-    if(_lianMaiView.hidden) {
-        _lianmaiBtn.selected = YES;
-    }
-}
-
-/*
- *  @brief 当前是否可以连麦
- */
-- (void)whetherOrNotConnectWebRTCNow:(BOOL)connect {
-    if(connect == YES) {
-        [_lianMaiView connectingToRTC];
-        
-        [self.videoView addSubview:self.remoteView];
-        [self.videoView sendSubviewToBack:self.remoteView];
-        [self.videoView bringSubviewToFront:self.contentView];
-        
-        [_requestData requestAVMessageWithLocalView:nil];
-    } else {
-        [_lianMaiView hasNoNetWork];
-    }
-}
-
-- (void)acceptSpeak:(NSDictionary *)dict {
-    _videosizeStr = dict[@"videosize"];
-    //    NSLog(@"---- _videosizeStr = %@",_videosizeStr);
-    self.remoteView.frame = [self calculateRemoteVIdeoRect:self.videoView.frame];
-    [_requestData saveUserInfo:dict remoteView:self.remoteView];
-}
-
--(CGRect) calculateRemoteVIdeoRect:(CGRect)rect {
-    //字符串是否包含有某字符串
-    NSRange range = [_videosizeStr rangeOfString:@"x"];
-    float remoteSizeWHPercent = [[_videosizeStr substringToIndex:range.location] floatValue] / [[_videosizeStr substringFromIndex:(range.location + 1)] floatValue];
-    
-    float videoParentWHPercent = rect.size.width / rect.size.height;
-    
-    CGSize remoteVideoSize = CGSizeZero;
-    
-    if(remoteSizeWHPercent > videoParentWHPercent) {
-        remoteVideoSize = CGSizeMake(rect.size.width, rect.size.width / remoteSizeWHPercent);
-    } else {
-        remoteVideoSize = CGSizeMake(rect.size.height * remoteSizeWHPercent, rect.size.height);
-    }
-    
-    CGRect remoteVideoRect = CGRectMake((rect.size.width - remoteVideoSize.width) / 2, (rect.size.height - remoteVideoSize.height) / 2, remoteVideoSize.width, remoteVideoSize.height);
-    return remoteVideoRect;
-}
-/*
- *  @brief 主播端发送断开连麦的消息，收到此消息后做断开连麦操作
- */
--(void)speak_disconnect:(BOOL)isAllow {
-    [self disconnectWithUI];
-}
-/*
- *  @brief 本房间为允许连麦的房间，会回调此方法，在此方法中主要设置UI的逻辑，
- *  在断开推流,登录进入直播间和改变房间是否允许连麦状态的时候，都会回调此方法
- */
-- (void)allowSpeakInteraction:(BOOL)isAllow {
-    _isAllow = isAllow;
-    if(!_isAllow) {
-        [_lianMaiView removeFromSuperview];
-        _lianMaiView = nil;
-        _lianmaiBtn.selected = NO;
-    }
-}
-//#endif
 
 @end
 

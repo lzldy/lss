@@ -65,7 +65,7 @@
         self.isResponseBlock = isResponseBlock;
         self.isNotResponseBlock = isNotResponseBlock;
         
-        self.backgroundColor = LSColor(250,250,250,0.96);
+        self.backgroundColor = CCRGBAColor(250,250,250,0.96);
         [self addSubviews];
         [self addObserver];
     }
@@ -76,7 +76,7 @@
 -(UIView *)bottomLine {
     if(!_bottomLine) {
         _bottomLine = [UIView new];
-        _bottomLine.backgroundColor = LSColor(221, 221, 221,1);
+        _bottomLine.backgroundColor = CCRGBColor(221, 221, 221);
     }
     return _bottomLine;
 }
@@ -84,7 +84,7 @@
 -(UIView *)topLine {
     if(!_topLine) {
         _topLine = [UIView new];
-        _topLine.backgroundColor = LSColor(221, 221, 221,1);
+        _topLine.backgroundColor = CCRGBColor(221, 221, 221);
     }
     return _topLine;
 }
@@ -548,7 +548,7 @@
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     _keyboardRect = [aValue CGRectValue];
     CGFloat y = _keyboardRect.size.height;
-//    CGFloat x = _keyboardRect.size.width;
+    CGFloat x = _keyboardRect.size.width;
 //    NSLog(@"键盘高度是  %d",(int)y);
 //    NSLog(@"键盘宽度是  %d",(int)x);
     WS(ws)

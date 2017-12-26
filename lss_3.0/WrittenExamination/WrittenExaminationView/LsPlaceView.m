@@ -30,8 +30,9 @@
         float  btn_x = space+(btn_w+space)*(i%5);
         float  btn_y = (i/5)*30*LSScale +5*LSScale*((i/5)+1);
         UIButton *btn  =[[UIButton alloc]  initWithFrame:CGRectMake(btn_x, btn_y, btn_w, btn_h)];
-        btn.backgroundColor  =[UIColor redColor];
         [btn setTitle:model.name forState:0];
+        [btn setTitleColor:[UIColor darkTextColor] forState:0];
+        btn.titleLabel.font    =[UIFont systemFontOfSize:12*LSScale];
         [btn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag         =i;
         [self addSubview:btn];

@@ -95,7 +95,7 @@
     WS(weakSelf)
     _carouselView  =[[UCCarouselView alloc] initWithFrame:CGRectMake(0, 20, LSMainScreenW, 140*LSScale)
                                                 dataArray:self.bannerArray
-                                             timeInterval:2
+                                             timeInterval:3
                                        didSelectItemBlock:^(NSInteger didSelectItem){
        if (didSelectItem>=0&&self.banModel.bannerArray.count>0) {
            [weakSelf bannerDetailVc:self.banModel.bannerArray[didSelectItem].clickurl];

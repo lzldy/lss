@@ -87,6 +87,8 @@
     }
     playBtn.videoID     =model.videoId;
     playBtn.livevideos  =model.livevideos;
+    playBtn.livestatus  =model.livestatus;
+
     playBtn.isEnroll    =model.mybuy;
     playBtn.title       =model.title;
     testBtn.url         =model.testUrl;

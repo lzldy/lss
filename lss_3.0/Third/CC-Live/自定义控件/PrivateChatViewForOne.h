@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CustomTextField.h"
 
-typedef void(^CloseBtnClicked)(void);
+typedef void(^CloseBtnClicked)();
 
-typedef void(^ChatIcBtnClicked)(void);
+typedef void(^ChatIcBtnClicked)();
 
 typedef void(^IsResponseBlock)(CGFloat y);
 
-typedef void(^IsNotResponseBlock)(void);
+typedef void(^IsNotResponseBlock)();
 
 @interface PrivateChatViewForOne : UIView
 

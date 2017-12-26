@@ -286,6 +286,7 @@
             [self genBillNoWith:textField_.text];
         }else{
             //直接评价
+            [self addrateData];
             NSLog(@"==========直接评价=======");
         }
     }else{

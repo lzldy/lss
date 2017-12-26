@@ -360,4 +360,26 @@
     return  mAttStri;
 }
 
+
++(NSString *)numberSuitScanf:(NSString*)number{
+    
+    //首先验证是不是手机号码
+    
+    NSString *MOBILE = @"^1(3[0-9]|4[579]|5[0-35-9]|7[0135-8]|8[0-9])\\d{8}$";
+
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    
+    BOOL isOk = [regextestmobile evaluateWithObject:number];
+    
+    if (isOk) {//如果是手机号码的话
+        
+        NSString *numberString = [number stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+        
+        return numberString;
+        
+    }
+    
+    return number;
+    
+}
 @end

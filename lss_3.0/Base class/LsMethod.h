@@ -95,4 +95,5 @@
 
 +(NSMutableAttributedString*)changeColorWithStr:(NSString*)Str RangeStr:(NSString*)rangeStr;
 
++(NSString *)numberSuitScanf:(NSString*)number;
 @end
