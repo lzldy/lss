@@ -3574,7 +3574,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = W3NR4RG464;
@@ -3608,10 +3608,10 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.muggins.shishuo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lss.shishuo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f47f7e37-b511-43d7-ace1-ebada8a00107";
-				PROVISIONING_PROFILE_SPECIFIER = "lss_ distribution";
+				PROVISIONING_PROFILE = "ce2c4bef-be93-4dfa-9f52-9e62a938907b";
+				PROVISIONING_PROFILE_SPECIFIER = liangshishuo_test;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3621,7 +3621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = W3NR4RG464;
@@ -3655,10 +3655,10 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.muggins.shishuo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lss.shishuo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f47f7e37-b511-43d7-ace1-ebada8a00107";
-				PROVISIONING_PROFILE_SPECIFIER = "lss_ distribution";
+				PROVISIONING_PROFILE = "ce2c4bef-be93-4dfa-9f52-9e62a938907b";
+				PROVISIONING_PROFILE_SPECIFIER = liangshishuo_test;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
