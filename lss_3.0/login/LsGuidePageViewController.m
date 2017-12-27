@@ -47,15 +47,15 @@
     [self.view addSubview:scroll];
     
     UIImageView *image1=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    image1.image=[UIImage imageNamed:@"juanzi"];
+    image1.image=[UIImage imageNamed:@"one_icon"];
     [scroll addSubview:image1];
     
     UIImageView *image2=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    image2.image=[UIImage imageNamed:@"heiban"];
+    image2.image=[UIImage imageNamed:@"two_icon"];
     [scroll addSubview:image2];
     
     UIImageView *image3=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width*2, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    image3.image=[UIImage imageNamed:@"deng"];
+    image3.image=[UIImage imageNamed:@"three_icon"];
     [scroll addSubview:image3];
     
 //    UIImageView *image4=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width*3, 0, self.view.frame.size.width, self.view.frame.size.height)];

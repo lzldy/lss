@@ -39,12 +39,16 @@
 
 @implementation LsInterviewViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self  getUserInfo];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navView.navTitle =@"备考";
     superView.backgroundColor  =LSColor(243, 244, 245, 1);
     [self getBannerData];
-    [self getUserInfo];
     [self initData];
 }
 

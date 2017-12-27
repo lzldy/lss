@@ -9,11 +9,13 @@
 #import "LsOneToOneViewController.h"
 #import "LsOneToOneDetailViewController.h"
 #import "LsActivityModel.h"
+#import "LsInterModel.h"
 
 @interface LsOneToOneViewController ()
 
 @property (nonatomic,strong) UIScrollView    *scrView;
 @property (nonatomic,strong) LsActivityModel *model;
+@property (nonatomic,strong) LsBannerModel   *banModel;
 
 @end
 
@@ -25,8 +27,19 @@
 
     [superView addSubview:self.scrView];
     [self loadBaseUI];
+    
+//    [self getBannerData];
 //    [self getData];
 }
+
+//-(void)getBannerData{
+//    NSDictionary *dict =@{@"page":@"YIDUIYI"};
+//    [[LsAFNetWorkTool shareManger] LSPOST:@"homebannerjson.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+//        self.banModel =[LsBannerModel yy_modelWithJSON:responseObject];
+//        [self loadBaseUI];
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+//    }];
+//}
 
 //-(void)getData{
 //    NSDictionary *dict =@{@"catg3":@"YDY"};
@@ -114,6 +127,13 @@
         _model  =[[LsActivityModel alloc] init];
     }
     return _model;
+}
+
+-(LsBannerModel *)banModel{
+    if (!_banModel) {
+        _banModel  =[[LsBannerModel alloc] init];
+    }
+    return _banModel;
 }
 
 - (void)didReceiveMemoryWarning {

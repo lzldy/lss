@@ -155,6 +155,8 @@
     [chooseImageBtn addTarget:self action:@selector(didClickTypeBtn:) forControlEvents:UIControlEventTouchUpInside];
     [backgourdView addSubview:chooseImageBtn];
     
+    ctag2                          =@"STUD";
+
     UILabel *textL                 =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(chooseImageBtn.frame), CGRectGetMaxY(xiangmuL.frame)+10*LSScale,LSMainScreenW,30*LSScale)];
     textL.text                     =@"仅推荐给名师";
     textL.textAlignment            =NSTextAlignmentLeft;
@@ -307,13 +309,13 @@
         case 115:
         {
             if (btn.selected) {
-                ctag2                          =@"STU2TH";
+                ctag2                          =@"STUD";
                 UIImage  *image                =[UIImage imageNamed:@"xuan"];
                 [chooseImageBtn setImage:image forState:0];
                 chooseImageBtn.selected=NO;
                 
             }else{
-                ctag2                          =@"";
+                ctag2                          =@"STU2TH";
                 UIImage  *image                =[UIImage imageNamed:@"xuanz"];
                 [chooseImageBtn setImage:image forState:0];
                 chooseImageBtn.selected=YES;

@@ -89,7 +89,7 @@
         [LsMethod alertMessage:@"请先输入您的手机号" WithTime:1.5];
         return;
     }
-    NSDictionary *dict =@{@"mobile":phoneNumView.textField.text};
+    NSDictionary *dict =@{@"mobile":phoneNumView.textField.text,@"opmode":@"CHPS"};
     [[LsAFNetWorkTool shareManger] LSGET:@"preregist.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         countTimer                      = 60;
         _codeBtn.userInteractionEnabled =NO;
@@ -125,6 +125,7 @@
                             @"password2"  :passWordView2.textField.text};
     [[LsAFNetWorkTool shareManger] LSPOST:@"changepass.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         [LsMethod alertMessage:@"密码修改成功" WithTime:1.5];
+        [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
         if (self.isForgot) {
             [self dismissViewControllerAnimated:YES completion:nil];
         }

@@ -27,8 +27,9 @@
 @property (strong,nonatomic) NSURL     *face;
 
 @property (strong,nonatomic) NSString  *branchId;
-@property (strong,nonatomic) NSString  *branchPrvnId;
 @property (strong,nonatomic) NSString  *branchName;
+@property (strong,nonatomic) NSString  *branchPrvnId;
+@property (strong,nonatomic) NSString  *branchPrvnName;
 
 @end
 

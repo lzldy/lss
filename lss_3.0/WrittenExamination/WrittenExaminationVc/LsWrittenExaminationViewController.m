@@ -41,7 +41,7 @@
 
 -(void)loadBaseUI{
     self.navView.rightButton.frame  =CGRectMake(LSMainScreenW -80*LSScale, 20, 75*LSScale, 44);
-    [self.navView.rightButton setTitle:[LsSingleton sharedInstance].user.branchName forState:0];
+    [self.navView.rightButton setTitle:[LsSingleton sharedInstance].user.branchPrvnName forState:0];
     [self.navView.rightButton addTarget:self action:@selector(clickRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     [superView addSubview:self.tabView];
     [superView addSubview:self.placeView];
