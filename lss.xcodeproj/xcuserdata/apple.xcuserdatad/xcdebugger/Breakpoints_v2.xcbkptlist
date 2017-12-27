@@ -132,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/My/MyVc/LsMyVideosViewController.m"
-            timestampString = "535987092.550576"
+            timestampString = "536047574.478098"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
@@ -148,7 +148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/My/MyVc/LsMyVideosViewController.m"
-            timestampString = "535987092.550638"
+            timestampString = "536047574.478553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "167"
@@ -164,7 +164,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/My/MyVc/LsMyVideosViewController.m"
-            timestampString = "535987092.550696"
+            timestampString = "536047574.478887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/Interview/PumpingTest/PumpingTestVc/LsRecordingCompletedViewController.m"
-            timestampString = "536039875.54609"
+            timestampString = "536059620.764173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "-uploadToServer"
             landmarkType = "7">
             <Locations>
@@ -196,11 +196,11 @@
                   moduleName = "lss"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Interview/PumpingTest/PumpingTestVc/LsRecordingCompletedViewController.m"
-                  timestampString = "536039875.758864"
+                  timestampString = "536057096.402122"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "231"
-                  endingLineNumber = "231"
+                  startingLineNumber = "236"
+                  endingLineNumber = "236"
                   offsetFromSymbolStart = "604">
                </Location>
                <Location
@@ -211,11 +211,11 @@
                   moduleName = "lss"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Interview/PumpingTest/PumpingTestVc/LsRecordingCompletedViewController.m"
-                  timestampString = "536039875.761185"
+                  timestampString = "536057096.404423"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "231"
-                  endingLineNumber = "231"
+                  startingLineNumber = "236"
+                  endingLineNumber = "236"
                   offsetFromSymbolStart = "56">
                </Location>
             </Locations>
@@ -228,12 +228,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/Interview/PumpingTest/PumpingTestVc/LsRecordingCompletedViewController.m"
-            timestampString = "536039875.546156"
+            timestampString = "536059620.764272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "-didClickTypeBtn:"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "-didClickUploadBtn"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -243,13 +243,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lss_3.0/Interview/PumpingTest/PumpingTestVc/LsRecordingCompletedViewController.m"
-            timestampString = "536039875.54621"
+            filePath = "lss_3.0/login/LsLoginViewController.m"
+            timestampString = "536059620.764326"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "-didClickTypeBtn:"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "-loginRequest"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

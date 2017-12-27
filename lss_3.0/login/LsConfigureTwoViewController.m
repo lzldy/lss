@@ -158,17 +158,44 @@ static NSString * headerReuseIdentifier = @"header";
 -(void)settingRequest{
     [self.dataDict setObject:@"y" forKey:@"purgeprev"];
     [[LsAFNetWorkTool shareManger] LSPOST:@"updateallsetting.html" parameters:self.dataDict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        [self settingSuccess];
         [LSUser_Default setObject:self.dataDict[@"scatgid"] forKey:@"scatgid"];
         [LSUser_Default setObject:self.dataDict[@"branchid"] forKey:@"branchid"];
         [LSUser_Default setObject:self.dataDict[@"catgid"] forKey:@"catgid"];
         [LSUser_Default setObject:self.saveDict forKey:@"配置"];
 
+        [LSUser_Default setObject:@"yes" forKey:@"thirdLogin"];
+
+        if (![[LSUser_Default objectForKey:@"thirdLogin"] isEqualToString:@"yes"]) {
+            [self loginRequest];
+        }else{
+            [self settingSuccess];
+        }
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
 
+-(void)loginRequest{
+    NSDictionary *dict =@{@"mobile"  :[LSUser_Default objectForKey:@"account"],
+                          @"password":[LSUser_Default objectForKey:@"password"]};
+
+   
+    [[LsAFNetWorkTool shareManger] LSGET:@"mobilelogin.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+        NSDictionary  *usertokenDict =[responseObject objectForKey:@"usertoken"];
+        NSString      *uid           =[usertokenDict objectForKey:@"uid"];
+        NSString      *token         =[usertokenDict objectForKey:@"token"];
+        [LSUser_Default setObject:uid   forKey:@"uid"];
+        [LSUser_Default setObject:token forKey:@"token"];
+
+        [self settingSuccess];
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+    }];
+}
+
+
 -(void)settingSuccess{
+    [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
     [LSUser_Default setObject:@"yes" forKey:@"didConfig"];
     [self dismissViewControllerAnimated:YES completion:^{
     }];

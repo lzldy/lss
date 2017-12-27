@@ -298,6 +298,9 @@
         NSString      *token         =[usertokenDict objectForKey:@"token"];
         [LSUser_Default setObject:uid   forKey:@"uid"];
         [LSUser_Default setObject:token forKey:@"token"];
+        [LSUser_Default setObject:_phoneNumber                  forKey:@"account"];
+        [LSUser_Default setObject:passWordView.textField.text   forKey:@"password"];
+
         if (![LSUser_Default objectForKey:@"didConfig"]) {
             LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
             conVc.modalPresentationStyle =UIModalPresentationCustom;
@@ -326,8 +329,8 @@
         NSDictionary  *usertokenDict =[responseObject objectForKey:@"usertoken"];
         NSString      *uid           =[usertokenDict  objectForKey:@"uid"];
         NSString      *token         =[usertokenDict  objectForKey:@"token"];
-        [LSUser_Default setObject:uid   forKey:@"uid"];
-        [LSUser_Default setObject:token forKey:@"token"];
+        [LSUser_Default setObject:uid    forKey:@"uid"];
+        [LSUser_Default setObject:token  forKey:@"token"];
         [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
         [LSUser_Default setObject:@"yes" forKey:@"thirdLogin"];
 

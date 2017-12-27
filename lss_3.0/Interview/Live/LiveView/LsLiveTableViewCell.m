@@ -34,7 +34,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor     =[UIColor clearColor];
-        baseView                 =[[UIView alloc] initWithFrame:CGRectMake(0, 10*LSScale, LSMainScreenW, 90*LSScale)];
+        baseView                 =[[UIView alloc] initWithFrame:CGRectMake(0, 10*LSScale, LSMainScreenW, 100*LSScale)];
         baseView.backgroundColor =[UIColor whiteColor];
         [self addSubview:baseView];
 
@@ -48,10 +48,11 @@
         titleL.textAlignment    =NSTextAlignmentLeft;
         [baseView addSubview:timeL];
         
-        titleL        =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(timeL.frame)+5*LSScale, LSMainScreenW-40, 20*LSScale)];
-        titleL.font             =[UIFont systemFontOfSize:15];
+        titleL        =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(timeL.frame)+5*LSScale, LSMainScreenW-100*LSScale, 30*LSScale)];
+        titleL.font             =[UIFont systemFontOfSize:14];
         titleL.textColor        =LSColor(86, 85, 85, 1);
         titleL.textAlignment    =NSTextAlignmentLeft;
+        titleL.numberOfLines    =0;
         [baseView addSubview:titleL];
         
         midLine    =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(titleL.frame)+4.5*LSScale, LSMainScreenW, 0.5)];
@@ -78,7 +79,7 @@
         personNumL.font          =[UIFont systemFontOfSize:13.8];
         [baseView addSubview:personNumL];
         
-        line           =[[UIView alloc] initWithFrame:CGRectMake(0, 90*LSScale-0.5, LSMainScreenW, 0.5)];
+        line           =[[UIView alloc] initWithFrame:CGRectMake(0, 100*LSScale-0.5, LSMainScreenW, 0.5)];
         line.backgroundColor   =LSLineColor;
         [baseView addSubview:line];
         

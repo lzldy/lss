@@ -185,16 +185,15 @@
         for (int i=0; i<array.count; i++) {
             CGSize  size  =[LsMethod sizeWithString:array[i] font:[UIFont systemFontOfSize:13*LSScale]];
             UILabel  *labelL  =[[UILabel alloc] init];
-            labelL.frame =CGRectMake(7*LSScale+CGRectGetMaxX(btn.frame), CGRectGetMaxY(label.frame)+5*LSScale, size.width+25*LSScale, 25*LSScale);
+            labelL.frame =CGRectMake(7*LSScale, CGRectGetMaxY(label.frame)+ (CGRectGetHeight(btn.frame)+5*LSScale)*i, size.width+20*LSScale, 20*LSScale);
             labelL.text  =array[i];
             labelL.textAlignment  =NSTextAlignmentCenter;
-            labelL.font  =[UIFont systemFontOfSize:13*LSScale];
+            labelL.font  =[UIFont systemFontOfSize:12*LSScale];
             labelL.textColor =[UIColor whiteColor];
-            labelL.layer.cornerRadius  =12.5*LSScale;
+            labelL.layer.cornerRadius  =10*LSScale;
             labelL.layer.backgroundColor =LSNavColor.CGColor;
             
             btn.frame =labelL.frame;
-            
             [superView addSubview:labelL];
         }
         

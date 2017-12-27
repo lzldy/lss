@@ -193,10 +193,15 @@
     uploader.timeoutSeconds = 30;
     uploader.videoContextForRetryBlock = ^(NSDictionary *videoContext) {
         _videoContext = videoContext;
+        [hud hide:YES];
+        [self uploadToServer];
+        if ([uploadFailureVideos containsObject:_videoPath]) {
+            [uploadFailureVideos removeObject:_videoPath];
+        }
     };
     uploader.finishBlock = ^() {
         [hud hide:YES];
-        [self uploadToServer];
+//        [self uploadToServer];
         if ([uploadFailureVideos containsObject:_videoPath]) {
             [uploadFailureVideos removeObject:_videoPath];
         }
