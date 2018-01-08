@@ -44,10 +44,10 @@
 -(void)getData{
     NSMutableDictionary *dict =[NSMutableDictionary dictionary];
     if ([LsMethod haveValue:type]) {
-        [dict setObject:type forKey:@"ctag1"];
+        [dict setObject:type      forKey:@"ctag1"];
     }
-    [dict setObject:@"STUD" forKey:@"ctag2"];//仅推荐给老师参数TEACH
-    [dict setObject:@"LK" forKey:@"ctag3"];
+    [dict setObject:@"STUD,TEACH" forKey:@"ctag2"];//仅推荐给老师参数TEACH
+    [dict setObject:@"LK"         forKey:@"ctag3"];
     [dict setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [[LsAFNetWorkTool shareManger] LSPOST:@"listvideotables.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model  =[LsPracticeModel yy_modelWithJSON:responseObject];
