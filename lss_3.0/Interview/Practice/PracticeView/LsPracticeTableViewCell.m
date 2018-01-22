@@ -19,7 +19,7 @@
 
     UIImageView    *commentImageView;//评论
     UILabel        *commentNumL;
-    
+    UIImageView    *playImageView;
 //    UIImageView    *recommendImageV;//推荐
 
 }
@@ -82,11 +82,11 @@
         commentNumL.textColor     =LSNavColor;
         [baseView addSubview:commentNumL];
         
-//        UIImage      *ima    =[UIImage imageNamed:@"tj"];
-//        recommendImageV               =[[UIImageView alloc] init];
-//        recommendImageV.frame         =CGRectMake(baseView.frame.size.width-ima.size.width, 0, ima.size.width, ima.size.height);
-//        recommendImageV.image         =ima;
-//        [baseView addSubview:recommendImageV];
+        UIImage      *playImage    =[UIImage imageNamed:@"big_stop_ic"];
+        playImageView              =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, playImage.size.width, playImage.size.height)];
+        playImageView.center       =imageV.center;
+        playImageView.image        =playImage;
+        [baseView addSubview:playImageView];
     
     }
     return self;

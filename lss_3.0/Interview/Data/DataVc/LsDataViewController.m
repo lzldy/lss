@@ -188,9 +188,18 @@
         float index =scrollView.contentOffset.x/LSMainScreenW;
         if (isScroll&&!upDown) {
             [self.topTabView tabIndex:index];
-//            if (index==1&&!_writtenModel) {
-//                [self.writtenTabView headerBeginRefreshing];
+            if (index==1) {
+                [self.tabView1 headerBeginRefreshing];
+                [self headerRefresh1];
+            }
+//            if (index==0) {
+//                [self.tabView headerBeginRefreshing];
+//                [self headerRefresh];
+//            }else{
+//                [self.tabView1 headerBeginRefreshing];
+//                [self headerRefresh1];
 //            }
+
         }
     }
 }

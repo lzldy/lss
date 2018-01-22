@@ -142,7 +142,6 @@
         [self getDataOfDidUpload];
     }else{
         [self getDataOfNoUpload];
-        [self.tabView1 reloadData];
     }
 }
 
@@ -156,6 +155,11 @@
         float index =scrollView.contentOffset.x/LSMainScreenW;
         if (isScroll&&!upDown) {
             [self.topTabView tabIndex:index];
+            if (index==0) {
+                [self getDataOfDidUpload];
+            }else{
+                [self getDataOfNoUpload];
+            }
         }
     }
 }
