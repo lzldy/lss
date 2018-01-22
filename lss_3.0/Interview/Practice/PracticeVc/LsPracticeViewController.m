@@ -120,6 +120,7 @@
     LsPractiveDetailViewController *praVc =[[LsPractiveDetailViewController alloc] init];
     praVc.authorType                      =modelll.ctag2;
     praVc.code_                           =modelll.code;
+    praVc.shareUrl                        =self.model.share_base_url;
 //    praVc.videoID                         =modelll.videoId;
 //    praVc.didZan                          =modelll.myzan;
 

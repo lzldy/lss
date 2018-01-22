@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) NSString *authorType;
 @property (nonatomic,strong) NSString *code_;
+@property (nonatomic,strong) NSString *shareUrl;
 
 //@property (nonatomic,strong) NSString *videoID;
 

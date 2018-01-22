@@ -198,6 +198,7 @@
 		1861DC221FF0C01C00C6A015 /* LsPlaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1861DC211FF0C01C00C6A015 /* LsPlaceModel.m */; };
 		18710D711FE26DC100F6BC96 /* LsActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18710D701FE26DC100F6BC96 /* LsActivityModel.m */; };
 		1877BD001F4D6646001F8EBD /* LsLiveDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */; };
+		1882258F201570D500AA3A81 /* new_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 1882258E201570D500AA3A81 /* new_icon.png */; };
 		1888C4B21FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888C4B11FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m */; };
 		188DB7DE1F5019F700852DD4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188DB7DD1F5019F700852DD4 /* QuartzCore.framework */; };
 		18975FCB1F29C6BD00447721 /* LsLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 18975FCA1F29C6BD00447721 /* LsLog.m */; };
@@ -813,6 +814,7 @@
 		18710D701FE26DC100F6BC96 /* LsActivityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsActivityModel.m; sourceTree = "<group>"; };
 		1877BCFE1F4D6646001F8EBD /* LsLiveDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsLiveDetailHeaderView.h; sourceTree = "<group>"; };
 		1877BCFF1F4D6646001F8EBD /* LsLiveDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsLiveDetailHeaderView.m; sourceTree = "<group>"; };
+		1882258E201570D500AA3A81 /* new_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_icon.png; sourceTree = "<group>"; };
 		1888C4B01FCE961D00B1A3EA /* LsMyLiveListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LsMyLiveListTableViewCell.h; sourceTree = "<group>"; };
 		1888C4B11FCE961D00B1A3EA /* LsMyLiveListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LsMyLiveListTableViewCell.m; sourceTree = "<group>"; };
 		188DB7DD1F5019F700852DD4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1462,6 +1464,7 @@
 		184CA1681F27199F00ACB807 = {
 			isa = PBXGroup;
 			children = (
+				1882258E201570D500AA3A81 /* new_icon.png */,
 				18C7A8981FEBA6C300164CDA /* icon.jpg */,
 				18A8062E1FEA4F1C00F06521 /* banner.jpg */,
 				18E82D631F37FB9400D3154B /* Interview */,
@@ -3105,6 +3108,7 @@
 				18F034B21FA1C4FA001A305D /* player-slider-handle@2x.png in Resources */,
 				18F034B81FA1C4FA001A305D /* tabbar-down-selected.png in Resources */,
 				18F034991FA1C4FA001A305D /* lock_ic@2x.png in Resources */,
+				1882258F201570D500AA3A81 /* new_icon.png in Resources */,
 				18F034921FA1C4FA001A305D /* download-status-hold@2x.png in Resources */,
 				18F034A01FA1C4FA001A305D /* nonfullscreen.png in Resources */,
 				18F034C11FA1C4FA001A305D /* tabbar-upload-selected@2x.png in Resources */,

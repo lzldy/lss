@@ -17,4 +17,6 @@
 
 @property (nonatomic,strong)  NSArray    *livevideos;
 
+@property (nonatomic,strong)  NSString  *shareUrl;
+
 @end

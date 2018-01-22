@@ -107,6 +107,7 @@
     [_hud hide:YES];
     LSApplication.idleTimerDisabled=YES;
     PlayBackVC *playBackVC = [[PlayBackVC alloc] init];
+    playBackVC.shareUrl    =self.shareUrl;
     [self presentViewController:playBackVC animated:YES completion:nil];
 }
 

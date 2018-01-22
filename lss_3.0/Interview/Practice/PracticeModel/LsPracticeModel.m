@@ -18,7 +18,9 @@
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"practiceLists"          :@"practiceList",
-             @"practiceDataArray"      :@"data.list"};
+             @"practiceDataArray"      :@"data.list",
+             @"share_base_url"         :@"data.share_base_url"
+             };
 }
 
 + (NSDictionary *)modelContainerPropertyGenericClass {

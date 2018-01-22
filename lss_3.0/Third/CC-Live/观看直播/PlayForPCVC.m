@@ -27,8 +27,12 @@
 #import "VoteViewResult.h"
 #import "QuestionnaireSurvey.h"
 #import "QuestionnaireSurveyPopUp.h"
+#import "LsShareModel.h"
 
 @interface PlayForPCVC ()<UITextFieldDelegate,RequestDataDelegate,UIScrollViewDelegate,LianMaiDelegate,UIAlertViewDelegate>
+{
+    UIButton  *shareBtn;
+}
 /*
  * 是否横屏模式
  */
@@ -146,6 +150,8 @@
 @property(nonatomic,strong)QuestionnaireSurvey      *questionnaireSurvey;
 @property(nonatomic,strong)QuestionnaireSurveyPopUp *questionnaireSurveyPopUp;
 @property(nonatomic,copy  )NSString                 *roomUserCount;
+
+@property (nonatomic,strong) LsShareModel       *shareModel;
 
 @end
 
@@ -1378,8 +1384,18 @@
         }
     }
 }
+-(void)clickShareBtn{
+    [self.shareModel  shareActionWithUrl:self.shareUrl Title:nil
+                                    OnVc:self];
+}
 
 -(void)initUI {
+    
+    shareBtn        =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-50*LSScale, LSMainScreenH-30*LSScale-50*LSScale, 50*LSScale, 50*LSScale)];
+    [shareBtn setImage:[UIImage imageNamed:@"pl_fx"] forState:0];
+    [shareBtn addTarget:self action:@selector(clickShareBtn) forControlEvents:UIControlEventTouchUpInside];
+    [LSApplicationDelegate.window addSubview:shareBtn];
+    
     if(!self.isScreenLandScape) {
         WS(ws)
         [self.view addSubview:self.videoView];
@@ -1831,6 +1847,7 @@
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].idleTimerDisabled=NO;
+    [shareBtn removeFromSuperview];
 }
 
 - (void)viewDidLoad {
@@ -3402,6 +3419,13 @@
     [self.publicChatArray addObject:dialogue];
     
     [self.chatView reloadPublicChatArray:self.publicChatArray];
+}
+
+-(LsShareModel *)shareModel{
+    if (!_shareModel) {
+        _shareModel =[[LsShareModel alloc]init];
+    }
+    return _shareModel;
 }
 
 @end

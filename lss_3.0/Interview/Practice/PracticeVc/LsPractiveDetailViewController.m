@@ -13,16 +13,20 @@
 #import "LsCustomPlayerViewController.h"
 #import "LsPracticeDetailModel.h"
 #import "DWCustomPlayerViewController.h"
+#import "LsShareModel.h"
 
 @interface LsPractiveDetailViewController ()<UITableViewDelegate,UITableViewDataSource,commentViewDelegate>
 {
     UIView   *blackGroudView;
     UIButton *goodBtn;
+    UIButton *commentBtn;
+    UIButton *shareBtn;
 }
 @property (nonatomic,strong) UITableView *tabView;
 @property (nonatomic,strong) LsPracticeDetailModel *model;
 @property (nonatomic,strong) LsPracticeCommentModel  *commentModel;
 @property (nonatomic,strong) LsCustomPlayerViewController *childVC;
+@property (nonatomic,strong) LsShareModel       *shareModel;
 
 @end
 
@@ -188,17 +192,30 @@
         _tabView.frame      = CGRectMake(0, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW, LSMainScreenH-10*LSScale-CGRectGetMaxY(headerView.frame));
     }
     
-    UIButton  *commentBtn        =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-50*LSScale, LSMainScreenH-30*LSScale-50*LSScale, 50*LSScale, 50*LSScale)];
-    [commentBtn setImage:[UIImage imageNamed:@"pl"] forState:0];
-    [commentBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-    commentBtn.tag   =888;
+    UIButton  *moreBtn        =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-50*LSScale, LSMainScreenH-30*LSScale-50*LSScale, 50*LSScale, 50*LSScale)];
+    [moreBtn setImage:[UIImage imageNamed:@"pl_gd"] forState:0];
+    [moreBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+    moreBtn.tag   =888;
+    [superView addSubview:moreBtn];
+    
+    commentBtn        =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-50*LSScale, CGRectGetMinY(moreBtn.frame)-55*LSScale, 50*LSScale, 50*LSScale)];
+    [commentBtn setImage:[UIImage imageNamed:@"db_pl"] forState:0];
+    [commentBtn addTarget:self action:@selector(addComment) forControlEvents:UIControlEventTouchUpInside];
+    commentBtn.hidden            =YES;
     [superView addSubview:commentBtn];
+    
+    shareBtn        =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-50*LSScale, CGRectGetMinY(commentBtn.frame)-55*LSScale, 50*LSScale, 50*LSScale)];
+    [shareBtn setImage:[UIImage imageNamed:@"pl_fx"] forState:0];
+    [shareBtn addTarget:self action:@selector(shareVideoUrl) forControlEvents:UIControlEventTouchUpInside];
+    shareBtn.hidden            =YES;
+    [superView addSubview:shareBtn];
+    
     [superView bringSubviewToFront:self.childVC.view];
 }
 
--(void)didClickNavViewRightBtn:(UIButton*)button{
-    [LsMethod alertMessage:@"分享" WithTime:1.5];
-}
+//-(void)didClickNavViewRightBtn:(UIButton*)button{
+//    [LsMethod alertMessage:@"分享" WithTime:1.5];
+//}
 
 -(void)clickBtn:(UIButton *)button{
     if (button.tag==765) {
@@ -218,11 +235,23 @@
             [LsMethod alertMessage:@"暂无老师点评" WithTime:1.5];
         }
     }else if(button.tag== 888){
-        LsCommentView *commentView     =[[LsCommentView alloc] init];
-        commentView.delegate           =self;
-        commentView.textPlaceholder    =@"写下您此刻的想法······";
-        commentView.commitBtnText      =@"发送评论";
-        [superView addSubview:commentView];
+        if (button.selected==YES){
+            button.selected=NO;
+            [UIView animateWithDuration:0.3 animations:^{
+                button.transform  = CGAffineTransformMakeRotation(0);
+                commentBtn.hidden = YES;
+                shareBtn.hidden   = YES;
+            }];
+            [UIView commitAnimations];
+        }else if (button.selected==NO){
+            button.selected=YES;
+            [UIView animateWithDuration:0.3 animations:^{
+                button.transform  = CGAffineTransformMakeRotation(M_PI_2/2);
+                commentBtn.hidden = NO;
+                shareBtn.hidden   = NO;
+            }];
+            [UIView commitAnimations];
+        }
     }else if (button.tag ==1314){
 //        DWCustomPlayerViewController *player = [[DWCustomPlayerViewController alloc] init];
 //        player.playMode = NO;
@@ -239,6 +268,19 @@
     }else if (button.tag ==999){
         [blackGroudView removeFromSuperview];
     }
+}
+
+-(void)addComment{
+    LsCommentView *commentView     =[[LsCommentView alloc] init];
+    commentView.delegate           =self;
+    commentView.textPlaceholder    =@"写下您此刻的想法······";
+    commentView.commitBtnText      =@"发送评论";
+    [superView addSubview:commentView];
+}
+
+-(void)shareVideoUrl{
+    NSString  *urlStr  =[NSString stringWithFormat:@"%@%@",self.shareUrl,self.code_];
+    [self.shareModel shareActionWithUrl:urlStr Title:self.model.title OnVc:self];
 }
 
 -(void)initIntroductionView{
@@ -348,6 +390,13 @@
         _commentModel =[[LsPracticeCommentModel alloc] init];
     }
     return _commentModel;
+}
+
+-(LsShareModel *)shareModel{
+    if (!_shareModel) {
+        _shareModel =[[LsShareModel alloc]init];
+    }
+    return _shareModel;
 }
 
 - (void)didReceiveMemoryWarning {

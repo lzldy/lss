@@ -58,5 +58,8 @@
 @property (nonatomic,strong)  NSArray  *courseArrangement;
 @property (nonatomic,strong)  LsCourseIntroductionModel *courseIntroduction;
 
+@property (nonatomic,strong)  NSString  *share_base_url;
+@property (nonatomic,strong)  NSString  *code;
+
 
 @end

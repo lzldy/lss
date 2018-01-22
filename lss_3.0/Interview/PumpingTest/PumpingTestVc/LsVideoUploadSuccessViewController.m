@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navView.navTitle =@"分享给老友";
+    self.navView.navTitle =@"发布成功";
     [self loadBaseUI];
 }
 
@@ -30,7 +30,7 @@
     topImageV.image        =topImage;
     [superView addSubview:topImageV];
     
-    [self.shareModel shareActionWithUrl:@"www.baidu.com" OnVc:self];
+//    [self.shareModel shareActionWithUrl:@"www.baidu.com" Title:@"" OnVc:self];
 }
 
 -(void)backBtn{

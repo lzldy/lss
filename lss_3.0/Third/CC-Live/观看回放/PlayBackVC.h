@@ -10,4 +10,6 @@
 
 @interface PlayBackVC : UIViewController
 
+@property (nonatomic,strong) NSString  *shareUrl;
+
 @end

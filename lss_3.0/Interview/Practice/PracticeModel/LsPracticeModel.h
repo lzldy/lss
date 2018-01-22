@@ -40,5 +40,6 @@
 @property (nonatomic,strong) NSArray<LsPracticeListModel*>   *practiceLists;
 
 @property (nonatomic,strong) NSArray   *practiceDataArray;
+@property (nonatomic,strong) NSString  *share_base_url;
 
 @end

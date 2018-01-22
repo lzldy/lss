@@ -19,11 +19,15 @@
 #import "Dialogue.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MySlider.h"
+#import "LsShareModel.h"
 
 @interface PlayBackVC ()<RequestDataPlayBackDelegate,UIScrollViewDelegate>
 /*
  * 是否横屏模式
  */
+{
+    UIButton  *shareBtn;
+}
 @property(nonatomic,assign)Boolean                  isScreenLandScape;
 @property(nonatomic,strong)UIButton                 *leftButton;
 @property(nonatomic,strong)UILabel                  *leftLabel;
@@ -65,6 +69,8 @@
 @property(nonatomic,assign)BOOL                     autoRotate;
 //@property(nonatomic,strong)UILabel                  *playRateLabel;
 @property(nonatomic,assign)float                    playBackRate;
+
+@property (nonatomic,strong) LsShareModel           *shareModel;
 
 @end
 
@@ -553,7 +559,18 @@
     self.autoRotate = NO;
 }
 
+-(void)clickShareBtn{
+    [self.shareModel  shareActionWithUrl:self.shareUrl Title:nil
+                                    OnVc:self];
+}
+
 -(void)initUI {
+    
+    shareBtn        =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-50*LSScale, LSMainScreenH-30*LSScale-50*LSScale, 50*LSScale, 50*LSScale)];
+    [shareBtn setImage:[UIImage imageNamed:@"pl_fx"] forState:0];
+    [shareBtn addTarget:self action:@selector(clickShareBtn) forControlEvents:UIControlEventTouchUpInside];
+    [LSApplicationDelegate.window addSubview:shareBtn];
+    
     WS(ws)
     [self.view addSubview:self.videoView];
     _videoRect = CGRectMake(0, 0, self.view.frame.size.width, CCGetRealFromPt(462));
@@ -721,6 +738,7 @@
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [UIApplication sharedApplication].idleTimerDisabled=NO;
+    [shareBtn removeFromSuperview];
 }
 
 -(void)closeBtnClicked {
@@ -822,6 +840,8 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self initUI];
     [self addObserver];
+    
+    
     [self startHiddenTimer];
     _autoRotate = NO;
     _sliderValue = 0;
@@ -1255,6 +1275,15 @@
 - (void)pageChangeList:(NSMutableArray *)array {
     NSLog(@"%@",array);
 }
+
+
+-(LsShareModel *)shareModel{
+    if (!_shareModel) {
+        _shareModel =[[LsShareModel alloc]init];
+    }
+    return _shareModel;
+}
+
 
 @end
 

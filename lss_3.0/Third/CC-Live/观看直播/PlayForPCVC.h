@@ -10,6 +10,8 @@
 
 @interface PlayForPCVC : UIViewController
 
+@property (nonatomic,strong) NSString  *shareUrl;
+
 -(instancetype)initWithLeftLabelText:(NSString *)leftLabelText ;
 
 @end

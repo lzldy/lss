@@ -15,7 +15,7 @@
 {
     UITextView           *textView_;
     UITextField          *textField_;
-    UIView               *backView;
+//    UIView               *backView;
     NSString             *billNum;
     NSString             *totalFee;
 }
@@ -42,17 +42,18 @@
 }
 
 -(void)loadBaseUI{
-    backView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, LSMainScreenH)];
-    [superView addSubview:backView];
-    [superView bringSubviewToFront:self.navView];
+//    backView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, LSMainScreenW, LSMainScreenH)];
+//    [superView addSubview:backView];
+//    [superView bringSubviewToFront:self.navView];
+    
     UIView *backgroundView         =[[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, 90*LSScale)];
     backgroundView.backgroundColor =LSNavColor;
-    [backView addSubview:backgroundView];
+    [superView addSubview:backgroundView];
     
     UIView  *headerView            =[[UIView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMidY(backgroundView.frame), LSMainScreenW-20*LSScale, 140*LSScale)];
     headerView.backgroundColor     =[UIColor whiteColor];
     headerView.layer.cornerRadius  =6;
-    [backView addSubview:headerView];
+    [superView addSubview:headerView];
     
     UIImageView  *iconView         =[[UIImageView alloc] initWithFrame:CGRectMake(0,0, 60*LSScale, 60*LSScale)];
     iconView.center                =CGPointMake(CGRectGetMidX(superView.frame)-5*LSScale, 0);
@@ -61,42 +62,44 @@
     iconView.layer.masksToBounds   =YES;
     [headerView addSubview:iconView];
     
-    UILabel  *titleL               =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(iconView.frame)+5*LSScale, headerView.frame.size.width, 25*LSScale)];
+    UILabel  *titleL               =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(iconView.frame)+5*LSScale, headerView.frame.size.width, 50*LSScale)];
     titleL.text                    =_title_;
     titleL.textAlignment           =NSTextAlignmentCenter;
+    titleL.numberOfLines           =0;
     titleL.font                    =[UIFont boldSystemFontOfSize:20*LSScale];
     [headerView addSubview:titleL];
     
-    textField_       =[[UITextField alloc] initWithFrame:CGRectMake(headerView.frame.size.width/2-45*LSScale, CGRectGetMaxY(titleL.frame)+5*LSScale, 90*LSScale, 25*LSScale)];
-    textField_.keyboardType         = UIKeyboardTypeNumberPad;
-    textField_.textAlignment        =NSTextAlignmentCenter;
-    textField_.textColor            =LSColor(255, 90, 122, 1);
-    textField_.delegate             =self;
-    textField_.font                 =[UIFont systemFontOfSize:17*LSScale];
-    [headerView addSubview:textField_];
+    headerView.frame               =CGRectMake(headerView.frame.origin.x, headerView.frame.origin.y, headerView.frame.size.width, CGRectGetMaxY(titleL.frame)+15*LSScale);
+//    textField_       =[[UITextField alloc] initWithFrame:CGRectMake(headerView.frame.size.width/2-45*LSScale, CGRectGetMaxY(titleL.frame)+5*LSScale, 90*LSScale, 25*LSScale)];
+//    textField_.keyboardType         = UIKeyboardTypeNumberPad;
+//    textField_.textAlignment        =NSTextAlignmentCenter;
+//    textField_.textColor            =LSColor(255, 90, 122, 1);
+//    textField_.delegate             =self;
+//    textField_.font                 =[UIFont systemFontOfSize:17*LSScale];
+//    [headerView addSubview:textField_];
     
-    UIView *line                   =[[UIView alloc] initWithFrame:CGRectMake(textField_.frame.origin.x, CGRectGetMaxY(textField_.frame), textField_.frame.size.width, 1)];
-    line.backgroundColor           =LSLineColor;
-    [headerView addSubview:line];
+//    UIView *line                   =[[UIView alloc] initWithFrame:CGRectMake(textField_.frame.origin.x, CGRectGetMaxY(textField_.frame), textField_.frame.size.width, 1)];
+//    line.backgroundColor           =LSLineColor;
+//    [headerView addSubview:line];
     
-    UILabel   *textFL              =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(textField_.frame), textField_.frame.origin.y, 40*LSScale, 25*LSScale)];
-    textFL.text                    =@"元";
-    textFL.font                    =[UIFont systemFontOfSize:17*LSScale];
-    textFL.textColor               =[UIColor darkTextColor];
-    textFL.textAlignment           =NSTextAlignmentLeft;
-    [headerView addSubview:textFL];
+//    UILabel   *textFL              =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(textField_.frame), textField_.frame.origin.y, 40*LSScale, 25*LSScale)];
+//    textFL.text                    =@"元";
+//    textFL.font                    =[UIFont systemFontOfSize:17*LSScale];
+//    textFL.textColor               =[UIColor darkTextColor];
+//    textFL.textAlignment           =NSTextAlignmentLeft;
+//    [headerView addSubview:textFL];
 
-    UILabel   *promptL             =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame)+5*LSScale, headerView.frame.size.width, 35*LSScale)];
-    promptL.text                   =@"输入打赏金额";
-    promptL.font                   =[UIFont systemFontOfSize:17*LSScale];
-    promptL.textColor              =[UIColor darkGrayColor];
-    promptL.textAlignment          =NSTextAlignmentCenter;
-    [headerView addSubview:promptL];
+//    UILabel   *promptL             =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame)+5*LSScale, headerView.frame.size.width, 35*LSScale)];
+//    promptL.text                   =@"输入打赏金额";
+//    promptL.font                   =[UIFont systemFontOfSize:17*LSScale];
+//    promptL.textColor              =[UIColor darkGrayColor];
+//    promptL.textAlignment          =NSTextAlignmentCenter;
+//    [headerView addSubview:promptL];
     
     UIView  *midView               =[[UIView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW-20*LSScale, 190*LSScale)];
-    midView.backgroundColor        =[UIColor whiteColor];
+    midView.backgroundColor        =LSNavColor;
     midView.layer.cornerRadius     =6;
-    [backView addSubview:midView];
+    [superView addSubview:midView];
     
     __weak typeof(self) weakSelf = self;
     XHStarRateView *starRateView = [[XHStarRateView alloc] initWithFrame:CGRectMake(10*LSScale, 10*LSScale, 180*LSScale, 30*LSScale) finish:^(CGFloat currentScore) {
@@ -130,7 +133,7 @@
     [submitBtn setTitle:@"立即提交" forState:0];
     [submitBtn setTitleColor:[UIColor whiteColor] forState:0];
     [submitBtn addTarget:self action:@selector(didcClickSubmitBtn) forControlEvents:UIControlEventTouchUpInside];
-    [backView addSubview:submitBtn];
+    [superView addSubview:submitBtn];
     
 }
 

@@ -148,13 +148,15 @@
     
     _hud = [MBProgressHUD showHUDAddedTo:[LSApplicationDelegate window] animated:YES];
     _hud.removeFromSuperViewOnHide = YES;
-
+ 
     if ([button.livestatus isEqualToString:@"1"]) {
         //回放
         [_hud hide:YES];
         LsPlayBackViewController *vc =[[LsPlayBackViewController alloc] init];
         vc.navTitle                  =button.title;
         vc.livevideos                =button.livevideos;
+        vc.shareUrl                  =[NSString stringWithFormat:@"%@%@",self.model.share_base_url,self.model.code];
+
         [self.navigationController pushViewController:vc animated:YES];
 
     }else if([button.livestatus isEqualToString:@"0"]){
@@ -188,6 +190,7 @@
     [_hud hide:YES];
     LSApplication.idleTimerDisabled=YES;//不锁屏
     PlayForPCVC *playForPCVC = [[PlayForPCVC alloc] initWithLeftLabelText:@"直播"];
+    playForPCVC.shareUrl     =[NSString stringWithFormat:@"%@%@",self.model.share_base_url,self.model.code];
     [self presentViewController:playForPCVC animated:YES completion:nil];
 }
 

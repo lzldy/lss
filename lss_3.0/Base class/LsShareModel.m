@@ -29,7 +29,7 @@
     //创建图片内容对象
     UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
     //如果有缩略图，则设置缩略图
-    shareObject.thumbImage = [UIImage imageNamed:@"icon"];
+    shareObject.thumbImage = image;
     [shareObject setShareImage:image];
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
@@ -45,22 +45,26 @@
 }
 
 
--(void)shareActionWithUrl:(NSString*)url OnVc:(UIViewController*)vc{
+-(void)shareActionWithUrl:(NSString*)url Title:(NSString*)title OnVc:(UIViewController*)vc{
     //显示分享面板
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
         // 根据获取的platformType确定所选平台进行下一步操作
-        [self shareImageToPlatformType:platformType Url:url OnVc:vc];
+        [self shareImageToPlatformType:platformType Url:url Title:title OnVc:vc];
     }];
 
 }
 
-- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType Url:(NSString*)url OnVc:(UIViewController*)vc
+- (void)shareImageToPlatformType:(UMSocialPlatformType)platformType Url:(NSString*)url Title:(NSString*)title OnVc:(UIViewController*)vc
 {
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
+    NSString *str     =@"跟随良师 方位良师";
+    if (![LsMethod haveValue:title]) {
+        title         =str;
+    }
     //创建网页内容对象
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"良师说" descr:@"跟随良师 方为良师" thumImage:[UIImage imageNamed:@"icon.jpg"]];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"良师说" descr:title thumImage:[UIImage imageNamed:@"new_icon"]];
     //设置网页地址
     shareObject.webpageUrl =url;
     

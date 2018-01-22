@@ -54,11 +54,11 @@
 -(void)clickRightButton:(UIButton *)btn{
     if (btn.tag==110086) {
         if (self.isBanner) {
-            [self.shareModel shareActionWithUrl:[self.bannerUrl absoluteString] OnVc:self];
+            [self.shareModel shareActionWithUrl:[self.bannerUrl absoluteString] Title:@"" OnVc:self];
         }else if (self.isDoExe){
-            [self.shareModel shareActionWithUrl:[self.doExeUrl absoluteString] OnVc:self];
+            [self.shareModel shareActionWithUrl:[self.doExeUrl absoluteString]  Title:@"" OnVc:self];
         }else{
-            [self.shareModel shareActionWithUrl:[self.model.url absoluteString] OnVc:self];
+            [self.shareModel shareActionWithUrl:[self.model.url absoluteString] Title:@"" OnVc:self];
         }
     }else{
         btn.selected  =YES;
