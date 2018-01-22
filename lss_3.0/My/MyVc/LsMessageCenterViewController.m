@@ -41,7 +41,14 @@
         }else{
             self.dataArray =[NSMutableArray arrayWithArray:self.model.list];
         }
-        [self.tabView reloadData];
+        if (self.dataArray.count>0) {
+            [self.tabView reloadData];
+            self.bgImageView.hidden  =YES;
+            [superView bringSubviewToFront:self.tabView];
+        }else{
+            self.bgImageView.hidden  =NO;
+            [superView bringSubviewToFront:self.bgImageView];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }

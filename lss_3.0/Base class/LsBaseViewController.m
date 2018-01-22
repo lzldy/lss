@@ -43,6 +43,11 @@
     [superView addSubview:self.navView];
     self.view.backgroundColor =[UIColor whiteColor];
     [self.navView.leftButton addTarget:self action:@selector(backBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.bgImageView   =[[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW, LSMainScreenH-CGRectGetMaxY(self.navView.frame))];
+    self.bgImageView.image  =LOADIMAGE(@"hnr_icon");
+    self.bgImageView.hidden =YES;
+    [superView addSubview:self.bgImageView];
 }
 
 -(void)backBtn{

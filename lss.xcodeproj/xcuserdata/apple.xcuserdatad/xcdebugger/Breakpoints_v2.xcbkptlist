@@ -100,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/Third/CC-Live/&#x89c2;&#x770b;&#x76f4;&#x64ad;/PlayForPCVC.m"
-            timestampString = "538291110.60992"
+            timestampString = "538296855.1188509"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
@@ -116,27 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/My/MyVc/LsMyVideosViewController.m"
-            timestampString = "536047574.478098"
+            timestampString = "538296855.1189359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "-reUploadVideo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "lss_3.0/My/MyVc/LsMyVideosViewController.m"
-            timestampString = "536047574.478553"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "-didClickBtnIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -148,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/My/MyVc/LsMyVideosViewController.m"
-            timestampString = "536047574.478887"
+            timestampString = "538296855.119344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "-deleteData:"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,7 +164,7 @@
                   moduleName = "lss"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Interview/PumpingTest/PumpingTestVc/LsRecordingCompletedViewController.m"
-                  timestampString = "538291110.925227"
+                  timestampString = "538296855.3358409"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "236"
@@ -195,7 +179,7 @@
                   moduleName = "lss"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/apple/Desktop/lss-3.0/lss_3.0/Interview/PumpingTest/PumpingTestVc/LsRecordingCompletedViewController.m"
-                  timestampString = "538291110.928948"
+                  timestampString = "538296855.338285"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "236"

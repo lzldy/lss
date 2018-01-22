@@ -59,7 +59,7 @@
     //创建分享消息对象
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
-    NSString *str     =@"跟随良师 方位良师";
+    NSString *str     =@"跟随良师 方为良师";
     if (![LsMethod haveValue:title]) {
         title         =str;
     }

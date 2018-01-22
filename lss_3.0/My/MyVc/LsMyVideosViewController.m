@@ -56,9 +56,15 @@
             self.didDataArray     =[NSMutableArray arrayWithArray:self.model.list];
         }else{
             self.didDataArray     =[NSMutableArray array];
-            [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
         }
-        [self.tabView reloadData];
+        if (self.didDataArray.count>0) {
+            [self.tabView reloadData];
+            self.bgImageView.hidden  =YES;
+            [superView bringSubviewToFront:self.tabView];
+        }else{
+            self.bgImageView.hidden  =NO;
+            [superView bringSubviewToFront:self.bgImageView];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
 }
@@ -76,8 +82,13 @@
         modelll.image           =[LsMethod thumbnailImageForVideo:[NSURL URLWithString:urlPath] atTime:1];
         [self.unDidDataArray addObject:modelll];
     }
-    if (self.unDidDataArray.count<1) {
-        [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
+    if (self.unDidDataArray.count>0) {
+        [self.tabView1 reloadData];
+        self.bgImageView.hidden  =YES;
+        [superView bringSubviewToFront:self.tabView1];
+    }else{
+        self.bgImageView.hidden  =NO;
+        [superView bringSubviewToFront:self.bgImageView];
     }
 }
 
@@ -128,7 +139,7 @@
 -(void)lsNavTabViewIndex:(NSInteger)index{
     [self.scrView setContentOffset:CGPointMake(LSMainScreenW*index,0) animated:NO];
     if (index==0) {
-        [self.tabView reloadData];
+        [self getDataOfDidUpload];
     }else{
         [self getDataOfNoUpload];
         [self.tabView1 reloadData];

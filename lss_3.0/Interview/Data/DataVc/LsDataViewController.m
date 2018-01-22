@@ -54,7 +54,8 @@
     [[LsAFNetWorkTool shareManger] LSPOST:@"listinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model =[LsDataModel yy_modelWithJSON:responseObject];
         if (self.model.dataArray.count==0) {
-            [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
+            self.bgImageView.hidden  =NO;
+            [superView bringSubviewToFront:self.bgImageView];
         }else{
             if (bkPage>0) {
                 [self.bkDataArray addObjectsFromArray:self.model.dataArray];
@@ -62,6 +63,8 @@
                 self.bkDataArray =[NSMutableArray arrayWithArray:self.model.dataArray];
             }
             [self.tabView reloadData];
+            self.bgImageView.hidden  =YES;
+            [superView bringSubviewToFront:self.tabView];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];
@@ -75,7 +78,8 @@
     [[LsAFNetWorkTool shareManger] LSPOST:@"listinfo.html" parameters:dict success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
         self.model1 =[LsDataModel yy_modelWithJSON:responseObject];
         if (self.model1.dataArray.count==0) {
-            [LsMethod alertMessage:@"暂无数据" WithTime:1.5];
+            self.bgImageView.hidden  =NO;
+            [superView bringSubviewToFront:self.bgImageView];
         }else{
             if (ksbPage>0) {
                 [self.ksbDataArray addObjectsFromArray:self.model1.dataArray];
@@ -83,6 +87,8 @@
                 self.ksbDataArray =[NSMutableArray arrayWithArray:self.model1.dataArray];
             }
             [self.tabView1 reloadData];
+            self.bgImageView.hidden  =YES;
+            [superView bringSubviewToFront:self.tabView1];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
     }];

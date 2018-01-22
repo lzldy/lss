@@ -13,8 +13,8 @@
 {
     UIView *superView;
 }
-@property (assign,nonatomic) BOOL closeIQKeyBoard;
+@property (assign,nonatomic) BOOL         closeIQKeyBoard;
 
-@property (nonatomic,strong) LsNavView *navView;
-
+@property (nonatomic,strong) LsNavView    *navView;
+@property (nonatomic,strong) UIImageView  *bgImageView;
 @end
