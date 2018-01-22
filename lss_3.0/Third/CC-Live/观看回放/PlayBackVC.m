@@ -504,6 +504,7 @@
     if (!self.isScreenLandScape) {
         self.isScreenLandScape = YES;
         self.autoRotate = YES;
+        [LsMethod begainFullScreen];
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeLeft] forKey:@"orientation"];
         [UIApplication sharedApplication].statusBarHidden = YES;
         [_requestDataPlayBack setPlayerFrame:self.view.frame];
@@ -529,6 +530,7 @@
     } else {
         self.isScreenLandScape = NO;
         self.autoRotate = YES;
+        [LsMethod endFullScreen];
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [UIApplication sharedApplication].statusBarHidden = NO;
         [_requestDataPlayBack setPlayerFrame:_videoRect];

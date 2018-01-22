@@ -1050,6 +1050,7 @@
     WS(ws)
     [self.view endEditing:YES];
     if (!self.isScreenLandScape) {
+        [LsMethod begainFullScreen];
         self.isScreenLandScape = YES;
         self.autoRotate = YES;
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeLeft] forKey:@"orientation"];
@@ -1174,6 +1175,7 @@
         }];
     } else {
         self.isScreenLandScape = NO;
+        [LsMethod endFullScreen];
         self.autoRotate = YES;
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [UIApplication sharedApplication].statusBarHidden = NO;
