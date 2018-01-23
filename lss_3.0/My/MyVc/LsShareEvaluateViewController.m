@@ -69,13 +69,13 @@
     line.image              =lineImage;
     [imageview addSubview:line];
     
-    UILabel *titleL          =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale,CGRectGetMaxY(line.frame)+10*LSScale, imageview.frame.size.width-20*LSScale, 50*LSScale)];
+    UILabel *titleL          =[[UILabel alloc] init];
     titleL.text              =[NSString stringWithFormat:@"送给\n“%@”直播课",_title_];
     titleL.font              =[UIFont systemFontOfSize:16*LSScale];
     titleL.textColor         =[UIColor whiteColor];
     titleL.numberOfLines     =0;
     titleL.textAlignment     =NSTextAlignmentLeft;
-    CGSize  size             =[LsMethod sizeWithString:titleL.text font:titleL.font];
+    CGSize  size             =[LsMethod sizeWithSize:imageview.frame.size String:titleL.text font:titleL.font];
     titleL.frame             =CGRectMake(8*LSScale,CGRectGetMaxY(line.frame)+15*LSScale, imageview.frame.size.width-16*LSScale, size.height);
     [imageview addSubview:titleL];
     

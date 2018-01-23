@@ -46,7 +46,7 @@
         
         enrollBtn       =[[LsButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(consultationBtn.frame), 0,self.frame.size.width-CGRectGetMaxX(consultationBtn.frame), self.frame.size.height)];
         enrollBtn.backgroundColor =LSNavColor;
-        [enrollBtn setTitle:@"免费报名" forState:UIControlStateNormal];
+        [enrollBtn setTitle:@"马上报名" forState:UIControlStateNormal];
         [enrollBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         enrollBtn.titleLabel.font  =[UIFont systemFontOfSize:19 ];
         [enrollBtn addTarget:self action:@selector(didClickEnrollBtnBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -74,14 +74,14 @@
 //    if (_model.isFree) {
 //        freeL.text= @"免费";
 //    }
-    freeL.text= @"免费";
+    freeL.text= @"推荐";
 
 //    _model.isEnroll =NO;
     if (_model.mybuy) {
         [enrollBtn setTitle:@"已报名" forState:UIControlStateNormal];
         enrollBtn.userInteractionEnabled =NO;
     }else{
-        [enrollBtn setTitle:@"免费报名" forState:UIControlStateNormal];
+        [enrollBtn setTitle:@"马上报名" forState:UIControlStateNormal];
         enrollBtn.userInteractionEnabled =YES;
     }
 }

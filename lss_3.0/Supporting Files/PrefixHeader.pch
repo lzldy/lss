@@ -25,7 +25,6 @@
 #import "IQKeyboardManager.h"
 #import <UMSocialCore/UMSocialCore.h>
 #import "Masonry.h"
-#import "BeeCloud.h"
 
 //base class
 #import <UIKit/UIKit.h>

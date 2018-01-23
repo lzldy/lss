@@ -357,55 +357,6 @@
 		18FEF6A21F528E5400F74BB6 /* LsCustomPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF6A11F528E5400F74BB6 /* LsCustomPlayerViewController.m */; };
 		18FEF6A41F52A9C200F74BB6 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FEF6A31F52A9C200F74BB6 /* libc++.1.tbd */; };
 		18FEF7AD1F52C51F00F74BB6 /* libCCSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FEF67D1F52773B00F74BB6 /* libCCSDK.a */; };
-		18FEF88D1F52C6F300F74BB6 /* BeeCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7CC1F52C6F300F74BB6 /* BeeCloud.m */; };
-		18FEF88E1F52C6F300F74BB6 /* BCAuthReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7D01F52C6F300F74BB6 /* BCAuthReq.m */; };
-		18FEF88F1F52C6F300F74BB6 /* BCBaseReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7D31F52C6F300F74BB6 /* BCBaseReq.m */; };
-		18FEF8901F52C6F300F74BB6 /* BCBaseResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7D51F52C6F300F74BB6 /* BCBaseResp.m */; };
-		18FEF8911F52C6F300F74BB6 /* BCPayReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7D81F52C6F300F74BB6 /* BCPayReq.m */; };
-		18FEF8921F52C6F300F74BB6 /* BCPayResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7DA1F52C6F300F74BB6 /* BCPayResp.m */; };
-		18FEF8931F52C6F300F74BB6 /* BCPayPalReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7DD1F52C6F300F74BB6 /* BCPayPalReq.m */; };
-		18FEF8941F52C6F300F74BB6 /* BCPayPalVerifyReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7DF1F52C6F300F74BB6 /* BCPayPalVerifyReq.m */; };
-		18FEF8951F52C6F300F74BB6 /* BCPreRefundReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7E21F52C6F300F74BB6 /* BCPreRefundReq.m */; };
-		18FEF8961F52C6F300F74BB6 /* BCPreRefundResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7E41F52C6F300F74BB6 /* BCPreRefundResp.m */; };
-		18FEF8971F52C6F300F74BB6 /* BCQueryBillByIdReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7E71F52C6F300F74BB6 /* BCQueryBillByIdReq.m */; };
-		18FEF8981F52C6F300F74BB6 /* BCQueryBillByIdResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7E91F52C6F300F74BB6 /* BCQueryBillByIdResp.m */; };
-		18FEF8991F52C6F300F74BB6 /* BCQueryBillsReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7EC1F52C6F300F74BB6 /* BCQueryBillsReq.m */; };
-		18FEF89A1F52C6F300F74BB6 /* BCQueryBillsResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7EE1F52C6F300F74BB6 /* BCQueryBillsResp.m */; };
-		18FEF89B1F52C6F300F74BB6 /* BCQueryBillsCountReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7F11F52C6F300F74BB6 /* BCQueryBillsCountReq.m */; };
-		18FEF89C1F52C6F300F74BB6 /* BCQueryBillsCountResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7F31F52C6F300F74BB6 /* BCQueryBillsCountResp.m */; };
-		18FEF89D1F52C6F300F74BB6 /* BCQueryRefundByIdReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7F61F52C6F300F74BB6 /* BCQueryRefundByIdReq.m */; };
-		18FEF89E1F52C6F300F74BB6 /* BCQueryRefundByIdResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7F81F52C6F300F74BB6 /* BCQueryRefundByIdResp.m */; };
-		18FEF89F1F52C6F300F74BB6 /* BCQueryRefundsReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7FB1F52C6F300F74BB6 /* BCQueryRefundsReq.m */; };
-		18FEF8A01F52C6F300F74BB6 /* BCQueryRefundsResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF7FD1F52C6F300F74BB6 /* BCQueryRefundsResp.m */; };
-		18FEF8A11F52C6F300F74BB6 /* BCQueryRefundsCountReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8001F52C6F300F74BB6 /* BCQueryRefundsCountReq.m */; };
-		18FEF8A21F52C6F300F74BB6 /* BCQueryRefundsCountResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8021F52C6F300F74BB6 /* BCQueryRefundsCountResp.m */; };
-		18FEF8A31F52C6F300F74BB6 /* BCRefundStatusReq.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8051F52C6F300F74BB6 /* BCRefundStatusReq.m */; };
-		18FEF8A41F52C6F300F74BB6 /* BCRefundStatusResp.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8071F52C6F300F74BB6 /* BCRefundStatusResp.m */; };
-		18FEF8A51F52C6F300F74BB6 /* BCBaseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF80A1F52C6F300F74BB6 /* BCBaseResult.m */; };
-		18FEF8A61F52C6F300F74BB6 /* BCQueryBillResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF80C1F52C6F300F74BB6 /* BCQueryBillResult.m */; };
-		18FEF8A71F52C6F300F74BB6 /* BCQueryRefundResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF80E1F52C6F300F74BB6 /* BCQueryRefundResult.m */; };
-		18FEF8A81F52C6F300F74BB6 /* BCNewSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8111F52C6F300F74BB6 /* BCNewSubscription.m */; };
-		18FEF8A91F52C6F300F74BB6 /* BCSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8131F52C6F300F74BB6 /* BCSubscription.m */; };
-		18FEF8AA1F52C6F300F74BB6 /* BCSubscriptionQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8151F52C6F300F74BB6 /* BCSubscriptionQuery.m */; };
-		18FEF8AB1F52C6F300F74BB6 /* BCHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF81A1F52C6F300F74BB6 /* BCHTTPSessionManager.m */; };
-		18FEF8AC1F52C6F300F74BB6 /* BCNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF81D1F52C6F300F74BB6 /* BCNetworkReachabilityManager.m */; };
-		18FEF8AD1F52C6F300F74BB6 /* BCSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF81F1F52C6F300F74BB6 /* BCSecurityPolicy.m */; };
-		18FEF8AE1F52C6F300F74BB6 /* BCURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8211F52C6F300F74BB6 /* BCURLRequestSerialization.m */; };
-		18FEF8AF1F52C6F300F74BB6 /* BCURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8231F52C6F300F74BB6 /* BCURLResponseSerialization.m */; };
-		18FEF8B01F52C6F300F74BB6 /* BCURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8251F52C6F300F74BB6 /* BCURLSessionManager.m */; };
-		18FEF8B11F52C6F300F74BB6 /* BCPayCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8271F52C6F300F74BB6 /* BCPayCache.m */; };
-		18FEF8B21F52C6F300F74BB6 /* BCPayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF82A1F52C6F300F74BB6 /* BCPayUtil.m */; };
-		18FEF8B31F52C6F300F74BB6 /* BeeCloud+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF82C1F52C6F300F74BB6 /* BeeCloud+Utils.m */; };
-		18FEF8B41F52C6F300F74BB6 /* NSDictionary+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF82E1F52C6F300F74BB6 /* NSDictionary+Utils.m */; };
-		18FEF8B51F52C6F300F74BB6 /* NSString+IsValid.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8301F52C6F300F74BB6 /* NSString+IsValid.m */; };
-		18FEF8B61F52C6F300F74BB6 /* BeeCloudAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8331F52C6F300F74BB6 /* BeeCloudAdapter.m */; };
-		18FEF8B71F52C6F300F74BB6 /* BCSandBoxAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8381F52C6F300F74BB6 /* BCSandBoxAdapter.m */; };
-		18FEF8B81F52C6F300F74BB6 /* BeeCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18FEF8391F52C6F300F74BB6 /* BeeCloud.bundle */; };
-		18FEF8B91F52C6F300F74BB6 /* PaySandBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF83B1F52C6F300F74BB6 /* PaySandBoxViewController.m */; };
-		18FEF8BA1F52C6F300F74BB6 /* AliPayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8401F52C6F300F74BB6 /* AliPayAdapter.m */; };
-		18FEF8BB1F52C6F300F74BB6 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FEF8411F52C6F300F74BB6 /* AlipaySDK.framework */; };
-		18FEF8CF1F52C6F300F74BB6 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FEF8871F52C6F300F74BB6 /* libWeChatSDK.a */; };
-		18FEF8D01F52C6F300F74BB6 /* WXPayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF88C1F52C6F300F74BB6 /* WXPayAdapter.m */; };
 		18FEF8D31F52CE5400F74BB6 /* ActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FEF8D21F52CE5400F74BB6 /* ActionSheetView.m */; };
 /* End PBXBuildFile section */
 
@@ -1068,108 +1019,6 @@
 		18FEF6A01F528E5400F74BB6 /* LsCustomPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LsCustomPlayerViewController.h; sourceTree = "<group>"; };
 		18FEF6A11F528E5400F74BB6 /* LsCustomPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LsCustomPlayerViewController.m; sourceTree = "<group>"; };
 		18FEF6A31F52A9C200F74BB6 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
-		18FEF7CA1F52C6F300F74BB6 /* BCPayObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayObjects.h; sourceTree = "<group>"; };
-		18FEF7CB1F52C6F300F74BB6 /* BeeCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCloud.h; sourceTree = "<group>"; };
-		18FEF7CC1F52C6F300F74BB6 /* BeeCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeCloud.m; sourceTree = "<group>"; };
-		18FEF7CF1F52C6F300F74BB6 /* BCAuthReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCAuthReq.h; sourceTree = "<group>"; };
-		18FEF7D01F52C6F300F74BB6 /* BCAuthReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCAuthReq.m; sourceTree = "<group>"; };
-		18FEF7D21F52C6F300F74BB6 /* BCBaseReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBaseReq.h; sourceTree = "<group>"; };
-		18FEF7D31F52C6F300F74BB6 /* BCBaseReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBaseReq.m; sourceTree = "<group>"; };
-		18FEF7D41F52C6F300F74BB6 /* BCBaseResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBaseResp.h; sourceTree = "<group>"; };
-		18FEF7D51F52C6F300F74BB6 /* BCBaseResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBaseResp.m; sourceTree = "<group>"; };
-		18FEF7D71F52C6F300F74BB6 /* BCPayReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayReq.h; sourceTree = "<group>"; };
-		18FEF7D81F52C6F300F74BB6 /* BCPayReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayReq.m; sourceTree = "<group>"; };
-		18FEF7D91F52C6F300F74BB6 /* BCPayResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayResp.h; sourceTree = "<group>"; };
-		18FEF7DA1F52C6F300F74BB6 /* BCPayResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayResp.m; sourceTree = "<group>"; };
-		18FEF7DC1F52C6F300F74BB6 /* BCPayPalReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayPalReq.h; sourceTree = "<group>"; };
-		18FEF7DD1F52C6F300F74BB6 /* BCPayPalReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayPalReq.m; sourceTree = "<group>"; };
-		18FEF7DE1F52C6F300F74BB6 /* BCPayPalVerifyReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayPalVerifyReq.h; sourceTree = "<group>"; };
-		18FEF7DF1F52C6F300F74BB6 /* BCPayPalVerifyReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayPalVerifyReq.m; sourceTree = "<group>"; };
-		18FEF7E11F52C6F300F74BB6 /* BCPreRefundReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPreRefundReq.h; sourceTree = "<group>"; };
-		18FEF7E21F52C6F300F74BB6 /* BCPreRefundReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPreRefundReq.m; sourceTree = "<group>"; };
-		18FEF7E31F52C6F300F74BB6 /* BCPreRefundResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPreRefundResp.h; sourceTree = "<group>"; };
-		18FEF7E41F52C6F300F74BB6 /* BCPreRefundResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPreRefundResp.m; sourceTree = "<group>"; };
-		18FEF7E61F52C6F300F74BB6 /* BCQueryBillByIdReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillByIdReq.h; sourceTree = "<group>"; };
-		18FEF7E71F52C6F300F74BB6 /* BCQueryBillByIdReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillByIdReq.m; sourceTree = "<group>"; };
-		18FEF7E81F52C6F300F74BB6 /* BCQueryBillByIdResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillByIdResp.h; sourceTree = "<group>"; };
-		18FEF7E91F52C6F300F74BB6 /* BCQueryBillByIdResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillByIdResp.m; sourceTree = "<group>"; };
-		18FEF7EB1F52C6F300F74BB6 /* BCQueryBillsReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillsReq.h; sourceTree = "<group>"; };
-		18FEF7EC1F52C6F300F74BB6 /* BCQueryBillsReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillsReq.m; sourceTree = "<group>"; };
-		18FEF7ED1F52C6F300F74BB6 /* BCQueryBillsResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillsResp.h; sourceTree = "<group>"; };
-		18FEF7EE1F52C6F300F74BB6 /* BCQueryBillsResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillsResp.m; sourceTree = "<group>"; };
-		18FEF7F01F52C6F300F74BB6 /* BCQueryBillsCountReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillsCountReq.h; sourceTree = "<group>"; };
-		18FEF7F11F52C6F300F74BB6 /* BCQueryBillsCountReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillsCountReq.m; sourceTree = "<group>"; };
-		18FEF7F21F52C6F300F74BB6 /* BCQueryBillsCountResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillsCountResp.h; sourceTree = "<group>"; };
-		18FEF7F31F52C6F300F74BB6 /* BCQueryBillsCountResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillsCountResp.m; sourceTree = "<group>"; };
-		18FEF7F51F52C6F300F74BB6 /* BCQueryRefundByIdReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundByIdReq.h; sourceTree = "<group>"; };
-		18FEF7F61F52C6F300F74BB6 /* BCQueryRefundByIdReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundByIdReq.m; sourceTree = "<group>"; };
-		18FEF7F71F52C6F300F74BB6 /* BCQueryRefundByIdResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundByIdResp.h; sourceTree = "<group>"; };
-		18FEF7F81F52C6F300F74BB6 /* BCQueryRefundByIdResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundByIdResp.m; sourceTree = "<group>"; };
-		18FEF7FA1F52C6F300F74BB6 /* BCQueryRefundsReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundsReq.h; sourceTree = "<group>"; };
-		18FEF7FB1F52C6F300F74BB6 /* BCQueryRefundsReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundsReq.m; sourceTree = "<group>"; };
-		18FEF7FC1F52C6F300F74BB6 /* BCQueryRefundsResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundsResp.h; sourceTree = "<group>"; };
-		18FEF7FD1F52C6F300F74BB6 /* BCQueryRefundsResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundsResp.m; sourceTree = "<group>"; };
-		18FEF7FF1F52C6F300F74BB6 /* BCQueryRefundsCountReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundsCountReq.h; sourceTree = "<group>"; };
-		18FEF8001F52C6F300F74BB6 /* BCQueryRefundsCountReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundsCountReq.m; sourceTree = "<group>"; };
-		18FEF8011F52C6F300F74BB6 /* BCQueryRefundsCountResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundsCountResp.h; sourceTree = "<group>"; };
-		18FEF8021F52C6F300F74BB6 /* BCQueryRefundsCountResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundsCountResp.m; sourceTree = "<group>"; };
-		18FEF8041F52C6F300F74BB6 /* BCRefundStatusReq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCRefundStatusReq.h; sourceTree = "<group>"; };
-		18FEF8051F52C6F300F74BB6 /* BCRefundStatusReq.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCRefundStatusReq.m; sourceTree = "<group>"; };
-		18FEF8061F52C6F300F74BB6 /* BCRefundStatusResp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCRefundStatusResp.h; sourceTree = "<group>"; };
-		18FEF8071F52C6F300F74BB6 /* BCRefundStatusResp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCRefundStatusResp.m; sourceTree = "<group>"; };
-		18FEF8091F52C6F300F74BB6 /* BCBaseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCBaseResult.h; sourceTree = "<group>"; };
-		18FEF80A1F52C6F300F74BB6 /* BCBaseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCBaseResult.m; sourceTree = "<group>"; };
-		18FEF80B1F52C6F300F74BB6 /* BCQueryBillResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryBillResult.h; sourceTree = "<group>"; };
-		18FEF80C1F52C6F300F74BB6 /* BCQueryBillResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryBillResult.m; sourceTree = "<group>"; };
-		18FEF80D1F52C6F300F74BB6 /* BCQueryRefundResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCQueryRefundResult.h; sourceTree = "<group>"; };
-		18FEF80E1F52C6F300F74BB6 /* BCQueryRefundResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCQueryRefundResult.m; sourceTree = "<group>"; };
-		18FEF8101F52C6F300F74BB6 /* BCNewSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNewSubscription.h; sourceTree = "<group>"; };
-		18FEF8111F52C6F300F74BB6 /* BCNewSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNewSubscription.m; sourceTree = "<group>"; };
-		18FEF8121F52C6F300F74BB6 /* BCSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSubscription.h; sourceTree = "<group>"; };
-		18FEF8131F52C6F300F74BB6 /* BCSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSubscription.m; sourceTree = "<group>"; };
-		18FEF8141F52C6F300F74BB6 /* BCSubscriptionQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSubscriptionQuery.h; sourceTree = "<group>"; };
-		18FEF8151F52C6F300F74BB6 /* BCSubscriptionQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSubscriptionQuery.m; sourceTree = "<group>"; };
-		18FEF8171F52C6F300F74BB6 /* BCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCCategory.h; sourceTree = "<group>"; };
-		18FEF8191F52C6F300F74BB6 /* BCHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCHTTPSessionManager.h; sourceTree = "<group>"; };
-		18FEF81A1F52C6F300F74BB6 /* BCHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCHTTPSessionManager.m; sourceTree = "<group>"; };
-		18FEF81B1F52C6F300F74BB6 /* BCNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNetworking.h; sourceTree = "<group>"; };
-		18FEF81C1F52C6F300F74BB6 /* BCNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNetworkReachabilityManager.h; sourceTree = "<group>"; };
-		18FEF81D1F52C6F300F74BB6 /* BCNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		18FEF81E1F52C6F300F74BB6 /* BCSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSecurityPolicy.h; sourceTree = "<group>"; };
-		18FEF81F1F52C6F300F74BB6 /* BCSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSecurityPolicy.m; sourceTree = "<group>"; };
-		18FEF8201F52C6F300F74BB6 /* BCURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCURLRequestSerialization.h; sourceTree = "<group>"; };
-		18FEF8211F52C6F300F74BB6 /* BCURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCURLRequestSerialization.m; sourceTree = "<group>"; };
-		18FEF8221F52C6F300F74BB6 /* BCURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCURLResponseSerialization.h; sourceTree = "<group>"; };
-		18FEF8231F52C6F300F74BB6 /* BCURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCURLResponseSerialization.m; sourceTree = "<group>"; };
-		18FEF8241F52C6F300F74BB6 /* BCURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCURLSessionManager.h; sourceTree = "<group>"; };
-		18FEF8251F52C6F300F74BB6 /* BCURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCURLSessionManager.m; sourceTree = "<group>"; };
-		18FEF8261F52C6F300F74BB6 /* BCPayCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayCache.h; sourceTree = "<group>"; };
-		18FEF8271F52C6F300F74BB6 /* BCPayCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayCache.m; sourceTree = "<group>"; };
-		18FEF8281F52C6F300F74BB6 /* BCPayConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayConstant.h; sourceTree = "<group>"; };
-		18FEF8291F52C6F300F74BB6 /* BCPayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCPayUtil.h; sourceTree = "<group>"; };
-		18FEF82A1F52C6F300F74BB6 /* BCPayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCPayUtil.m; sourceTree = "<group>"; };
-		18FEF82B1F52C6F300F74BB6 /* BeeCloud+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BeeCloud+Utils.h"; sourceTree = "<group>"; };
-		18FEF82C1F52C6F300F74BB6 /* BeeCloud+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BeeCloud+Utils.m"; sourceTree = "<group>"; };
-		18FEF82D1F52C6F300F74BB6 /* NSDictionary+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Utils.h"; sourceTree = "<group>"; };
-		18FEF82E1F52C6F300F74BB6 /* NSDictionary+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Utils.m"; sourceTree = "<group>"; };
-		18FEF82F1F52C6F300F74BB6 /* NSString+IsValid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IsValid.h"; sourceTree = "<group>"; };
-		18FEF8301F52C6F300F74BB6 /* NSString+IsValid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IsValid.m"; sourceTree = "<group>"; };
-		18FEF8321F52C6F300F74BB6 /* BeeCloudAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCloudAdapter.h; sourceTree = "<group>"; };
-		18FEF8331F52C6F300F74BB6 /* BeeCloudAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeeCloudAdapter.m; sourceTree = "<group>"; };
-		18FEF8341F52C6F300F74BB6 /* BeeCloudAdapterProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeeCloudAdapterProtocol.h; sourceTree = "<group>"; };
-		18FEF8371F52C6F300F74BB6 /* BCSandBoxAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCSandBoxAdapter.h; sourceTree = "<group>"; };
-		18FEF8381F52C6F300F74BB6 /* BCSandBoxAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCSandBoxAdapter.m; sourceTree = "<group>"; };
-		18FEF8391F52C6F300F74BB6 /* BeeCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BeeCloud.bundle; sourceTree = "<group>"; };
-		18FEF83A1F52C6F300F74BB6 /* PaySandBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaySandBoxViewController.h; sourceTree = "<group>"; };
-		18FEF83B1F52C6F300F74BB6 /* PaySandBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaySandBoxViewController.m; sourceTree = "<group>"; };
-		18FEF83F1F52C6F300F74BB6 /* AliPayAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliPayAdapter.h; sourceTree = "<group>"; };
-		18FEF8401F52C6F300F74BB6 /* AliPayAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliPayAdapter.m; sourceTree = "<group>"; };
-		18FEF8411F52C6F300F74BB6 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
-		18FEF8871F52C6F300F74BB6 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		18FEF8881F52C6F300F74BB6 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		18FEF8891F52C6F300F74BB6 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		18FEF88B1F52C6F300F74BB6 /* WXPayAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPayAdapter.h; sourceTree = "<group>"; };
-		18FEF88C1F52C6F300F74BB6 /* WXPayAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXPayAdapter.m; sourceTree = "<group>"; };
 		18FEF8D11F52CE5400F74BB6 /* ActionSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetView.h; sourceTree = "<group>"; };
 		18FEF8D21F52CE5400F74BB6 /* ActionSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1196,12 +1045,10 @@
 				184335711F3361C900A53585 /* libsqlite3.0.tbd in Frameworks */,
 				1843356A1F33612F00A53585 /* libSocialWeChat.a in Frameworks */,
 				1843356C1F33612F00A53585 /* UMSocialNetwork.framework in Frameworks */,
-				18FEF8CF1F52C6F300F74BB6 /* libWeChatSDK.a in Frameworks */,
 				184335681F33612F00A53585 /* libSocialQQ.a in Frameworks */,
 				184335531F33567A00A53585 /* libsqlite3.dylib in Frameworks */,
 				184335511F33560A00A53585 /* CFNetwork.framework in Frameworks */,
 				1843356B1F33612F00A53585 /* UMSocialCore.framework in Frameworks */,
-				18FEF8BB1F52C6F300F74BB6 /* AlipaySDK.framework in Frameworks */,
 				1843354F1F3355FE00A53585 /* CoreTelephony.framework in Frameworks */,
 				1843354D1F3355F100A53585 /* Security.framework in Frameworks */,
 				184335691F33612F00A53585 /* libSocialSina.a in Frameworks */,
@@ -1529,7 +1376,6 @@
 				18599E641FF1FC2000A5C584 /* CC-Live */,
 				18C277F81FAC5A18001A9BE0 /* imageView */,
 				180BCA711F5D0762001EE331 /* Masonry */,
-				18FEF7AE1F52C5E400F74BB6 /* Pay */,
 				18FEF6691F52773B00F74BB6 /* CC */,
 				18F32C601F4EEF080081629E /* EvaluateStar */,
 				18E82DE81F3830C500D3154B /* UCCarouselView */,
@@ -2608,323 +2454,6 @@
 			path = SDK;
 			sourceTree = "<group>";
 		};
-		18FEF7AE1F52C5E400F74BB6 /* Pay */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7C91F52C6F300F74BB6 /* BeeCloud */,
-				18FEF83C1F52C6F300F74BB6 /* Channel */,
-			);
-			path = Pay;
-			sourceTree = "<group>";
-		};
-		18FEF7C91F52C6F300F74BB6 /* BeeCloud */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7CA1F52C6F300F74BB6 /* BCPayObjects.h */,
-				18FEF7CB1F52C6F300F74BB6 /* BeeCloud.h */,
-				18FEF7CC1F52C6F300F74BB6 /* BeeCloud.m */,
-				18FEF7CD1F52C6F300F74BB6 /* Classes */,
-				18FEF8161F52C6F300F74BB6 /* Internal */,
-				18FEF8311F52C6F300F74BB6 /* Protocol */,
-				18FEF8351F52C6F300F74BB6 /* SandBox */,
-			);
-			path = BeeCloud;
-			sourceTree = "<group>";
-		};
-		18FEF7CD1F52C6F300F74BB6 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7CE1F52C6F300F74BB6 /* BCAuth */,
-				18FEF7D11F52C6F300F74BB6 /* BCBase */,
-				18FEF7D61F52C6F300F74BB6 /* BCPay */,
-				18FEF7DB1F52C6F300F74BB6 /* BCPayPal */,
-				18FEF7E01F52C6F300F74BB6 /* BCPreRefund */,
-				18FEF7E51F52C6F300F74BB6 /* BCQueryBillById */,
-				18FEF7EA1F52C6F300F74BB6 /* BCQueryBills */,
-				18FEF7EF1F52C6F300F74BB6 /* BCQueryBillsCount */,
-				18FEF7F41F52C6F300F74BB6 /* BCQueryRefundById */,
-				18FEF7F91F52C6F300F74BB6 /* BCQueryRefunds */,
-				18FEF7FE1F52C6F300F74BB6 /* BCQueryRefundsCount */,
-				18FEF8031F52C6F300F74BB6 /* BCQueryRefundStatus */,
-				18FEF8081F52C6F300F74BB6 /* BCResults */,
-				18FEF80F1F52C6F300F74BB6 /* BCSubscription */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		18FEF7CE1F52C6F300F74BB6 /* BCAuth */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7CF1F52C6F300F74BB6 /* BCAuthReq.h */,
-				18FEF7D01F52C6F300F74BB6 /* BCAuthReq.m */,
-			);
-			path = BCAuth;
-			sourceTree = "<group>";
-		};
-		18FEF7D11F52C6F300F74BB6 /* BCBase */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7D21F52C6F300F74BB6 /* BCBaseReq.h */,
-				18FEF7D31F52C6F300F74BB6 /* BCBaseReq.m */,
-				18FEF7D41F52C6F300F74BB6 /* BCBaseResp.h */,
-				18FEF7D51F52C6F300F74BB6 /* BCBaseResp.m */,
-			);
-			path = BCBase;
-			sourceTree = "<group>";
-		};
-		18FEF7D61F52C6F300F74BB6 /* BCPay */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7D71F52C6F300F74BB6 /* BCPayReq.h */,
-				18FEF7D81F52C6F300F74BB6 /* BCPayReq.m */,
-				18FEF7D91F52C6F300F74BB6 /* BCPayResp.h */,
-				18FEF7DA1F52C6F300F74BB6 /* BCPayResp.m */,
-			);
-			path = BCPay;
-			sourceTree = "<group>";
-		};
-		18FEF7DB1F52C6F300F74BB6 /* BCPayPal */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7DC1F52C6F300F74BB6 /* BCPayPalReq.h */,
-				18FEF7DD1F52C6F300F74BB6 /* BCPayPalReq.m */,
-				18FEF7DE1F52C6F300F74BB6 /* BCPayPalVerifyReq.h */,
-				18FEF7DF1F52C6F300F74BB6 /* BCPayPalVerifyReq.m */,
-			);
-			path = BCPayPal;
-			sourceTree = "<group>";
-		};
-		18FEF7E01F52C6F300F74BB6 /* BCPreRefund */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7E11F52C6F300F74BB6 /* BCPreRefundReq.h */,
-				18FEF7E21F52C6F300F74BB6 /* BCPreRefundReq.m */,
-				18FEF7E31F52C6F300F74BB6 /* BCPreRefundResp.h */,
-				18FEF7E41F52C6F300F74BB6 /* BCPreRefundResp.m */,
-			);
-			path = BCPreRefund;
-			sourceTree = "<group>";
-		};
-		18FEF7E51F52C6F300F74BB6 /* BCQueryBillById */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7E61F52C6F300F74BB6 /* BCQueryBillByIdReq.h */,
-				18FEF7E71F52C6F300F74BB6 /* BCQueryBillByIdReq.m */,
-				18FEF7E81F52C6F300F74BB6 /* BCQueryBillByIdResp.h */,
-				18FEF7E91F52C6F300F74BB6 /* BCQueryBillByIdResp.m */,
-			);
-			path = BCQueryBillById;
-			sourceTree = "<group>";
-		};
-		18FEF7EA1F52C6F300F74BB6 /* BCQueryBills */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7EB1F52C6F300F74BB6 /* BCQueryBillsReq.h */,
-				18FEF7EC1F52C6F300F74BB6 /* BCQueryBillsReq.m */,
-				18FEF7ED1F52C6F300F74BB6 /* BCQueryBillsResp.h */,
-				18FEF7EE1F52C6F300F74BB6 /* BCQueryBillsResp.m */,
-			);
-			path = BCQueryBills;
-			sourceTree = "<group>";
-		};
-		18FEF7EF1F52C6F300F74BB6 /* BCQueryBillsCount */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7F01F52C6F300F74BB6 /* BCQueryBillsCountReq.h */,
-				18FEF7F11F52C6F300F74BB6 /* BCQueryBillsCountReq.m */,
-				18FEF7F21F52C6F300F74BB6 /* BCQueryBillsCountResp.h */,
-				18FEF7F31F52C6F300F74BB6 /* BCQueryBillsCountResp.m */,
-			);
-			path = BCQueryBillsCount;
-			sourceTree = "<group>";
-		};
-		18FEF7F41F52C6F300F74BB6 /* BCQueryRefundById */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7F51F52C6F300F74BB6 /* BCQueryRefundByIdReq.h */,
-				18FEF7F61F52C6F300F74BB6 /* BCQueryRefundByIdReq.m */,
-				18FEF7F71F52C6F300F74BB6 /* BCQueryRefundByIdResp.h */,
-				18FEF7F81F52C6F300F74BB6 /* BCQueryRefundByIdResp.m */,
-			);
-			path = BCQueryRefundById;
-			sourceTree = "<group>";
-		};
-		18FEF7F91F52C6F300F74BB6 /* BCQueryRefunds */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7FA1F52C6F300F74BB6 /* BCQueryRefundsReq.h */,
-				18FEF7FB1F52C6F300F74BB6 /* BCQueryRefundsReq.m */,
-				18FEF7FC1F52C6F300F74BB6 /* BCQueryRefundsResp.h */,
-				18FEF7FD1F52C6F300F74BB6 /* BCQueryRefundsResp.m */,
-			);
-			path = BCQueryRefunds;
-			sourceTree = "<group>";
-		};
-		18FEF7FE1F52C6F300F74BB6 /* BCQueryRefundsCount */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF7FF1F52C6F300F74BB6 /* BCQueryRefundsCountReq.h */,
-				18FEF8001F52C6F300F74BB6 /* BCQueryRefundsCountReq.m */,
-				18FEF8011F52C6F300F74BB6 /* BCQueryRefundsCountResp.h */,
-				18FEF8021F52C6F300F74BB6 /* BCQueryRefundsCountResp.m */,
-			);
-			path = BCQueryRefundsCount;
-			sourceTree = "<group>";
-		};
-		18FEF8031F52C6F300F74BB6 /* BCQueryRefundStatus */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF8041F52C6F300F74BB6 /* BCRefundStatusReq.h */,
-				18FEF8051F52C6F300F74BB6 /* BCRefundStatusReq.m */,
-				18FEF8061F52C6F300F74BB6 /* BCRefundStatusResp.h */,
-				18FEF8071F52C6F300F74BB6 /* BCRefundStatusResp.m */,
-			);
-			path = BCQueryRefundStatus;
-			sourceTree = "<group>";
-		};
-		18FEF8081F52C6F300F74BB6 /* BCResults */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF8091F52C6F300F74BB6 /* BCBaseResult.h */,
-				18FEF80A1F52C6F300F74BB6 /* BCBaseResult.m */,
-				18FEF80B1F52C6F300F74BB6 /* BCQueryBillResult.h */,
-				18FEF80C1F52C6F300F74BB6 /* BCQueryBillResult.m */,
-				18FEF80D1F52C6F300F74BB6 /* BCQueryRefundResult.h */,
-				18FEF80E1F52C6F300F74BB6 /* BCQueryRefundResult.m */,
-			);
-			path = BCResults;
-			sourceTree = "<group>";
-		};
-		18FEF80F1F52C6F300F74BB6 /* BCSubscription */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF8101F52C6F300F74BB6 /* BCNewSubscription.h */,
-				18FEF8111F52C6F300F74BB6 /* BCNewSubscription.m */,
-				18FEF8121F52C6F300F74BB6 /* BCSubscription.h */,
-				18FEF8131F52C6F300F74BB6 /* BCSubscription.m */,
-				18FEF8141F52C6F300F74BB6 /* BCSubscriptionQuery.h */,
-				18FEF8151F52C6F300F74BB6 /* BCSubscriptionQuery.m */,
-			);
-			path = BCSubscription;
-			sourceTree = "<group>";
-		};
-		18FEF8161F52C6F300F74BB6 /* Internal */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF8171F52C6F300F74BB6 /* BCCategory.h */,
-				18FEF8181F52C6F300F74BB6 /* BCNetworking */,
-				18FEF8261F52C6F300F74BB6 /* BCPayCache.h */,
-				18FEF8271F52C6F300F74BB6 /* BCPayCache.m */,
-				18FEF8281F52C6F300F74BB6 /* BCPayConstant.h */,
-				18FEF8291F52C6F300F74BB6 /* BCPayUtil.h */,
-				18FEF82A1F52C6F300F74BB6 /* BCPayUtil.m */,
-				18FEF82B1F52C6F300F74BB6 /* BeeCloud+Utils.h */,
-				18FEF82C1F52C6F300F74BB6 /* BeeCloud+Utils.m */,
-				18FEF82D1F52C6F300F74BB6 /* NSDictionary+Utils.h */,
-				18FEF82E1F52C6F300F74BB6 /* NSDictionary+Utils.m */,
-				18FEF82F1F52C6F300F74BB6 /* NSString+IsValid.h */,
-				18FEF8301F52C6F300F74BB6 /* NSString+IsValid.m */,
-			);
-			path = Internal;
-			sourceTree = "<group>";
-		};
-		18FEF8181F52C6F300F74BB6 /* BCNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF8191F52C6F300F74BB6 /* BCHTTPSessionManager.h */,
-				18FEF81A1F52C6F300F74BB6 /* BCHTTPSessionManager.m */,
-				18FEF81B1F52C6F300F74BB6 /* BCNetworking.h */,
-				18FEF81C1F52C6F300F74BB6 /* BCNetworkReachabilityManager.h */,
-				18FEF81D1F52C6F300F74BB6 /* BCNetworkReachabilityManager.m */,
-				18FEF81E1F52C6F300F74BB6 /* BCSecurityPolicy.h */,
-				18FEF81F1F52C6F300F74BB6 /* BCSecurityPolicy.m */,
-				18FEF8201F52C6F300F74BB6 /* BCURLRequestSerialization.h */,
-				18FEF8211F52C6F300F74BB6 /* BCURLRequestSerialization.m */,
-				18FEF8221F52C6F300F74BB6 /* BCURLResponseSerialization.h */,
-				18FEF8231F52C6F300F74BB6 /* BCURLResponseSerialization.m */,
-				18FEF8241F52C6F300F74BB6 /* BCURLSessionManager.h */,
-				18FEF8251F52C6F300F74BB6 /* BCURLSessionManager.m */,
-			);
-			path = BCNetworking;
-			sourceTree = "<group>";
-		};
-		18FEF8311F52C6F300F74BB6 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF8321F52C6F300F74BB6 /* BeeCloudAdapter.h */,
-				18FEF8331F52C6F300F74BB6 /* BeeCloudAdapter.m */,
-				18FEF8341F52C6F300F74BB6 /* BeeCloudAdapterProtocol.h */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		18FEF8351F52C6F300F74BB6 /* SandBox */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF8361F52C6F300F74BB6 /* BCSandBoxAdapter */,
-				18FEF8391F52C6F300F74BB6 /* BeeCloud.bundle */,
-				18FEF83A1F52C6F300F74BB6 /* PaySandBoxViewController.h */,
-				18FEF83B1F52C6F300F74BB6 /* PaySandBoxViewController.m */,
-			);
-			path = SandBox;
-			sourceTree = "<group>";
-		};
-		18FEF8361F52C6F300F74BB6 /* BCSandBoxAdapter */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF8371F52C6F300F74BB6 /* BCSandBoxAdapter.h */,
-				18FEF8381F52C6F300F74BB6 /* BCSandBoxAdapter.m */,
-			);
-			path = BCSandBoxAdapter;
-			sourceTree = "<group>";
-		};
-		18FEF83C1F52C6F300F74BB6 /* Channel */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF83D1F52C6F300F74BB6 /* AliPay */,
-				18FEF8861F52C6F300F74BB6 /* WXPay */,
-			);
-			path = Channel;
-			sourceTree = "<group>";
-		};
-		18FEF83D1F52C6F300F74BB6 /* AliPay */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF83E1F52C6F300F74BB6 /* AliPayAdapter */,
-				18FEF8411F52C6F300F74BB6 /* AlipaySDK.framework */,
-			);
-			path = AliPay;
-			sourceTree = "<group>";
-		};
-		18FEF83E1F52C6F300F74BB6 /* AliPayAdapter */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF83F1F52C6F300F74BB6 /* AliPayAdapter.h */,
-				18FEF8401F52C6F300F74BB6 /* AliPayAdapter.m */,
-			);
-			path = AliPayAdapter;
-			sourceTree = "<group>";
-		};
-		18FEF8861F52C6F300F74BB6 /* WXPay */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF8871F52C6F300F74BB6 /* libWeChatSDK.a */,
-				18FEF8881F52C6F300F74BB6 /* WXApi.h */,
-				18FEF8891F52C6F300F74BB6 /* WXApiObject.h */,
-				18FEF88A1F52C6F300F74BB6 /* WXPayAdapter */,
-			);
-			path = WXPay;
-			sourceTree = "<group>";
-		};
-		18FEF88A1F52C6F300F74BB6 /* WXPayAdapter */ = {
-			isa = PBXGroup;
-			children = (
-				18FEF88B1F52C6F300F74BB6 /* WXPayAdapter.h */,
-				18FEF88C1F52C6F300F74BB6 /* WXPayAdapter.m */,
-			);
-			path = WXPayAdapter;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3115,7 +2644,6 @@
 				18599EFA1FF1FC2000A5C584 /* SelectViewController.xib in Resources */,
 				18F034A81FA1C4FA001A305D /* player-bg-text2@2x.png in Resources */,
 				18F034901FA1C4FA001A305D /* download-status-fail@2x.png in Resources */,
-				18FEF8B81F52C6F300F74BB6 /* BeeCloud.bundle in Resources */,
 				18F0348F1FA1C4FA001A305D /* download-status-fail.png in Resources */,
 				18F034A61FA1C4FA001A305D /* player-bg-popup-selected@2x.png in Resources */,
 				18F034B11FA1C4FA001A305D /* player-slider-handle.png in Resources */,
@@ -3153,7 +2681,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18FEF8B41F52C6F300F74BB6 /* NSDictionary+Utils.m in Sources */,
 				18599EF01FF1FC2000A5C584 /* PlayBackViewController.m in Sources */,
 				18599F0E1FF1FC2000A5C584 /* ModelView.m in Sources */,
 				182CDECC1F43E85500283EBA /* LsLiveViewController.m in Sources */,
@@ -3163,8 +2690,6 @@
 				18599EF11FF1FC2000A5C584 /* QuestionnaireSurveyPopUp.m in Sources */,
 				18E5D0F71F90BD4A00F9CCDA /* LsOneToOneDetailViewController.m in Sources */,
 				18599EFB1FF1FC2000A5C584 /* SelectViewController.m in Sources */,
-				18FEF8B01F52C6F300F74BB6 /* BCURLSessionManager.m in Sources */,
-				18FEF8A61F52C6F300F74BB6 /* BCQueryBillResult.m in Sources */,
 				180BCA911F5D0763001EE331 /* NSArray+MASAdditions.m in Sources */,
 				18E82D701F37FCAE00D3154B /* LsWrittenExaminationViewController.m in Sources */,
 				18F32C631F4EEF080081629E /* XHStarRateView.m in Sources */,
@@ -3176,58 +2701,43 @@
 				18FEF6901F5279B500F74BB6 /* DWTools.m in Sources */,
 				18AF1AF01F2731E800D05E4D /* IQKeyboardManager.m in Sources */,
 				1854F5351F37024A00E1F603 /* SDWebImageManager.m in Sources */,
-				18FEF89C1F52C6F300F74BB6 /* BCQueryBillsCountResp.m in Sources */,
 				18599F0A1FF1FC2000A5C584 /* UIImage+Extension.m in Sources */,
 				185296051F6015D4003D5D8A /* LsInterCellHeaderView.m in Sources */,
 				18E5D0EE1F90A3A700F9CCDA /* LsOneToOneViewController.m in Sources */,
 				18F32C5C1F4EAE730081629E /* LsEnrollSuccessViewController.m in Sources */,
-				18FEF8A51F52C6F300F74BB6 /* BCBaseResult.m in Sources */,
-				18FEF8AB1F52C6F300F74BB6 /* BCHTTPSessionManager.m in Sources */,
 				182CDF221F454F2A00283EBA /* LsNavTabView.m in Sources */,
 				1854F53C1F37024A00E1F603 /* UIImageView+WebCache.m in Sources */,
 				18599F041FF1FC2000A5C584 /* CCPublicTableViewCell.m in Sources */,
 				1852961D1F622896003D5D8A /* AVCaptureManager.m in Sources */,
 				184CA1F41F272FC800ACB807 /* LsBaseViewController.m in Sources */,
 				18599F071FF1FC2000A5C584 /* LianmaiView.m in Sources */,
-				18FEF8B21F52C6F300F74BB6 /* BCPayUtil.m in Sources */,
-				18FEF8A31F52C6F300F74BB6 /* BCRefundStatusReq.m in Sources */,
 				18975FCE1F29D06800447721 /* LsSingleton.m in Sources */,
 				18975FDC1F29D86900447721 /* GCDGroup.m in Sources */,
-				18FEF89F1F52C6F300F74BB6 /* BCQueryRefundsReq.m in Sources */,
 				18AF1AEE1F2731E800D05E4D /* IQUIViewController+Additions.m in Sources */,
 				18599F2A1FF2310F00A5C584 /* LsMyVideoModel.m in Sources */,
-				18FEF89B1F52C6F300F74BB6 /* BCQueryBillsCountReq.m in Sources */,
 				18AF1AEB1F2731E800D05E4D /* IQUIScrollView+Additions.m in Sources */,
 				1854F5611F37088C00E1F603 /* AFHTTPSessionManager.m in Sources */,
 				18599EF81FF1FC2000A5C584 /* ScanOverViewController.m in Sources */,
-				18FEF8A41F52C6F300F74BB6 /* BCRefundStatusResp.m in Sources */,
 				18599EE41FF1FC2000A5C584 /* PushViewController.m in Sources */,
 				18599F081FF1FC2000A5C584 /* UITouchView.m in Sources */,
 				18E82DEE1F3830C500D3154B /* UCCarouselView.m in Sources */,
 				18599EED1FF1FC2000A5C584 /* UITextView+UserInfo.m in Sources */,
 				180BCA8C1F5D0763001EE331 /* MASConstraint.m in Sources */,
 				1854F5641F37088C00E1F603 /* AFURLRequestSerialization.m in Sources */,
-				18FEF8961F52C6F300F74BB6 /* BCPreRefundResp.m in Sources */,
 				180BCA8D1F5D0763001EE331 /* MASConstraintMaker.m in Sources */,
 				184CA1F51F272FC800ACB807 /* LsBaseNaViewController.m in Sources */,
-				18FEF8941F52C6F300F74BB6 /* BCPayPalVerifyReq.m in Sources */,
 				18599F1A1FF1FC2100A5C584 /* PlayForPCVC.m in Sources */,
-				18FEF8971F52C6F300F74BB6 /* BCQueryBillByIdReq.m in Sources */,
-				18FEF8921F52C6F300F74BB6 /* BCPayResp.m in Sources */,
 				181EBA3D1FE4D12D00A70202 /* LsMyOrderViewController.m in Sources */,
 				18599EF21FF1FC2000A5C584 /* LotteryView.m in Sources */,
 				180BCA921F5D0763001EE331 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				1854F5251F37024A00E1F603 /* MBProgressHUD.m in Sources */,
 				181524861F64C7DC00E23257 /* LsVideotapeViewController.m in Sources */,
 				189840A61F4BE30100C6A8A0 /* LsLiveDetailModel.m in Sources */,
-				18FEF8AE1F52C6F300F74BB6 /* BCURLRequestSerialization.m in Sources */,
 				18E5D0FD1F90ECAD00F9CCDA /* LsActivityDetailViewController.m in Sources */,
-				18FEF89D1F52C6F300F74BB6 /* BCQueryRefundByIdReq.m in Sources */,
 				1854F4AD1F36E84E00E1F603 /* LsConfigureTwoViewController.m in Sources */,
 				182CDF251F4691D100283EBA /* LsLiveDetailViewController.m in Sources */,
 				185296121F60216D003D5D8A /* LsTestChooseView.m in Sources */,
 				18AF1AF41F2731E800D05E4D /* IQPreviousNextView.m in Sources */,
-				18FEF8991F52C6F300F74BB6 /* BCQueryBillsReq.m in Sources */,
 				18F32C531F4E6A460081629E /* LsLiveDetailTableViewCell.m in Sources */,
 				1854F5341F37024A00E1F603 /* SDWebImageDownloaderOperation.m in Sources */,
 				18AF1AEC1F2731E800D05E4D /* IQUITextFieldView+Additions.m in Sources */,
@@ -3237,10 +2747,8 @@
 				18F32C561F4E7AF30081629E /* LsButton.m in Sources */,
 				18599F2D1FF2334600A5C584 /* LsMyVideoTableViewCell.m in Sources */,
 				1854F5361F37024A00E1F603 /* SDWebImagePrefetcher.m in Sources */,
-				18FEF8A01F52C6F300F74BB6 /* BCQueryRefundsResp.m in Sources */,
 				18AF1AF31F2731E800D05E4D /* IQBarButtonItem.m in Sources */,
 				180BCA941F5D0763001EE331 /* ViewController+MASAdditions.m in Sources */,
-				18FEF89E1F52C6F300F74BB6 /* BCQueryRefundByIdResp.m in Sources */,
 				184CA1F61F272FC800ACB807 /* LsBaseModel.m in Sources */,
 				184335841F349CBF00A53585 /* LsCollectionHeaderView.m in Sources */,
 				180BCA901F5D0763001EE331 /* MASViewConstraint.m in Sources */,
@@ -3252,7 +2760,6 @@
 				1854F52E1F37024A00E1F603 /* MKAnnotationView+WebCache.m in Sources */,
 				18FEF68F1F5279B500F74BB6 /* DWTableView.m in Sources */,
 				1849ECEB1F55460900B2B9B1 /* LsChooseView.m in Sources */,
-				18FEF8A71F52C6F300F74BB6 /* BCQueryRefundResult.m in Sources */,
 				185296061F6015D4003D5D8A /* LsInterView.m in Sources */,
 				181EBA461FE4F03700A70202 /* LsMyOrderModel.m in Sources */,
 				1854F5331F37024A00E1F603 /* SDWebImageDownloader.m in Sources */,
@@ -3260,7 +2767,6 @@
 				181B31111FEC966E0048AFC5 /* LsChangePassWordViewController.m in Sources */,
 				18599EEB1FF1FC2000A5C584 /* CameraDirection.m in Sources */,
 				184335871F34A84D00A53585 /* LsBaseCollectionViewCell.m in Sources */,
-				18FEF8911F52C6F300F74BB6 /* BCPayReq.m in Sources */,
 				180BC98F1F5B9866001EE331 /* LsCommentTableViewCell.m in Sources */,
 				18C277FD1FAC5A18001A9BE0 /* JZAlbumViewController.m in Sources */,
 				184CA1F71F272FC800ACB807 /* LsMyViewController.m in Sources */,
@@ -3278,22 +2784,16 @@
 				18FEF6871F52791200F74BB6 /* DWGestureButton.m in Sources */,
 				1843357E1F341F5900A53585 /* LsNavView.m in Sources */,
 				1854F5381F37024A00E1F603 /* UIImage+GIF.m in Sources */,
-				18FEF8901F52C6F300F74BB6 /* BCBaseResp.m in Sources */,
 				189840A31F4BD8D400C6A8A0 /* LsMyLiveListViewController.m in Sources */,
-				18FEF8B91F52C6F300F74BB6 /* PaySandBoxViewController.m in Sources */,
 				18599F061FF1FC2000A5C584 /* QuestionTextField.m in Sources */,
 				18F32C5F1F4EC91E0081629E /* LsEvaluateViewController.m in Sources */,
 				18599F131FF1FC2000A5C584 /* UIButtonImageLabel.m in Sources */,
-				18FEF8B31F52C6F300F74BB6 /* BeeCloud+Utils.m in Sources */,
 				18F32C591F4E80BA0081629E /* LsLiveDetailBottomView.m in Sources */,
-				18FEF8AF1F52C6F300F74BB6 /* BCURLResponseSerialization.m in Sources */,
 				18BBADA31F749F3C00475A20 /* LsVideoUploadSuccessViewController.m in Sources */,
 				18599F091FF1FC2000A5C584 /* Utility.m in Sources */,
 				1854F53A1F37024A00E1F603 /* UIImage+WebP.m in Sources */,
 				182CDEC61F42AA0600283EBA /* LsPracticeModel.m in Sources */,
-				18FEF8931F52C6F300F74BB6 /* BCPayPalReq.m in Sources */,
 				18599EF31FF1FC2000A5C584 /* VoteView.m in Sources */,
-				18FEF8B71F52C6F300F74BB6 /* BCSandBoxAdapter.m in Sources */,
 				18E82D851F37FFA700D3154B /* LsFindViewController.m in Sources */,
 				18599F1C1FF1FC2100A5C584 /* QuestionView.m in Sources */,
 				18599F1B1FF1FC2100A5C584 /* ChatView.m in Sources */,
@@ -3303,7 +2803,6 @@
 				18FEF6991F527B5C00F74BB6 /* Reachability.m in Sources */,
 				1852960D1F601680003D5D8A /* LsPumpingTestViewController.m in Sources */,
 				18599F0F1FF1FC2000A5C584 /* NavigationView.m in Sources */,
-				18FEF8AA1F52C6F300F74BB6 /* BCSubscriptionQuery.m in Sources */,
 				182C686C1F5F8A6800DD1511 /* LsPlayBackViewController.m in Sources */,
 				18AF1AED1F2731E800D05E4D /* IQUIView+Hierarchy.m in Sources */,
 				1854F52A1F37024A00E1F603 /* MJRefreshHeaderView.m in Sources */,
@@ -3319,7 +2818,6 @@
 				183E7AF91F2832E000A69596 /* LsTabBar.m in Sources */,
 				1854F5311F37024A00E1F603 /* SDWebImageCompat.m in Sources */,
 				18599EEC1FF1FC2000A5C584 /* SettingViewController.m in Sources */,
-				18FEF8B51F52C6F300F74BB6 /* NSString+IsValid.m in Sources */,
 				1854F53B1F37024A00E1F603 /* UIImageView+HighlightedWebCache.m in Sources */,
 				1861DC1F1FF0892300C6A015 /* LsPlaceView.m in Sources */,
 				18C277F61FAC4F8F001A9BE0 /* LsProFormaModel.m in Sources */,
@@ -3327,7 +2825,6 @@
 				181EBA491FE4F74300A70202 /* LsQuestionsModel.m in Sources */,
 				18E82DED1F3830C500D3154B /* UCCarouselCollectionViewCell.m in Sources */,
 				181EBA3A1FE4CD6900A70202 /* LsMessageTableViewCell.m in Sources */,
-				18FEF88E1F52C6F300F74BB6 /* BCAuthReq.m in Sources */,
 				1854F53D1F37024A00E1F603 /* UIView+WebCacheOperation.m in Sources */,
 				18599F101FF1FC2000A5C584 /* MySlider.m in Sources */,
 				1854F5391F37024A00E1F603 /* UIImage+MultiFormat.m in Sources */,
@@ -3335,17 +2832,12 @@
 				189840AC1F4C375E00C6A8A0 /* LsMyLiveTabView.m in Sources */,
 				1854F5621F37088C00E1F603 /* AFNetworkReachabilityManager.m in Sources */,
 				18599EF91FF1FC2000A5C584 /* PhotoNotPermissionVC.m in Sources */,
-				18FEF89A1F52C6F300F74BB6 /* BCQueryBillsResp.m in Sources */,
-				18FEF8A11F52C6F300F74BB6 /* BCQueryRefundsCountReq.m in Sources */,
 				1861DC221FF0C01C00C6A015 /* LsPlaceModel.m in Sources */,
 				18E5D0E81F8E0E3F00F9CCDA /* LsDataTableViewCell.m in Sources */,
 				18599EF41FF1FC2000A5C584 /* VoteViewResult.m in Sources */,
 				18C277FE1FAC5A18001A9BE0 /* PhotoView.m in Sources */,
 				18975FCB1F29C6BD00447721 /* LsLog.m in Sources */,
-				18FEF8BA1F52C6F300F74BB6 /* AliPayAdapter.m in Sources */,
-				18FEF8AC1F52C6F300F74BB6 /* BCNetworkReachabilityManager.m in Sources */,
 				18599F191FF1FC2100A5C584 /* PlayForMobileVC.m in Sources */,
-				18FEF8D01F52C6F300F74BB6 /* WXPayAdapter.m in Sources */,
 				18AF1AEF1F2731E800D05E4D /* IQUIWindow+Hierarchy.m in Sources */,
 				18F74C911F3D8DEB007AA5F6 /* LsPracticeTableViewCell.m in Sources */,
 				18599F031FF1FC2000A5C584 /* SettingBaseViewController.m in Sources */,
@@ -3355,7 +2847,6 @@
 				18599F0C1FF1FC2000A5C584 /* PrivateChatViewForOne.m in Sources */,
 				18AF1AF11F2731E800D05E4D /* IQKeyboardReturnKeyHandler.m in Sources */,
 				18599F111FF1FC2000A5C584 /* InformationShowView.m in Sources */,
-				18FEF8A91F52C6F300F74BB6 /* BCSubscription.m in Sources */,
 				183E7AFC1F28330100A69596 /* LsTabBarViewController.m in Sources */,
 				189D948F1F2EBF270033C828 /* NSDictionary+Extension.m in Sources */,
 				180BC9921F5BA63D001EE331 /* LsCommentViewController.m in Sources */,
@@ -3364,7 +2855,6 @@
 				1854F52D1F37024A00E1F603 /* UIView+MJExtension.m in Sources */,
 				181524891F64E1AF00E23257 /* LsRecordingCompletedViewController.m in Sources */,
 				184CA1FC1F272FC800ACB807 /* LsAppDelegate.m in Sources */,
-				18FEF8981F52C6F300F74BB6 /* BCQueryBillByIdResp.m in Sources */,
 				18AF1AF71F2731E800D05E4D /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				1854F5281F37024A00E1F603 /* MJRefreshConst.m in Sources */,
 				18BBADA61F74A6CC00475A20 /* LsShareModel.m in Sources */,
@@ -3385,16 +2875,11 @@
 				1854F5651F37088C00E1F603 /* AFURLResponseSerialization.m in Sources */,
 				184335811F346F5000A53585 /* LsWebViewController.m in Sources */,
 				18E5D0EB1F8E125000F9CCDA /* LsDataModel.m in Sources */,
-				18FEF88F1F52C6F300F74BB6 /* BCBaseReq.m in Sources */,
-				18FEF8A81F52C6F300F74BB6 /* BCNewSubscription.m in Sources */,
-				18FEF8A21F52C6F300F74BB6 /* BCQueryRefundsCountResp.m in Sources */,
 				181EBA401FE4D1B400A70202 /* LsMyVideosViewController.m in Sources */,
 				18E5D1001F95A95B00F9CCDA /* LsDataDetailViewController.m in Sources */,
 				18710D711FE26DC100F6BC96 /* LsActivityModel.m in Sources */,
-				18FEF8AD1F52C6F300F74BB6 /* BCSecurityPolicy.m in Sources */,
 				18E5D0F41F90A43800F9CCDA /* LsTribeViewController.m in Sources */,
 				184C935E1FE7985C00A3EBF2 /* LsReviseUserInfoViewController.m in Sources */,
-				18FEF8B61F52C6F300F74BB6 /* BeeCloudAdapter.m in Sources */,
 				18599EE71FF1FC2000A5C584 /* ServerList.m in Sources */,
 				18E5D0E21F8DAF6700F9CCDA /* LsWrittenHeaderView.m in Sources */,
 				18975FDF1F29D86900447721 /* GCDTimer.m in Sources */,
@@ -3408,14 +2893,12 @@
 				18F32C661F4F09750081629E /* LsShareEvaluateViewController.m in Sources */,
 				185296151F60EC5D003D5D8A /* LsProFormaViewController.m in Sources */,
 				18599F021FF1FC2000A5C584 /* CCPrivateTableViewCell.m in Sources */,
-				18FEF88D1F52C6F300F74BB6 /* BeeCloud.m in Sources */,
 				18599EE51FF1FC2000A5C584 /* Dialogue.m in Sources */,
 				1854F5291F37024A00E1F603 /* MJRefreshFooterView.m in Sources */,
 				180BCA8F1F5D0763001EE331 /* MASViewAttribute.m in Sources */,
 				18599F011FF1FC2000A5C584 /* CCPrivateChatView.m in Sources */,
 				18599EEA1FF1FC2000A5C584 /* Bitrate.m in Sources */,
 				18E82E3C1F38A41F00D3154B /* LSLabel+TextField.m in Sources */,
-				18FEF8951F52C6F300F74BB6 /* BCPreRefundReq.m in Sources */,
 				1854F5271F37024A00E1F603 /* MJRefreshBaseView.m in Sources */,
 				1854F52F1F37024A00E1F603 /* NSData+ImageContentType.m in Sources */,
 				1854F4AA1F36BE2600E1F603 /* YYClassInfo.m in Sources */,
@@ -3423,7 +2906,6 @@
 				1854F5321F37024A00E1F603 /* SDWebImageDecoder.m in Sources */,
 				18F034D61FA70D13001A305D /* LsMyTableViewCell.m in Sources */,
 				18AF1AF61F2731E800D05E4D /* IQToolbar.m in Sources */,
-				18FEF8B11F52C6F300F74BB6 /* BCPayCache.m in Sources */,
 				185296041F6015D4003D5D8A /* LsInterviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

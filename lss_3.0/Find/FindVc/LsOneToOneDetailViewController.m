@@ -57,9 +57,9 @@
     NSString  *testString         =@"";
     [paragraphStyle  setLineSpacing:10*LSScale];
     if (self.isActivity) {
-        testString = [NSString stringWithFormat:@"免费预约\n%@",self.title_];
+        testString = [NSString stringWithFormat:@"马上预约\n%@",self.title_];
     }else{
-        testString = @"免费预约\n良师智胜教师招聘一对一辅导";
+        testString = @"马上预约\n良师智胜教师招聘一对一辅导";
     }
     NSMutableAttributedString  *setString = [[NSMutableAttributedString alloc] initWithString:testString];
     [setString  addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [testString length])];

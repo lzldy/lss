@@ -87,7 +87,6 @@
         playImageView.center       =imageV.center;
         playImageView.image        =playImage;
         [baseView addSubview:playImageView];
-    
     }
     return self;
 }
