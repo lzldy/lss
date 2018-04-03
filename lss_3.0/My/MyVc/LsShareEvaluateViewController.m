@@ -83,9 +83,7 @@
     [imageview addSubview:starRateView];
     
     UILabel *starL          =[[UILabel alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(starRateView.frame)+12*LSScale, imageview.frame.size.width, 25*LSScale)];
-    if ([LsMethod haveValue:_money]) {
-        starL.text          =[NSString stringWithFormat:@"%ld星好评并打赏了%@元",(long)[_starNum integerValue],_money];
-    }else{
+    if (![LsMethod haveValue:_money]) {
         starL.text          =[NSString stringWithFormat:@"%@星好评",_starNum];
     }
     starL.font              =[UIFont systemFontOfSize:20*LSScale];

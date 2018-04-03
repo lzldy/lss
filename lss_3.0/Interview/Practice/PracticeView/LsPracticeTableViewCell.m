@@ -32,27 +32,28 @@
     if (self) {
         self.backgroundColor     =[UIColor clearColor];
         
-        baseView                 =[[UIView alloc] initWithFrame:CGRectMake(0, 10*LSScale, LSMainScreenW, 270*LSScale)];
+        baseView                 =[[UIView alloc] initWithFrame:CGRectMake(0, 10*LSScale, LSMainScreenW, 255*LSScale)];
         baseView.backgroundColor =[UIColor whiteColor];
         [self addSubview:baseView];
        
         imageV                  =[[UIImageView alloc] initWithFrame:CGRectMake(10*LSScale, 13.5*LSScale, LSMainScreenW-20*LSScale, 200*LSScale)];
         [baseView addSubview:imageV];
         
-        titleL                  =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(imageV.frame)+10*LSScale, LSMainScreenW-20*LSScale, 15*LSScale)];
+        titleL                  =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, 10*LSScale, CGRectGetWidth(imageV.frame)-20*LSScale, 50*LSScale)];
         titleL.font             =[UIFont systemFontOfSize:15*LSScale];
-        titleL.textColor        =LSColor(86, 85, 85, 1);
+        titleL.textColor        =LSNavColor;
+        titleL.numberOfLines    =0;
         titleL.textAlignment    =NSTextAlignmentLeft;
-        [baseView addSubview:titleL];
+        [imageV addSubview:titleL];
         
-        authorL                 =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(titleL.frame)+10*LSScale, 75, 15*LSScale)];
+        authorL                 =[[UILabel alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(imageV.frame)+10*LSScale, 75, 15*LSScale)];
         authorL.font            =[UIFont systemFontOfSize:14*LSScale];
         authorL.textColor       =LSColor(115, 114, 114, 1);
         authorL.textAlignment   =NSTextAlignmentLeft;
 //        authorL.backgroundColor =[UIColor redColor];
         [baseView addSubview:authorL];
         
-        typeL                    =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(authorL.frame),CGRectGetMaxY(titleL.frame)+10*LSScale, 60, 15*LSScale)];
+        typeL                    =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(authorL.frame),CGRectGetMaxY(imageV.frame)+10*LSScale, 60, 15*LSScale)];
         typeL.font               =[UIFont systemFontOfSize:13];
         typeL.textColor          =LSNavColor;
         typeL.layer.cornerRadius =5*LSScale;
@@ -61,7 +62,7 @@
         typeL.textAlignment      =NSTextAlignmentCenter;
         [baseView addSubview:typeL];
         
-        authorTypeL                    =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(typeL.frame)+10*LSScale, CGRectGetMaxY(titleL.frame)+10*LSScale, 60, 15*LSScale)];
+        authorTypeL                    =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(typeL.frame)+10*LSScale, CGRectGetMaxY(imageV.frame)+10*LSScale, 60, 15*LSScale)];
         authorTypeL.font               =[UIFont systemFontOfSize:13];
         authorTypeL.textColor          =LSNavColor;
         authorTypeL.layer.cornerRadius =5*LSScale;
@@ -99,7 +100,9 @@
     }else if([LsMethod haveValue:modelll.videoHeadUrl2]){
         [imageV sd_setImageWithURL:modelll.videoHeadUrl2 placeholderImage:LOADIMAGE(@"tu-icon")];
     }
-    titleL.text                   =modelll.title;
+    titleL.text                   = modelll.title;
+    CGSize titleLSize             = [LsMethod sizeWithSize:titleL.frame.size String:titleL.text font:titleL.font];
+    titleL.frame                  =CGRectMake(titleL.frame.origin.x, titleL.frame.origin.y, titleL.frame.size.width, titleLSize.height);
 
     if ([LsMethod haveValue:modelll.author]) {
         authorL.text                  =modelll.author;

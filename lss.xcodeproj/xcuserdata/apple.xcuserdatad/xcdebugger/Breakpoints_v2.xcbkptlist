@@ -100,7 +100,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/Third/CC-Live/&#x89c2;&#x770b;&#x76f4;&#x64ad;/PlayForPCVC.m"
-            timestampString = "538380745.810487"
+            timestampString = "538390950.1914721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lss_3.0/login/LsLoginViewController.m"
-            timestampString = "536059620.764326"
+            timestampString = "543814223.099299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
             landmarkName = "-loginRequest"
             landmarkType = "7">
          </BreakpointContent>

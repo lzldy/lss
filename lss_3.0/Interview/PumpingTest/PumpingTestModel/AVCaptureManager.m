@@ -114,11 +114,9 @@
             // Changes take effect once the outermost commitConfiguration is invoked.
             [self.captureSession commitConfiguration];
             
-            
             break;
         }
     }
-    
     //横屏录制
 //    AVCaptureConnection * videoConnection = [self.fileOutput connectionWithMediaType:AVMediaTypeVideo];
 //    [videoConnection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
@@ -143,7 +141,7 @@
 
     BOOL isRunning = self.captureSession.isRunning;
     
-    if (isRunning) {
+    if (isRunning){
         [self.captureSession stopRunning];
     }
 
@@ -153,7 +151,7 @@
     videoDevice.activeVideoMaxFrameDuration = defaultVideoMaxFrameDuration;
     [videoDevice unlockForConfiguration];
 
-    if (isRunning) {
+    if (isRunning){
         [self.captureSession startRunning];
     }
 }
@@ -181,7 +179,7 @@
                 
                 selectedFormat = format;
                 frameRateRange = range;
-                maxWidth = width;
+                maxWidth       = width;
             }
         }
     }
@@ -211,19 +209,17 @@
     NSString *documentsDirectory = [paths objectAtIndex:0];
    
     NSString *filePath =[NSString stringWithFormat:@"%@/%@.mov", documentsDirectory, date2];
-    self.videoPath =date2 ;
+    self.videoPath =date2;
     
     NSURL *fileURL = [NSURL URLWithString:[@"file://" stringByAppendingString:filePath]];
     [self.fileOutput startRecordingToOutputFileURL:fileURL recordingDelegate:self];
 }
 
-- (void)stopRecording {
-
+- (void)stopRecording{
     [self.fileOutput stopRecording];
 }
 
-
-// =============================================================================
+//=============================================================================
 #pragma mark - AVCaptureFileOutputRecordingDelegate
 
 - (void)                 captureOutput:(AVCaptureFileOutput *)captureOutput

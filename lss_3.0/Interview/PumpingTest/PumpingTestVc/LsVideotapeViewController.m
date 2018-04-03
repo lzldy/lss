@@ -30,6 +30,7 @@
 {
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+//    [LsMethod begainFullScreen];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -39,6 +40,7 @@
     timer_ = nil;
     [captureManager stopRecording];
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+    [LsMethod endFullScreen];
 }
 
 - (void)viewDidLoad {
@@ -87,6 +89,7 @@
         return;
     }
     self.navView.navTitle = @"录制中...";
+    [LsMethod begainFullScreen];
     if ([startBtn.titleLabel.text isEqualToString:@"上传"]) {
         [startBtn setTitle:@"开始录制" forState:UIControlStateNormal];
         [self nextButtonTapped:nil];
@@ -119,7 +122,7 @@
         [timer_ fire];
     }
     
-    if (captureManager.isRecording) {
+    if (captureManager.isRecording){
         isNeededToSave = NO;
         [timer_ invalidate];
         timer_ = nil;

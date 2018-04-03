@@ -88,12 +88,11 @@
     startBtn         =[[UIButton alloc] initWithFrame:CGRectMake(15*LSScale, LSMainScreenH-38*LSScale-20*LSScale, LSMainScreenW-30*LSScale, 38*LSScale)];
     startBtn.layer.backgroundColor =LSNavColor.CGColor;
     startBtn.layer.cornerRadius    =6*LSScale;
-    [startBtn setTitle:@"开始考试" forState:0];
+    [startBtn setTitle:@"开始录制练课视频" forState:0];
     [startBtn setTitleColor:[UIColor whiteColor] forState:0];
     startBtn.titleLabel.font       =[UIFont systemFontOfSize:15*LSScale];
     [startBtn addTarget:self action:@selector(didClickStartBtn:) forControlEvents:UIControlEventTouchUpInside];
     [superView addSubview:startBtn];
-    
 }
 
 -(void)didClickStartBtn:(UIButton*)btn{

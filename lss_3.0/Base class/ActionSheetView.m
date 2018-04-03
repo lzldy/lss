@@ -20,7 +20,7 @@
         btn1.backgroundColor   =LSNavColor;
         btn1.tag               =10765;
         [btn1 addTarget:self action:@selector(didClickBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [btn1 setTitle:@"微信支付" forState:UIControlStateNormal];
+        [btn1 setTitle:@"111" forState:UIControlStateNormal];
         [btn1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self addSubview:btn1];
         
@@ -33,7 +33,7 @@
         btn2.tag               =10766;
         [btn2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn2 addTarget:self action:@selector(didClickBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [btn2 setTitle:@"支付宝支付" forState:UIControlStateNormal];
+        [btn2 setTitle:@"222" forState:UIControlStateNormal];
         [self addSubview:btn2];        
     }
     return self;
@@ -42,11 +42,11 @@
 -(void)didClickBtn:(UIButton*)button{
     if (button.tag ==10765) {
         if (self.delegate&&[self.delegate respondsToSelector:@selector(chooseBtn:)]) {
-            [self.delegate chooseBtn:@"微信支付"];
+            [self.delegate chooseBtn:@"111"];
         }
     }else{
         if (self.delegate&&[self.delegate respondsToSelector:@selector(chooseBtn:)]) {
-            [self.delegate chooseBtn:@"支付宝支付"];
+            [self.delegate chooseBtn:@"222"];
         }
     }
     [self removeFromSuperview];

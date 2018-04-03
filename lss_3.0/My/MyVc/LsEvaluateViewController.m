@@ -11,10 +11,9 @@
 #import "LsShareEvaluateViewController.h"
 #import "ActionSheetView.h"
 
-@interface LsEvaluateViewController ()<UITextViewDelegate,UITextFieldDelegate,ActionSheetViewDelegate>
+@interface LsEvaluateViewController ()<UITextViewDelegate,UITextFieldDelegate>
 {
     UITextView           *textView_;
-    UITextField          *textField_;
 //    UIView               *backView;
     NSString             *billNum;
     NSString             *totalFee;
@@ -68,31 +67,6 @@
     [headerView addSubview:titleL];
     
     headerView.frame               =CGRectMake(headerView.frame.origin.x, headerView.frame.origin.y, headerView.frame.size.width, CGRectGetMaxY(titleL.frame)+15*LSScale);
-//    textField_       =[[UITextField alloc] initWithFrame:CGRectMake(headerView.frame.size.width/2-45*LSScale, CGRectGetMaxY(titleL.frame)+5*LSScale, 90*LSScale, 25*LSScale)];
-//    textField_.keyboardType         = UIKeyboardTypeNumberPad;
-//    textField_.textAlignment        =NSTextAlignmentCenter;
-//    textField_.textColor            =LSColor(255, 90, 122, 1);
-//    textField_.delegate             =self;
-//    textField_.font                 =[UIFont systemFontOfSize:17*LSScale];
-//    [headerView addSubview:textField_];
-    
-//    UIView *line                   =[[UIView alloc] initWithFrame:CGRectMake(textField_.frame.origin.x, CGRectGetMaxY(textField_.frame), textField_.frame.size.width, 1)];
-//    line.backgroundColor           =LSLineColor;
-//    [headerView addSubview:line];
-    
-//    UILabel   *textFL              =[[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(textField_.frame), textField_.frame.origin.y, 40*LSScale, 25*LSScale)];
-//    textFL.text                    =@"元";
-//    textFL.font                    =[UIFont systemFontOfSize:17*LSScale];
-//    textFL.textColor               =[UIColor darkTextColor];
-//    textFL.textAlignment           =NSTextAlignmentLeft;
-//    [headerView addSubview:textFL];
-
-//    UILabel   *promptL             =[[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame)+5*LSScale, headerView.frame.size.width, 35*LSScale)];
-//    promptL.text                   =@"输入打赏金额";
-//    promptL.font                   =[UIFont systemFontOfSize:17*LSScale];
-//    promptL.textColor              =[UIColor darkGrayColor];
-//    promptL.textAlignment          =NSTextAlignmentCenter;
-//    [headerView addSubview:promptL];
     
     UIView  *midView               =[[UIView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(headerView.frame)+10*LSScale, LSMainScreenW-20*LSScale, 190*LSScale)];
     midView.backgroundColor        =LSNavColor;
@@ -143,16 +117,6 @@
     }
 }
 
-#pragma  -mark- ActionSheetViewDelegate
--(void)chooseBtn:(NSString *)type{
-    if ([type isEqualToString:@"微信支付"]) {
-//        [self doPay:PayChannelWxApp];
-    }else{
-//        [self doPay:PayChannelAliApp];
-    }
-}
-
-
 -(void)addrateData{
     if (![textView_.text isEqualToString:@"写下您对这次直播的评价吧~~~"]&&![LsMethod haveValue:textView_.text]) {
         textView_.text =@"";
@@ -184,9 +148,9 @@
 }
 
 -(void)showSheetView{
-    ActionSheetView *sheetView =[[ActionSheetView alloc] initWithFrame:CGRectMake(30*LSScale,LSMainScreenH/2 -50*LSScale, LSMainScreenW-60*LSScale, 100*LSScale)];
-    sheetView.delegate=self;
-    [superView addSubview:sheetView];
+//    ActionSheetView *sheetView =[[ActionSheetView alloc] initWithFrame:CGRectMake(30*LSScale,LSMainScreenH/2 -50*LSScale, LSMainScreenW-60*LSScale, 100*LSScale)];
+//    sheetView.delegate=self;
+//    [superView addSubview:sheetView];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
@@ -201,15 +165,11 @@
 }
 
 -(void)didcClickSubmitBtn{
-    if (_starNum||(![textView_.text isEqualToString:@"写下您对这次直播的评价吧~~~"]&&[LsMethod haveValue:textView_.text])) {
+    if (_starNum||(![textView_.text isEqualToString:@"写下您对这次直播的评价吧~~~"])) {
 //        [self evaluateSuccess];
-        if ([LsMethod haveValue:textField_.text]) {
-            [self genBillNoWith:textField_.text];
-        }else{
             //直接评价
             [self addrateData];
             NSLog(@"==========直接评价=======");
-        }
     }else{
         [LsMethod alertMessage:@"赏几颗星星吧" WithTime:2];
     }
@@ -219,7 +179,7 @@
     LsShareEvaluateViewController *vc =[[LsShareEvaluateViewController alloc] init];
     vc.title_                         =_title_;
     vc.starNum                        =_starNum;
-    vc.money                          =textField_.text;
+//    vc.money                          =textField_.text;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

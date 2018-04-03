@@ -38,17 +38,17 @@
 
 -(void)loadBaseUI{
     
-    rightBtn         =[[LsButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-70*LSScale, 20, 60*LSScale, 44)];
-    UIImage  *xlImage          =[UIImage imageNamed:@"xl"];
-    rightBtn.lsImageView.frame =CGRectMake(rightBtn.frame.size.width-xlImage.size.width, 22-xlImage.size.height/2, xlImage.size.width, xlImage.size.height);
-    rightBtn.lsImageView.image =xlImage;
-    rightBtn.lsLabel.frame     =CGRectMake(0, 0, rightBtn.frame.size.width-xlImage.size.width-5, 44);
-    rightBtn.lsLabel.text      =@"视频";
-    rightBtn.lsLabel.textColor =[UIColor whiteColor];
-    rightBtn.lsLabel.textAlignment =NSTextAlignmentRight;
-    rightBtn.lsLabel.font      =[UIFont systemFontOfSize:16];
-    [rightBtn addTarget:self action:@selector(videoRecordingBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.navView addSubview:rightBtn];
+//    rightBtn         =[[LsButton alloc] initWithFrame:CGRectMake(LSMainScreenW-15*LSScale-70*LSScale, 20, 60*LSScale, 44)];
+//    UIImage  *xlImage          =[UIImage imageNamed:@"xl"];
+//    rightBtn.lsImageView.frame =CGRectMake(rightBtn.frame.size.width-xlImage.size.width, 22-xlImage.size.height/2, xlImage.size.width, xlImage.size.height);
+//    rightBtn.lsImageView.image =xlImage;
+//    rightBtn.lsLabel.frame     =CGRectMake(0, 0, rightBtn.frame.size.width-xlImage.size.width-5, 44);
+//    rightBtn.lsLabel.text      =@"视频";
+//    rightBtn.lsLabel.textColor =[UIColor whiteColor];
+//    rightBtn.lsLabel.textAlignment =NSTextAlignmentRight;
+//    rightBtn.lsLabel.font      =[UIFont systemFontOfSize:16];
+//    [rightBtn addTarget:self action:@selector(videoRecordingBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.navView addSubview:rightBtn];
     
     UIImage     *image      =[UIImage imageNamed:@"test_back"];
     UIImageView *backImageV =[[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.navView.frame), LSMainScreenW,LSMainScreenW/image.size.width*image.size.height)];

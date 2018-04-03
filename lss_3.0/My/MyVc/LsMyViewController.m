@@ -45,9 +45,7 @@
 }
 
 -(void)getData{
-    _dataArray =@[@{@"title":@"我的VIP",@"image":@"vip_icon"},
-                  @{@"title":@"我的活动",@"image":@"hd"},
-                  @{@"title":@"我的订单",@"image":@"dingdan_icon"},
+    _dataArray =@[@{@"title":@"我的订单",@"image":@"dingdan_icon"},
                   @{@"title":@"消息中心",@"image":@"xiaoxi_icon"},
                   @{@"title":@"意见反馈",@"image":@"yijian_icon"}];
 }
@@ -58,7 +56,7 @@
     CGFloat  width    = 82*LSScale;
     CGFloat  space    = (LSMainScreenW-2*20*LSScale-3*width)/2;
     
-    uploadBtn       =[[LsButton alloc] initWithFrame:CGRectMake(20*LSScale, CGRectGetMaxY(self.headerView.frame)+20*LSScale,width, 60*LSScale)];
+    uploadBtn       =[[LsButton alloc] initWithFrame:CGRectMake(LSMainScreenW/2-width-space, CGRectGetMaxY(self.headerView.frame)+20*LSScale,width, 60*LSScale)];
     uploadBtn.lsImageView.frame  =CGRectMake(0, 0, width, 40*LSScale);
     uploadBtn.lsImageView.image  =[UIImage imageNamed:@"yichuan_icon"];
     uploadBtn.lsLabel.frame      =CGRectMake(0,CGRectGetMaxY(uploadBtn.lsImageView.frame), width, 20*LSScale);
@@ -69,7 +67,7 @@
     [uploadBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [superView addSubview:uploadBtn];
     
-    LsButton   * myLiveBtn       =[[LsButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(uploadBtn.frame)+space, CGRectGetMaxY(self.headerView.frame)+20*LSScale,width, 60*LSScale)];
+    LsButton   * myLiveBtn       =[[LsButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(uploadBtn.frame)+2*space, CGRectGetMaxY(self.headerView.frame)+20*LSScale,width, 60*LSScale)];
     myLiveBtn.lsImageView.frame  =CGRectMake(0, 0, width, 40*LSScale);
     myLiveBtn.lsImageView.image  =[UIImage imageNamed:@"zhibo_icon"];
     myLiveBtn.lsLabel.frame      =CGRectMake(0,CGRectGetMaxY(uploadBtn.lsImageView.frame), width, 20*LSScale);
@@ -80,16 +78,16 @@
     [myLiveBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [superView addSubview:myLiveBtn];
     
-    LsButton   * collectionBtn       =[[LsButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(myLiveBtn.frame)+space, CGRectGetMaxY(self.headerView.frame)+20*LSScale,width, 60*LSScale)];
-    collectionBtn.lsImageView.frame  =CGRectMake(0, 0, width, 40*LSScale);
-    collectionBtn.lsImageView.image  =[UIImage imageNamed:@"shoucang_icon"];
-    collectionBtn.lsLabel.frame      =CGRectMake(0,CGRectGetMaxY(uploadBtn.lsImageView.frame), width, 20*LSScale);
-    collectionBtn.lsLabel.textAlignment =NSTextAlignmentCenter;
-    collectionBtn.lsLabel.font       =[UIFont systemFontOfSize:12.5*LSScale];
-    collectionBtn.lsLabel.text       =@"我的收藏";
-    collectionBtn.tag                =125;
-    [collectionBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [superView addSubview:collectionBtn];
+//    LsButton   * collectionBtn       =[[LsButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(myLiveBtn.frame)+space, CGRectGetMaxY(self.headerView.frame)+20*LSScale,width, 60*LSScale)];
+//    collectionBtn.lsImageView.frame  =CGRectMake(0, 0, width, 40*LSScale);
+//    collectionBtn.lsImageView.image  =[UIImage imageNamed:@"shoucang_icon"];
+//    collectionBtn.lsLabel.frame      =CGRectMake(0,CGRectGetMaxY(uploadBtn.lsImageView.frame), width, 20*LSScale);
+//    collectionBtn.lsLabel.textAlignment =NSTextAlignmentCenter;
+//    collectionBtn.lsLabel.font       =[UIFont systemFontOfSize:12.5*LSScale];
+//    collectionBtn.lsLabel.text       =@"我的收藏";
+//    collectionBtn.tag                =125;
+//    [collectionBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [superView addSubview:collectionBtn];
     
     [superView addSubview:self.tabView];
 }
@@ -124,7 +122,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -141,13 +139,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row==4) {
+    if (indexPath.row==2) {
         LsFeedBackViewController *vc      =[[LsFeedBackViewController alloc] init];
         [self.navigationController         pushViewController:vc animated:YES];
-    }else if (indexPath.row==3){
+    }else if (indexPath.row==1){
         LsMessageCenterViewController *vc =[[LsMessageCenterViewController alloc] init];
         [self.navigationController         pushViewController:vc animated:YES];
-    }else if (indexPath.row==2){
+    }else if (indexPath.row==0){
 //        [LsMethod alertMessage:@"该栏目暂未开通,敬请期待" WithTime:1.5];
         LsMyOrderViewController *vc       =[[LsMyOrderViewController alloc] init];
         [self.navigationController          pushViewController:vc animated:YES];
@@ -171,7 +169,7 @@
 
 -(UITableView *)tabView{
     if (!_tabView) {
-        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(uploadBtn.frame)+20*LSScale, LSMainScreenW-20*LSScale,45*LSScale*5)];
+        _tabView =[[UITableView alloc] initWithFrame:CGRectMake(10*LSScale, CGRectGetMaxY(uploadBtn.frame)+20*LSScale, LSMainScreenW-20*LSScale,45*LSScale*3)];
         _tabView.delegate                      =self;
         _tabView.dataSource                    =self;
         _tabView.tableFooterView               =[[UIView alloc] init];

@@ -120,41 +120,63 @@
         [forgetBtn setTitle:@"忘记密码?" forState:UIControlStateNormal];
         [forgetBtn setTitleColor:LSColor(102, 102, 102, 1) forState:UIControlStateNormal];
         [forgetBtn addTarget:self action:@selector(didClickForgotBtn) forControlEvents:UIControlEventTouchUpInside];
-        [superView addSubview:forgetBtn];
+        [superView addSubview:forgetBtn];  
     }
     
     if (!_isRegisterVc&&!_isLoginVc) {
-        UILabel *otherL =[[UILabel alloc] initWithFrame:CGRectMake(LSMainScreenW/2-40, LSMainScreenH-170, 80, 25)];
-        otherL.text      =@"其他方式登录";
-        otherL.textColor =[UIColor darkTextColor];
-        otherL.font      =[UIFont systemFontOfSize:12];
-        otherL.textAlignment =NSTextAlignmentCenter;
-        [superView addSubview:otherL];
-        
-        UIView *leftLine          =[[UIView alloc] initWithFrame:CGRectMake(15, CGRectGetMidY(otherL.frame), CGRectGetMinX(otherL.frame)-15, 1)];
-        leftLine.backgroundColor  =[UIColor darkTextColor];
-        [superView addSubview:leftLine];
-        
-        UIView *rightLine         =[[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(otherL.frame), CGRectGetMidY(otherL.frame), LSMainScreenW-CGRectGetMaxX(otherL.frame)-15, 1)];
-        rightLine.backgroundColor =[UIColor darkTextColor];
-        [superView addSubview:rightLine];
-        
-        UIButton *qqBtn           =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW/2-25-60, CGRectGetMaxY(otherL.frame)+10, 60, 60)];
-        [qqBtn setImage:[UIImage imageNamed:@"qq_icon"] forState:UIControlStateNormal];
-        [qqBtn addTarget:self action:@selector(getAuthWithUserInfoFromQQ) forControlEvents:UIControlEventTouchUpInside];
-        [superView addSubview:qqBtn];
-        
-        UIButton *wxBtn           =[[UIButton alloc] initWithFrame:CGRectMake(LSMainScreenW/2+25, CGRectGetMaxY(otherL.frame)+10, 60, 60)];
-        [wxBtn setImage:[UIImage imageNamed:@"wechat_icon"] forState:UIControlStateNormal];
-        [wxBtn addTarget:self action:@selector(getAuthWithUserInfoFromWechat) forControlEvents:UIControlEventTouchUpInside];
-        [superView addSubview:wxBtn];
+//        UILabel *otherL  =[[UILabel alloc] init];
+//
+//        if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]||[[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
+//
+//            otherL.frame     =CGRectMake(LSMainScreenW/2-40, LSMainScreenH-170, 80, 25);
+//            otherL.text      =@"其他方式登录";
+//            otherL.textColor =[UIColor darkTextColor];
+//            otherL.font      =[UIFont systemFontOfSize:12];
+//            otherL.textAlignment =NSTextAlignmentCenter;
+//            [superView addSubview:otherL];
+//
+//            UIView *leftLine          =[[UIView alloc] initWithFrame:CGRectMake(15, CGRectGetMidY(otherL.frame), CGRectGetMinX(otherL.frame)-15, 1)];
+//            leftLine.backgroundColor  =[UIColor darkTextColor];
+//            [superView addSubview:leftLine];
+//
+//            UIView *rightLine         =[[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(otherL.frame), CGRectGetMidY(otherL.frame), LSMainScreenW-CGRectGetMaxX(otherL.frame)-15, 1)];
+//            rightLine.backgroundColor =[UIColor darkTextColor];
+//            [superView addSubview:rightLine];
+//        }
+//
+//        UIButton *qqBtn           =[[UIButton alloc] init];
+//        [qqBtn setImage:[UIImage imageNamed:@"qq_icon"] forState:UIControlStateNormal];
+//        [qqBtn addTarget:self action:@selector(getAuthWithUserInfoFromQQ) forControlEvents:UIControlEventTouchUpInside];
+//        [superView addSubview:qqBtn];
+//
+//        if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]){
+//            if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]) {
+//                qqBtn.frame               = CGRectMake(LSMainScreenW/2-25-60, CGRectGetMaxY(otherL.frame)+10, 60, 60);
+//
+//            }else{
+//                qqBtn.frame               = CGRectMake(LSMainScreenW/2-30, CGRectGetMaxY(otherL.frame)+10, 60, 60);
+//            }
+//        }
+//
+//        UIButton *wxBtn           =[[UIButton alloc] init];
+//        [wxBtn setImage:[UIImage imageNamed:@"wechat_icon"] forState:UIControlStateNormal];
+//        [wxBtn addTarget:self action:@selector(getAuthWithUserInfoFromWechat) forControlEvents:UIControlEventTouchUpInside];
+//        [superView addSubview:wxBtn];
+//        if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_WechatSession]){
+//            if ([[UMSocialManager defaultManager] isInstall:UMSocialPlatformType_QQ]) {
+//                wxBtn.frame=CGRectMake(LSMainScreenW/2+25, CGRectGetMaxY(otherL.frame)+10, 60, 60);
+//            }else{
+//                wxBtn.frame=CGRectMake(LSMainScreenW/2-30, CGRectGetMaxY(otherL.frame)+10, 60, 60);
+//            }
+//        }
+    
         
         NSString *str=@"登录及表示您同意良师说服务和隐私条款";
         NSMutableAttributedString *attributedString=[[NSMutableAttributedString alloc]initWithString:str];
         [attributedString addAttribute:NSForegroundColorAttributeName
                                  value:LSNavColor
                                  range:NSMakeRange(str.length-7, 7)];
-        _label       =[[UILabel alloc] initWithFrame:CGRectMake(20*LSScale, CGRectGetMaxY(qqBtn.frame)+20, LSMainScreenW-40*LSScale, 25)];
+        _label       =[[UILabel alloc] initWithFrame:CGRectMake(20*LSScale, LSMainScreenH-48, LSMainScreenW-40*LSScale, 25)];
         _label.attributedText =attributedString;
         _label.font           =[UIFont systemFontOfSize:12];
         _label.textAlignment  =NSTextAlignmentCenter;
@@ -324,56 +346,56 @@
     }];
 }
 
--(void)thirdLoginRequest:(NSDictionary*)data{
-    [[LsAFNetWorkTool shareManger] LSPOST:@"umquicklogin.html" parameters:data success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
-        NSDictionary  *usertokenDict =[responseObject objectForKey:@"usertoken"];
-        NSString      *uid           =[usertokenDict  objectForKey:@"uid"];
-        NSString      *token         =[usertokenDict  objectForKey:@"token"];
-        [LSUser_Default setObject:uid    forKey:@"uid"];
-        [LSUser_Default setObject:token  forKey:@"token"];
-        [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
-        [LSUser_Default setObject:@"yes" forKey:@"thirdLogin"];
+//-(void)thirdLoginRequest:(NSDictionary*)data{
+//    [[LsAFNetWorkTool shareManger] LSPOST:@"umquicklogin.html" parameters:data success:^(NSURLSessionDataTask * _Nullable task, id  _Nullable responseObject) {
+//        NSDictionary  *usertokenDict =[responseObject objectForKey:@"usertoken"];
+//        NSString      *uid           =[usertokenDict  objectForKey:@"uid"];
+//        NSString      *token         =[usertokenDict  objectForKey:@"token"];
+//        [LSUser_Default setObject:uid    forKey:@"uid"];
+//        [LSUser_Default setObject:token  forKey:@"token"];
+//        [LSUser_Default setObject:@"yes" forKey:@"didLogin"];
+//        [LSUser_Default setObject:@"yes" forKey:@"thirdLogin"];
+//
+//        if (![LSUser_Default objectForKey:@"didConfig"]) {
+//            LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
+//            conVc.modalPresentationStyle =UIModalPresentationCustom;
+//            conVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;
+//            [self presentViewController:conVc animated:YES completion:nil];
+//        }else{
+//            [self loginSuccess];
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
+//    }];
+//}
 
-        if (![LSUser_Default objectForKey:@"didConfig"]) {
-            LsConfigureViewController *conVc = [[LsConfigureViewController alloc] init];
-            conVc.modalPresentationStyle =UIModalPresentationCustom;
-            conVc.modalTransitionStyle   =UIModalTransitionStyleCrossDissolve;
-            [self presentViewController:conVc animated:YES completion:nil];
-        }else{
-            [self loginSuccess];
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nullable error) {
-    }];
-}
-
-#pragma - mark -  QQ WX 登录
-- (void)getAuthWithUserInfoFromQQ{
-    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_QQ currentViewController:nil completion:^(id result, NSError *error) {
-        if (error) {
-            LsLog(@"-----------QQ--------%@",error);
-        } else {
-            UMSocialUserInfoResponse *resp = result;
-            NSDictionary *dict =@{@"umsys":@"QQ",@"umuid":resp.uid,@"umname":resp.name,
-                                  @"umgender":resp.unionGender,@"umheadurl":resp.iconurl,
-                                  @"mchcode":resp.accessToken,@"umdata":resp.originalResponse};
-            [self thirdLoginRequest:dict];
-        }
-    }];
-}
-
-- (void)getAuthWithUserInfoFromWechat{
-    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
-        if (error) {
-            LsLog(@"-----------WX--------%@",error);
-        } else {
-            UMSocialUserInfoResponse *resp = result;
-            NSDictionary *dict =@{@"umsys":@"WX",@"umuid":resp.uid,@"umname":resp.name,
-                                  @"umgender":resp.unionGender,@"umheadurl":resp.iconurl,
-                                  @"mchcode":resp.accessToken,@"umdata":resp.originalResponse};
-            [self thirdLoginRequest:dict];
-        }
-    }];
-}
+//#pragma - mark -  QQ WX 登录
+//- (void)getAuthWithUserInfoFromQQ{
+//    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_QQ currentViewController:nil completion:^(id result, NSError *error) {
+//        if (error) {
+//            LsLog(@"-----------QQ--------%@",error);
+//        } else {
+//            UMSocialUserInfoResponse *resp = result;
+//            NSDictionary *dict =@{@"umsys":@"QQ",@"umuid":resp.uid,@"umname":resp.name,
+//                                  @"umgender":resp.unionGender,@"umheadurl":resp.iconurl,
+//                                  @"mchcode":resp.accessToken,@"umdata":resp.originalResponse};
+//            [self thirdLoginRequest:dict];
+//        }
+//    }];
+//}
+//
+//- (void)getAuthWithUserInfoFromWechat{
+//    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
+//        if (error) {
+//            LsLog(@"-----------WX--------%@",error);
+//        } else {
+//            UMSocialUserInfoResponse *resp = result;
+//            NSDictionary *dict =@{@"umsys":@"WX",@"umuid":resp.uid,@"umname":resp.name,
+//                                  @"umgender":resp.unionGender,@"umheadurl":resp.iconurl,
+//                                  @"mchcode":resp.accessToken,@"umdata":resp.originalResponse};
+//            [self thirdLoginRequest:dict];
+//        }
+//    }];
+//}
 
 -(void)loginSuccess{
     [LSUser_Default setObject:@"yes" forKey:@"didLogin"];

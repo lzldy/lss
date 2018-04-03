@@ -91,8 +91,6 @@ static NSString* WBSecret       = @"06f988828740fee943633953dcf73ba3";
     //WB
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:WBAppid  appSecret:WBSecret redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
     
-       /* 支付宝的appKey */
-//    [[UMSocialManager defaultManager] setPlaform: UMSocialPlatformType_AlipaySession appKey:@"2015111700822536" appSecret:nil redirectURL:nil];
     
 }
 
