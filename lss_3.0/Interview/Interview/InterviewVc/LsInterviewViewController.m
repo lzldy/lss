@@ -294,11 +294,11 @@
 
 -(LsInterView *)typeView{
     if (!_typeView) {
-        _typeView =[[LsInterView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_carouselView.frame), LSMainScreenW, 95)];
-    _typeView.dataArray =@[@{@"title":@"直播课堂",@"imageName":@"xin_icon",@"color":LSColor(127,127,127,1)},
-                           @{@"title":@"面试抽题",@"imageName":@"nian_icon",@"color":LSColor(127,127,127,1)},
-                           @{@"title":@"示范视频",@"imageName":@"kuai_icon",@"color":LSColor(127,127,127,1)},
-                           @{@"title":@"笔试刷题",@"imageName":@"le_icon",@"color":LSColor(127,127,127,1)}];
+        _typeView =[[LsInterView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_carouselView.frame), LSMainScreenW, 80)];
+    _typeView.dataArray =@[@{@"title":@"直播课堂",@"imageName":@"zhibo-icon",@"color":LSColor(127,127,127,1)},
+                           @{@"title":@"面试抽题",@"imageName":@"mianshi-icon",@"color":LSColor(127,127,127,1)},
+                           @{@"title":@"示范视频",@"imageName":@"shiping-icon",@"color":LSColor(127,127,127,1)},
+                           @{@"title":@"笔试刷题",@"imageName":@"bishi-icon",@"color":LSColor(127,127,127,1)}];
         _typeView.delegate=self;
     }
     return _typeView;
